@@ -77,19 +77,58 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "Gabriela Gajanová | Olympic Athlete | 800m Runner" },
+      {
+        name: "description",
+        content:
+          "Official website of Gabriela Gajanová, Slovak Olympic athlete and European Championship medalist specializing in the 800 metres.",
+      },
+      { name: "author", content: "Gabriela Gajanová" },
+      { property: "og:title", content: "Gabriela Gajanová | Olympic 800m Runner" },
+      {
+        property: "og:description",
+        content:
+          "Slovak Olympian, European Championship silver medalist, national record holder in the 800 metres.",
+      },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
+      { property: "og:site_name", content: "Gabriela Gajanová" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
       {
         rel: "stylesheet",
         href: appCss,
+      },
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&family=Instrument+Serif:ital@0;1&display=swap",
+      },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Person",
+          additionalType: "https://schema.org/Athlete",
+          name: "Gabriela Gajanová",
+          nationality: "Slovak",
+          jobTitle: "Olympic Middle-Distance Runner",
+          sport: "Athletics — 800 metres",
+          memberOf: [
+            { "@type": "SportsTeam", name: "Slovak National Athletics Team" },
+            { "@type": "SportsTeam", name: "VŠC Dukla Banská Bystrica" },
+            { "@type": "SportsTeam", name: "TeamLouis" },
+          ],
+          award: [
+            "European Championships Silver Medal",
+            "Slovak National Record 800m — 1:58.22",
+            "Olympic Games Tokyo 2021",
+            "Olympic Games Paris 2024",
+          ],
+        }),
       },
     ],
   }),

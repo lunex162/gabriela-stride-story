@@ -5,17 +5,9 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * Design system definition.
- *
- * The @theme inline block maps CSS custom properties to Tailwind utility
- * classes (e.g. --color-primary -> bg-primary, text-primary).
- *
- * The :root and .dark blocks define the actual color values using oklch.
- * All colors MUST use oklch format.
- *
- * To add a new semantic color:
- * 1. Add the variable to :root (light value) and .dark (dark value)
- * 2. Register it in @theme inline as --color-<name>: var(--<name>)
+ * Gabriela Gajanová — Editorial athlete design system.
+ * Mostly white & beige, navy for premium sections, gold for highlights,
+ * powder pink as subtle accent only.
  */
 
 @theme inline {
@@ -59,29 +51,51 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+
+  --color-navy: var(--navy);
+  --color-navy-deep: var(--navy-deep);
+  --color-powder: var(--powder);
+  --color-beige: var(--beige);
+  --color-gold: var(--gold);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+
+  --font-display: "Bebas Neue", "Oswald", sans-serif;
+  --font-serif: "Instrument Serif", "Cormorant Garamond", serif;
+  --font-sans: "Inter", system-ui, sans-serif;
 }
 
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.129 0.042 264.695);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
-  --secondary: oklch(0.968 0.007 247.896);
-  --secondary-foreground: oklch(0.208 0.042 265.755);
-  --muted: oklch(0.968 0.007 247.896);
-  --muted-foreground: oklch(0.554 0.046 257.417);
-  --accent: oklch(0.968 0.007 247.896);
-  --accent-foreground: oklch(0.208 0.042 265.755);
+  --radius: 0.25rem;
+
+  /* brand palette */
+  --navy: #0D2E63;
+  --navy-deep: #071A33;
+  --powder: #F8EEF0;
+  --beige: #F7F2EB;
+  --gold: #C9B08A;
+  --ink: #1A1A1A;
+  --ink-soft: #6F6F6F;
+
+  --background: #FFFFFF;
+  --foreground: #1A1A1A;
+  --card: #FFFFFF;
+  --card-foreground: #1A1A1A;
+  --popover: #FFFFFF;
+  --popover-foreground: #1A1A1A;
+  --primary: #0D2E63;
+  --primary-foreground: #FFFFFF;
+  --secondary: #F7F2EB;
+  --secondary-foreground: #1A1A1A;
+  --muted: #F6F6F6;
+  --muted-foreground: #6F6F6F;
+  --accent: #F8EEF0;
+  --accent-foreground: #0D2E63;
   --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.929 0.013 255.508);
-  --input: oklch(0.929 0.013 255.508);
-  --ring: oklch(0.704 0.04 256.788);
+  --destructive-foreground: #FFFFFF;
+  --border: #ECE7DF;
+  --input: #ECE7DF;
+  --ring: #C9B08A;
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -140,5 +154,75 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01", "cv11";
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
   }
+
+  ::selection {
+    background: var(--gold);
+    color: var(--navy-deep);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@utility font-display {
+  font-family: var(--font-display);
+  letter-spacing: 0.01em;
+}
+
+@utility font-serif-display {
+  font-family: var(--font-serif);
+  font-style: italic;
+}
+
+@utility text-ink-soft {
+  color: var(--ink-soft);
+}
+
+@utility bg-navy { background-color: var(--navy); }
+@utility bg-navy-deep { background-color: var(--navy-deep); }
+@utility bg-powder { background-color: var(--powder); }
+@utility bg-beige { background-color: var(--beige); }
+@utility bg-gold { background-color: var(--gold); }
+@utility text-navy { color: var(--navy); }
+@utility text-navy-deep { color: var(--navy-deep); }
+@utility text-gold { color: var(--gold); }
+@utility border-gold { border-color: var(--gold); }
+
+@keyframes draw-line {
+  from { stroke-dashoffset: 1200; }
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slow-zoom {
+  from { transform: scale(1); }
+  to { transform: scale(1.08); }
+}
+
+@keyframes track-shimmer {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+@utility animate-draw-line {
+  animation: draw-line 2.4s ease-out forwards;
+}
+@utility animate-fade-up {
+  animation: fade-up 1.2s cubic-bezier(.16,1,.3,1) forwards;
+}
+@utility animate-slow-zoom {
+  animation: slow-zoom 18s ease-out forwards;
+}
+@utility animate-track-shimmer {
+  animation: track-shimmer 3s ease-in-out infinite;
 }
