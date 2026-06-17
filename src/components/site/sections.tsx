@@ -52,7 +52,7 @@ export function Hero() {
         className="pointer-events-none absolute inset-0 opacity-30"
         style={{
           backgroundImage:
-            "repeating-linear-gradient(90deg, transparent 0 80px, rgba(201,176,138,0.18) 80px 81px)",
+            "repeating-linear-gradient(90deg, transparent 0 80px, rgba(194,85,58,0.18) 80px 81px)",
           transform: `translateX(${-y * 0.15}px)`,
         }}
       />
@@ -237,7 +237,7 @@ export function Achievements() {
           {achievements.map((a, i) => (
             <Reveal key={a.title} delay={i * 100}>
               <article
-                className="group relative h-full overflow-hidden bg-white p-8 transition-all duration-700 hover:-translate-y-2 hover:shadow-[0_30px_60px_-30px_rgba(13,46,99,0.4)]"
+                className="group relative h-full overflow-hidden bg-white p-8 transition-all duration-700 hover:-translate-y-2 hover:shadow-[0_30px_60px_-30px_rgba(42,22,16,0.35)]"
                 style={{ minHeight: 320 }}
               >
                 <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold to-transparent opacity-0 transition-opacity duration-700 group-hover:opacity-100" />
@@ -337,7 +337,7 @@ export function Journey() {
 
         {/* Glowing runner trail */}
         <div
-          className="absolute left-1/2 top-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gold shadow-[0_0_60px_30px_rgba(201,176,138,0.5)]"
+          className="absolute left-1/2 top-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gold shadow-[0_0_60px_30px_rgba(194,85,58,0.45)]"
           style={{
             transform: `translate(calc(-50% + ${(progress - 0.5) * 60}vw), calc(-50% + ${
               Math.sin(progress * Math.PI * 2) * 10
@@ -597,7 +597,7 @@ export function Social() {
             <Reveal key={s.platform} delay={i * 120}>
               <a
                 href={s.href}
-                className="group relative block aspect-[4/3] overflow-hidden bg-white p-10 transition-all hover:-translate-y-1 hover:shadow-[0_30px_60px_-30px_rgba(13,46,99,0.3)]"
+                className="group relative block aspect-[4/3] overflow-hidden bg-white p-10 transition-all hover:-translate-y-1 hover:shadow-[0_30px_60px_-30px_rgba(42,22,16,0.25)]"
               >
                 <div className="flex h-full flex-col justify-between">
                   <div className="flex items-start justify-between">

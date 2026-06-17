@@ -6,8 +6,9 @@
 
 /*
  * Gabriela Gajanová — Editorial athlete design system.
- * Mostly white & beige, navy for premium sections, gold for highlights,
- * powder pink as subtle accent only.
+ * Warm béžová base, svetlo ružová as soft accent, antuka (clay-track terracotta)
+ * for highlights and CTAs. Dark sections use warm charcoal-brown for contrast.
+ * Variable names (navy/gold/powder/beige) kept for compatibility — values retuned.
  */
 
 @theme inline {
@@ -68,34 +69,34 @@
 :root {
   --radius: 0.25rem;
 
-  /* brand palette */
-  --navy: #0D2E63;
-  --navy-deep: #071A33;
-  --powder: #F8EEF0;
-  --beige: #F7F2EB;
-  --gold: #C9B08A;
-  --ink: #1A1A1A;
-  --ink-soft: #6F6F6F;
+  /* brand palette — béžová · svetlo ružová · antuka */
+  --navy: #4A2A1E;         /* warm dark brown (body dark) */
+  --navy-deep: #2A1610;    /* deepest warm charcoal-brown (dark sections) */
+  --powder: #F6DCD4;       /* svetlo ružová — soft pink accent */
+  --beige: #F1E6D3;        /* warm béžová — primary soft background */
+  --gold: #C2553A;         /* ANTUKA — clay-track terracotta (main highlight) */
+  --ink: #2A1F1A;          /* warm dark text */
+  --ink-soft: #7A6A60;     /* warm muted text */
 
-  --background: #FFFFFF;
-  --foreground: #1A1A1A;
+  --background: #FBF6EC;   /* cream off-white base */
+  --foreground: #2A1F1A;
   --card: #FFFFFF;
-  --card-foreground: #1A1A1A;
+  --card-foreground: #2A1F1A;
   --popover: #FFFFFF;
-  --popover-foreground: #1A1A1A;
-  --primary: #0D2E63;
-  --primary-foreground: #FFFFFF;
-  --secondary: #F7F2EB;
-  --secondary-foreground: #1A1A1A;
-  --muted: #F6F6F6;
-  --muted-foreground: #6F6F6F;
-  --accent: #F8EEF0;
-  --accent-foreground: #0D2E63;
+  --popover-foreground: #2A1F1A;
+  --primary: #C2553A;      /* antuka as primary CTA */
+  --primary-foreground: #FBF6EC;
+  --secondary: #F1E6D3;
+  --secondary-foreground: #2A1F1A;
+  --muted: #F5EDDF;
+  --muted-foreground: #7A6A60;
+  --accent: #F6DCD4;
+  --accent-foreground: #2A1610;
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: #FFFFFF;
-  --border: #ECE7DF;
-  --input: #ECE7DF;
-  --ring: #C9B08A;
+  --border: #E7D9C3;
+  --input: #E7D9C3;
+  --ring: #C2553A;
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
