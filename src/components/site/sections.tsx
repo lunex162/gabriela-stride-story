@@ -1,8 +1,8 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Reveal } from "./Reveal";
+import { useT } from "@/i18n/LocaleContext";
 import hero from "@/assets/hero.jpg";
 import portrait from "@/assets/portrait.jpg";
-import track from "@/assets/track.jpg";
 import race1 from "@/assets/race1.jpg";
 import race2 from "@/assets/race2.jpg";
 import race3 from "@/assets/race3.jpg";
@@ -11,6 +11,7 @@ import quoteBg from "@/assets/quote.jpg";
 
 /* ---------------- HERO ---------------- */
 export function Hero() {
+  const t = useT();
   const [y, setY] = useState(0);
   useEffect(() => {
     const onScroll = () => setY(window.scrollY);
@@ -23,12 +24,10 @@ export function Hero() {
       id="top"
       className="relative h-screen w-full overflow-hidden bg-navy-deep text-white"
     >
-      {/* Video / image background */}
       <div
         className="absolute inset-0 animate-slow-zoom"
         style={{ transform: `translateY(${y * 0.25}px) scale(1.05)` }}
       >
-        {/* Reserved for video upload */}
         <video
           className="hidden h-full w-full object-cover"
           autoPlay
@@ -39,25 +38,23 @@ export function Hero() {
         />
         <img
           src={hero}
-          alt="Gabriela Gajanová sprinting on the track at dusk"
+          alt="Gabriela Gajanová"
           className="h-full w-full object-cover"
           width={1920}
           height={1080}
         />
       </div>
 
-      {/* Overlay */}
       <div className="absolute inset-0 bg-navy-deep/65" />
       <div
         className="pointer-events-none absolute inset-0 opacity-30"
         style={{
           backgroundImage:
-            "repeating-linear-gradient(90deg, transparent 0 80px, rgba(194,85,58,0.18) 80px 81px)",
+            "repeating-linear-gradient(90deg, transparent 0 80px, rgba(194,85,58,0.20) 80px 81px)",
           transform: `translateX(${-y * 0.15}px)`,
         }}
       />
 
-      {/* Huge 800M ghost */}
       <div
         className="pointer-events-none absolute inset-0 flex items-center justify-center"
         style={{ transform: `translateY(${y * 0.1}px)` }}
@@ -67,7 +64,6 @@ export function Hero() {
         </span>
       </div>
 
-      {/* Content */}
       <div className="relative z-10 flex h-full flex-col justify-end px-6 pb-20 md:px-16 md:pb-28">
         <div className="max-w-5xl">
           <div
@@ -75,21 +71,21 @@ export function Hero() {
             style={{ animation: "fade-up 1s ease-out 0.2s forwards" }}
           >
             <span className="h-px w-10 bg-gold" />
-            Olympic Athlete
+            {t("hero.eyebrow")}
           </div>
           <h1
             className="font-display text-[18vw] leading-[0.85] tracking-tight md:text-[12rem] opacity-0"
             style={{ animation: "fade-up 1.2s ease-out 0.5s forwards" }}
           >
-            GABRIELA
+            {t("hero.firstName")}
             <br />
-            <span className="text-gold">GAJANOVÁ</span>
+            <span className="text-gold">{t("hero.lastName")}</span>
           </h1>
           <p
             className="mt-8 max-w-2xl text-sm tracking-[0.18em] text-white/80 md:text-base opacity-0"
             style={{ animation: "fade-up 1s ease-out 0.9s forwards" }}
           >
-            Olympian · Slovak National Team Athlete · European Championship Medalist
+            {t("hero.subhead")}
           </p>
           <div
             className="mt-10 flex flex-wrap gap-4 opacity-0"
@@ -97,38 +93,38 @@ export function Hero() {
           >
             <a
               href="#about"
-              className="group inline-flex items-center gap-3 bg-gold px-8 py-4 text-[11px] uppercase tracking-[0.3em] text-navy-deep transition-transform hover:-translate-y-0.5"
+              className="group inline-flex items-center gap-3 bg-gold px-8 py-4 text-[11px] uppercase tracking-[0.3em] text-white transition-transform hover:-translate-y-0.5"
             >
-              Discover My Story
+              {t("hero.cta.story")}
               <span className="transition-transform group-hover:translate-x-1">→</span>
             </a>
             <a
               href="#contact"
               className="inline-flex items-center gap-3 border border-white/40 px-8 py-4 text-[11px] uppercase tracking-[0.3em] text-white transition-colors hover:bg-white hover:text-navy-deep"
             >
-              Contact
+              {t("hero.cta.contact")}
             </a>
           </div>
         </div>
       </div>
 
-      {/* Scroll cue */}
       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-[10px] uppercase tracking-[0.5em] text-white/60">
-        Scroll
+        {t("hero.scroll")}
       </div>
     </section>
   );
 }
 
 /* ---------------- ABOUT ---------------- */
-const stats = [
-  { value: "800 m", label: "Main Discipline" },
-  { value: "2×", label: "Olympic Games" },
-  { value: "1:58.22", label: "Slovak Record" },
-  { value: "Silver", label: "European Championships" },
-];
-
 export function About() {
+  const t = useT();
+  const stats = [
+    { value: t("about.stat1.value"), label: t("about.stat1.label") },
+    { value: t("about.stat2.value"), label: t("about.stat2.label") },
+    { value: t("about.stat3.value"), label: t("about.stat3.label") },
+    { value: t("about.stat4.value"), label: t("about.stat4.label") },
+  ];
+
   return (
     <section id="about" className="relative bg-background px-6 py-32 md:px-16 md:py-48">
       <div className="mx-auto grid max-w-[1500px] gap-16 md:grid-cols-12 md:gap-24">
@@ -136,7 +132,7 @@ export function About() {
           <div className="relative aspect-[4/5] overflow-hidden bg-beige">
             <img
               src={portrait}
-              alt="Portrait of Gabriela Gajanová"
+              alt="Gabriela Gajanová"
               className="h-full w-full object-cover"
               width={1024}
               height={1280}
@@ -154,27 +150,19 @@ export function About() {
           <Reveal>
             <div className="mb-6 flex items-center gap-4 text-[10px] uppercase tracking-[0.4em] text-gold">
               <span className="h-px w-10 bg-gold" />
-              About Me
+              {t("about.eyebrow")}
             </div>
           </Reveal>
           <Reveal delay={100}>
             <h2 className="font-serif-display text-4xl leading-[1.05] text-navy-deep md:text-6xl">
-              Ahojte, moje meno je Gabriela Gajanová a&nbsp;rada behám.
+              {t("about.title")}
             </h2>
           </Reveal>
           <Reveal delay={200}>
             <div className="mt-10 space-y-6 text-base leading-relaxed text-ink md:max-w-xl md:text-lg">
-              <p>
-                Som slovenská reprezentantka v behu na 800 metrov, dvojnásobná olympionička
-                a strieborná medailistka z Majstrovstiev Európy.
-              </p>
-              <p>
-                Pochádzam z Bobrovca na Liptove a atletike sa venujem od svojich 12 rokov.
-              </p>
-              <p>
-                Som súčasťou medzinárodnej tréningovej skupiny TeamLouis a členkou
-                VŠC Dukla Banská Bystrica.
-              </p>
+              <p>{t("about.p1")}</p>
+              <p>{t("about.p2")}</p>
+              <p>{t("about.p3")}</p>
             </div>
           </Reveal>
 
@@ -199,15 +187,14 @@ export function About() {
 }
 
 /* ---------------- ACHIEVEMENTS ---------------- */
-const achievements = [
-  { year: "2021", title: "Olympic Games Tokyo", place: "Tokyo, Japan" },
-  { year: "2024", title: "Olympic Games Paris", place: "Paris, France" },
-  { year: "2024", title: "European Championships", place: "Silver Medal" },
-  { year: "—", title: "Slovak National Record", place: "1:58.22" },
-  { year: "—", title: "Slovak National Team", place: "Senior Squad" },
-];
-
 export function Achievements() {
+  const t = useT();
+  const items = [1, 2, 3, 4, 5, 6].map((n) => ({
+    year: t(`ach${n}.year`),
+    title: t(`ach${n}.title`),
+    body: t(`ach${n}.body`),
+  }));
+
   return (
     <section
       id="achievements"
@@ -217,27 +204,24 @@ export function Achievements() {
         <div className="mb-20 grid gap-8 md:grid-cols-12">
           <Reveal className="md:col-span-6">
             <div className="mb-6 flex items-center gap-4 text-[10px] uppercase tracking-[0.4em] text-gold">
-              <span className="h-px w-10 bg-gold" /> Honours
+              <span className="h-px w-10 bg-gold" /> {t("achievements.eyebrow")}
             </div>
             <h2 className="font-display text-6xl leading-[0.9] text-navy-deep md:text-8xl">
-              ACHIEVE
-              <br />
-              MENTS
+              {t("achievements.title").toUpperCase()}
             </h2>
           </Reveal>
           <Reveal className="md:col-span-5 md:col-start-8 md:pt-6">
             <p className="text-base leading-relaxed text-ink md:text-lg">
-              Years of discipline distilled into moments that defined a career — on
-              the world's biggest stages.
+              {t("achievements.lead")}
             </p>
           </Reveal>
         </div>
 
         <div className="grid gap-6 md:grid-cols-3">
-          {achievements.map((a, i) => (
+          {items.map((a, i) => (
             <Reveal key={a.title} delay={i * 100}>
               <article
-                className="group relative h-full overflow-hidden bg-white p-8 transition-all duration-700 hover:-translate-y-2 hover:shadow-[0_30px_60px_-30px_rgba(42,22,16,0.35)]"
+                className="group relative h-full overflow-hidden bg-white p-8 transition-all duration-700 hover:-translate-y-2 hover:shadow-[0_30px_60px_-30px_rgba(13,46,99,0.30)]"
                 style={{ minHeight: 320 }}
               >
                 <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold to-transparent opacity-0 transition-opacity duration-700 group-hover:opacity-100" />
@@ -246,14 +230,14 @@ export function Achievements() {
                     <div className="font-display text-sm tracking-[0.3em] text-gold">
                       {a.year}
                     </div>
-                    <h3 className="mt-6 font-display text-3xl leading-tight text-navy-deep md:text-4xl">
+                    <h3 className="mt-6 font-display text-2xl leading-tight text-navy-deep md:text-3xl">
                       {a.title.toUpperCase()}
                     </h3>
+                    <p className="mt-5 text-sm leading-relaxed text-ink-soft">
+                      {a.body}
+                    </p>
                   </div>
-                  <div className="mt-10 flex items-end justify-between">
-                    <span className="text-[11px] uppercase tracking-[0.25em] text-ink-soft">
-                      {a.place}
-                    </span>
+                  <div className="mt-10 flex items-end justify-end">
                     <svg width="32" height="32" viewBox="0 0 32 32" className="text-gold">
                       <circle cx="16" cy="16" r="15" fill="none" stroke="currentColor" strokeWidth="0.5" />
                       <path d="M10 16 L22 16 M18 12 L22 16 L18 20" stroke="currentColor" strokeWidth="1" fill="none" />
@@ -269,21 +253,35 @@ export function Achievements() {
   );
 }
 
-/* ---------------- JOURNEY ---------------- */
-const milestones = [
-  { title: "THE BEGINNING", place: "Bobrovec, Slovakia", year: "2008" },
-  { title: "FIRST COMPETITIONS", place: "Liptov region", year: "2010" },
-  { title: "SLOVAK NATIONAL TEAM", place: "Senior debut", year: "2018" },
-  { title: "INTERNATIONAL STAGE", place: "World circuit", year: "2020" },
-  { title: "TOKYO 2021", place: "Olympic Games", year: "2021" },
-  { title: "EUROPEAN CHAMPIONSHIPS", place: "Silver Medal", year: "2024" },
-  { title: "PARIS 2024", place: "Olympic Games", year: "2024" },
-  { title: "THE JOURNEY CONTINUES", place: "Next horizon", year: "→" },
-];
-
+/* ---------------- 800 METRES — scroll-driven interactive track ---------------- */
+/**
+ * Sticky scroll section. As the user scrolls, the runner advances along
+ * a curved 800m path from 0m → 800m. At every 100m a milestone card is
+ * revealed with the relevant achievement / place from Gabriela's career.
+ */
 export function Journey() {
+  const t = useT();
   const sectionRef = useRef<HTMLElement | null>(null);
+  const pathRef = useRef<SVGPathElement | null>(null);
   const [progress, setProgress] = useState(0);
+  const [pathLen, setPathLen] = useState(1);
+  const [runnerPos, setRunnerPos] = useState({ x: 60, y: 360 });
+
+  const milestones = useMemo(
+    () =>
+      [0, 1, 2, 3, 4, 5, 6, 7, 8].map((n) => ({
+        dist: n * 100,
+        title: t(`m${n}.title`),
+        place: t(`m${n}.place`),
+        year: t(`m${n}.year`),
+        body: t(`m${n}.body`),
+      })),
+    [t],
+  );
+
+  useEffect(() => {
+    if (pathRef.current) setPathLen(pathRef.current.getTotalLength());
+  }, []);
 
   useEffect(() => {
     const onScroll = () => {
@@ -292,107 +290,206 @@ export function Journey() {
       const rect = el.getBoundingClientRect();
       const total = el.offsetHeight - window.innerHeight;
       const scrolled = Math.min(Math.max(-rect.top, 0), total);
-      setProgress(total > 0 ? scrolled / total : 0);
+      const p = total > 0 ? scrolled / total : 0;
+      setProgress(p);
+      if (pathRef.current) {
+        const pt = pathRef.current.getPointAtLength(p * pathLen);
+        setRunnerPos({ x: pt.x, y: pt.y });
+      }
     };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, [pathLen]);
 
-  const activeIdx = Math.min(
-    milestones.length - 1,
-    Math.floor(progress * milestones.length),
-  );
+  const distance = Math.round(progress * 800);
+  // Active milestone: snap to nearest 100m within ±60m window
+  const activeIdx = Math.min(8, Math.round((progress * 800) / 100));
+  const active = milestones[activeIdx];
+
+  // SVG path — a long S-curve representing the 800m track laps
+  // Conceptually two laps, drawn as a flowing horizontal S
+  const trackPath =
+    "M 60 360 " +
+    "C 200 360, 280 120, 480 120 " +
+    "C 680 120, 760 360, 960 360 " +
+    "C 1160 360, 1240 120, 1440 120 " +
+    "C 1640 120, 1720 360, 1860 360";
 
   return (
     <section
       id="journey"
       ref={sectionRef}
       className="relative bg-navy-deep text-white"
-      style={{ height: "400vh" }}
+      style={{ height: "600vh" }}
     >
       <div className="sticky top-0 h-screen w-full overflow-hidden">
-        {/* Track image with perspective rotation */}
+        {/* Ambient glow following the runner */}
         <div
-          className="absolute inset-0 origin-center transition-transform duration-300 ease-out"
+          className="pointer-events-none absolute inset-0"
           style={{
-            transform: `perspective(1400px) rotateX(${55 - progress * 20}deg) rotateZ(${
-              progress * 8 - 4
-            }deg) scale(${1.2 + progress * 0.4})`,
-          }}
-        >
-          <img
-            src={track}
-            alt=""
-            className="h-full w-full object-cover opacity-40"
-            width={1600}
-            height={1000}
-            loading="lazy"
-          />
-        </div>
-
-        {/* Vignette */}
-        <div className="absolute inset-0 bg-gradient-to-b from-navy-deep via-navy-deep/40 to-navy-deep" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_30%,var(--navy-deep)_85%)]" />
-
-        {/* Glowing runner trail */}
-        <div
-          className="absolute left-1/2 top-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gold shadow-[0_0_60px_30px_rgba(194,85,58,0.45)]"
-          style={{
-            transform: `translate(calc(-50% + ${(progress - 0.5) * 60}vw), calc(-50% + ${
-              Math.sin(progress * Math.PI * 2) * 10
-            }vh))`,
-            transition: "transform 0.3s ease-out",
+            background: `radial-gradient(circle at ${
+              (runnerPos.x / 1920) * 100
+            }% ${
+              (runnerPos.y / 480) * 60 + 20
+            }%, rgba(194,85,58,0.35) 0%, rgba(7,26,51,0) 45%)`,
+            transition: "background 0.3s ease-out",
           }}
         />
 
-        {/* Header */}
-        <div className="absolute left-0 right-0 top-0 z-10 px-6 pt-32 md:px-16">
+        {/* Heading */}
+        <div className="absolute left-0 right-0 top-0 z-10 px-6 pt-28 md:px-16 md:pt-32">
           <div className="mx-auto max-w-[1500px]">
-            <div className="mb-4 flex items-center gap-4 text-[10px] uppercase tracking-[0.4em] text-gold">
-              <span className="h-px w-10 bg-gold" /> The Journey
+            <div className="mb-3 flex items-center gap-4 text-[10px] uppercase tracking-[0.4em] text-gold">
+              <span className="h-px w-10 bg-gold" /> {t("journey.eyebrow")}
             </div>
-            <h2 className="font-display text-5xl leading-none md:text-7xl">
-              FROM BOBROVEC <span className="text-gold">·</span> TO THE WORLD
+            <h2 className="font-display text-4xl leading-none md:text-6xl">
+              {t("journey.title")}
             </h2>
+            <p className="mt-4 max-w-xl text-sm text-white/70 md:text-base">
+              {t("journey.lead")}
+            </p>
           </div>
         </div>
 
+        {/* Distance counter */}
+        <div className="absolute right-6 top-32 z-10 text-right md:right-16 md:top-44">
+          <div className="text-[10px] uppercase tracking-[0.4em] text-gold">
+            {t("journey.distanceLabel")}
+          </div>
+          <div className="mt-2 font-display text-6xl leading-none text-white md:text-8xl">
+            {distance}
+            <span className="ml-2 text-2xl text-gold md:text-3xl">
+              {t("journey.metersShort")}
+            </span>
+          </div>
+          <div className="mt-1 text-[10px] uppercase tracking-[0.4em] text-white/40">
+            / 800 {t("journey.metersShort")}
+          </div>
+        </div>
+
+        {/* The track SVG */}
+        <div className="absolute inset-x-0 top-1/2 -translate-y-1/2">
+          <svg
+            viewBox="0 0 1920 480"
+            className="h-[60vh] w-full"
+            preserveAspectRatio="xMidYMid meet"
+          >
+            {/* Track lane lines (faded) */}
+            <path
+              ref={pathRef}
+              d={trackPath}
+              stroke="rgba(255,255,255,0.10)"
+              strokeWidth="80"
+              strokeLinecap="round"
+              fill="none"
+            />
+            <path
+              d={trackPath}
+              stroke="rgba(255,255,255,0.06)"
+              strokeWidth="50"
+              strokeLinecap="round"
+              strokeDasharray="2 18"
+              fill="none"
+            />
+            {/* Progress lane filled with antuka */}
+            <path
+              d={trackPath}
+              stroke="var(--gold)"
+              strokeWidth="6"
+              strokeLinecap="round"
+              fill="none"
+              style={{
+                strokeDasharray: pathLen,
+                strokeDashoffset: pathLen * (1 - progress),
+                transition: "stroke-dashoffset 0.25s linear",
+              }}
+            />
+
+            {/* Milestone markers along the path */}
+            {milestones.map((m, i) => {
+              if (!pathRef.current) return null;
+              const pt = pathRef.current.getPointAtLength((i / 8) * pathLen);
+              const reached = activeIdx >= i;
+              return (
+                <g key={i} transform={`translate(${pt.x}, ${pt.y})`}>
+                  <circle
+                    r={reached ? 14 : 9}
+                    fill={reached ? "var(--gold)" : "rgba(255,255,255,0.15)"}
+                    stroke={reached ? "rgba(194,85,58,0.4)" : "rgba(255,255,255,0.3)"}
+                    strokeWidth={reached ? 8 : 2}
+                  />
+                  <text
+                    x={0}
+                    y={-26}
+                    textAnchor="middle"
+                    fontSize="14"
+                    fontWeight="600"
+                    fill={reached ? "var(--gold)" : "rgba(255,255,255,0.5)"}
+                  >
+                    {m.dist}m
+                  </text>
+                </g>
+              );
+            })}
+
+            {/* Runner dot */}
+            <g transform={`translate(${runnerPos.x}, ${runnerPos.y})`}>
+              <circle r="22" fill="var(--gold)" opacity="0.25" />
+              <circle r="12" fill="var(--gold)" />
+              <circle r="5" fill="#fff" />
+            </g>
+          </svg>
+        </div>
+
         {/* Active milestone card */}
-        <div className="absolute inset-x-0 bottom-0 z-10 px-6 pb-20 md:px-16">
+        <div className="absolute inset-x-0 bottom-0 z-10 px-6 pb-12 md:px-16 md:pb-16">
           <div className="mx-auto max-w-[1500px]">
-            <div className="flex items-end justify-between gap-8">
-              <div key={activeIdx} className="animate-fade-up">
+            <div
+              key={activeIdx}
+              className="grid items-end gap-8 animate-fade-up md:grid-cols-12"
+            >
+              <div className="md:col-span-7">
                 <div className="font-display text-sm tracking-[0.3em] text-gold">
-                  {milestones[activeIdx].year}
+                  {active.dist} {t("journey.metersShort")} · {active.year}
                 </div>
-                <div className="mt-3 font-display text-5xl leading-none md:text-7xl">
-                  {milestones[activeIdx].title}
+                <div className="mt-3 font-display text-4xl leading-[0.95] text-white md:text-6xl">
+                  {active.title.toUpperCase()}
                 </div>
-                <div className="mt-3 text-xs uppercase tracking-[0.3em] text-white/60">
-                  {milestones[activeIdx].place}
+                <div className="mt-2 text-xs uppercase tracking-[0.3em] text-white/60">
+                  {active.place}
                 </div>
               </div>
-              <div className="hidden font-display text-sm tracking-[0.3em] text-white/40 md:block">
-                {String(activeIdx + 1).padStart(2, "0")} / {String(milestones.length).padStart(2, "0")}
+              <div className="md:col-span-5">
+                <p className="text-sm leading-relaxed text-white/80 md:text-base">
+                  {active.body}
+                </p>
               </div>
             </div>
 
-            {/* Progress lane */}
-            <div className="mt-10 h-px w-full bg-white/10">
-              <div
-                className="h-px bg-gold transition-[width] duration-300"
-                style={{ width: `${progress * 100}%` }}
-              />
-            </div>
-            <div className="mt-3 flex justify-between text-[9px] uppercase tracking-[0.3em] text-white/40">
+            <div className="mt-8 flex items-center gap-2">
               {milestones.map((m, i) => (
-                <span
-                  key={m.title}
-                  className={i <= activeIdx ? "text-gold" : ""}
+                <div
+                  key={i}
+                  className="flex-1 text-center"
                 >
-                  ·
-                </span>
+                  <div
+                    className={`mx-auto h-2 w-2 rounded-full transition-colors ${
+                      i <= activeIdx ? "bg-gold" : "bg-white/15"
+                    }`}
+                  />
+                  <div
+                    className={`mt-2 text-[9px] uppercase tracking-[0.2em] transition-colors ${
+                      i === activeIdx ? "text-gold" : "text-white/30"
+                    }`}
+                  >
+                    {m.dist}
+                  </div>
+                </div>
               ))}
             </div>
           </div>
@@ -403,32 +500,30 @@ export function Journey() {
 }
 
 /* ---------------- GALLERY ---------------- */
-const photos = [
-  { src: race1, alt: "At the starting blocks", tag: "Start", h: "row-span-2" },
-  { src: race3, alt: "Finish line celebration", tag: "Finish", h: "row-span-2" },
-  { src: race2, alt: "Detail of running shoes", tag: "Details", h: "" },
-  { src: race4, alt: "Behind the scenes preparation", tag: "Behind The Scenes", h: "" },
-];
-
 export function Gallery() {
+  const t = useT();
+  const photos = [
+    { src: race1, alt: "Start", tag: t("gallery.cat.start"), h: "row-span-2" },
+    { src: race3, alt: "Finish", tag: t("gallery.cat.finish"), h: "row-span-2" },
+    { src: race2, alt: "Detail", tag: t("gallery.cat.detail"), h: "" },
+    { src: race4, alt: "Race", tag: t("gallery.cat.race"), h: "" },
+  ];
+
   return (
     <section id="gallery" className="relative bg-beige px-6 py-32 md:px-16 md:py-48">
       <div className="mx-auto max-w-[1600px]">
         <div className="mb-20 grid items-end gap-8 md:grid-cols-12">
           <Reveal className="md:col-span-7">
             <div className="mb-6 flex items-center gap-4 text-[10px] uppercase tracking-[0.4em] text-gold">
-              <span className="h-px w-10 bg-gold" /> Race Gallery
+              <span className="h-px w-10 bg-gold" /> {t("gallery.eyebrow")}
             </div>
             <h2 className="font-display text-6xl leading-[0.9] text-navy-deep md:text-8xl">
-              MOMENTS
-              <br />
-              IN MOTION
+              {t("gallery.title").toUpperCase()}
             </h2>
           </Reveal>
           <Reveal className="md:col-span-4 md:col-start-9" delay={150}>
             <p className="text-sm leading-relaxed text-ink-soft md:text-base">
-              Race. Start. Finish. Emotion. Details. Behind the scenes. The
-              fragments that compose a life on the track.
+              {t("gallery.lead")}
             </p>
           </Reveal>
         </div>
@@ -461,8 +556,9 @@ export function Gallery() {
   );
 }
 
-/* ---------------- 800 METRES ---------------- */
+/* ---------------- 800 METRES — cinematic typographic interlude ---------------- */
 export function EightHundred() {
+  const t = useT();
   const ref = useRef<HTMLElement | null>(null);
   const [p, setP] = useState(0);
   useEffect(() => {
@@ -479,11 +575,10 @@ export function EightHundred() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const gap = (1 - Math.abs(p - 0.5) * 2) * 8; // separates then reconnects
+  const gap = (1 - Math.abs(p - 0.5) * 2) * 8;
 
   return (
-    <section ref={ref} className="relative overflow-hidden bg-navy-deep px-6 py-40 text-white md:py-56">
-      {/* Animated track lines */}
+    <section ref={ref} className="relative overflow-hidden bg-navy-deep px-6 py-32 text-white md:py-44">
       <svg
         className="absolute inset-0 h-full w-full opacity-40"
         viewBox="0 0 1600 1000"
@@ -510,23 +605,20 @@ export function EightHundred() {
       </svg>
 
       <div className="relative mx-auto max-w-[1500px] text-center">
-        <div className="mb-10 text-[10px] uppercase tracking-[0.5em] text-gold">
-          The Discipline
-        </div>
         <h2 className="font-display leading-none">
           <span
-            className="block text-[24vw] md:text-[18rem]"
+            className="block text-[24vw] md:text-[16rem]"
             style={{ letterSpacing: `${gap}px` }}
           >
             800
           </span>
           <span className="mt-2 block text-2xl tracking-[0.6em] text-gold md:text-4xl">
-            METRES
+            {t("eight.title").replace("800 ", "")}
           </span>
         </h2>
         <Reveal>
-          <p className="mx-auto mt-16 max-w-xl font-serif-display text-2xl leading-relaxed text-white/90 md:text-3xl">
-            Two laps. One strategy. The final 100 metres where everything is decided.
+          <p className="mx-auto mt-12 max-w-xl font-serif-display text-2xl leading-relaxed text-white/90 md:text-3xl">
+            {t("eight.line1")} {t("eight.line2")} {t("eight.line3")}
           </p>
         </Reveal>
       </div>
@@ -535,31 +627,37 @@ export function EightHundred() {
 }
 
 /* ---------------- PARTNERS ---------------- */
-const partners = [
-  { name: "On Running", mono: "ON" },
-  { name: "Slovenský atletický zväz", mono: "SAZ" },
-  { name: "VŠC Dukla Banská Bystrica", mono: "DUKLA" },
-];
-
 export function Partners() {
+  const t = useT();
+  const partners = [
+    { name: "On Running", mono: "ON" },
+    { name: "Slovenský atletický zväz", mono: "SAZ" },
+    { name: "VŠC Dukla Banská Bystrica", mono: "DUKLA" },
+  ];
+
   return (
     <section className="bg-white px-6 py-32 md:px-16 md:py-40">
       <div className="mx-auto max-w-[1500px]">
         <Reveal>
-          <div className="mb-16 flex items-center justify-between border-b border-border pb-8">
-            <span className="text-[10px] uppercase tracking-[0.4em] text-gold">
-              Partners
-            </span>
-            <span className="text-[10px] uppercase tracking-[0.4em] text-ink-soft">
-              In Collaboration
-            </span>
+          <div className="mb-10 grid gap-8 border-b border-border pb-8 md:grid-cols-12">
+            <div className="md:col-span-6">
+              <span className="text-[10px] uppercase tracking-[0.4em] text-gold">
+                {t("partners.eyebrow")}
+              </span>
+              <h2 className="mt-4 font-serif-display text-4xl leading-[1.05] text-navy-deep md:text-5xl">
+                {t("partners.title")}
+              </h2>
+            </div>
+            <p className="md:col-span-5 md:col-start-8 md:pt-4 text-sm leading-relaxed text-ink-soft md:text-base">
+              {t("partners.lead")}
+            </p>
           </div>
         </Reveal>
         <div className="grid gap-px bg-border md:grid-cols-3">
           {partners.map((p, i) => (
             <Reveal key={p.name} delay={i * 120}>
               <div className="group flex h-48 flex-col items-center justify-center bg-white px-6 text-center transition-all">
-                <div className="font-display text-4xl tracking-[0.2em] text-ink-soft transition-colors duration-500 group-hover:text-navy md:text-5xl">
+                <div className="font-display text-4xl tracking-[0.2em] text-ink-soft transition-colors duration-500 group-hover:text-gold md:text-5xl">
                   {p.mono}
                 </div>
                 <div className="mt-4 text-[10px] uppercase tracking-[0.3em] text-ink-soft">
@@ -576,17 +674,21 @@ export function Partners() {
 
 /* ---------------- SOCIAL ---------------- */
 export function Social() {
+  const t = useT();
   return (
     <section className="bg-beige px-6 py-32 md:px-16 md:py-40">
       <div className="mx-auto max-w-[1500px]">
         <div className="mb-16 grid items-end gap-8 md:grid-cols-12">
           <Reveal className="md:col-span-7">
             <div className="mb-6 flex items-center gap-4 text-[10px] uppercase tracking-[0.4em] text-gold">
-              <span className="h-px w-10 bg-gold" /> Social
+              <span className="h-px w-10 bg-gold" /> {t("social.eyebrow")}
             </div>
             <h2 className="font-serif-display text-5xl leading-[1] text-navy-deep md:text-7xl">
-              Follow my journey
+              {t("social.title")}
             </h2>
+            <p className="mt-6 max-w-xl text-sm leading-relaxed text-ink-soft md:text-base">
+              {t("social.lead")}
+            </p>
           </Reveal>
         </div>
         <div className="grid gap-6 md:grid-cols-2">
@@ -597,7 +699,7 @@ export function Social() {
             <Reveal key={s.platform} delay={i * 120}>
               <a
                 href={s.href}
-                className="group relative block aspect-[4/3] overflow-hidden bg-white p-10 transition-all hover:-translate-y-1 hover:shadow-[0_30px_60px_-30px_rgba(42,22,16,0.25)]"
+                className="group relative block aspect-[4/3] overflow-hidden bg-white p-10 transition-all hover:-translate-y-1 hover:shadow-[0_30px_60px_-30px_rgba(13,46,99,0.25)]"
               >
                 <div className="flex h-full flex-col justify-between">
                   <div className="flex items-start justify-between">
@@ -609,11 +711,8 @@ export function Social() {
                     </svg>
                   </div>
                   <div>
-                    <div className="font-display text-4xl text-navy-deep md:text-6xl">
+                    <div className="font-display text-3xl text-navy-deep md:text-5xl">
                       {s.handle}
-                    </div>
-                    <div className="mt-4 text-xs uppercase tracking-[0.25em] text-ink-soft">
-                      Feed loading soon
                     </div>
                   </div>
                 </div>
@@ -629,6 +728,7 @@ export function Social() {
 
 /* ---------------- QUOTE ---------------- */
 export function Quote() {
+  const t = useT();
   return (
     <section className="relative h-[90vh] overflow-hidden bg-navy-deep">
       <img
@@ -640,15 +740,12 @@ export function Quote() {
       <div className="absolute inset-0 bg-navy-deep/75" />
       <div className="relative z-10 flex h-full items-center justify-center px-6 text-center text-white md:px-16">
         <Reveal className="max-w-4xl">
-          <div className="mb-10 text-[10px] uppercase tracking-[0.5em] text-gold">
-            In Her Words
-          </div>
           <blockquote className="font-serif-display text-3xl leading-[1.2] md:text-6xl">
-            “Každý štart je nová príležitosť prekonať samu seba.”
+            “{t("quote.text")}”
           </blockquote>
           <div className="mt-12 flex items-center justify-center gap-4 text-xs uppercase tracking-[0.4em] text-white/70">
             <span className="h-px w-12 bg-gold" />
-            Gabriela Gajanová
+            {t("quote.author")}
             <span className="h-px w-12 bg-gold" />
           </div>
         </Reveal>
@@ -659,24 +756,25 @@ export function Quote() {
 
 /* ---------------- CONTACT ---------------- */
 export function Contact() {
+  const t = useT();
   return (
     <section id="contact" className="bg-background px-6 py-32 md:px-16 md:py-48">
       <div className="mx-auto grid max-w-[1500px] gap-16 md:grid-cols-12 md:gap-24">
         <div className="md:col-span-5">
           <Reveal>
             <div className="mb-6 flex items-center gap-4 text-[10px] uppercase tracking-[0.4em] text-gold">
-              <span className="h-px w-10 bg-gold" /> Get in Touch
+              <span className="h-px w-10 bg-gold" /> {t("contact.eyebrow")}
             </div>
-            <h2 className="font-display text-6xl leading-[0.9] text-navy-deep md:text-8xl">
-              CONTACT
+            <h2 className="font-display text-5xl leading-[0.9] text-navy-deep md:text-7xl">
+              {t("contact.title")}
             </h2>
             <p className="mt-8 max-w-md text-base leading-relaxed text-ink md:text-lg">
-              For media, partnerships, events and collaborations.
+              {t("contact.lead")}
             </p>
             <dl className="mt-12 space-y-6 text-sm">
               <div>
                 <dt className="text-[10px] uppercase tracking-[0.3em] text-ink-soft">
-                  Email
+                  {t("contact.emailLabel")}
                 </dt>
                 <dd className="mt-2">
                   <a
@@ -718,27 +816,27 @@ export function Contact() {
             onSubmit={(e) => e.preventDefault()}
             className="space-y-8 border border-border bg-white p-10 md:p-14"
           >
-            <Field label="Name" id="name" type="text" placeholder="Your full name" />
-            <Field label="Email" id="email" type="email" placeholder="you@example.com" />
+            <Field label={t("contact.form.name")} id="name" type="text" placeholder="—" />
+            <Field label={t("contact.form.email")} id="email" type="email" placeholder="you@example.com" />
             <div>
               <label
                 htmlFor="message"
                 className="text-[10px] uppercase tracking-[0.3em] text-ink-soft"
               >
-                Message
+                {t("contact.form.message")}
               </label>
               <textarea
                 id="message"
                 rows={5}
-                placeholder="Tell me about your project, event or proposal…"
-                className="mt-3 w-full resize-none border-0 border-b border-border bg-transparent pb-3 text-base text-ink placeholder:text-ink-soft/60 focus:border-navy focus:outline-none"
+                placeholder="—"
+                className="mt-3 w-full resize-none border-0 border-b border-border bg-transparent pb-3 text-base text-ink placeholder:text-ink-soft/60 focus:border-gold focus:outline-none"
               />
             </div>
             <button
               type="submit"
-              className="group inline-flex items-center gap-3 bg-navy-deep px-10 py-4 text-[11px] uppercase tracking-[0.3em] text-white transition-transform hover:-translate-y-0.5"
+              className="group inline-flex items-center gap-3 bg-gold px-10 py-4 text-[11px] uppercase tracking-[0.3em] text-white transition-transform hover:-translate-y-0.5"
             >
-              Send Message
+              {t("contact.form.send")}
               <span className="transition-transform group-hover:translate-x-1">→</span>
             </button>
           </form>
@@ -768,7 +866,7 @@ function Field({
         id={id}
         type={type}
         placeholder={placeholder}
-        className="mt-3 w-full border-0 border-b border-border bg-transparent pb-3 text-base text-ink placeholder:text-ink-soft/60 focus:border-navy focus:outline-none"
+        className="mt-3 w-full border-0 border-b border-border bg-transparent pb-3 text-base text-ink placeholder:text-ink-soft/60 focus:border-gold focus:outline-none"
       />
     </div>
   );
@@ -776,9 +874,10 @@ function Field({
 
 /* ---------------- FOOTER ---------------- */
 export function Footer() {
+  const t = useT();
+  const year = new Date().getFullYear();
   return (
     <footer className="relative overflow-hidden bg-navy-deep px-6 pt-24 pb-10 text-white md:px-16">
-      {/* Animated track line */}
       <svg
         className="pointer-events-none absolute inset-x-0 top-0 h-12 w-full"
         viewBox="0 0 1600 40"
@@ -802,32 +901,36 @@ export function Footer() {
               <span className="text-gold">GAJANOVÁ</span>
             </div>
             <p className="mt-6 max-w-sm text-sm leading-relaxed text-white/60">
-              Slovenská reprezentantka v behu na 800 m.
+              {t("footer.tagline")}
             </p>
           </div>
           <div className="md:col-span-3">
-            <div className="text-[10px] uppercase tracking-[0.3em] text-gold">Follow</div>
+            <div className="text-[10px] uppercase tracking-[0.3em] text-gold">
+              {t("social.eyebrow")}
+            </div>
             <ul className="mt-5 space-y-3 text-sm">
               <li><a href="#" className="hover:text-gold">Instagram</a></li>
               <li><a href="#" className="hover:text-gold">Threads</a></li>
             </ul>
           </div>
           <div className="md:col-span-3">
-            <div className="text-[10px] uppercase tracking-[0.3em] text-gold">Contact</div>
+            <div className="text-[10px] uppercase tracking-[0.3em] text-gold">
+              {t("contact.eyebrow")}
+            </div>
             <ul className="mt-5 space-y-3 text-sm">
               <li>
                 <a href="mailto:ggajanova@gmail.com" className="hover:text-gold">
                   ggajanova@gmail.com
                 </a>
               </li>
-              <li><a href="#contact" className="hover:text-gold">Send Message</a></li>
+              <li><a href="#contact" className="hover:text-gold">{t("contact.form.send")}</a></li>
             </ul>
           </div>
         </div>
 
         <div className="mt-20 flex flex-col items-start justify-between gap-4 border-t border-white/10 pt-8 text-[10px] uppercase tracking-[0.3em] text-white/40 md:flex-row md:items-center">
-          <span>© 2026 Gabriela Gajanová</span>
-          <span>Bobrovec · Banská Bystrica · The World</span>
+          <span>© {year} Gabriela Gajanová · {t("footer.rights")}</span>
+          <span>Bobrovec · Liptov · World</span>
         </div>
       </div>
     </footer>

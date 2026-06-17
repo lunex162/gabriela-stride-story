@@ -1,58 +1,35 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Loader } from "@/components/site/Loader";
-import { Nav } from "@/components/site/Nav";
-import {
-  Hero,
-  About,
-  Achievements,
-  Journey,
-  Gallery,
-  EightHundred,
-  Partners,
-  Social,
-  Quote,
-  Contact,
-  Footer,
-} from "@/components/site/sections";
+import { HomePage } from "@/components/site/HomePage";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Gabriela Gajanová | Olympic Athlete | 800m Runner" },
+      { title: "Gabriela Gajanová | Olympionička | Bežkyňa na 800 m" },
       {
         name: "description",
         content:
-          "Official website of Gabriela Gajanová, Slovak Olympic athlete and European Championship medalist specializing in the 800 metres.",
+          "Oficiálna stránka Gabriely Gajanovej — slovenskej olympioničky a medailistky z Majstrovstiev Európy v behu na 800 metrov.",
       },
-      { property: "og:title", content: "Gabriela Gajanová | Olympic 800m Runner" },
+      { property: "og:title", content: "Gabriela Gajanová | Olympionička 800 m" },
       {
         property: "og:description",
         content:
-          "Two-time Olympian and European Championship silver medalist. Slovak record holder in the 800 metres.",
+          "Dvojnásobná olympionička a strieborná medailistka z ME. Držiteľka slovenského rekordu na 800 m.",
       },
+      { property: "og:locale", content: "sk_SK" },
+      { property: "og:locale:alternate", content: "en_GB" },
       { property: "og:url", content: "/" },
     ],
-    links: [{ rel: "canonical", href: "/" }],
+    links: [
+      { rel: "canonical", href: "/" },
+      { rel: "alternate", hrefLang: "sk", href: "/" },
+      { rel: "alternate", hrefLang: "en", href: "/en" },
+      { rel: "alternate", hrefLang: "x-default", href: "/" },
+    ],
   }),
   component: Index,
 });
 
 function Index() {
-  return (
-    <main className="relative bg-background text-foreground">
-      <Loader />
-      <Nav />
-      <Hero />
-      <About />
-      <Achievements />
-      <Journey />
-      <Gallery />
-      <EightHundred />
-      <Partners />
-      <Social />
-      <Quote />
-      <Contact />
-      <Footer />
-    </main>
-  );
+  return <HomePage locale="sk" />;
 }

@@ -69,29 +69,30 @@
 :root {
   --radius: 0.25rem;
 
-  /* brand palette — béžová · svetlo ružová · antuka */
-  --navy: #4A2A1E;         /* warm dark brown (body dark) */
-  --navy-deep: #2A1610;    /* deepest warm charcoal-brown (dark sections) */
+  /* brand palette — HYBRID: navy cinematic + antuka highlight + béžová/ružová soft */
+  --navy: #0D2E63;         /* deep navy — premium dark sections */
+  --navy-deep: #071A33;    /* deepest navy — hero & cinematic */
   --powder: #F6DCD4;       /* svetlo ružová — soft pink accent */
   --beige: #F1E6D3;        /* warm béžová — primary soft background */
-  --gold: #C2553A;         /* ANTUKA — clay-track terracotta (main highlight) */
-  --ink: #2A1F1A;          /* warm dark text */
-  --ink-soft: #7A6A60;     /* warm muted text */
+  --gold: #C2553A;         /* ANTUKA — clay-track terracotta (replaces gold highlight) */
+  --antuka-soft: #E29078;  /* lighter antuka for hovers/glows */
+  --ink: #1A1A1A;          /* primary text */
+  --ink-soft: #6F6F6F;     /* muted text */
 
-  --background: #FBF6EC;   /* cream off-white base */
-  --foreground: #2A1F1A;
+  --background: #FBF6EC;   /* warm cream base — replaces stark white */
+  --foreground: #1A1A1A;
   --card: #FFFFFF;
-  --card-foreground: #2A1F1A;
+  --card-foreground: #1A1A1A;
   --popover: #FFFFFF;
-  --popover-foreground: #2A1F1A;
-  --primary: #C2553A;      /* antuka as primary CTA */
+  --popover-foreground: #1A1A1A;
+  --primary: #0D2E63;      /* navy as primary brand */
   --primary-foreground: #FBF6EC;
   --secondary: #F1E6D3;
-  --secondary-foreground: #2A1F1A;
+  --secondary-foreground: #1A1A1A;
   --muted: #F5EDDF;
-  --muted-foreground: #7A6A60;
+  --muted-foreground: #6F6F6F;
   --accent: #F6DCD4;
-  --accent-foreground: #2A1610;
+  --accent-foreground: #071A33;
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: #FFFFFF;
   --border: #E7D9C3;
@@ -190,10 +191,13 @@
 @utility bg-powder { background-color: var(--powder); }
 @utility bg-beige { background-color: var(--beige); }
 @utility bg-gold { background-color: var(--gold); }
+@utility bg-antuka { background-color: var(--gold); }
 @utility text-navy { color: var(--navy); }
 @utility text-navy-deep { color: var(--navy-deep); }
 @utility text-gold { color: var(--gold); }
+@utility text-antuka { color: var(--gold); }
 @utility border-gold { border-color: var(--gold); }
+@utility border-antuka { border-color: var(--gold); }
 
 @keyframes draw-line {
   from { stroke-dashoffset: 1200; }
