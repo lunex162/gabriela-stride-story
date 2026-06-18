@@ -69,35 +69,39 @@
 :root {
   --radius: 0.25rem;
 
-  /* brand palette — HYBRID: navy cinematic + antuka highlight + béžová/ružová soft */
-  --navy: #0D2E63;         /* deep navy — premium dark sections */
-  --navy-deep: #071A33;    /* deepest navy — hero & cinematic */
-  --powder: #F6DCD4;       /* svetlo ružová — soft pink accent */
-  --beige: #F1E6D3;        /* warm béžová — primary soft background */
-  --gold: #C2553A;         /* ANTUKA — clay-track terracotta (replaces gold highlight) */
-  --antuka-soft: #E29078;  /* lighter antuka for hovers/glows */
-  --ink: #1A1A1A;          /* primary text */
-  --ink-soft: #6F6F6F;     /* muted text */
+  /* brand palette — BLUSH & GOLD LUXE
+     Pearly White / Antique Lace / Blush Pink / Champagne Gold / Warm Taupe / Deep Umber
+     Reference: Gabika moodboard (Unknown-4, Unknown-5, Unknown-6) */
+  --navy: #2E211A;
+  --navy-deep: #1A130E;        /* deep umber — for video overlay & dark moments */
+  --powder: #E8CFC6;           /* dusty blush */
+  --powder-soft: #F2E1DA;      /* paler blush surface */
+  --beige: #E8E1D1;            /* antique lace */
+  --gold: #B0935E;             /* rich champagne — used for accents that need contrast */
+  --gold-soft: #D6BD9F;        /* pale champagne — flourish only */
+  --antuka-soft: #C8AB7A;
+  --ink: #2E211A;              /* deep warm umber — primary text */
+  --ink-soft: #8E7E73;         /* warm taupe — secondary text */
 
-  --background: #FBF6EC;   /* warm cream base — replaces stark white */
-  --foreground: #1A1A1A;
-  --card: #FFFFFF;
-  --card-foreground: #1A1A1A;
-  --popover: #FFFFFF;
-  --popover-foreground: #1A1A1A;
-  --primary: #0D2E63;      /* navy as primary brand */
-  --primary-foreground: #FBF6EC;
-  --secondary: #F1E6D3;
-  --secondary-foreground: #1A1A1A;
-  --muted: #F5EDDF;
-  --muted-foreground: #6F6F6F;
-  --accent: #F6DCD4;
-  --accent-foreground: #071A33;
+  --background: #F9F6F1;       /* pearly white — main canvas */
+  --foreground: #2E211A;
+  --card: #FFFEFB;
+  --card-foreground: #2E211A;
+  --popover: #FFFEFB;
+  --popover-foreground: #2E211A;
+  --primary: #2E211A;
+  --primary-foreground: #F9F6F1;
+  --secondary: #E8E1D1;
+  --secondary-foreground: #2E211A;
+  --muted: #EFE8DA;
+  --muted-foreground: #8E7E73;
+  --accent: #E8CFC6;
+  --accent-foreground: #2E211A;
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: #FFFFFF;
-  --border: #E7D9C3;
-  --input: #E7D9C3;
-  --ring: #C2553A;
+  --border: #E1D6C2;
+  --input: #E1D6C2;
+  --ring: #B0935E;
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -191,13 +195,38 @@
 @utility bg-powder { background-color: var(--powder); }
 @utility bg-beige { background-color: var(--beige); }
 @utility bg-gold { background-color: var(--gold); }
-@utility bg-antuka { background-color: var(--gold); }
+@utility bg-gold-soft { background-color: var(--gold-soft); }
+@utility bg-powder-soft { background-color: var(--powder-soft); }
 @utility text-navy { color: var(--navy); }
 @utility text-navy-deep { color: var(--navy-deep); }
 @utility text-gold { color: var(--gold); }
-@utility text-antuka { color: var(--gold); }
+@utility text-gold-soft { color: var(--gold-soft); }
 @utility border-gold { border-color: var(--gold); }
-@utility border-antuka { border-color: var(--gold); }
+
+@keyframes marquee-x {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@utility animate-marquee {
+  animation: marquee-x 32s linear infinite;
+}
+
+@keyframes drift-y {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@utility animate-drift {
+  animation: drift-y 6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee,
+  .animate-drift,
+  .animate-slow-zoom,
+  .animate-track-shimmer { animation: none !important; }
+}
 
 @keyframes draw-line {
   from { stroke-dashoffset: 1200; }

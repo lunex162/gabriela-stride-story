@@ -1,17 +1,27 @@
 import { useEffect, useMemo, useRef, useState } from "react";
+import { motion, useReducedMotion } from "motion/react";
 import { Reveal } from "./Reveal";
 import { useT } from "@/i18n/LocaleContext";
-import hero from "@/assets/hero.jpg";
-import portrait from "@/assets/portrait.jpg";
-import race1 from "@/assets/race1.jpg";
-import race2 from "@/assets/race2.jpg";
-import race3 from "@/assets/race3.jpg";
-import race4 from "@/assets/race4.jpg";
-import quoteBg from "@/assets/quote.jpg";
+import portraitStadium from "@/assets/photos/portrait-stadium.jpg";
+import parisRace from "@/assets/photos/paris-race.jpg";
+import indoorRace from "@/assets/photos/indoor-race.jpg";
+import action1 from "@/assets/photos/action-1.jpg";
+import action2 from "@/assets/photos/action-2.jpg";
+import action3 from "@/assets/photos/action-3.jpg";
+import action4 from "@/assets/photos/action-4.jpg";
 
-/* ---------------- HERO ---------------- */
+/* ============================================================
+ *  Shared motion constants — single curve everywhere
+ * ============================================================ */
+const ease = [0.16, 1, 0.3, 1] as const;
+
+/* ============================================================
+ *  HERO — full-bleed video, warm-deep overlay,
+ *  layered translucent surname (MOVA-pattern), two CTAs.
+ * ============================================================ */
 export function Hero() {
   const t = useT();
+  const reduce = useReducedMotion();
   const [y, setY] = useState(0);
   useEffect(() => {
     const onScroll = () => setY(window.scrollY);
@@ -22,266 +32,339 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="relative h-screen w-full overflow-hidden bg-navy-deep text-white"
+      className="relative isolate w-full overflow-hidden bg-[#15100B] text-white"
+      style={{ height: "100svh", minHeight: 640 }}
     >
+      {/* Video / poster background */}
       <div
-        className="absolute inset-0 animate-slow-zoom"
-        style={{ transform: `translateY(${y * 0.25}px) scale(1.05)` }}
+        className="absolute inset-0"
+        style={{
+          transform: `translate3d(0, ${y * 0.2}px, 0) scale(${1.04 + y * 0.00012})`,
+        }}
       >
         <video
-          className="hidden h-full w-full object-cover"
+          className="h-full w-full object-cover"
           autoPlay
           muted
           loop
           playsInline
-          poster={hero}
-        />
-        <img
-          src={hero}
-          alt="Gabriela Gajanová"
-          className="h-full w-full object-cover"
-          width={1920}
-          height={1080}
+          poster={portraitStadium}
+          src="/video/hero.mp4"
         />
       </div>
 
-      <div className="absolute inset-0 bg-navy-deep/65" />
+      {/* Warm deep overlay — feels like sunset stadium, not harsh black */}
       <div
-        className="pointer-events-none absolute inset-0 opacity-30"
+        aria-hidden
+        className="absolute inset-0"
         style={{
-          backgroundImage:
-            "repeating-linear-gradient(90deg, transparent 0 80px, rgba(194,85,58,0.20) 80px 81px)",
-          transform: `translateX(${-y * 0.15}px)`,
+          background:
+            "linear-gradient(180deg, rgba(26,19,14,0.55) 0%, rgba(26,19,14,0.30) 35%, rgba(26,19,14,0.78) 100%)",
+        }}
+      />
+      <div
+        aria-hidden
+        className="absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(70% 60% at 30% 40%, rgba(214,189,159,0.18) 0%, transparent 55%)",
         }}
       />
 
+      {/* HUGE translucent surname stretched edge-to-edge (MOVA pattern) */}
       <div
-        className="pointer-events-none absolute inset-0 flex items-center justify-center"
-        style={{ transform: `translateY(${y * 0.1}px)` }}
+        aria-hidden
+        className="pointer-events-none absolute left-0 right-0 top-1/2 z-0 -translate-y-1/2 select-none overflow-hidden"
       >
-        <span className="font-display text-[28vw] leading-none tracking-tight text-white/[0.06] select-none">
-          800M
-        </span>
-      </div>
-
-      <div className="relative z-10 flex h-full flex-col justify-end px-6 pb-20 md:px-16 md:pb-28">
-        <div className="max-w-5xl">
-          <div
-            className="mb-6 flex items-center gap-4 text-xs uppercase tracking-[0.4em] text-gold opacity-0"
-            style={{ animation: "fade-up 1s ease-out 0.2s forwards" }}
-          >
-            <span className="h-px w-10 bg-gold" />
-            {t("hero.eyebrow")}
-          </div>
-          <h1
-            className="font-display text-[18vw] leading-[0.85] tracking-tight md:text-[12rem] opacity-0"
-            style={{ animation: "fade-up 1.2s ease-out 0.5s forwards" }}
-          >
-            {t("hero.firstName")}
-            <br />
-            <span className="text-gold">{t("hero.lastName")}</span>
-          </h1>
-          <p
-            className="mt-8 max-w-2xl text-sm tracking-[0.18em] text-white/80 md:text-base opacity-0"
-            style={{ animation: "fade-up 1s ease-out 0.9s forwards" }}
-          >
-            {t("hero.subhead")}
-          </p>
-          <div
-            className="mt-10 flex flex-wrap gap-4 opacity-0"
-            style={{ animation: "fade-up 1s ease-out 1.1s forwards" }}
-          >
-            <a
-              href="#about"
-              className="group inline-flex items-center gap-3 bg-gold px-8 py-4 text-[11px] uppercase tracking-[0.3em] text-white transition-transform hover:-translate-y-0.5"
-            >
-              {t("hero.cta.story")}
-              <span className="transition-transform group-hover:translate-x-1">→</span>
-            </a>
-            <a
-              href="#contact"
-              className="inline-flex items-center gap-3 border border-white/40 px-8 py-4 text-[11px] uppercase tracking-[0.3em] text-white transition-colors hover:bg-white hover:text-navy-deep"
-            >
-              {t("hero.cta.contact")}
-            </a>
-          </div>
+        <div
+          className="whitespace-nowrap text-center font-serif-display italic leading-none"
+          style={{
+            fontSize: "clamp(12rem, 28vw, 36rem)",
+            letterSpacing: "-0.03em",
+            color: "transparent",
+            WebkitTextStroke: "1px rgba(214,189,159,0.32)",
+            transform: `translateX(${-y * 0.12}px)`,
+          }}
+        >
+          Gajanová
         </div>
       </div>
 
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-[10px] uppercase tracking-[0.5em] text-white/60">
-        {t("hero.scroll")}
+      {/* TOP META RAIL */}
+      <div className="absolute inset-x-0 top-0 z-30 px-6 pt-24 md:px-12 md:pt-28">
+        <motion.div
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.2 }}
+          className="mx-auto flex max-w-[1700px] items-center justify-between gap-6"
+        >
+          <span className="flex items-center gap-3 text-[10px] uppercase tracking-[0.45em] text-white/70 md:text-[11px]">
+            <span className="relative inline-flex h-1.5 w-1.5">
+              <span className="absolute inset-0 animate-ping rounded-full bg-[--gold-soft] opacity-75" />
+              <span className="relative inline-block h-1.5 w-1.5 rounded-full bg-[--gold-soft]" />
+            </span>
+            {t("hero.meta.route")}
+          </span>
+          <span className="hidden text-right text-[10px] uppercase tracking-[0.45em] text-white/60 md:block md:text-[11px]">
+            {t("hero.meta.discipline")}
+          </span>
+        </motion.div>
       </div>
+
+      {/* MAIN CONTENT */}
+      <div className="relative z-20 mx-auto flex h-full max-w-[1600px] flex-col justify-end px-6 pb-24 md:items-center md:justify-center md:px-12 md:pb-20 md:text-center">
+        <motion.h1
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1.2, delay: 0.3 }}
+          className="font-display leading-[0.86] tracking-tight"
+        >
+          <motion.span
+            initial={{ y: 40, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 1.1, delay: 0.45, ease }}
+            className="block text-[16vw] sm:text-[12vw] md:text-[8vw] xl:text-[8.5rem]"
+          >
+            GABRIELA
+          </motion.span>
+          <motion.span
+            initial={{ y: 40, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 1.1, delay: 0.75, ease }}
+            className="block font-serif-display italic text-[--gold-soft] text-[16vw] sm:text-[12vw] md:text-[8vw] xl:text-[8.5rem]"
+            style={{ marginTop: "-0.08em" }}
+          >
+            Gajanová
+          </motion.span>
+        </motion.h1>
+
+        <motion.div
+          initial={{ opacity: 0, y: 14 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 1.1 }}
+          className="mt-8 flex max-w-2xl items-start gap-4 md:mt-10 md:items-center md:justify-center"
+        >
+          <span className="mt-2 hidden h-px w-10 shrink-0 bg-[--gold-soft] md:block" />
+          <p className="text-[13px] leading-relaxed text-white/85 md:text-base md:tracking-[0.04em]">
+            {t("hero.subhead")}
+          </p>
+          <span className="mt-2 hidden h-px w-10 shrink-0 bg-[--gold-soft] md:block" />
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 14 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 1.3 }}
+          className="mt-10 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center md:mt-12 md:gap-4"
+        >
+          <a
+            href="#about"
+            className="group relative inline-flex items-center justify-center gap-3 overflow-hidden rounded-full bg-[--gold] px-9 py-4 text-[11px] uppercase tracking-[0.35em] text-[#1A130E] transition-transform hover:-translate-y-0.5"
+            style={{ boxShadow: "0 16px 50px -16px rgba(176,147,94,0.7)" }}
+          >
+            <span
+              aria-hidden
+              className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/55 to-transparent transition-transform duration-700 group-hover:translate-x-full"
+            />
+            <span className="relative">{t("hero.cta.story")}</span>
+            <span className="relative transition-transform group-hover:translate-x-1">→</span>
+          </a>
+          <a
+            href="#contact"
+            className="inline-flex items-center justify-center gap-3 rounded-full border border-white/40 bg-white/[0.04] px-9 py-4 text-[11px] uppercase tracking-[0.35em] text-white backdrop-blur transition-colors hover:border-[--gold-soft] hover:text-[--gold-soft]"
+          >
+            {t("hero.cta.contact")}
+          </a>
+        </motion.div>
+      </div>
+
+      {/* SCROLL CUE */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, delay: 1.8 }}
+        className="absolute bottom-7 left-1/2 z-30 flex -translate-x-1/2 flex-col items-center gap-2 text-[9px] uppercase tracking-[0.55em] text-white/70 md:text-[10px]"
+      >
+        <span>{t("hero.scroll")}</span>
+        <motion.span
+          className="h-9 w-px bg-gradient-to-b from-[--gold-soft] to-transparent"
+          animate={reduce ? undefined : { scaleY: [0.4, 1, 0.4] }}
+          transition={{ duration: 2, repeat: Infinity }}
+          style={{ transformOrigin: "top" }}
+        />
+      </motion.div>
     </section>
   );
 }
 
-/* ---------------- ABOUT ---------------- */
+/* ============================================================
+ *  ABOUT — editorial portrait on right, big text on left
+ * ============================================================ */
 export function About() {
   const t = useT();
-  const stats = [
-    { value: t("about.stat1.value"), label: t("about.stat1.label") },
-    { value: t("about.stat2.value"), label: t("about.stat2.label") },
-    { value: t("about.stat3.value"), label: t("about.stat3.label") },
-    { value: t("about.stat4.value"), label: t("about.stat4.label") },
-  ];
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const [y, setY] = useState(0);
+  useEffect(() => {
+    const onScroll = () => {
+      const el = sectionRef.current;
+      if (!el) return;
+      const rect = el.getBoundingClientRect();
+      setY(Math.max(-rect.top * 0.06, -40));
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
-    <section id="about" className="relative bg-background px-6 py-32 md:px-16 md:py-48">
-      <div className="mx-auto grid max-w-[1500px] gap-16 md:grid-cols-12 md:gap-24">
-        <Reveal className="md:col-span-5">
-          <div className="relative aspect-[4/5] overflow-hidden bg-beige">
-            <img
-              src={portrait}
-              alt="Gabriela Gajanová"
-              className="h-full w-full object-cover"
-              width={1024}
-              height={1280}
-              loading="lazy"
-            />
-            <div className="absolute -bottom-px left-0 h-12 w-full bg-gradient-to-t from-background to-transparent" />
-          </div>
-          <div className="mt-4 flex items-center justify-between text-[10px] uppercase tracking-[0.3em] text-ink-soft">
-            <span>Portrait · 2025</span>
-            <span>SVK</span>
-          </div>
-        </Reveal>
+    <section
+      id="about"
+      ref={sectionRef}
+      className="relative overflow-hidden bg-background px-5 py-20 text-ink md:px-12 md:py-28"
+    >
+      {/* Subtle pink wash on top right */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(60% 50% at 100% 0%, rgba(232,207,198,0.45) 0%, transparent 55%)",
+        }}
+      />
 
-        <div className="md:col-span-7 md:pt-12">
+      <div className="relative mx-auto grid max-w-[1700px] grid-cols-1 items-start gap-12 md:grid-cols-12 md:gap-20">
+        {/* LEFT — copy */}
+        <div className="md:col-span-7 md:pt-10">
           <Reveal>
-            <div className="mb-6 flex items-center gap-4 text-[10px] uppercase tracking-[0.4em] text-gold">
-              <span className="h-px w-10 bg-gold" />
-              {t("about.eyebrow")}
+            <div className="flex items-center gap-4 text-[10px] uppercase tracking-[0.45em] text-ink-soft">
+              <span className="h-px w-10 bg-[--gold]" />
+              <span>{t("about.eyebrow")}</span>
             </div>
           </Reveal>
-          <Reveal delay={100}>
-            <h2 className="font-serif-display text-4xl leading-[1.05] text-navy-deep md:text-6xl">
-              {t("about.title")}
+
+          <Reveal delay={120}>
+            <h2 className="mt-8 font-display leading-[0.92] tracking-tight text-ink">
+              <span className="block text-[12vw] sm:text-[8vw] md:text-[5.5vw] xl:text-[6.5rem]">
+                {t("about.headline.line1")}
+              </span>
+              <span
+                className="block font-serif-display italic text-[--gold] text-[12vw] sm:text-[8vw] md:text-[5.5vw] xl:text-[6.5rem]"
+                style={{ marginTop: "-0.06em" }}
+              >
+                {t("about.headline.line2")}
+              </span>
+              <span className="mt-3 block text-[6vw] sm:text-[4vw] md:text-[2.4vw] xl:text-[3rem] text-ink/70">
+                {t("about.headline.line3")}
+              </span>
             </h2>
           </Reveal>
-          <Reveal delay={200}>
-            <div className="mt-10 space-y-6 text-base leading-relaxed text-ink md:max-w-xl md:text-lg">
+
+          <Reveal delay={220}>
+            <div className="mt-10 max-w-xl space-y-5 text-[15px] leading-[1.75] text-ink md:text-base">
               <p>{t("about.p1")}</p>
               <p>{t("about.p2")}</p>
               <p>{t("about.p3")}</p>
             </div>
           </Reveal>
 
-          <div className="mt-16 grid grid-cols-2 gap-px bg-border">
-            {stats.map((s, i) => (
-              <Reveal key={s.label} delay={i * 120}>
-                <div className="bg-background p-6 md:p-8">
-                  <div className="font-display text-4xl tracking-tight text-navy md:text-5xl">
-                    {s.value}
-                  </div>
-                  <div className="mt-3 text-[10px] uppercase tracking-[0.3em] text-ink-soft">
-                    {s.label}
-                  </div>
+          {/* Stats row */}
+          <Reveal delay={320}>
+            <dl className="mt-14 grid max-w-2xl grid-cols-2 gap-x-10 gap-y-8 border-t border-ink/15 pt-10 md:grid-cols-4">
+              {[
+                ["2×", t("about.stats.olympics")],
+                ["1:58.22", t("about.stats.record")],
+                [t("about.stats.silver.value"), t("about.stats.silver")],
+                [t("about.stats.athlete.value"), t("about.stats.athlete")],
+              ].map(([v, l]) => (
+                <div key={l}>
+                  <dd className="font-serif-display text-2xl italic leading-none text-ink md:text-[2rem]">
+                    {v}
+                  </dd>
+                  <dt className="mt-3 text-[10px] uppercase tracking-[0.35em] text-ink-soft">
+                    {l}
+                  </dt>
                 </div>
-              </Reveal>
-            ))}
-          </div>
+              ))}
+            </dl>
+          </Reveal>
         </div>
-      </div>
-    </section>
-  );
-}
 
-/* ---------------- ACHIEVEMENTS ---------------- */
-export function Achievements() {
-  const t = useT();
-  const items = [1, 2, 3, 4, 5, 6].map((n) => ({
-    year: t(`ach${n}.year`),
-    title: t(`ach${n}.title`),
-    body: t(`ach${n}.body`),
-  }));
-
-  return (
-    <section
-      id="achievements"
-      className="relative bg-powder px-6 py-32 md:px-16 md:py-48"
-    >
-      <div className="mx-auto max-w-[1500px]">
-        <div className="mb-20 grid gap-8 md:grid-cols-12">
-          <Reveal className="md:col-span-6">
-            <div className="mb-6 flex items-center gap-4 text-[10px] uppercase tracking-[0.4em] text-gold">
-              <span className="h-px w-10 bg-gold" /> {t("achievements.eyebrow")}
+        {/* RIGHT — portrait */}
+        <Reveal className="md:col-span-5" delay={180}>
+          <div className="relative">
+            {/* Caption number — magazine style */}
+            <div
+              aria-hidden
+              className="absolute -left-3 -top-3 z-10 font-display text-7xl leading-none tracking-tight text-[--gold] md:-left-6 md:-top-6 md:text-9xl"
+              style={{ textShadow: "0 8px 30px rgba(176,147,94,0.25)" }}
+            >
+              01
             </div>
-            <h2 className="font-display text-6xl leading-[0.9] text-navy-deep md:text-8xl">
-              {t("achievements.title").toUpperCase()}
-            </h2>
-          </Reveal>
-          <Reveal className="md:col-span-5 md:col-start-8 md:pt-6">
-            <p className="text-base leading-relaxed text-ink md:text-lg">
-              {t("achievements.lead")}
-            </p>
-          </Reveal>
-        </div>
-
-        <div className="grid gap-6 md:grid-cols-3">
-          {items.map((a, i) => (
-            <Reveal key={a.title} delay={i * 100}>
-              <article
-                className="group relative h-full overflow-hidden bg-white p-8 transition-all duration-700 hover:-translate-y-2 hover:shadow-[0_30px_60px_-30px_rgba(13,46,99,0.30)]"
-                style={{ minHeight: 320 }}
+            <div className="relative aspect-[3/4] w-full overflow-hidden bg-[--beige]">
+              <div
+                className="absolute inset-0"
+                style={{ transform: `translateY(${y}px) scale(1.05)` }}
               >
-                <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold to-transparent opacity-0 transition-opacity duration-700 group-hover:opacity-100" />
-                <div className="flex h-full flex-col justify-between">
-                  <div>
-                    <div className="font-display text-sm tracking-[0.3em] text-gold">
-                      {a.year}
-                    </div>
-                    <h3 className="mt-6 font-display text-2xl leading-tight text-navy-deep md:text-3xl">
-                      {a.title.toUpperCase()}
-                    </h3>
-                    <p className="mt-5 text-sm leading-relaxed text-ink-soft">
-                      {a.body}
-                    </p>
-                  </div>
-                  <div className="mt-10 flex items-end justify-end">
-                    <svg width="32" height="32" viewBox="0 0 32 32" className="text-gold">
-                      <circle cx="16" cy="16" r="15" fill="none" stroke="currentColor" strokeWidth="0.5" />
-                      <path d="M10 16 L22 16 M18 12 L22 16 L18 20" stroke="currentColor" strokeWidth="1" fill="none" />
-                    </svg>
-                  </div>
-                </div>
-              </article>
-            </Reveal>
-          ))}
-        </div>
+                <img
+                  src={portraitStadium}
+                  alt="Gabriela Gajanová na štarte"
+                  className="h-full w-full object-cover"
+                  loading="lazy"
+                />
+              </div>
+              <div className="pointer-events-none absolute inset-3 border border-white/30 md:inset-4" />
+            </div>
+            <div className="mt-4 flex items-center justify-between text-[10px] uppercase tracking-[0.35em] text-ink-soft">
+              <span>Portrait · 2025</span>
+              <span>SVK</span>
+            </div>
+          </div>
+        </Reveal>
       </div>
     </section>
   );
 }
 
-/* ---------------- 800 METRES — scroll-driven interactive track ---------------- */
-/**
- * Sticky scroll section. As the user scrolls, the runner advances along
- * a curved 800m path from 0m → 800m. At every 100m a milestone card is
- * revealed with the relevant achievement / place from Gabriela's career.
- */
+/* ============================================================
+ *  JOURNEY 800M — cinematic full-bleed photo per milestone
+ *  Sticky scroll, 9 stages from 0m → 800m. Each stage:
+ *    - full-bleed photo background with slow Ken-Burns zoom
+ *    - warm deep overlay for legibility
+ *    - magazine masthead with section number + year + place
+ *    - HUGE kinetic distance numeral overlapping a italic serif title
+ *    - delicate body text
+ *  Bottom: hairline track lane with 9 markers + distance ticker
+ *  Crossfade between milestones using motion + key-based remount.
+ * ============================================================ */
 export function Journey() {
   const t = useT();
   const sectionRef = useRef<HTMLElement | null>(null);
-  const pathRef = useRef<SVGPathElement | null>(null);
   const [progress, setProgress] = useState(0);
-  const [pathLen, setPathLen] = useState(1);
-  const [runnerPos, setRunnerPos] = useState({ x: 60, y: 360 });
+  const reduce = useReducedMotion();
 
   const milestones = useMemo(
     () =>
       [0, 1, 2, 3, 4, 5, 6, 7, 8].map((n) => ({
+        idx: n,
         dist: n * 100,
         title: t(`m${n}.title`),
         place: t(`m${n}.place`),
         year: t(`m${n}.year`),
         body: t(`m${n}.body`),
+        photo: [
+          action4,
+          action2,
+          action1,
+          indoorRace,
+          portraitStadium,
+          action3,
+          action1,
+          parisRace,
+          parisRace,
+        ][n],
       })),
     [t],
   );
-
-  useEffect(() => {
-    if (pathRef.current) setPathLen(pathRef.current.getTotalLength());
-  }, []);
 
   useEffect(() => {
     const onScroll = () => {
@@ -290,12 +373,7 @@ export function Journey() {
       const rect = el.getBoundingClientRect();
       const total = el.offsetHeight - window.innerHeight;
       const scrolled = Math.min(Math.max(-rect.top, 0), total);
-      const p = total > 0 ? scrolled / total : 0;
-      setProgress(p);
-      if (pathRef.current) {
-        const pt = pathRef.current.getPointAtLength(p * pathLen);
-        setRunnerPos({ x: pt.x, y: pt.y });
-      }
+      setProgress(total > 0 ? scrolled / total : 0);
     };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -304,193 +382,213 @@ export function Journey() {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
     };
-  }, [pathLen]);
+  }, []);
 
   const distance = Math.round(progress * 800);
-  // Active milestone: snap to nearest 100m within ±60m window
   const activeIdx = Math.min(8, Math.round((progress * 800) / 100));
   const active = milestones[activeIdx];
-
-  // SVG path — a long S-curve representing the 800m track laps
-  // Conceptually two laps, drawn as a flowing horizontal S
-  const trackPath =
-    "M 60 360 " +
-    "C 200 360, 280 120, 480 120 " +
-    "C 680 120, 760 360, 960 360 " +
-    "C 1160 360, 1240 120, 1440 120 " +
-    "C 1640 120, 1720 360, 1860 360";
 
   return (
     <section
       id="journey"
       ref={sectionRef}
-      className="relative bg-navy-deep text-white"
-      style={{ height: "600vh" }}
+      className="relative isolate bg-[#15100B] text-white"
+      style={{ height: "750vh" }}
     >
-      <div className="sticky top-0 h-screen w-full overflow-hidden">
-        {/* Ambient glow following the runner */}
+      <div className="sticky top-0 h-[100svh] w-full overflow-hidden">
+        {/* ===== Background photo crossfade ===== */}
+        {milestones.map((m) => {
+          const visible = m.idx === activeIdx;
+          return (
+            <motion.div
+              key={m.idx}
+              aria-hidden
+              initial={false}
+              animate={{ opacity: visible ? 1 : 0 }}
+              transition={{ duration: 0.9, ease }}
+              className="absolute inset-0"
+            >
+              <motion.img
+                src={m.photo}
+                alt=""
+                className="h-full w-full object-cover"
+                initial={false}
+                animate={visible && !reduce ? { scale: [1.06, 1.12] } : { scale: 1.06 }}
+                transition={{ duration: 8, ease: "linear" }}
+              />
+            </motion.div>
+          );
+        })}
+
+        {/* Warm deep overlay */}
         <div
-          className="pointer-events-none absolute inset-0"
+          aria-hidden
+          className="absolute inset-0"
           style={{
-            background: `radial-gradient(circle at ${
-              (runnerPos.x / 1920) * 100
-            }% ${
-              (runnerPos.y / 480) * 60 + 20
-            }%, rgba(194,85,58,0.35) 0%, rgba(7,26,51,0) 45%)`,
-            transition: "background 0.3s ease-out",
+            background:
+              "linear-gradient(180deg, rgba(26,19,14,0.65) 0%, rgba(26,19,14,0.30) 40%, rgba(26,19,14,0.85) 100%)",
+          }}
+        />
+        <div
+          aria-hidden
+          className="absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(60% 70% at 20% 35%, rgba(214,189,159,0.18) 0%, transparent 55%)",
           }}
         />
 
-        {/* Heading */}
-        <div className="absolute left-0 right-0 top-0 z-10 px-6 pt-28 md:px-16 md:pt-32">
-          <div className="mx-auto max-w-[1500px]">
-            <div className="mb-3 flex items-center gap-4 text-[10px] uppercase tracking-[0.4em] text-gold">
-              <span className="h-px w-10 bg-gold" /> {t("journey.eyebrow")}
-            </div>
-            <h2 className="font-display text-4xl leading-none md:text-6xl">
-              {t("journey.title")}
-            </h2>
-            <p className="mt-4 max-w-xl text-sm text-white/70 md:text-base">
-              {t("journey.lead")}
-            </p>
-          </div>
-        </div>
-
-        {/* Distance counter */}
-        <div className="absolute right-6 top-32 z-10 text-right md:right-16 md:top-44">
-          <div className="text-[10px] uppercase tracking-[0.4em] text-gold">
-            {t("journey.distanceLabel")}
-          </div>
-          <div className="mt-2 font-display text-6xl leading-none text-white md:text-8xl">
-            {distance}
-            <span className="ml-2 text-2xl text-gold md:text-3xl">
-              {t("journey.metersShort")}
-            </span>
-          </div>
-          <div className="mt-1 text-[10px] uppercase tracking-[0.4em] text-white/40">
-            / 800 {t("journey.metersShort")}
-          </div>
-        </div>
-
-        {/* The track SVG */}
-        <div className="absolute inset-x-0 top-1/2 -translate-y-1/2">
-          <svg
-            viewBox="0 0 1920 480"
-            className="h-[60vh] w-full"
-            preserveAspectRatio="xMidYMid meet"
-          >
-            {/* Track lane lines (faded) */}
-            <path
-              ref={pathRef}
-              d={trackPath}
-              stroke="rgba(255,255,255,0.10)"
-              strokeWidth="80"
-              strokeLinecap="round"
-              fill="none"
-            />
-            <path
-              d={trackPath}
-              stroke="rgba(255,255,255,0.06)"
-              strokeWidth="50"
-              strokeLinecap="round"
-              strokeDasharray="2 18"
-              fill="none"
-            />
-            {/* Progress lane filled with antuka */}
-            <path
-              d={trackPath}
-              stroke="var(--gold)"
-              strokeWidth="6"
-              strokeLinecap="round"
-              fill="none"
-              style={{
-                strokeDasharray: pathLen,
-                strokeDashoffset: pathLen * (1 - progress),
-                transition: "stroke-dashoffset 0.25s linear",
-              }}
-            />
-
-            {/* Milestone markers along the path */}
-            {milestones.map((m, i) => {
-              if (!pathRef.current) return null;
-              const pt = pathRef.current.getPointAtLength((i / 8) * pathLen);
-              const reached = activeIdx >= i;
-              return (
-                <g key={i} transform={`translate(${pt.x}, ${pt.y})`}>
-                  <circle
-                    r={reached ? 14 : 9}
-                    fill={reached ? "var(--gold)" : "rgba(255,255,255,0.15)"}
-                    stroke={reached ? "rgba(194,85,58,0.4)" : "rgba(255,255,255,0.3)"}
-                    strokeWidth={reached ? 8 : 2}
-                  />
-                  <text
-                    x={0}
-                    y={-26}
-                    textAnchor="middle"
-                    fontSize="14"
-                    fontWeight="600"
-                    fill={reached ? "var(--gold)" : "rgba(255,255,255,0.5)"}
-                  >
-                    {m.dist}m
-                  </text>
-                </g>
-              );
-            })}
-
-            {/* Runner dot */}
-            <g transform={`translate(${runnerPos.x}, ${runnerPos.y})`}>
-              <circle r="22" fill="var(--gold)" opacity="0.25" />
-              <circle r="12" fill="var(--gold)" />
-              <circle r="5" fill="#fff" />
-            </g>
-          </svg>
-        </div>
-
-        {/* Active milestone card */}
-        <div className="absolute inset-x-0 bottom-0 z-10 px-6 pb-12 md:px-16 md:pb-16">
-          <div className="mx-auto max-w-[1500px]">
-            <div
-              key={activeIdx}
-              className="grid items-end gap-8 animate-fade-up md:grid-cols-12"
-            >
-              <div className="md:col-span-7">
-                <div className="font-display text-sm tracking-[0.3em] text-gold">
-                  {active.dist} {t("journey.metersShort")} · {active.year}
-                </div>
-                <div className="mt-3 font-display text-4xl leading-[0.95] text-white md:text-6xl">
-                  {active.title.toUpperCase()}
-                </div>
-                <div className="mt-2 text-xs uppercase tracking-[0.3em] text-white/60">
-                  {active.place}
-                </div>
+        {/* ===== HEADER — magazine masthead ===== */}
+        <div className="absolute inset-x-0 top-0 z-30 px-6 pt-24 md:px-12 md:pt-28">
+          <div className="mx-auto flex max-w-[1700px] items-end justify-between gap-6 border-b border-white/20 pb-5">
+            <div>
+              <div className="mb-3 flex items-center gap-3 text-[10px] uppercase tracking-[0.5em] text-white/60">
+                <span className="h-px w-8 bg-[--gold-soft]" /> {t("journey.eyebrow")}
               </div>
-              <div className="md:col-span-5">
-                <p className="text-sm leading-relaxed text-white/80 md:text-base">
+              <h2 className="font-display leading-[0.92] tracking-tight">
+                <span className="text-3xl md:text-5xl">{t("journey.title.line1")}</span>{" "}
+                <span className="font-serif-display italic text-[--gold-soft] text-3xl md:text-5xl">
+                  {t("journey.title.line2")}
+                </span>
+              </h2>
+            </div>
+            <motion.div
+              key={`hd-${activeIdx}`}
+              initial={{ opacity: 0, y: 6 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, ease }}
+              className="hidden text-right md:block"
+            >
+              <div className="text-[10px] uppercase tracking-[0.45em] text-white/55">
+                {t("journey.chapter")} {String(active.idx + 1).padStart(2, "0")} / 09
+              </div>
+              <div className="mt-1 font-serif-display text-2xl italic text-[--gold-soft] md:text-3xl">
+                {active.year}
+              </div>
+            </motion.div>
+          </div>
+        </div>
+
+        {/* ===== MAIN — kinetic numeral + body ===== */}
+        <div className="absolute inset-0 z-10 flex items-center px-6 md:px-12">
+          <div className="mx-auto grid w-full max-w-[1700px] grid-cols-1 items-end gap-10 md:grid-cols-12 md:gap-16">
+            {/* LEFT: HUGE distance numeral over place pill */}
+            <motion.div
+              key={`L-${activeIdx}`}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.9, ease }}
+              className="md:col-span-7"
+            >
+              <div className="flex items-center gap-3 text-[10px] uppercase tracking-[0.4em] text-white/70">
+                <span className="h-px w-8 bg-[--gold-soft]" />
+                {active.place}
+              </div>
+              <h3
+                className="mt-4 font-display leading-[0.78] tracking-tight"
+                style={{
+                  fontSize: "clamp(7rem, 22vw, 22rem)",
+                  textShadow: "0 18px 60px rgba(0,0,0,0.55)",
+                }}
+              >
+                {active.dist}
+                <span className="ml-2 align-baseline text-[0.2em] text-[--gold-soft]">m</span>
+              </h3>
+              <div
+                className="mt-2 font-serif-display italic leading-[0.95] text-[--gold-soft]"
+                style={{ fontSize: "clamp(2rem, 5vw, 4.5rem)" }}
+              >
+                {active.title.toLowerCase()}
+              </div>
+            </motion.div>
+
+            {/* RIGHT: narrative panel */}
+            <motion.div
+              key={`R-${activeIdx}`}
+              initial={{ opacity: 0, x: 28 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.9, delay: 0.1, ease }}
+              className="md:col-span-5"
+            >
+              <div className="border-l border-white/25 pl-7 md:pl-10">
+                <p className="text-[17px] leading-[1.7] text-white/95 md:text-[19px] md:leading-[1.65]">
                   {active.body}
                 </p>
+                {activeIdx < 8 && (
+                  <div className="mt-10 flex items-center justify-between border-t border-white/15 pt-6 text-[11px] uppercase tracking-[0.35em] text-white/60 md:text-[12px]">
+                    <span>{t("journey.next")}</span>
+                    <span className="font-serif-display text-base italic normal-case tracking-normal text-white/90 md:text-lg">
+                      {milestones[activeIdx + 1].dist}m — {milestones[activeIdx + 1].title}
+                    </span>
+                  </div>
+                )}
+              </div>
+            </motion.div>
+          </div>
+        </div>
+
+        {/* ===== BOTTOM TRACK — hairline 800m with 9 markers ===== */}
+        <div className="absolute inset-x-0 bottom-0 z-30 px-6 pb-10 md:px-12 md:pb-12">
+          <div className="mx-auto max-w-[1700px]">
+            {/* Year/dist row */}
+            <div className="mb-3 hidden items-end justify-between text-[10px] uppercase tracking-[0.4em] md:flex">
+              {milestones.map((m) => (
+                <span
+                  key={m.idx}
+                  className={
+                    m.idx === activeIdx
+                      ? "text-[--gold-soft] transition-colors"
+                      : m.idx < activeIdx
+                        ? "text-white/65 transition-colors"
+                        : "text-white/30"
+                  }
+                >
+                  {m.dist}m
+                </span>
+              ))}
+            </div>
+
+            {/* Lane */}
+            <div className="relative h-px w-full bg-white/20">
+              <div
+                className="absolute inset-y-0 left-0 bg-[--gold-soft]"
+                style={{
+                  width: `${progress * 100}%`,
+                  transition: "width 0.18s linear",
+                  boxShadow: "0 0 14px rgba(214,189,159,0.6)",
+                }}
+              />
+              {/* Tick markers */}
+              <div className="absolute inset-0 flex items-center justify-between">
+                {milestones.map((m) => {
+                  const reached = m.idx <= activeIdx;
+                  const current = m.idx === activeIdx;
+                  return (
+                    <span
+                      key={m.idx}
+                      className={`block transition-all duration-300 ${
+                        current
+                          ? "h-3 w-3 rounded-full bg-[--gold-soft] ring-4 ring-[rgba(214,189,159,0.20)]"
+                          : reached
+                            ? "h-1.5 w-1.5 rounded-full bg-[--gold-soft]"
+                            : "h-1.5 w-1.5 rounded-full bg-white/30"
+                      }`}
+                    />
+                  );
+                })}
               </div>
             </div>
 
-            <div className="mt-8 flex items-center gap-2">
-              {milestones.map((m, i) => (
-                <div
-                  key={i}
-                  className="flex-1 text-center"
-                >
-                  <div
-                    className={`mx-auto h-2 w-2 rounded-full transition-colors ${
-                      i <= activeIdx ? "bg-gold" : "bg-white/15"
-                    }`}
-                  />
-                  <div
-                    className={`mt-2 text-[9px] uppercase tracking-[0.2em] transition-colors ${
-                      i === activeIdx ? "text-gold" : "text-white/30"
-                    }`}
-                  >
-                    {m.dist}
-                  </div>
-                </div>
-              ))}
+            {/* Distance counter line below lane */}
+            <div className="mt-5 flex items-center justify-between">
+              <span className="text-[10px] uppercase tracking-[0.45em] text-white/55">
+                {t("journey.distanceLabel")}
+              </span>
+              <span className="font-display text-2xl tabular-nums leading-none md:text-3xl">
+                <span className="text-[--gold-soft]">{String(distance).padStart(3, "0")}</span>
+                <span className="text-white/35">/800</span>
+                <span className="ml-1 text-base text-[--gold-soft]">m</span>
+              </span>
             </div>
           </div>
         </div>
@@ -499,225 +597,425 @@ export function Journey() {
   );
 }
 
-/* ---------------- GALLERY ---------------- */
-export function Gallery() {
-  const t = useT();
-  const photos = [
-    { src: race1, alt: "Start", tag: t("gallery.cat.start"), h: "row-span-2" },
-    { src: race3, alt: "Finish", tag: t("gallery.cat.finish"), h: "row-span-2" },
-    { src: race2, alt: "Detail", tag: t("gallery.cat.detail"), h: "" },
-    { src: race4, alt: "Race", tag: t("gallery.cat.race"), h: "" },
-  ];
+/* ============================================================
+ *  ACHIEVEMENTS — medal plaque grid
+ *  Each award is presented as a refined hairline-framed plaque
+ *  with an engraved typography hierarchy and a hand-drawn SVG
+ *  medal disc at the top (laurel wreath + place number).
+ *  Minimalist + realistic — no photos, just metal-finish elegance.
+ * ============================================================ */
+type MedalKind = "gold" | "silver" | "bronze" | "honour";
 
+const ACHIEVEMENT_LAYOUT: Array<{
+  key: string;
+  year: string;
+  kind: MedalKind;
+  photo: string;
+}> = [
+  { key: "med1", year: "2024", kind: "silver", photo: action1 },
+  { key: "med2", year: "2024", kind: "honour", photo: parisRace },
+  { key: "med3", year: "2024", kind: "honour", photo: portraitStadium },
+  { key: "med4", year: "2023", kind: "bronze", photo: action4 },
+  { key: "med5", year: "2023", kind: "honour", photo: indoorRace },
+  { key: "med6", year: "2017", kind: "bronze", photo: action2 },
+];
+
+const MEDAL_TONES: Record<MedalKind, { outer: string; inner: string; deep: string; ribbon: string; label: string }> = {
+  gold:   { outer: "#D6BD9F", inner: "#B0935E", deep: "#7A5E32", ribbon: "#B0935E", label: "1." },
+  silver: { outer: "#D9D2C8", inner: "#9B9085", deep: "#5F564D", ribbon: "#8E8378", label: "2." },
+  bronze: { outer: "#D2A684", inner: "#9A6D45", deep: "#5E3B1F", ribbon: "#9A6D45", label: "3." },
+  honour: { outer: "#E8CFC6", inner: "#B0935E", deep: "#7A5E32", ribbon: "#B0935E", label: "★" },
+};
+
+/**
+ * Medal = circular gold-rimmed photo frame.
+ *   - thin ribbon at top
+ *   - outer gold ring (light) + inner gold ring (deeper) for the bezel
+ *   - event photo cropped to circle inside
+ *   - place/honour stamp at bottom of the disc
+ */
+function MedalFrame({
+  kind,
+  photo,
+  alt,
+}: {
+  kind: MedalKind;
+  photo: string;
+  alt: string;
+}) {
+  const c = MEDAL_TONES[kind];
+  const id = `clip-${kind}-${alt.length}`;
   return (
-    <section id="gallery" className="relative bg-beige px-6 py-32 md:px-16 md:py-48">
-      <div className="mx-auto max-w-[1600px]">
-        <div className="mb-20 grid items-end gap-8 md:grid-cols-12">
+    <div className="relative mx-auto w-full max-w-[320px]">
+      {/* Ribbon — twin tape */}
+      <svg
+        viewBox="0 0 320 110"
+        aria-hidden
+        className="absolute inset-x-0 top-0 -mt-2 h-[60px] w-full md:h-[80px]"
+      >
+        <defs>
+          <linearGradient id={`rib-${id}`} x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor={c.ribbon} stopOpacity="0.95" />
+            <stop offset="100%" stopColor={c.deep} stopOpacity="0.95" />
+          </linearGradient>
+        </defs>
+        <path
+          d="M120 0 L150 90 L170 90 L200 0 Z"
+          fill={`url(#rib-${id})`}
+          opacity="0.92"
+        />
+        <path d="M120 0 L150 90" stroke={c.outer} strokeWidth="0.5" opacity="0.7" />
+        <path d="M200 0 L170 90" stroke={c.outer} strokeWidth="0.5" opacity="0.7" />
+      </svg>
+
+      {/* Disc — outer ring, inner ring, photo */}
+      <svg
+        viewBox="0 0 340 340"
+        className="relative z-10 mt-[42px] w-full md:mt-[56px]"
+        aria-hidden
+      >
+        <defs>
+          <clipPath id={id}>
+            <circle cx="170" cy="170" r="118" />
+          </clipPath>
+          <radialGradient id={`shine-${id}`} cx="40%" cy="35%" r="60%">
+            <stop offset="0%" stopColor="#FFFEF5" stopOpacity="0.95" />
+            <stop offset="55%" stopColor={c.outer} />
+            <stop offset="100%" stopColor={c.deep} />
+          </radialGradient>
+          <radialGradient id={`inner-${id}`} cx="40%" cy="35%" r="60%">
+            <stop offset="0%" stopColor="#FFFCF1" stopOpacity="0.85" />
+            <stop offset="60%" stopColor={c.inner} />
+            <stop offset="100%" stopColor={c.deep} />
+          </radialGradient>
+        </defs>
+
+        {/* Outer bezel */}
+        <circle cx="170" cy="170" r="160" fill={`url(#shine-${id})`} />
+        {/* Decorative tick marks around bezel */}
+        {Array.from({ length: 48 }).map((_, i) => {
+          const a = (i / 48) * Math.PI * 2;
+          const x1 = 170 + Math.cos(a) * 146;
+          const y1 = 170 + Math.sin(a) * 146;
+          const x2 = 170 + Math.cos(a) * 152;
+          const y2 = 170 + Math.sin(a) * 152;
+          return (
+            <line
+              key={i}
+              x1={x1}
+              y1={y1}
+              x2={x2}
+              y2={y2}
+              stroke={c.deep}
+              strokeWidth="0.8"
+              opacity="0.5"
+            />
+          );
+        })}
+        {/* Inner bezel — gold rim around photo */}
+        <circle cx="170" cy="170" r="128" fill={`url(#inner-${id})`} />
+        <circle cx="170" cy="170" r="120" fill="none" stroke={c.deep} strokeWidth="0.8" opacity="0.6" />
+
+        {/* Photo clipped to circle */}
+        <image
+          href={photo}
+          x="50"
+          y="50"
+          width="240"
+          height="240"
+          preserveAspectRatio="xMidYMid slice"
+          clipPath={`url(#${id})`}
+        />
+        {/* Photo inner hairline */}
+        <circle cx="170" cy="170" r="118" fill="none" stroke={c.deep} strokeWidth="0.5" opacity="0.45" />
+
+        {/* Bottom stamp — place number / star inside small disc */}
+        <g transform="translate(170 286)">
+          <circle r="22" fill={c.outer} stroke={c.deep} strokeWidth="1" />
+          <text
+            textAnchor="middle"
+            y={kind === "honour" ? 8 : 6}
+            fontSize={kind === "honour" ? 20 : 18}
+            fontFamily="Bebas Neue, Oswald, sans-serif"
+            fill={c.deep}
+            style={{ letterSpacing: "-0.02em" }}
+          >
+            {c.label}
+          </text>
+        </g>
+
+        {/* Soft highlight glint */}
+        <path
+          d="M 80 110 Q 170 50, 260 110"
+          fill="none"
+          stroke="rgba(255,255,255,0.55)"
+          strokeWidth="2"
+          strokeLinecap="round"
+        />
+      </svg>
+    </div>
+  );
+}
+
+export function Achievements() {
+  const t = useT();
+  return (
+    <section
+      id="achievements"
+      className="relative overflow-hidden bg-[--powder-soft] px-5 py-20 text-ink md:px-12 md:py-28"
+    >
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(55% 40% at 50% 0%, rgba(214,189,159,0.30) 0%, transparent 60%)",
+        }}
+      />
+
+      <div className="relative mx-auto max-w-[1700px]">
+        <div className="grid gap-10 md:grid-cols-12 md:items-end">
           <Reveal className="md:col-span-7">
-            <div className="mb-6 flex items-center gap-4 text-[10px] uppercase tracking-[0.4em] text-gold">
-              <span className="h-px w-10 bg-gold" /> {t("gallery.eyebrow")}
+            <div className="flex items-center gap-3 text-[10px] uppercase tracking-[0.45em] text-ink-soft">
+              <span className="h-px w-10 bg-[--gold]" /> {t("achievements.eyebrow")}
             </div>
-            <h2 className="font-display text-6xl leading-[0.9] text-navy-deep md:text-8xl">
-              {t("gallery.title").toUpperCase()}
+            <h2 className="mt-6 font-display leading-[0.92] tracking-tight text-ink">
+              <span className="block text-[12vw] sm:text-[8vw] md:text-[5.5vw] xl:text-[6.5rem]">
+                {t("achievements.title.line1")}
+              </span>
+              <span
+                className="block font-serif-display italic text-[--gold] text-[12vw] sm:text-[8vw] md:text-[5.5vw] xl:text-[6.5rem]"
+                style={{ marginTop: "-0.06em" }}
+              >
+                {t("achievements.title.line2")}
+              </span>
             </h2>
           </Reveal>
           <Reveal className="md:col-span-4 md:col-start-9" delay={150}>
-            <p className="text-sm leading-relaxed text-ink-soft md:text-base">
-              {t("gallery.lead")}
+            <p className="text-[14px] leading-relaxed text-ink/80 md:text-[15px]">
+              {t("achievements.lead")}
             </p>
           </Reveal>
         </div>
 
-        <div className="grid auto-rows-[180px] grid-cols-2 gap-4 md:auto-rows-[260px] md:grid-cols-4 md:gap-6">
-          {photos.map((p, i) => (
-            <Reveal
-              key={p.src}
-              delay={i * 100}
-              className={`group relative overflow-hidden bg-navy-deep ${p.h}`}
-            >
-              <img
-                src={p.src}
-                alt={p.alt}
-                className="h-full w-full object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-105"
-                loading="lazy"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-navy-deep/70 via-transparent to-transparent opacity-60 transition-opacity group-hover:opacity-80" />
-              <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between text-white">
-                <span className="text-[10px] uppercase tracking-[0.3em]">{p.tag}</span>
-                <span className="font-display text-sm tracking-[0.2em] text-gold">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-              </div>
-            </Reveal>
-          ))}
+        {/* Medal grid — circular gold-rimmed photo frames */}
+        <div className="mt-12 grid grid-cols-1 gap-12 sm:grid-cols-2 md:mt-16 md:gap-14 lg:grid-cols-3">
+          {ACHIEVEMENT_LAYOUT.map((a, i) => {
+            const title = t(`${a.key}.title`);
+            const place = t(`${a.key}.place`);
+            const result = t(`${a.key}.result`);
+            return (
+              <Reveal key={a.key} delay={i * 80}>
+                <motion.article
+                  whileHover={{ y: -6 }}
+                  transition={{ duration: 0.5, ease }}
+                  className="group relative flex flex-col items-center text-center"
+                >
+                  <MedalFrame kind={a.kind} photo={a.photo} alt={title} />
+
+                  <div className="mt-6 text-[10px] uppercase tracking-[0.5em] text-[--gold]">
+                    {a.year}
+                  </div>
+                  <h3 className="mt-3 font-display text-2xl leading-[1.05] tracking-tight text-ink md:text-3xl">
+                    {title.toUpperCase()}
+                  </h3>
+                  <div className="mt-2 font-serif-display text-base italic text-ink-soft md:text-lg">
+                    {place}
+                  </div>
+                  <div className="mt-4 h-px w-10 bg-[--gold]/45" />
+                  <div className="mt-4 text-[11px] uppercase tracking-[0.35em] text-ink/75">
+                    {result}
+                  </div>
+                </motion.article>
+              </Reveal>
+            );
+          })}
         </div>
       </div>
     </section>
   );
 }
 
-/* ---------------- 800 METRES — cinematic typographic interlude ---------------- */
-export function EightHundred() {
+/* ============================================================
+ *  QUOTE — full-bleed Paris race photo, dark overlay, italic
+ * ============================================================ */
+export function Quote() {
   const t = useT();
-  const ref = useRef<HTMLElement | null>(null);
-  const [p, setP] = useState(0);
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const [y, setY] = useState(0);
   useEffect(() => {
     const onScroll = () => {
-      const el = ref.current;
+      const el = sectionRef.current;
       if (!el) return;
       const rect = el.getBoundingClientRect();
-      const total = window.innerHeight + el.offsetHeight;
-      const scrolled = window.innerHeight - rect.top;
-      setP(Math.min(Math.max(scrolled / total, 0), 1));
+      setY(-rect.top * 0.18);
     };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const gap = (1 - Math.abs(p - 0.5) * 2) * 8;
-
   return (
-    <section ref={ref} className="relative overflow-hidden bg-navy-deep px-6 py-32 text-white md:py-44">
-      <svg
-        className="absolute inset-0 h-full w-full opacity-40"
-        viewBox="0 0 1600 1000"
-        preserveAspectRatio="none"
+    <section
+      ref={sectionRef}
+      className="relative isolate h-[100svh] overflow-hidden bg-[#15100B] text-white"
+    >
+      <div
+        className="absolute inset-0"
+        style={{ transform: `translate3d(0, ${y}px, 0) scale(1.1)` }}
       >
-        {[...Array(6)].map((_, i) => (
-          <ellipse
-            key={i}
-            cx="800"
-            cy="500"
-            rx={400 + i * 60}
-            ry={180 + i * 28}
-            fill="none"
-            stroke="var(--gold)"
-            strokeWidth="0.5"
-            strokeDasharray="4 8"
-            style={{
-              transform: `rotate(${p * 30}deg)`,
-              transformOrigin: "center",
-              opacity: 0.4 - i * 0.04,
-            }}
-          />
-        ))}
-      </svg>
-
-      <div className="relative mx-auto max-w-[1500px] text-center">
-        <h2 className="font-display leading-none">
-          <span
-            className="block text-[24vw] md:text-[16rem]"
-            style={{ letterSpacing: `${gap}px` }}
-          >
-            800
-          </span>
-          <span className="mt-2 block text-2xl tracking-[0.6em] text-gold md:text-4xl">
-            {t("eight.title").replace("800 ", "")}
-          </span>
-        </h2>
-        <Reveal>
-          <p className="mx-auto mt-12 max-w-xl font-serif-display text-2xl leading-relaxed text-white/90 md:text-3xl">
-            {t("eight.line1")} {t("eight.line2")} {t("eight.line3")}
-          </p>
-        </Reveal>
+        <img
+          src={parisRace}
+          alt=""
+          aria-hidden
+          className="h-full w-full object-cover"
+          loading="lazy"
+        />
       </div>
-    </section>
-  );
-}
+      <div
+        aria-hidden
+        className="absolute inset-0"
+        style={{
+          background:
+            "linear-gradient(180deg, rgba(26,19,14,0.55) 0%, rgba(26,19,14,0.35) 50%, rgba(26,19,14,0.80) 100%)",
+        }}
+      />
 
-/* ---------------- PARTNERS ---------------- */
-export function Partners() {
-  const t = useT();
-  const partners = [
-    { name: "On Running", mono: "ON" },
-    { name: "Slovenský atletický zväz", mono: "SAZ" },
-    { name: "VŠC Dukla Banská Bystrica", mono: "DUKLA" },
-  ];
-
-  return (
-    <section className="bg-white px-6 py-32 md:px-16 md:py-40">
-      <div className="mx-auto max-w-[1500px]">
+      <div className="relative z-10 mx-auto flex h-full max-w-[1500px] items-center justify-center px-6 text-center md:px-12">
         <Reveal>
-          <div className="mb-10 grid gap-8 border-b border-border pb-8 md:grid-cols-12">
-            <div className="md:col-span-6">
-              <span className="text-[10px] uppercase tracking-[0.4em] text-gold">
-                {t("partners.eyebrow")}
-              </span>
-              <h2 className="mt-4 font-serif-display text-4xl leading-[1.05] text-navy-deep md:text-5xl">
-                {t("partners.title")}
-              </h2>
-            </div>
-            <p className="md:col-span-5 md:col-start-8 md:pt-4 text-sm leading-relaxed text-ink-soft md:text-base">
-              {t("partners.lead")}
-            </p>
+          <span className="mb-10 inline-block text-[10px] uppercase tracking-[0.55em] text-[--gold-soft]">
+            {t("quote.eyebrow")}
+          </span>
+          <blockquote className="font-serif-display italic leading-[1.1]" style={{ fontSize: "clamp(1.75rem, 5vw, 4rem)" }}>
+            "{t("quote.text")}"
+          </blockquote>
+          <div className="mt-12 flex items-center justify-center gap-4 text-[10px] uppercase tracking-[0.5em] text-white/75">
+            <span className="h-px w-16 bg-[--gold-soft]" />
+            {t("quote.author")}
+            <span className="h-px w-16 bg-[--gold-soft]" />
           </div>
         </Reveal>
-        <div className="grid gap-px bg-border md:grid-cols-3">
-          {partners.map((p, i) => (
-            <Reveal key={p.name} delay={i * 120}>
-              <div className="group flex h-48 flex-col items-center justify-center bg-white px-6 text-center transition-all">
-                <div className="font-display text-4xl tracking-[0.2em] text-ink-soft transition-colors duration-500 group-hover:text-gold md:text-5xl">
-                  {p.mono}
-                </div>
-                <div className="mt-4 text-[10px] uppercase tracking-[0.3em] text-ink-soft">
-                  {p.name}
-                </div>
-              </div>
-            </Reveal>
-          ))}
-        </div>
       </div>
     </section>
   );
 }
 
-/* ---------------- SOCIAL ---------------- */
-export function Social() {
+/* ============================================================
+ *  PARTNERS — honoured sponsors wall
+ *  Each card: tall portrait, hairline gold frame, ornate corner
+ *  marks, big sans wordmark + italic role + supporting copy.
+ *  Feels like a tribute plaque, not a logo dump.
+ * ============================================================ */
+const SPONSOR_LAYOUT = [
+  { key: "spn1", name: "On Running", mono: "On", caption: "Switzerland · Footwear" },
+  { key: "spn2", name: "Slovenský atletický zväz", mono: "SAZ", caption: "Bratislava · Federation" },
+  { key: "spn3", name: "VŠC Dukla", mono: "Dukla", caption: "Banská Bystrica · Centre" },
+];
+
+export function Partners() {
   const t = useT();
   return (
-    <section className="bg-beige px-6 py-32 md:px-16 md:py-40">
-      <div className="mx-auto max-w-[1500px]">
-        <div className="mb-16 grid items-end gap-8 md:grid-cols-12">
+    <section className="relative overflow-hidden bg-background px-5 py-20 text-ink md:px-12 md:py-28">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(50% 40% at 0% 100%, rgba(214,189,159,0.20) 0%, transparent 60%)",
+        }}
+      />
+
+      <div className="relative mx-auto max-w-[1700px]">
+        <div className="grid items-end gap-10 md:grid-cols-12">
           <Reveal className="md:col-span-7">
-            <div className="mb-6 flex items-center gap-4 text-[10px] uppercase tracking-[0.4em] text-gold">
-              <span className="h-px w-10 bg-gold" /> {t("social.eyebrow")}
+            <div className="mb-5 flex items-center gap-3 text-[10px] uppercase tracking-[0.45em] text-[--gold]">
+              <span className="h-px w-10 bg-[--gold]" /> {t("partners.eyebrow")}
             </div>
-            <h2 className="font-serif-display text-5xl leading-[1] text-navy-deep md:text-7xl">
-              {t("social.title")}
+            <h2 className="font-display leading-[0.92] tracking-tight text-ink">
+              <span className="block text-[12vw] sm:text-[8vw] md:text-[5.2vw] xl:text-[6rem]">
+                {t("partners.title.line1")}
+              </span>
+              <span
+                className="block font-serif-display italic text-[--gold] text-[12vw] sm:text-[8vw] md:text-[5.2vw] xl:text-[6rem]"
+                style={{ marginTop: "-0.05em" }}
+              >
+                {t("partners.title.line2")}
+              </span>
             </h2>
-            <p className="mt-6 max-w-xl text-sm leading-relaxed text-ink-soft md:text-base">
-              {t("social.lead")}
+          </Reveal>
+          <Reveal className="md:col-span-4 md:col-start-9" delay={120}>
+            <p className="text-[14px] leading-[1.75] text-ink/80 md:text-[15px]">
+              {t("partners.lead")}
             </p>
           </Reveal>
         </div>
-        <div className="grid gap-6 md:grid-cols-2">
-          {[
-            { platform: "Instagram", handle: "@gabriela.gajanova", href: "#" },
-            { platform: "Threads", handle: "@gabriela.gajanova", href: "#" },
-          ].map((s, i) => (
-            <Reveal key={s.platform} delay={i * 120}>
-              <a
-                href={s.href}
-                className="group relative block aspect-[4/3] overflow-hidden bg-white p-10 transition-all hover:-translate-y-1 hover:shadow-[0_30px_60px_-30px_rgba(13,46,99,0.25)]"
+
+        {/* Sponsor tribute cards */}
+        <div className="mt-14 grid grid-cols-1 gap-6 md:mt-20 md:grid-cols-3 md:gap-8">
+          {SPONSOR_LAYOUT.map((p, i) => (
+            <Reveal key={p.key} delay={i * 120}>
+              <motion.article
+                whileHover={{ y: -4 }}
+                transition={{ duration: 0.5, ease }}
+                className="group relative flex h-full flex-col bg-[#FBF6EA]"
               >
-                <div className="flex h-full flex-col justify-between">
-                  <div className="flex items-start justify-between">
-                    <span className="text-[10px] uppercase tracking-[0.3em] text-gold">
-                      {s.platform}
-                    </span>
-                    <svg width="20" height="20" viewBox="0 0 20 20" className="text-navy">
-                      <path d="M5 15 L15 5 M8 5 H15 V12" stroke="currentColor" strokeWidth="1" fill="none" />
-                    </svg>
+                {/* Hairline double frame */}
+                <span
+                  aria-hidden
+                  className="pointer-events-none absolute inset-0 border border-[--gold]/40 transition-colors duration-500 group-hover:border-[--gold]"
+                />
+                <span
+                  aria-hidden
+                  className="pointer-events-none absolute inset-[7px] border border-[--gold]/15"
+                />
+                {/* Ornate corner marks */}
+                {[
+                  "top-2 left-2",
+                  "top-2 right-2 rotate-90",
+                  "bottom-2 left-2 -rotate-90",
+                  "bottom-2 right-2 rotate-180",
+                ].map((pos) => (
+                  <span
+                    key={pos}
+                    aria-hidden
+                    className={`pointer-events-none absolute h-4 w-4 ${pos}`}
+                  >
+                    <span className="absolute left-0 top-0 h-px w-3 bg-[--gold]" />
+                    <span className="absolute left-0 top-0 h-3 w-px bg-[--gold]" />
+                  </span>
+                ))}
+
+                <div className="relative flex flex-1 flex-col items-center justify-between gap-10 px-8 py-12 text-center md:px-10 md:py-16">
+                  {/* Small caption top */}
+                  <div className="text-[10px] uppercase tracking-[0.45em] text-ink-soft">
+                    Partner · {String(i + 1).padStart(2, "0")}
                   </div>
-                  <div>
-                    <div className="font-display text-3xl text-navy-deep md:text-5xl">
-                      {s.handle}
+
+                  {/* Wordmark — display + italic blend */}
+                  <div className="flex flex-col items-center">
+                    <div className="font-serif-display text-6xl italic leading-none text-ink md:text-7xl">
+                      {p.mono}
+                    </div>
+                    <div className="mt-4 h-px w-12 bg-[--gold]" />
+                    <div className="mt-4 font-display text-sm tracking-[0.35em] text-ink/80 uppercase md:text-base">
+                      {p.name}
+                    </div>
+                    <div className="mt-2 text-[10px] uppercase tracking-[0.35em] text-ink-soft">
+                      {p.caption}
                     </div>
                   </div>
+
+                  {/* Role + body */}
+                  <div className="space-y-3">
+                    <div className="text-[10px] uppercase tracking-[0.4em] text-[--gold]">
+                      {t(`${p.key}.role`)}
+                    </div>
+                    <p className="font-serif-display text-base italic leading-[1.55] text-ink/85 md:text-lg">
+                      {t(`${p.key}.body`)}
+                    </p>
+                  </div>
                 </div>
-                <div className="absolute inset-x-0 bottom-0 h-0.5 origin-left scale-x-0 bg-gold transition-transform duration-700 group-hover:scale-x-100" />
-              </a>
+              </motion.article>
             </Reveal>
           ))}
         </div>
@@ -726,118 +1024,116 @@ export function Social() {
   );
 }
 
-/* ---------------- QUOTE ---------------- */
-export function Quote() {
-  const t = useT();
-  return (
-    <section className="relative h-[90vh] overflow-hidden bg-navy-deep">
-      <img
-        src={quoteBg}
-        alt=""
-        className="absolute inset-0 h-full w-full object-cover"
-        loading="lazy"
-      />
-      <div className="absolute inset-0 bg-navy-deep/75" />
-      <div className="relative z-10 flex h-full items-center justify-center px-6 text-center text-white md:px-16">
-        <Reveal className="max-w-4xl">
-          <blockquote className="font-serif-display text-3xl leading-[1.2] md:text-6xl">
-            “{t("quote.text")}”
-          </blockquote>
-          <div className="mt-12 flex items-center justify-center gap-4 text-xs uppercase tracking-[0.4em] text-white/70">
-            <span className="h-px w-12 bg-gold" />
-            {t("quote.author")}
-            <span className="h-px w-12 bg-gold" />
-          </div>
-        </Reveal>
-      </div>
-    </section>
-  );
-}
-
-/* ---------------- CONTACT ---------------- */
+/* ============================================================
+ *  CONTACT — asymmetric, elegant form on right
+ * ============================================================ */
 export function Contact() {
   const t = useT();
   return (
-    <section id="contact" className="bg-background px-6 py-32 md:px-16 md:py-48">
-      <div className="mx-auto grid max-w-[1500px] gap-16 md:grid-cols-12 md:gap-24">
+    <section
+      id="contact"
+      className="relative overflow-hidden bg-[--beige] px-5 py-20 text-ink md:px-12 md:py-28"
+    >
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(45% 50% at 100% 100%, rgba(232,207,198,0.45) 0%, transparent 60%)",
+        }}
+      />
+
+      <div className="relative mx-auto grid max-w-[1700px] gap-14 md:grid-cols-12 md:gap-20">
         <div className="md:col-span-5">
           <Reveal>
-            <div className="mb-6 flex items-center gap-4 text-[10px] uppercase tracking-[0.4em] text-gold">
-              <span className="h-px w-10 bg-gold" /> {t("contact.eyebrow")}
+            <div className="flex items-center gap-3 text-[10px] uppercase tracking-[0.45em] text-ink-soft">
+              <span className="h-px w-10 bg-[--gold]" /> {t("contact.eyebrow")}
             </div>
-            <h2 className="font-display text-5xl leading-[0.9] text-navy-deep md:text-7xl">
-              {t("contact.title")}
+            <h2 className="mt-6 font-display leading-[0.92] tracking-tight text-ink">
+              <span className="block text-[12vw] sm:text-[8vw] md:text-[4.8vw] xl:text-[5.5rem]">
+                {t("contact.title.line1")}
+              </span>
+              <span
+                className="block font-serif-display italic text-[--gold] text-[12vw] sm:text-[8vw] md:text-[4.8vw] xl:text-[5.5rem]"
+                style={{ marginTop: "-0.05em" }}
+              >
+                {t("contact.title.line2")}
+              </span>
             </h2>
-            <p className="mt-8 max-w-md text-base leading-relaxed text-ink md:text-lg">
+            <p className="mt-8 max-w-md text-[14px] leading-[1.75] text-ink/85 md:text-[15px]">
               {t("contact.lead")}
             </p>
-            <dl className="mt-12 space-y-6 text-sm">
+
+            <dl className="mt-12 space-y-7 text-sm">
               <div>
-                <dt className="text-[10px] uppercase tracking-[0.3em] text-ink-soft">
-                  {t("contact.emailLabel")}
+                <dt className="text-[10px] uppercase tracking-[0.35em] text-ink-soft">
+                  E-mail
                 </dt>
                 <dd className="mt-2">
                   <a
                     href="mailto:ggajanova@gmail.com"
-                    className="font-display text-2xl tracking-wide text-navy-deep underline-offset-8 hover:underline"
+                    className="group inline-flex items-center gap-3 font-display text-2xl tracking-wide text-ink md:text-3xl"
                   >
-                    ggajanova@gmail.com
+                    <span className="relative">
+                      ggajanova@gmail.com
+                      <span className="absolute -bottom-1 left-0 h-px w-full origin-left scale-x-0 bg-[--gold] transition-transform duration-700 group-hover:scale-x-100" />
+                    </span>
                   </a>
                 </dd>
               </div>
               <div className="flex gap-12">
-                <div>
-                  <dt className="text-[10px] uppercase tracking-[0.3em] text-ink-soft">
-                    Instagram
-                  </dt>
-                  <dd className="mt-2">
-                    <a href="#" className="font-display text-xl text-navy hover:text-gold">
-                      @gabriela.gajanova
-                    </a>
-                  </dd>
-                </div>
-                <div>
-                  <dt className="text-[10px] uppercase tracking-[0.3em] text-ink-soft">
-                    Threads
-                  </dt>
-                  <dd className="mt-2">
-                    <a href="#" className="font-display text-xl text-navy hover:text-gold">
-                      @gabriela.gajanova
-                    </a>
-                  </dd>
-                </div>
+                {[
+                  ["Instagram", "@gabriela.gajanova"],
+                  ["Threads", "@gabriela.gajanova"],
+                ].map(([label, handle]) => (
+                  <div key={label}>
+                    <dt className="text-[10px] uppercase tracking-[0.35em] text-ink-soft">
+                      {label}
+                    </dt>
+                    <dd className="mt-2">
+                      <a href="#" className="font-display text-lg text-ink hover:text-[--gold] md:text-xl">
+                        {handle}
+                      </a>
+                    </dd>
+                  </div>
+                ))}
               </div>
             </dl>
           </Reveal>
         </div>
 
-        <Reveal className="md:col-span-7" delay={100}>
+        <Reveal className="md:col-span-7" delay={150}>
           <form
             onSubmit={(e) => e.preventDefault()}
-            className="space-y-8 border border-border bg-white p-10 md:p-14"
+            className="relative space-y-8 border border-ink/15 bg-background p-8 md:p-12"
           >
-            <Field label={t("contact.form.name")} id="name" type="text" placeholder="—" />
+            <Field label={t("contact.form.name")} id="name" type="text" placeholder={t("form.placeholder.name")} />
             <Field label={t("contact.form.email")} id="email" type="email" placeholder="you@example.com" />
             <div>
               <label
                 htmlFor="message"
-                className="text-[10px] uppercase tracking-[0.3em] text-ink-soft"
+                className="text-[10px] uppercase tracking-[0.35em] text-ink-soft"
               >
                 {t("contact.form.message")}
               </label>
               <textarea
                 id="message"
                 rows={5}
-                placeholder="—"
-                className="mt-3 w-full resize-none border-0 border-b border-border bg-transparent pb-3 text-base text-ink placeholder:text-ink-soft/60 focus:border-gold focus:outline-none"
+                placeholder={t("form.placeholder.message")}
+                className="mt-3 w-full resize-none border-0 border-b border-ink/20 bg-transparent pb-3 text-base text-ink placeholder:text-ink-soft/60 focus:border-[--gold] focus:outline-none"
               />
             </div>
             <button
               type="submit"
-              className="group inline-flex items-center gap-3 bg-gold px-10 py-4 text-[11px] uppercase tracking-[0.3em] text-white transition-transform hover:-translate-y-0.5"
+              className="group relative inline-flex items-center gap-3 overflow-hidden rounded-full bg-[--gold] px-10 py-4 text-[11px] uppercase tracking-[0.35em] text-[#1A130E] transition-transform hover:-translate-y-0.5"
+              style={{ boxShadow: "0 14px 40px -16px rgba(176,147,94,0.6)" }}
             >
-              {t("contact.form.send")}
-              <span className="transition-transform group-hover:translate-x-1">→</span>
+              <span
+                aria-hidden
+                className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/55 to-transparent transition-transform duration-700 group-hover:translate-x-full"
+              />
+              <span className="relative">{t("contact.form.send")}</span>
+              <span className="relative transition-transform group-hover:translate-x-1">→</span>
             </button>
           </form>
         </Reveal>
@@ -859,78 +1155,72 @@ function Field({
 }) {
   return (
     <div>
-      <label htmlFor={id} className="text-[10px] uppercase tracking-[0.3em] text-ink-soft">
+      <label htmlFor={id} className="text-[10px] uppercase tracking-[0.35em] text-ink-soft">
         {label}
       </label>
       <input
         id={id}
         type={type}
         placeholder={placeholder}
-        className="mt-3 w-full border-0 border-b border-border bg-transparent pb-3 text-base text-ink placeholder:text-ink-soft/60 focus:border-gold focus:outline-none"
+        className="mt-3 w-full border-0 border-b border-ink/20 bg-transparent pb-3 text-base text-ink placeholder:text-ink-soft/60 focus:border-[--gold] focus:outline-none"
       />
     </div>
   );
 }
 
-/* ---------------- FOOTER ---------------- */
+/* ============================================================
+ *  FOOTER — clean, warm, hairline
+ * ============================================================ */
 export function Footer() {
   const t = useT();
   const year = new Date().getFullYear();
   return (
-    <footer className="relative overflow-hidden bg-navy-deep px-6 pt-24 pb-10 text-white md:px-16">
-      <svg
-        className="pointer-events-none absolute inset-x-0 top-0 h-12 w-full"
-        viewBox="0 0 1600 40"
-        preserveAspectRatio="none"
-      >
-        <path
-          d="M0 20 L1600 20"
-          stroke="var(--gold)"
-          strokeWidth="1"
-          strokeDasharray="8 14"
-          className="animate-track-shimmer"
-        />
-      </svg>
-
-      <div className="mx-auto max-w-[1500px]">
+    <footer className="relative overflow-hidden bg-[#15100B] px-6 pt-24 pb-10 text-white md:px-12">
+      <div className="mx-auto max-w-[1700px]">
         <div className="grid gap-12 md:grid-cols-12">
           <div className="md:col-span-6">
-            <div className="font-display text-5xl leading-none md:text-7xl">
-              GABRIELA
-              <br />
-              <span className="text-gold">GAJANOVÁ</span>
+            <div className="font-display leading-[0.86]">
+              <span className="block text-[14vw] sm:text-[10vw] md:text-[6vw] xl:text-[7rem]">
+                GABRIELA
+              </span>
+              <span
+                className="block font-serif-display italic text-[--gold-soft] text-[14vw] sm:text-[10vw] md:text-[6vw] xl:text-[7rem]"
+                style={{ marginTop: "-0.06em" }}
+              >
+                Gajanová
+              </span>
             </div>
-            <p className="mt-6 max-w-sm text-sm leading-relaxed text-white/60">
+            <p className="mt-8 max-w-sm text-sm leading-relaxed text-white/65">
               {t("footer.tagline")}
             </p>
           </div>
-          <div className="md:col-span-3">
-            <div className="text-[10px] uppercase tracking-[0.3em] text-gold">
-              {t("social.eyebrow")}
+          <div className="md:col-span-3 md:col-start-8">
+            <div className="text-[10px] uppercase tracking-[0.35em] text-[--gold-soft]">
+              {t("footer.follow")}
             </div>
             <ul className="mt-5 space-y-3 text-sm">
-              <li><a href="#" className="hover:text-gold">Instagram</a></li>
-              <li><a href="#" className="hover:text-gold">Threads</a></li>
+              <li><a href="#" className="hover:text-[--gold-soft]">Instagram</a></li>
+              <li><a href="#" className="hover:text-[--gold-soft]">Threads</a></li>
             </ul>
           </div>
           <div className="md:col-span-3">
-            <div className="text-[10px] uppercase tracking-[0.3em] text-gold">
-              {t("contact.eyebrow")}
+            <div className="text-[10px] uppercase tracking-[0.35em] text-[--gold-soft]">
+              {t("footer.contact")}
             </div>
             <ul className="mt-5 space-y-3 text-sm">
               <li>
-                <a href="mailto:ggajanova@gmail.com" className="hover:text-gold">
+                <a href="mailto:ggajanova@gmail.com" className="hover:text-[--gold-soft]">
                   ggajanova@gmail.com
                 </a>
               </li>
-              <li><a href="#contact" className="hover:text-gold">{t("contact.form.send")}</a></li>
+              <li><a href="#contact" className="hover:text-[--gold-soft]">{t("contact.form.send")}</a></li>
             </ul>
           </div>
         </div>
 
-        <div className="mt-20 flex flex-col items-start justify-between gap-4 border-t border-white/10 pt-8 text-[10px] uppercase tracking-[0.3em] text-white/40 md:flex-row md:items-center">
+        <div className="mt-20 flex flex-col items-start justify-between gap-4 border-t border-white/10 pt-8 text-[10px] uppercase tracking-[0.35em] text-white/45 md:flex-row md:items-center">
           <span>© {year} Gabriela Gajanová · {t("footer.rights")}</span>
-          <span>Bobrovec · Liptov · World</span>
+          <span>{t("footer.location")}</span>
         </div>
       </div>
     </footer>

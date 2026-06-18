@@ -7,10 +7,7 @@ import {
   About,
   Achievements,
   Journey,
-  Gallery,
-  EightHundred,
   Partners,
-  Social,
   Quote,
   Contact,
   Footer,
@@ -24,13 +21,10 @@ export function HomePage({ locale }: { locale: Locale }) {
         <Nav />
         <Hero />
         <About />
-        <Achievements />
         <Journey />
-        <Gallery />
-        <EightHundred />
-        <Partners />
-        <Social />
+        <Achievements />
         <Quote />
+        <Partners />
         <Contact />
         <Footer />
       </main>

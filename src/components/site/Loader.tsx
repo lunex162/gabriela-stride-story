@@ -20,7 +20,7 @@ export function Loader() {
   return (
     <div
       aria-hidden
-      className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-navy-deep transition-opacity duration-700"
+      className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-background transition-opacity duration-700"
       style={{ opacity: done ? 0 : 1 }}
     >
       <svg viewBox="0 0 1200 80" className="w-[80vw] max-w-3xl" fill="none">
@@ -34,13 +34,14 @@ export function Loader() {
         />
       </svg>
       <div
-        className="mt-10 font-display text-2xl md:text-3xl tracking-[0.4em] text-white opacity-0"
+        className="mt-10 font-display text-2xl tracking-[0.4em] text-ink opacity-0 md:text-3xl"
         style={{ animation: "fade-up 1s ease-out 1.2s forwards" }}
       >
-        GABRIELA GAJANOVÁ
+        GABRIELA
+        <span className="ml-3 font-serif-display italic text-[--gold]">Gajanová</span>
       </div>
       <div
-        className="mt-3 text-[10px] uppercase tracking-[0.5em] text-gold opacity-0"
+        className="mt-4 text-[10px] uppercase tracking-[0.5em] text-ink-soft opacity-0"
         style={{ animation: "fade-up 1s ease-out 1.8s forwards" }}
       >
         {t("loader.tagline")}
