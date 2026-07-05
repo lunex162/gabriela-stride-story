@@ -1171,6 +1171,8 @@ function Field({
 /* ============================================================
  *  FOOTER — clean, warm, hairline
  * ============================================================ */
+import logoAsset from "@/assets/gaga-logo-transparent.png.asset.json";
+
 export function Footer() {
   const t = useT();
   const year = new Date().getFullYear();
@@ -1179,17 +1181,11 @@ export function Footer() {
       <div className="mx-auto max-w-[1700px]">
         <div className="grid gap-12 md:grid-cols-12">
           <div className="md:col-span-6">
-            <div className="font-display leading-[0.86]">
-              <span className="block text-[14vw] sm:text-[10vw] md:text-[6vw] xl:text-[7rem]">
-                GABRIELA
-              </span>
-              <span
-                className="block font-serif-display italic text-[--gold-soft] text-[14vw] sm:text-[10vw] md:text-[6vw] xl:text-[7rem]"
-                style={{ marginTop: "-0.06em" }}
-              >
-                Gajanová
-              </span>
-            </div>
+            <img
+              src={logoAsset.url}
+              alt="GAGA"
+              className="h-20 w-auto brightness-0 invert"
+            />
             <p className="mt-8 max-w-sm text-sm leading-relaxed text-white/65">
               {t("footer.tagline")}
             </p>
