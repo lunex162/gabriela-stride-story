@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { motion, useReducedMotion } from "motion/react";
+import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
 import { Reveal } from "./Reveal";
 import { useT } from "@/i18n/LocaleContext";
 import portraitStadium from "@/assets/photos/portrait-stadium.jpg";
@@ -9,7 +9,7 @@ import action1 from "@/assets/photos/action-1.jpg";
 import action2 from "@/assets/photos/action-2.jpg";
 import action3 from "@/assets/photos/action-3.jpg";
 import action4 from "@/assets/photos/action-4.jpg";
-import gagaAbout from "@/assets/gaga-about.png.asset.json";
+import gagaAbout from "@/assets/gaga-tokyo-applause.jpg.asset.json";
 
 /* ============================================================
  *  Shared motion constants — single curve everywhere
@@ -180,86 +180,171 @@ export function Hero() {
 export function About() {
   const t = useT();
   const sectionRef = useRef<HTMLElement | null>(null);
-  const [y, setY] = useState(0);
-  useEffect(() => {
-    const onScroll = () => {
-      const el = sectionRef.current;
-      if (!el) return;
-      const rect = el.getBoundingClientRect();
-      setY(Math.max(-rect.top * 0.06, -40));
-    };
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  const photoWrapRef = useRef<HTMLDivElement | null>(null);
+  const reduce = useReducedMotion();
+
+  // Parallax: photo moves slower than text, big background word crawls
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
+  const photoY = useTransform(scrollYProgress, [0, 1], ["-6%", "6%"]);
+  const bgWordX = useTransform(scrollYProgress, [0, 1], ["-4%", "4%"]);
+
+  // Subtle 3D tilt on mouse move
+  const [tilt, setTilt] = useState({ rx: 0, ry: 0 });
+  const onMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (reduce) return;
+    const el = photoWrapRef.current;
+    if (!el) return;
+    const r = el.getBoundingClientRect();
+    const px = (e.clientX - r.left) / r.width - 0.5;
+    const py = (e.clientY - r.top) / r.height - 0.5;
+    setTilt({ rx: -py * 4, ry: px * 4 });
+  };
+  const onMouseLeave = () => setTilt({ rx: 0, ry: 0 });
+
+  const stats: Array<{ v: string; l: string }> = [
+    { v: "2×", l: t("about.stats.olympics") },
+    { v: "1:58.22", l: t("about.stats.record") },
+    { v: t("about.stats.silver.value"), l: t("about.stats.silver") },
+    { v: t("about.stats.athlete.value"), l: t("about.stats.athlete") },
+  ];
 
   return (
     <section
       id="about"
       ref={sectionRef}
-      className="relative overflow-hidden text-ink"
+      className="relative isolate overflow-hidden bg-background py-28 text-ink md:py-40"
     >
-      {/* Full-size photo background — no crop */}
-      <div className="relative w-full">
-        <img
-          src={gagaAbout.url}
-          alt="Gabriela Gajanová"
-          className="h-auto w-full"
-          loading="lazy"
-        />
+      {/* Giant background wordmark — very subtle, slow parallax */}
+      <motion.div
+        aria-hidden
+        style={{ x: bgWordX }}
+        className="pointer-events-none absolute inset-x-0 top-1/2 -z-10 -translate-y-1/2 select-none text-center"
+      >
+        <span
+          className="font-display uppercase leading-none tracking-tight text-[--powder-soft]"
+          style={{
+            fontSize: "clamp(12rem, 26vw, 26rem)",
+            opacity: 0.5,
+            WebkitTextStroke: "1px rgba(176,147,94,0.10)",
+          }}
+        >
+          GABRIELA
+        </span>
+      </motion.div>
 
-        {/* Text overlay */}
-        <div className="absolute inset-0 flex items-center">
-          <div className="mx-auto w-full max-w-[1700px] px-5 md:px-12">
-            <div className="max-w-xl md:max-w-2xl">
-              <Reveal>
-                <div className="flex items-center gap-4 text-[10px] uppercase tracking-[0.45em] text-white/70">
-                  <span className="h-px w-10 bg-[--gold]" />
-                  <span>{"\n"}</span>
-                </div>
-              </Reveal>
+      <div className="mx-auto grid max-w-[1500px] grid-cols-1 items-center gap-16 px-6 md:grid-cols-[45fr_55fr] md:gap-20 md:px-12">
+        {/* LEFT — text */}
+        <div className="relative">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-15%" }}
+            transition={{ duration: 0.8, ease }}
+            className="flex items-center gap-4 text-[10px] uppercase tracking-[0.5em] text-[--ink-soft]"
+          >
+            <span className="h-px w-10 bg-[--gold]" />
+            {t("about.eyebrow")}
+          </motion.div>
 
-              <Reveal delay={120}>
-                <h2 className="mt-6 font-serif-display text-[5.5vw] leading-[1.15] tracking-tight text-white md:mt-8 md:text-[2.4vw] xl:text-[2.6rem]">
-                  <span className="block italic text-[--gold]">
-                    {t("about.headline.line1")}
-                  </span>
-                  <span className="mt-2 block italic text-white/90">
-                    {t("about.headline.line2")}
-                  </span>
-                </h2>
-              </Reveal>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-15%" }}
+            transition={{ duration: 0.9, delay: 0.15, ease }}
+            className="mt-6 font-serif-display italic leading-[0.95] tracking-tight text-ink"
+            style={{ fontSize: "clamp(2.75rem, 5.2vw, 4.75rem)" }}
+          >
+            {t("about.name")}
+          </motion.h2>
 
-              <Reveal delay={220}>
-                <div className="mt-8 space-y-5 text-[14px] leading-[1.75] text-white/90 md:mt-10 md:text-base">
-                  <p>{t("about.p1")}</p>
-                  {t("about.p2") && <p>{t("about.p2")}</p>}
-                  {t("about.p3") && <p>{t("about.p3")}</p>}
-                </div>
-              </Reveal>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-15%" }}
+            transition={{ duration: 0.9, delay: 0.3, ease }}
+            className="mt-8 max-w-xl space-y-5 text-[15px] leading-[1.8] text-[--ink-soft] md:text-[16px]"
+          >
+            <p>{t("about.p1")}</p>
+            {t("about.p2") && <p>{t("about.p2")}</p>}
+            {t("about.p3") && <p>{t("about.p3")}</p>}
+          </motion.div>
 
-              {/* Stats row */}
-              <Reveal delay={320}>
-                <dl className="mt-12 grid grid-cols-2 gap-x-8 gap-y-6 border-t border-white/20 pt-8 md:mt-14 md:grid-cols-4 md:gap-x-10 md:gap-y-8 md:pt-10">
-                  {[
-                    ["2×", t("about.stats.olympics")],
-                    ["1:58.22", t("about.stats.record")],
-                    [t("about.stats.silver.value"), t("about.stats.silver")],
-                    [t("about.stats.athlete.value"), t("about.stats.athlete")],
-                  ].map(([v, l]) => (
-                    <div key={l}>
-                      <dd className="font-serif-display text-2xl italic leading-none text-white md:text-[2rem]">
-                        {v}
-                      </dd>
-                      <dt className="mt-3 text-[10px] uppercase tracking-[0.35em] text-white/70">
-                        {l}
-                      </dt>
-                    </div>
-                  ))}
-                </dl>
-              </Reveal>
-            </div>
-          </div>
+          {/* 2x2 stats grid */}
+          <motion.dl
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-10%" }}
+            variants={{
+              hidden: {},
+              show: { transition: { staggerChildren: 0.12, delayChildren: 0.45 } },
+            }}
+            className="mt-14 grid max-w-xl grid-cols-2 gap-x-8 gap-y-10 border-t border-[--border] pt-10"
+          >
+            {stats.map((s) => (
+              <motion.div
+                key={s.l}
+                variants={{
+                  hidden: { opacity: 0, y: 14 },
+                  show: { opacity: 1, y: 0, transition: { duration: 0.8, ease } },
+                }}
+                className="relative"
+              >
+                <dd
+                  className="font-serif-display italic leading-[0.9] text-ink"
+                  style={{ fontSize: "clamp(2.5rem, 4vw, 3.75rem)" }}
+                >
+                  {s.v}
+                </dd>
+                <dt className="mt-3 text-[11px] uppercase leading-relaxed tracking-[0.3em] text-[--ink-soft]">
+                  {s.l}
+                </dt>
+              </motion.div>
+            ))}
+          </motion.dl>
+        </div>
+
+        {/* RIGHT — portrait */}
+        <div
+          className="relative"
+          style={{ perspective: "1200px" }}
+          onMouseMove={onMouseMove}
+          onMouseLeave={onMouseLeave}
+        >
+          {/* Soft circular gradient glow behind */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0 -z-10"
+            style={{
+              background:
+                "radial-gradient(60% 55% at 50% 45%, rgba(255,255,255,0.9) 0%, rgba(232,225,209,0.55) 45%, rgba(249,246,241,0) 75%)",
+            }}
+          />
+
+          <motion.div
+            ref={photoWrapRef}
+            style={{ y: photoY }}
+            className="relative mx-auto w-full max-w-[560px]"
+          >
+            <motion.img
+              src={gagaAbout.url}
+              alt="Gabriela Gajanová — Tokyo 2025"
+              loading="lazy"
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true, margin: "-10%" }}
+              transition={{ duration: 1.2, ease }}
+              animate={{ rotateX: tilt.rx, rotateY: tilt.ry }}
+              className="block h-auto w-full will-change-transform"
+              style={{
+                marginTop: "-4rem",
+                marginBottom: "-4rem",
+                transformStyle: "preserve-3d",
+              }}
+            />
+          </motion.div>
         </div>
       </div>
     </section>
