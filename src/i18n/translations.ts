@@ -246,9 +246,9 @@ export const translations: Record<Locale, Dict> = {
 
     "about.eyebrow": "About me",
     "about.title": "A girl from Liptov, running for her dream.",
-    "about.headline.line1": "A GIRL",
-    "about.headline.line2": "from Liptov",
-    "about.headline.line3": "running for her dream.",
+    "about.headline.line1": "At first it was just the joy of movement.",
+    "about.headline.line2": "Today, running is my profession, passion and life's path.",
+    "about.headline.line3": "",
     "about.stats.olympics": "Olympic Games",
     "about.stats.record": "SK 800 m record",
     "about.stats.silver": "Euros · Rome 2024",
