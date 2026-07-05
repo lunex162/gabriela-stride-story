@@ -28,9 +28,9 @@ export const translations: Record<Locale, Dict> = {
 
     "about.eyebrow": "O mne",
     "about.title": "Dievča z Liptova, ktoré beží za svojím snom.",
-    "about.headline.line1": "DIEVČA",
-    "about.headline.line2": "z Liptova",
-    "about.headline.line3": "ktoré beží za snom.",
+    "about.headline.line1": "Na začiatku to bola len radosť z pohybu.",
+    "about.headline.line2": "Dnes je beh mojím povolaním, vášňou aj životnou cestou.",
+    "about.headline.line3": "",
     "about.stats.olympics": "Olympijské hry",
     "about.stats.record": "SK rekord 800 m",
     "about.stats.silver": "ME Rím 2024",
