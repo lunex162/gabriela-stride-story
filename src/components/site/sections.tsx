@@ -9,6 +9,7 @@ import action1 from "@/assets/photos/action-1.jpg";
 import action2 from "@/assets/photos/action-2.jpg";
 import action3 from "@/assets/photos/action-3.jpg";
 import action4 from "@/assets/photos/action-4.jpg";
+import gagaAbout from "@/assets/gaga-about.png.asset.json";
 
 /* ============================================================
  *  Shared motion constants — single curve everywhere
@@ -208,9 +209,9 @@ export function About() {
         }}
       />
 
-      <div className="relative mx-auto grid max-w-[1700px] grid-cols-1 items-start gap-12 md:grid-cols-12 md:gap-20">
+      <div className="relative mx-auto grid max-w-[1700px] grid-cols-1 items-stretch gap-12 md:grid-cols-12 md:gap-20">
         {/* LEFT — copy */}
-        <div className="md:col-span-7 md:pt-10">
+        <div className="md:col-span-7">
           <Reveal>
             <div className="flex items-center gap-4 text-[10px] uppercase tracking-[0.45em] text-ink-soft">
               <span className="h-px w-10 bg-[--gold]" />
@@ -219,18 +220,12 @@ export function About() {
           </Reveal>
 
           <Reveal delay={120}>
-            <h2 className="mt-8 font-display leading-[0.92] tracking-tight text-ink">
-              <span className="block text-[12vw] sm:text-[8vw] md:text-[5.5vw] xl:text-[6.5rem]">
+            <h2 className="mt-8 font-serif-display text-[5.5vw] leading-[1.15] tracking-tight text-ink md:text-[2.4vw] xl:text-[2.6rem]">
+              <span className="block italic text-[--gold]">
                 {t("about.headline.line1")}
               </span>
-              <span
-                className="block font-serif-display italic text-[--gold] text-[12vw] sm:text-[8vw] md:text-[5.5vw] xl:text-[6.5rem]"
-                style={{ marginTop: "-0.06em" }}
-              >
+              <span className="mt-2 block italic text-ink/80">
                 {t("about.headline.line2")}
-              </span>
-              <span className="mt-3 block text-[6vw] sm:text-[4vw] md:text-[2.4vw] xl:text-[3rem] text-ink/70">
-                {t("about.headline.line3")}
               </span>
             </h2>
           </Reveal>
@@ -238,8 +233,8 @@ export function About() {
           <Reveal delay={220}>
             <div className="mt-10 max-w-xl space-y-5 text-[15px] leading-[1.75] text-ink md:text-base">
               <p>{t("about.p1")}</p>
-              <p>{t("about.p2")}</p>
-              <p>{t("about.p3")}</p>
+              {t("about.p2") && <p>{t("about.p2")}</p>}
+              {t("about.p3") && <p>{t("about.p3")}</p>}
             </div>
           </Reveal>
 
@@ -266,33 +261,21 @@ export function About() {
         </div>
 
         {/* RIGHT — portrait */}
-        <Reveal className="md:col-span-5" delay={180}>
-          <div className="relative">
-            {/* Caption number — magazine style */}
-            <div
-              aria-hidden
-              className="absolute -left-3 -top-3 z-10 font-display text-7xl leading-none tracking-tight text-[--gold] md:-left-6 md:-top-6 md:text-9xl"
-              style={{ textShadow: "0 8px 30px rgba(176,147,94,0.25)" }}
-            >
-              {"\n"}
-            </div>
-            <div className="relative aspect-[3/4] w-full overflow-hidden bg-[--beige]">
+        <Reveal className="md:col-span-5 h-full" delay={180}>
+          <div className="relative h-full">
+            <div className="relative h-full w-full overflow-hidden bg-[--beige] aspect-[3/4] md:aspect-auto">
               <div
                 className="absolute inset-0"
                 style={{ transform: `translateY(${y}px) scale(1.05)` }}
               >
                 <img
-                  src={portraitStadium}
-                  alt="Gabriela Gajanová na štarte"
+                  src={gagaAbout.url}
+                  alt="Gabriela Gajanová"
                   className="h-full w-full object-cover"
                   loading="lazy"
                 />
               </div>
               <div className="pointer-events-none absolute inset-3 border border-white/30 md:inset-4" />
-            </div>
-            <div className="mt-4 flex items-center justify-between text-[10px] uppercase tracking-[0.35em] text-ink-soft">
-              <span>{"\n"}</span>
-              <span>{"\n"}</span>
             </div>
           </div>
         </Reveal>

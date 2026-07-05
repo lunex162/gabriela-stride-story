@@ -28,9 +28,9 @@ export const translations: Record<Locale, Dict> = {
 
     "about.eyebrow": "O mne",
     "about.title": "Dievča z Liptova, ktoré beží za svojím snom.",
-    "about.headline.line1": "DIEVČA",
-    "about.headline.line2": "z Liptova",
-    "about.headline.line3": "ktoré beží za snom.",
+    "about.headline.line1": "Na začiatku to bola len radosť z pohybu.",
+    "about.headline.line2": "Dnes je beh mojím povolaním, vášňou aj životnou cestou.",
+    "about.headline.line3": "",
     "about.stats.olympics": "Olympijské hry",
     "about.stats.record": "SK rekord 800 m",
     "about.stats.silver": "ME Rím 2024",
@@ -38,11 +38,9 @@ export const translations: Record<Locale, Dict> = {
     "about.stats.silver.value": "Striebro",
     "about.stats.athlete.value": "Atlét roka",
     "about.p1":
-      "Volám sa Gabriela Gajanová a rada behám. Som slovenská reprezentantka v behu na 800 metrov, dvojnásobná olympionička a strieborná medailistka z Majstrovstiev Európy 2024 v Ríme.",
-    "about.p2":
-      "Pochádzam z Bobrovca na Liptove, kde rodičia hospodária na salaši. Pred atletikou som hrala futbal — behu sa venujem od jedenástich rokov.",
-    "about.p3":
-      "Som členkou klubu AK ZŤS Martin a od roku 2021 trénujem v medzinárodnej skupine TeamLouis pod vedením švajčiarskeho kouča Louisa Heyera.",
+      "Volám sa Gabriela Gajanová a beh je už dlhé roky neoddeliteľnou súčasťou môjho života. Som slovenská reprezentantka v behu na 800 metrov, dvojnásobná olympionička a strieborná medailistka z Majstrovstiev Európy 2024 v Ríme. Pochádzam z Bobrovca na Liptove, kde ma formovalo nielen krásne prostredie, ale aj život na rodinnom salaši. Skôr než som objavila atletiku, hrala som futbal. Beh si ma však získal už v jedenástich rokoch a odvtedy ma sprevádza na každom kroku. Som členkou klubu AK ZŤS Martin a od roku 2021 trénujem v medzinárodnej skupine TeamLouis pod vedením švajčiarskeho trénera Louisa Heyera.",
+    "about.p2": "",
+    "about.p3": "",
 
     "about.stat1.value": "800 m",
     "about.stat1.label": "Hlavná disciplína",
@@ -248,9 +246,9 @@ export const translations: Record<Locale, Dict> = {
 
     "about.eyebrow": "About me",
     "about.title": "A girl from Liptov, running for her dream.",
-    "about.headline.line1": "A GIRL",
-    "about.headline.line2": "from Liptov",
-    "about.headline.line3": "running for her dream.",
+    "about.headline.line1": "At first it was just the joy of movement.",
+    "about.headline.line2": "Today, running is my profession, passion and life's path.",
+    "about.headline.line3": "",
     "about.stats.olympics": "Olympic Games",
     "about.stats.record": "SK 800 m record",
     "about.stats.silver": "Euros · Rome 2024",
@@ -258,11 +256,9 @@ export const translations: Record<Locale, Dict> = {
     "about.stats.silver.value": "Silver",
     "about.stats.athlete.value": "Athlete",
     "about.p1":
-      "My name is Gabriela Gajanová and I love to run. I represent Slovakia in the 800 metres, I am a two-time Olympian and a silver medalist from the 2024 European Championships in Rome.",
-    "about.p2":
-      "I grew up in Bobrovec, in the Liptov region of Slovakia, where my parents run a mountain sheep farm. Before athletics I played football — I started running when I was eleven.",
-    "about.p3":
-      "I race for AK ZŤS Martin and since 2021 I have trained with the international TeamLouis group led by Swiss coach Louis Heyer.",
+      "My name is Gabriela Gajanová and running has been an inseparable part of my life for many years. I am a Slovak representative in the 800 metres, a two-time Olympian and a silver medalist from the 2024 European Championships in Rome. I come from Bobrovec in Liptov, where I was shaped not only by the beautiful surroundings but also by life on a family sheep farm. Before I discovered athletics, I played football. However, running won me over at the age of eleven and has accompanied me every step of the way since then. I am a member of AK ZŤS Martin and since 2021 I have trained in the international TeamLouis group under the guidance of Swiss coach Louis Heyer.",
+    "about.p2": "",
+    "about.p3": "",
 
     "about.stat1.value": "800 m",
     "about.stat1.label": "Main discipline",
