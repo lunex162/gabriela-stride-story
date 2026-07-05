@@ -23,7 +23,7 @@ export const translations: Record<Locale, Dict> = {
     "hero.cta.story": "O mne",
     "hero.cta.contact": "Kontakt",
     "hero.scroll": "Skrolujte",
-    "hero.meta.route": "Bobrovec → Paríž",
+    "hero.meta.route": "\n",
     "hero.meta.discipline": "Olympionička · 800 m",
 
     "about.eyebrow": "O mne",
@@ -243,7 +243,7 @@ export const translations: Record<Locale, Dict> = {
     "hero.cta.story": "About",
     "hero.cta.contact": "Contact",
     "hero.scroll": "Scroll",
-    "hero.meta.route": "Bobrovec → Paris",
+    "hero.meta.route": "\n",
     "hero.meta.discipline": "Olympian · 800 m",
 
     "about.eyebrow": "About me",
@@ -410,7 +410,7 @@ export const translations: Record<Locale, Dict> = {
     "partners.title": "Sponsors",
     "partners.title.line1": "With",
     "partners.title.line2": "gratitude",
-    "partners.lead": "Training, racing, recovery, kit. None of my journey would be possible without these people and institutions. Thank you.",
+    
 
     "spn1.role": "Technical partner",
     "spn1.body": "Training and racing footwear for the 800 m — from Montegordo to Paris.",
