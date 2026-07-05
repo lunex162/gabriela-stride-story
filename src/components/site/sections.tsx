@@ -298,7 +298,7 @@ export function About() {
               className="absolute -left-3 -top-3 z-10 font-display text-7xl leading-none tracking-tight text-[--gold] md:-left-6 md:-top-6 md:text-9xl"
               style={{ textShadow: "0 8px 30px rgba(176,147,94,0.25)" }}
             >
-              01
+              {"\n"}
             </div>
             <div className="relative aspect-[3/4] w-full overflow-hidden bg-[--beige]">
               <div
