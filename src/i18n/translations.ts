@@ -34,8 +34,11 @@ export const translations: Record<Locale, Dict> = {
     "about.stats.athlete": "Slovenska",
     "about.stats.silver.value": "Striebro",
     "about.stats.athlete.value": "Atlétka roka",
-    "about.p1":
-      "Volám sa Gabriela Gajanová a beh je už dlhé roky neoddeliteľnou súčasťou môjho života. Som slovenská reprezentantka v behu na 800 metrov, dvojnásobná olympionička a strieborná medailistka z Majstrovstiev Európy 2024 v Ríme.",
+    "about.p1intro":
+      "Volám sa Gabriela Gajanová a beh je už dlhé roky neoddeliteľnou súčasťou môjho života. Som ",
+    "about.p1italic":
+      "slovenská reprezentantka v behu na 800 metrov, dvojnásobná olympionička a strieborná medailistka z Majstrovstiev Európy 2024 v Ríme",
+    "about.p1end": ".",
     "about.p2":
       "Pochádzam z Bobrovca na Liptove, kde ma formovala príroda, rodina aj život na rodinnom salaši. Skôr než som objavila atletiku, hrala som futbal. Beh si ma však získal už v jedenástich rokoch a odvtedy je mojou najväčšou vášňou.",
     "about.p3":
@@ -251,8 +254,11 @@ export const translations: Record<Locale, Dict> = {
     "about.stats.athlete": "of Slovakia",
     "about.stats.silver.value": "Silver",
     "about.stats.athlete.value": "Athlete of the Year",
-    "about.p1":
-      "My name is Gabriela Gajanová and running has been an inseparable part of my life for many years. I am a Slovak representative in the 800 metres, a two-time Olympian and a silver medalist from the 2024 European Championships in Rome.",
+    "about.p1intro":
+      "My name is Gabriela Gajanová and running has been an inseparable part of my life for many years. I am ",
+    "about.p1italic":
+      "a Slovak representative in the 800 metres, a two-time Olympian and a silver medalist from the 2024 European Championships in Rome",
+    "about.p1end": ".",
     "about.p2":
       "I come from Bobrovec in Liptov, where I was shaped by nature, family and life on our sheep farm. Before I discovered athletics, I played football. Running won me over at the age of eleven and has been my greatest passion ever since.",
     "about.p3":
