@@ -95,6 +95,31 @@ export function Hero() {
 
       {/* MAIN CONTENT */}
       <div className="relative z-20 mx-auto flex h-full max-w-[1600px] flex-col justify-end px-6 pb-24 md:items-center md:justify-center md:px-12 md:pb-20 md:text-center">
+        <motion.h1
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1.2, delay: 0.3 }}
+          className="font-display leading-[0.86] tracking-tight"
+        >
+          <motion.span
+            initial={{ y: 40, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 1.1, delay: 0.45, ease }}
+            className="block text-[16vw] sm:text-[12vw] md:text-[8vw] xl:text-[8.5rem]"
+          >
+            GABRIELA
+          </motion.span>
+          <motion.span
+            initial={{ y: 40, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 1.1, delay: 0.75, ease }}
+            className="block font-serif-display italic text-[--gold-soft] text-[16vw] sm:text-[12vw] md:text-[8vw] xl:text-[8.5rem]"
+            style={{ marginTop: "-0.08em" }}
+          >
+            Gajanová
+          </motion.span>
+        </motion.h1>
+
         <motion.div
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
