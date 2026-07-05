@@ -238,7 +238,7 @@ export function About() {
           <Reveal>
             <div className="flex items-center gap-4 text-[10px] uppercase tracking-[0.45em] text-ink-soft">
               <span className="h-px w-10 bg-[--gold]" />
-              <span>{"\\n"}</span>
+              <span>{"\n"}</span>
             </div>
           </Reveal>
 
