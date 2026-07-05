@@ -261,33 +261,21 @@ export function About() {
         </div>
 
         {/* RIGHT — portrait */}
-        <Reveal className="md:col-span-5" delay={180}>
-          <div className="relative">
-            {/* Caption number — magazine style */}
-            <div
-              aria-hidden
-              className="absolute -left-3 -top-3 z-10 font-display text-7xl leading-none tracking-tight text-[--gold] md:-left-6 md:-top-6 md:text-9xl"
-              style={{ textShadow: "0 8px 30px rgba(176,147,94,0.25)" }}
-            >
-              {"\n"}
-            </div>
-            <div className="relative aspect-[3/4] w-full overflow-hidden bg-[--beige]">
+        <Reveal className="md:col-span-5 h-full" delay={180}>
+          <div className="relative h-full">
+            <div className="relative h-full w-full overflow-hidden bg-[--beige] aspect-[3/4] md:aspect-auto">
               <div
                 className="absolute inset-0"
                 style={{ transform: `translateY(${y}px) scale(1.05)` }}
               >
                 <img
-                  src={portraitStadium}
-                  alt="Gabriela Gajanová na štarte"
+                  src={gagaAbout.url}
+                  alt="Gabriela Gajanová"
                   className="h-full w-full object-cover"
                   loading="lazy"
                 />
               </div>
               <div className="pointer-events-none absolute inset-3 border border-white/30 md:inset-4" />
-            </div>
-            <div className="mt-4 flex items-center justify-between text-[10px] uppercase tracking-[0.35em] text-ink-soft">
-              <span>{"\n"}</span>
-              <span>{"\n"}</span>
             </div>
           </div>
         </Reveal>
