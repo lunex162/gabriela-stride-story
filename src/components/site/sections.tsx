@@ -315,8 +315,8 @@ export function About() {
               <div className="pointer-events-none absolute inset-3 border border-white/30 md:inset-4" />
             </div>
             <div className="mt-4 flex items-center justify-between text-[10px] uppercase tracking-[0.35em] text-ink-soft">
-              <span>Portrait · 2025</span>
-              <span>SVK</span>
+              <span>{"\n"}</span>
+              <span>{"\n"}</span>
             </div>
           </div>
         </Reveal>

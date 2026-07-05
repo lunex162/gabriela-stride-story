@@ -22,7 +22,7 @@ export const translations: Record<Locale, Dict> = {
       "Olympijská reprezentantka v behu na 800 metrov",
     "hero.cta.story": "O mne",
     "hero.cta.contact": "Kontakt",
-    "hero.scroll": "Skrolujte",
+    "hero.scroll": "\n",
     "hero.meta.route": "\n",
     "hero.meta.discipline": "\n",
 
@@ -242,7 +242,7 @@ export const translations: Record<Locale, Dict> = {
       "Olympic representative · 800 metres",
     "hero.cta.story": "About",
     "hero.cta.contact": "Contact",
-    "hero.scroll": "Scroll",
+    "hero.scroll": "\n",
     "hero.meta.route": "\n",
     "hero.meta.discipline": "\n",
 
