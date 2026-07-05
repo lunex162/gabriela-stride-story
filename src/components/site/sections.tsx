@@ -238,7 +238,13 @@ export function About() {
             transition={{ duration: 0.9, delay: 0.3, ease }}
             className="mt-8 max-w-xl space-y-5 text-[15px] leading-[1.8] text-[--ink-soft] md:text-[16px]"
           >
-            <p>{t("about.p1")}</p>
+            <p>
+              {t("about.p1intro")}
+              <em className="font-serif-display italic text-ink">
+                {t("about.p1italic")}
+              </em>
+              {t("about.p1end")}
+            </p>
             {t("about.p2") && <p>{t("about.p2")}</p>}
             {t("about.p3") && <p>{t("about.p3")}</p>}
           </motion.div>
@@ -278,7 +284,7 @@ export function About() {
               viewport={{ once: true, margin: "-10%" }}
               transition={{ duration: 1.2, ease }}
               animate={{ rotateX: tilt.rx, rotateY: tilt.ry }}
-              className="block h-auto w-full will-change-transform"
+              className="block h-auto w-full rounded-2xl will-change-transform"
               style={{
                 transformStyle: "preserve-3d",
               }}
