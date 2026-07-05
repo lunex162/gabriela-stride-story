@@ -29,7 +29,7 @@ export function Nav() {
             src={logoAsset.url}
             alt="GAGA"
             className={`h-16 w-auto transition-all duration-500 md:h-20 ${
-              scrolled ? "" : "brightness-0 invert"
+              scrolled ? "opacity-0" : "brightness-0 invert"
             }`}
           />
         </a>
