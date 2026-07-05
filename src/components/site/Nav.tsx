@@ -38,32 +38,32 @@ export function Nav() {
             }`}
           />
         </a>
-        <div
-          className={`flex items-center gap-6 transition-all duration-500 md:gap-8 ${
+        <ul
+          className={`hidden gap-8 transition-all duration-500 md:flex ${
             scrolled ? "pointer-events-none opacity-0" : ""
           }`}
         >
-          <ul className="hidden gap-8 md:flex">
-            {links.map((l) => (
-              <li key={l.href}>
-                <a
-                  href={l.href}
-                  className="text-xs uppercase tracking-[0.2em] text-white/80 transition-colors hover:text-gold-soft"
-                >
-                  {l.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-          <div className="flex items-center gap-4">
-            <LangSwitch current={locale} scrolled={scrolled} />
-            <a
-              href="mailto:ggajanova@gmail.com"
-              className="hidden text-xs uppercase tracking-[0.2em] text-white/80 underline-offset-8 hover:underline lg:inline"
-            >
-              ggajanova@gmail.com
-            </a>
-          </div>
+          {links.map((l) => (
+            <li key={l.href}>
+              <a
+                href={l.href}
+                className="text-xs uppercase tracking-[0.2em] text-white/80 transition-colors hover:text-gold-soft"
+              >
+                {l.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+        <div className="flex items-center gap-4">
+          <LangSwitch current={locale} scrolled={scrolled} />
+          <a
+            href="mailto:ggajanova@gmail.com"
+            className={`hidden text-xs uppercase tracking-[0.2em] underline-offset-8 hover:underline lg:inline ${
+              scrolled ? "text-navy-deep" : "text-white/80"
+            }`}
+          >
+            ggajanova@gmail.com
+          </a>
         </div>
       </nav>
     </header>
