@@ -275,7 +275,7 @@ export function About() {
                   loading="lazy"
                 />
               </div>
-              <div className="pointer-events-none absolute inset-3 border border-white/30 md:inset-4" />
+              
             </div>
           </div>
         </Reveal>
