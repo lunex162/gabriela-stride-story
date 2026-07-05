@@ -23,7 +23,7 @@ export const translations: Record<Locale, Dict> = {
     "hero.cta.story": "O mne",
     "hero.cta.contact": "Kontakt",
     "hero.scroll": "Skrolujte",
-    "hero.meta.route": "Bobrovec → Paríž",
+    "hero.meta.route": "\n",
     "hero.meta.discipline": "Olympionička · 800 m",
 
     "about.eyebrow": "O mne",
@@ -243,7 +243,7 @@ export const translations: Record<Locale, Dict> = {
     "hero.cta.story": "About",
     "hero.cta.contact": "Contact",
     "hero.scroll": "Scroll",
-    "hero.meta.route": "Bobrovec → Paris",
+    "hero.meta.route": "\n",
     "hero.meta.discipline": "Olympian · 800 m",
 
     "about.eyebrow": "About me",
