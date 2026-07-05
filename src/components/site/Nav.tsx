@@ -38,12 +38,16 @@ export function Nav() {
             }`}
           />
         </a>
-        <ul className="hidden gap-8 md:flex">
+        <ul
+          className={`hidden gap-8 transition-all duration-500 md:flex ${
+            scrolled ? "pointer-events-none opacity-0" : ""
+          }`}
+        >
           {links.map((l) => (
             <li key={l.href}>
               <a
                 href={l.href}
-                className="text-xs uppercase tracking-[0.2em] text-ink-soft transition-colors hover:text-gold"
+                className="text-xs uppercase tracking-[0.2em] text-white/80 transition-colors hover:text-gold-soft"
               >
                 {l.label}
               </a>
