@@ -27,20 +27,19 @@ export const translations: Record<Locale, Dict> = {
     "hero.meta.discipline": "\n",
 
     "about.eyebrow": "O mne",
-    "about.title": "Dievča z Liptova, ktoré beží za svojím snom.",
-    "about.headline.line1": "Na začiatku to bola len radosť z pohybu.",
-    "about.headline.line2": "Dnes je beh mojím povolaním, vášňou aj životnou cestou.",
-    "about.headline.line3": "",
-    "about.stats.olympics": "Olympijské hry",
-    "about.stats.record": "SK rekord 800 m",
-    "about.stats.silver": "ME Rím 2024",
-    "about.stats.athlete": "Atlét roka SR 2024",
+    "about.name": "Gabriela Gajanová",
+    "about.stats.olympics": "Olympijská účastníčka",
+    "about.stats.record": "Osobný rekord na 800 m",
+    "about.stats.silver": "Majstrovstvá Európy · Rím 2024",
+    "about.stats.athlete": "Slovenska",
     "about.stats.silver.value": "Striebro",
-    "about.stats.athlete.value": "Atlét roka",
+    "about.stats.athlete.value": "Atlétka roka",
     "about.p1":
-      "Volám sa Gabriela Gajanová a beh je už dlhé roky neoddeliteľnou súčasťou môjho života. Som slovenská reprezentantka v behu na 800 metrov, dvojnásobná olympionička a strieborná medailistka z Majstrovstiev Európy 2024 v Ríme. Pochádzam z Bobrovca na Liptove, kde ma formovalo nielen krásne prostredie, ale aj život na rodinnom salaši. Skôr než som objavila atletiku, hrala som futbal. Beh si ma však získal už v jedenástich rokoch a odvtedy ma sprevádza na každom kroku. Som členkou klubu AK ZŤS Martin a od roku 2021 trénujem v medzinárodnej skupine TeamLouis pod vedením švajčiarskeho trénera Louisa Heyera.",
-    "about.p2": "",
-    "about.p3": "",
+      "Volám sa Gabriela Gajanová a beh je už dlhé roky neoddeliteľnou súčasťou môjho života. Som slovenská reprezentantka v behu na 800 metrov, dvojnásobná olympionička a strieborná medailistka z Majstrovstiev Európy 2024 v Ríme.",
+    "about.p2":
+      "Pochádzam z Bobrovca na Liptove, kde ma formovala príroda, rodina aj život na rodinnom salaši. Skôr než som objavila atletiku, hrala som futbal. Beh si ma však získal už v jedenástich rokoch a odvtedy je mojou najväčšou vášňou.",
+    "about.p3":
+      "Dnes reprezentujem klub AK ZŤS Martin a od roku 2021 trénujem v medzinárodnej tréningovej skupine TeamLouis pod vedením švajčiarskeho trénera Louisa Heyera.",
 
     "about.stat1.value": "800 m",
     "about.stat1.label": "Hlavná disciplína",
