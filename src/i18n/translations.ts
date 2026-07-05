@@ -256,11 +256,9 @@ export const translations: Record<Locale, Dict> = {
     "about.stats.silver.value": "Silver",
     "about.stats.athlete.value": "Athlete",
     "about.p1":
-      "My name is Gabriela Gajanová and I love to run. I represent Slovakia in the 800 metres, I am a two-time Olympian and a silver medalist from the 2024 European Championships in Rome.",
-    "about.p2":
-      "I grew up in Bobrovec, in the Liptov region of Slovakia, where my parents run a mountain sheep farm. Before athletics I played football — I started running when I was eleven.",
-    "about.p3":
-      "I race for AK ZŤS Martin and since 2021 I have trained with the international TeamLouis group led by Swiss coach Louis Heyer.",
+      "My name is Gabriela Gajanová and running has been an inseparable part of my life for many years. I am a Slovak representative in the 800 metres, a two-time Olympian and a silver medalist from the 2024 European Championships in Rome. I come from Bobrovec in Liptov, where I was shaped not only by the beautiful surroundings but also by life on a family sheep farm. Before I discovered athletics, I played football. However, running won me over at the age of eleven and has accompanied me every step of the way since then. I am a member of AK ZŤS Martin and since 2021 I have trained in the international TeamLouis group under the guidance of Swiss coach Louis Heyer.",
+    "about.p2": "",
+    "about.p3": "",
 
     "about.stat1.value": "800 m",
     "about.stat1.label": "Main discipline",
