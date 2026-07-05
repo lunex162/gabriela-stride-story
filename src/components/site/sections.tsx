@@ -71,24 +71,6 @@ export function Hero() {
         }}
       />
 
-      {/* HUGE translucent surname stretched edge-to-edge (MOVA pattern) */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute left-0 right-0 top-1/2 z-0 -translate-y-1/2 select-none overflow-hidden"
-      >
-        <div
-          className="whitespace-nowrap text-center font-serif-display italic leading-none"
-          style={{
-            fontSize: "clamp(12rem, 28vw, 36rem)",
-            letterSpacing: "-0.03em",
-            color: "transparent",
-            WebkitTextStroke: "1px rgba(214,189,159,0.32)",
-            transform: `translateX(${-y * 0.12}px)`,
-          }}
-        >
-          Gajanová
-        </div>
-      </div>
 
       {/* TOP META RAIL */}
       <div className="absolute inset-x-0 top-0 z-30 px-6 pt-24 md:px-12 md:pt-28">
