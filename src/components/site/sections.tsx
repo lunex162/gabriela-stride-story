@@ -220,18 +220,12 @@ export function About() {
           </Reveal>
 
           <Reveal delay={120}>
-            <h2 className="mt-8 font-display leading-[0.92] tracking-tight text-ink">
-              <span className="block text-[12vw] sm:text-[8vw] md:text-[5.5vw] xl:text-[6.5rem]">
+            <h2 className="mt-8 font-serif-display text-[5.5vw] leading-[1.15] tracking-tight text-ink md:text-[2.4vw] xl:text-[2.6rem]">
+              <span className="block italic text-[--gold]">
                 {t("about.headline.line1")}
               </span>
-              <span
-                className="block font-serif-display italic text-[--gold] text-[12vw] sm:text-[8vw] md:text-[5.5vw] xl:text-[6.5rem]"
-                style={{ marginTop: "-0.06em" }}
-              >
+              <span className="mt-2 block italic text-ink/80">
                 {t("about.headline.line2")}
-              </span>
-              <span className="mt-3 block text-[6vw] sm:text-[4vw] md:text-[2.4vw] xl:text-[3rem] text-ink/70">
-                {t("about.headline.line3")}
               </span>
             </h2>
           </Reveal>
