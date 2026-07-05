@@ -211,7 +211,7 @@ export function About() {
 
       <div className="relative mx-auto grid max-w-[1700px] grid-cols-1 items-stretch gap-12 md:grid-cols-12 md:gap-20">
         {/* LEFT — copy */}
-        <div className="md:col-span-7 md:pt-10">
+        <div className="md:col-span-7">
           <Reveal>
             <div className="flex items-center gap-4 text-[10px] uppercase tracking-[0.45em] text-ink-soft">
               <span className="h-px w-10 bg-[--gold]" />
