@@ -38,11 +38,9 @@ export const translations: Record<Locale, Dict> = {
     "about.stats.silver.value": "Striebro",
     "about.stats.athlete.value": "Atlét roka",
     "about.p1":
-      "Volám sa Gabriela Gajanová a rada behám. Som slovenská reprezentantka v behu na 800 metrov, dvojnásobná olympionička a strieborná medailistka z Majstrovstiev Európy 2024 v Ríme.",
-    "about.p2":
-      "Pochádzam z Bobrovca na Liptove, kde rodičia hospodária na salaši. Pred atletikou som hrala futbal — behu sa venujem od jedenástich rokov.",
-    "about.p3":
-      "Som členkou klubu AK ZŤS Martin a od roku 2021 trénujem v medzinárodnej skupine TeamLouis pod vedením švajčiarskeho kouča Louisa Heyera.",
+      "Volám sa Gabriela Gajanová a beh je už dlhé roky neoddeliteľnou súčasťou môjho života. Som slovenská reprezentantka v behu na 800 metrov, dvojnásobná olympionička a strieborná medailistka z Majstrovstiev Európy 2024 v Ríme. Pochádzam z Bobrovca na Liptove, kde ma formovalo nielen krásne prostredie, ale aj život na rodinnom salaši. Skôr než som objavila atletiku, hrala som futbal. Beh si ma však získal už v jedenástich rokoch a odvtedy ma sprevádza na každom kroku. Som členkou klubu AK ZŤS Martin a od roku 2021 trénujem v medzinárodnej skupine TeamLouis pod vedením švajčiarskeho trénera Louisa Heyera.",
+    "about.p2": "",
+    "about.p3": "",
 
     "about.stat1.value": "800 m",
     "about.stat1.label": "Hlavná disciplína",
