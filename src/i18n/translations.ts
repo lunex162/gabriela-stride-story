@@ -244,20 +244,19 @@ export const translations: Record<Locale, Dict> = {
     "hero.meta.discipline": "\n",
 
     "about.eyebrow": "About me",
-    "about.title": "A girl from Liptov, running for her dream.",
-    "about.headline.line1": "At first it was just the joy of movement.",
-    "about.headline.line2": "Today, running is my profession, passion and life's path.",
-    "about.headline.line3": "",
-    "about.stats.olympics": "Olympic Games",
-    "about.stats.record": "SK 800 m record",
-    "about.stats.silver": "Euros · Rome 2024",
-    "about.stats.athlete": "Athlete of the Year SVK 2024",
+    "about.name": "Gabriela Gajanová",
+    "about.stats.olympics": "Olympian",
+    "about.stats.record": "Personal best · 800 m",
+    "about.stats.silver": "European Championships · Rome 2024",
+    "about.stats.athlete": "of Slovakia",
     "about.stats.silver.value": "Silver",
-    "about.stats.athlete.value": "Athlete",
+    "about.stats.athlete.value": "Athlete of the Year",
     "about.p1":
-      "My name is Gabriela Gajanová and running has been an inseparable part of my life for many years. I am a Slovak representative in the 800 metres, a two-time Olympian and a silver medalist from the 2024 European Championships in Rome. I come from Bobrovec in Liptov, where I was shaped not only by the beautiful surroundings but also by life on a family sheep farm. Before I discovered athletics, I played football. However, running won me over at the age of eleven and has accompanied me every step of the way since then. I am a member of AK ZŤS Martin and since 2021 I have trained in the international TeamLouis group under the guidance of Swiss coach Louis Heyer.",
-    "about.p2": "",
-    "about.p3": "",
+      "My name is Gabriela Gajanová and running has been an inseparable part of my life for many years. I am a Slovak representative in the 800 metres, a two-time Olympian and a silver medalist from the 2024 European Championships in Rome.",
+    "about.p2":
+      "I come from Bobrovec in Liptov, where I was shaped by nature, family and life on our sheep farm. Before I discovered athletics, I played football. Running won me over at the age of eleven and has been my greatest passion ever since.",
+    "about.p3":
+      "Today I represent AK ZŤS Martin and since 2021 I have trained in the international TeamLouis group under the guidance of Swiss coach Louis Heyer.",
 
     "about.stat1.value": "800 m",
     "about.stat1.label": "Main discipline",
