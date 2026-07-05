@@ -38,12 +38,16 @@ export function Nav() {
             }`}
           />
         </a>
-        <ul className="hidden gap-8 md:flex">
+        <ul
+          className={`hidden gap-8 transition-all duration-500 md:flex ${
+            scrolled ? "pointer-events-none opacity-0" : ""
+          }`}
+        >
           {links.map((l) => (
             <li key={l.href}>
               <a
                 href={l.href}
-                className="text-xs uppercase tracking-[0.2em] text-ink-soft transition-colors hover:text-gold"
+                className="text-xs uppercase tracking-[0.2em] text-white/80 transition-colors hover:text-gold-soft"
               >
                 {l.label}
               </a>
@@ -51,10 +55,12 @@ export function Nav() {
           ))}
         </ul>
         <div className="flex items-center gap-4">
-          <LangSwitch current={locale} />
+          <LangSwitch current={locale} scrolled={scrolled} />
           <a
             href="mailto:ggajanova@gmail.com"
-            className="hidden text-xs uppercase tracking-[0.2em] text-navy-deep underline-offset-8 hover:underline lg:inline"
+            className={`hidden text-xs uppercase tracking-[0.2em] underline-offset-8 hover:underline lg:inline ${
+              scrolled ? "text-navy-deep" : "text-white/80"
+            }`}
           >
             ggajanova@gmail.com
           </a>
@@ -64,7 +70,7 @@ export function Nav() {
   );
 }
 
-function LangSwitch({ current }: { current: "sk" | "en" }) {
+function LangSwitch({ current, scrolled }: { current: "sk" | "en"; scrolled: boolean }) {
   return (
     <div className="flex items-center gap-1 text-[11px] uppercase tracking-[0.25em]">
       <a
@@ -72,18 +78,22 @@ function LangSwitch({ current }: { current: "sk" | "en" }) {
         className={
           current === "sk"
             ? "text-gold"
-            : "text-ink-soft hover:text-navy transition-colors"
+            : scrolled
+              ? "text-ink-soft hover:text-navy transition-colors"
+              : "text-white/80 hover:text-gold-soft transition-colors"
         }
       >
         SK
       </a>
-      <span className="text-ink-soft/40">·</span>
+      <span className={scrolled ? "text-ink-soft/40" : "text-white/40"}>·</span>
       <a
         href="/en"
         className={
           current === "en"
             ? "text-gold"
-            : "text-ink-soft hover:text-navy transition-colors"
+            : scrolled
+              ? "text-ink-soft hover:text-navy transition-colors"
+              : "text-white/80 hover:text-gold-soft transition-colors"
         }
       >
         EN
