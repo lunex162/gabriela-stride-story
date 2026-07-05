@@ -95,7 +95,7 @@ export function Hero() {
       </div>
 
       {/* MAIN CONTENT */}
-      <div className="relative z-20 mx-auto flex h-full max-w-[1600px] flex-col items-center justify-end px-6 pb-24 text-center md:justify-center md:px-12 md:pb-20">
+      <div className="relative z-20 mx-auto flex h-full max-w-[1600px] flex-col items-center justify-end px-6 pb-12 text-center md:px-12 md:pb-24">
         <motion.h1
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
