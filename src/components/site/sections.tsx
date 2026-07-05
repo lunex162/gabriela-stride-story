@@ -71,24 +71,6 @@ export function Hero() {
         }}
       />
 
-      {/* HUGE translucent surname stretched edge-to-edge (MOVA pattern) */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute left-0 right-0 top-1/2 z-0 -translate-y-1/2 select-none overflow-hidden"
-      >
-        <div
-          className="whitespace-nowrap text-center font-serif-display italic leading-none"
-          style={{
-            fontSize: "clamp(12rem, 28vw, 36rem)",
-            letterSpacing: "-0.03em",
-            color: "transparent",
-            WebkitTextStroke: "1px rgba(214,189,159,0.32)",
-            transform: `translateX(${-y * 0.12}px)`,
-          }}
-        >
-          Gajanová
-        </div>
-      </div>
 
       {/* TOP META RAIL */}
       <div className="absolute inset-x-0 top-0 z-30 px-6 pt-24 md:px-12 md:pt-28">
@@ -113,36 +95,11 @@ export function Hero() {
 
       {/* MAIN CONTENT */}
       <div className="relative z-20 mx-auto flex h-full max-w-[1600px] flex-col justify-end px-6 pb-24 md:items-center md:justify-center md:px-12 md:pb-20 md:text-center">
-        <motion.h1
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1.2, delay: 0.3 }}
-          className="font-display leading-[0.86] tracking-tight"
-        >
-          <motion.span
-            initial={{ y: 40, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 1.1, delay: 0.45, ease }}
-            className="block text-[16vw] sm:text-[12vw] md:text-[8vw] xl:text-[8.5rem]"
-          >
-            GABRIELA
-          </motion.span>
-          <motion.span
-            initial={{ y: 40, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 1.1, delay: 0.75, ease }}
-            className="block font-serif-display italic text-[--gold-soft] text-[16vw] sm:text-[12vw] md:text-[8vw] xl:text-[8.5rem]"
-            style={{ marginTop: "-0.08em" }}
-          >
-            Gajanová
-          </motion.span>
-        </motion.h1>
-
         <motion.div
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 1.1 }}
-          className="mt-8 flex max-w-2xl items-start gap-4 md:mt-10 md:items-center md:justify-center"
+          className="mt-8 flex max-w-2xl items-center justify-center gap-4 md:mt-10"
         >
           <span className="mt-2 hidden h-px w-10 shrink-0 bg-[--gold-soft] md:block" />
           <p className="text-[13px] leading-relaxed text-white/85 md:text-base md:tracking-[0.04em]">
@@ -159,15 +116,9 @@ export function Hero() {
         >
           <a
             href="#about"
-            className="group relative inline-flex items-center justify-center gap-3 overflow-hidden rounded-full bg-[--gold] px-9 py-4 text-[11px] uppercase tracking-[0.35em] text-[#1A130E] transition-transform hover:-translate-y-0.5"
-            style={{ boxShadow: "0 16px 50px -16px rgba(176,147,94,0.7)" }}
+            className="inline-flex items-center justify-center gap-3 rounded-full border border-white/40 bg-white/[0.04] px-9 py-4 text-[11px] uppercase tracking-[0.35em] text-white backdrop-blur transition-colors hover:border-[--gold-soft] hover:text-[--gold-soft]"
           >
-            <span
-              aria-hidden
-              className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/55 to-transparent transition-transform duration-700 group-hover:translate-x-full"
-            />
-            <span className="relative">{t("hero.cta.story")}</span>
-            <span className="relative transition-transform group-hover:translate-x-1">→</span>
+            {t("hero.cta.story")}
           </a>
           <a
             href="#contact"
