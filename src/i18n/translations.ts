@@ -410,7 +410,7 @@ export const translations: Record<Locale, Dict> = {
     "partners.title": "Sponsors",
     "partners.title.line1": "With",
     "partners.title.line2": "gratitude",
-    "partners.lead": "Training, racing, recovery, kit. None of my journey would be possible without these people and institutions. Thank you.",
+    
 
     "spn1.role": "Technical partner",
     "spn1.body": "Training and racing footwear for the 800 m — from Montegordo to Paris.",
