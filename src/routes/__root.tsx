@@ -77,14 +77,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Gabriela Gajanová | Olympic Athlete | 800m Runner" },
+      { title: "Gabriela Gajanová | Olympionička | Bežkyňa na 800 m" },
       {
         name: "description",
         content:
           "Official website of Gabriela Gajanová, Slovak Olympic athlete and European Championship medalist specializing in the 800 metres.",
       },
       { name: "author", content: "Gabriela Gajanová" },
-      { property: "og:title", content: "Gabriela Gajanová | Olympic 800m Runner" },
+      { property: "og:title", content: "Gabriela Gajanová | Olympionička | Bežkyňa na 800 m" },
       {
         property: "og:description",
         content:
@@ -93,6 +93,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "Gabriela Gajanová" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Gabriela Gajanová | Olympionička | Bežkyňa na 800 m" },
+      { name: "description", content: "Gabriela Gajanová - Slovenská reprezentantka v behu na 800 metrov, dvojnásobná olympionička a strieborná medailistka z Majstrovstiev Európy 2024 v Ríme." },
+      { property: "og:description", content: "Gabriela Gajanová - Slovenská reprezentantka v behu na 800 metrov, dvojnásobná olympionička a strieborná medailistka z Majstrovstiev Európy 2024 v Ríme." },
+      { name: "twitter:description", content: "Gabriela Gajanová - Slovenská reprezentantka v behu na 800 metrov, dvojnásobná olympionička a strieborná medailistka z Majstrovstiev Európy 2024 v Ríme." },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/aqxcC05253ULK5mUIJGmnrzcEBa2/social-images/social-1783294376769-250918_200610sm205528.webp" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/aqxcC05253ULK5mUIJGmnrzcEBa2/social-images/social-1783294376769-250918_200610sm205528.webp" },
     ],
     links: [
       {
