@@ -233,8 +233,8 @@ export function About() {
           <Reveal delay={220}>
             <div className="mt-10 max-w-xl space-y-5 text-[15px] leading-[1.75] text-ink md:text-base">
               <p>{t("about.p1")}</p>
-              <p>{t("about.p2")}</p>
-              <p>{t("about.p3")}</p>
+              {t("about.p2") && <p>{t("about.p2")}</p>}
+              {t("about.p3") && <p>{t("about.p3")}</p>}
             </div>
           </Reveal>
 
