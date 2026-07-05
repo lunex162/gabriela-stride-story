@@ -238,13 +238,7 @@ export function About() {
             transition={{ duration: 0.9, delay: 0.3, ease }}
             className="mt-8 max-w-xl space-y-5 text-[15px] leading-[1.8] text-[--ink-soft] md:text-[16px]"
           >
-            <p>
-              {t("about.p1intro")}
-              <em className="font-serif-display italic text-ink">
-                {t("about.p1italic")}
-              </em>
-              {t("about.p1end")}
-            </p>
+            <p>{t("about.p1")}</p>
             {t("about.p2") && <p>{t("about.p2")}</p>}
             {t("about.p3") && <p>{t("about.p3")}</p>}
           </motion.div>
