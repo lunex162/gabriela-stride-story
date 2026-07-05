@@ -116,15 +116,9 @@ export function Hero() {
         >
           <a
             href="#about"
-            className="group relative inline-flex items-center justify-center gap-3 overflow-hidden rounded-full bg-[--gold] px-9 py-4 text-[11px] uppercase tracking-[0.35em] text-[#1A130E] transition-transform hover:-translate-y-0.5"
-            style={{ boxShadow: "0 16px 50px -16px rgba(176,147,94,0.7)" }}
+            className="inline-flex items-center justify-center gap-3 rounded-full border border-white/40 bg-white/[0.04] px-9 py-4 text-[11px] uppercase tracking-[0.35em] text-white backdrop-blur transition-colors hover:border-[--gold-soft] hover:text-[--gold-soft]"
           >
-            <span
-              aria-hidden
-              className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/55 to-transparent transition-transform duration-700 group-hover:translate-x-full"
-            />
-            <span className="relative">{t("hero.cta.story")}</span>
-            <span className="relative transition-transform group-hover:translate-x-1">→</span>
+            {t("hero.cta.story")}
           </a>
           <a
             href="#contact"
