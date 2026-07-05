@@ -29,8 +29,14 @@ export function Nav() {
       }`}
     >
       <nav className="mx-auto flex max-w-[1600px] items-center justify-between gap-6 px-6 py-5 md:px-12">
-        <a href="#top" className="font-display text-lg tracking-[0.25em] text-navy-deep">
-          G · GAJANOVÁ
+        <a href="#top" className="flex items-center">
+          <img
+            src={logoAsset.url}
+            alt="GAGA"
+            className={`h-8 w-auto transition-all duration-500 md:h-10 ${
+              scrolled ? "" : "brightness-0 invert"
+            }`}
+          />
         </a>
         <ul className="hidden gap-8 md:flex">
           {links.map((l) => (
