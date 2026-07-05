@@ -6,6 +6,7 @@ export function Nav() {
   const t = useT();
   const locale = useLocale();
   const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -22,7 +23,6 @@ export function Nav() {
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 transition-all duration-500 bg-transparent">
-
       <nav className="mx-auto flex max-w-[1600px] items-center justify-between gap-6 px-6 py-5 md:px-12">
         <a href="#top" className="flex items-center">
           <img
@@ -59,8 +59,52 @@ export function Nav() {
           >
             ggajanova@gmail.com
           </a>
+          <button
+            onClick={() => setMenuOpen((o) => !o)}
+            className="flex flex-col items-center justify-center gap-[5px] md:hidden"
+            aria-label={menuOpen ? "Zavrieť menu" : "Otvoriť menu"}
+          >
+            <span
+              className={`block h-px w-6 bg-white transition-transform duration-300 ${
+                menuOpen ? "translate-y-[6px] rotate-45" : ""
+              }`}
+            />
+            <span
+              className={`block h-px w-6 bg-white transition-opacity duration-300 ${
+                menuOpen ? "opacity-0" : "opacity-100"
+              }`}
+            />
+            <span
+              className={`block h-px w-6 bg-white transition-transform duration-300 ${
+                menuOpen ? "-translate-y-[6px] -rotate-45" : ""
+              }`}
+            />
+          </button>
         </div>
       </nav>
+
+      {/* Mobile menu */}
+      <div
+        className={`overflow-hidden transition-all duration-500 md:hidden ${
+          menuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+        }`}
+      >
+        <div className="mx-6 mb-4 rounded-2xl border border-white/20 bg-white/[0.06] px-6 py-5 backdrop-blur-xl">
+          <ul className="flex flex-col gap-4">
+            {links.map((l) => (
+              <li key={l.href}>
+                <a
+                  href={l.href}
+                  onClick={() => setMenuOpen(false)}
+                  className="block text-center text-xs uppercase tracking-[0.2em] text-white/80 transition-colors hover:text-gold-soft"
+                >
+                  {l.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
     </header>
   );
 }
