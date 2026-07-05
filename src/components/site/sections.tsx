@@ -215,50 +215,22 @@ export function About() {
     <section
       id="about"
       ref={sectionRef}
-      className="relative isolate overflow-hidden bg-background py-28 text-ink md:py-40"
+      className="relative isolate overflow-hidden bg-background pb-28 pt-12 text-ink md:pb-40 md:pt-20"
     >
-      {/* Giant background wordmark — very subtle, slow parallax */}
-      <motion.div
-        aria-hidden
-        style={{ x: bgWordX }}
-        className="pointer-events-none absolute inset-x-0 top-1/2 -z-10 -translate-y-1/2 select-none text-center"
-      >
-        <span
-          className="font-display uppercase leading-none tracking-tight text-[--powder-soft]"
-          style={{
-            fontSize: "clamp(12rem, 26vw, 26rem)",
-            opacity: 0.5,
-            WebkitTextStroke: "1px rgba(176,147,94,0.10)",
-          }}
-        >
-          GABRIELA
-        </span>
-      </motion.div>
-
-      <div className="mx-auto grid max-w-[1500px] grid-cols-1 items-center gap-16 px-6 md:grid-cols-[45fr_55fr] md:gap-20 md:px-12">
+      <div className="mx-auto grid max-w-[1500px] grid-cols-1 items-stretch gap-12 px-6 md:grid-cols-[45fr_55fr] md:gap-20 md:px-12">
         {/* LEFT — text */}
-        <div className="relative">
+        <div className="relative flex flex-col">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-15%" }}
             transition={{ duration: 0.8, ease }}
-            className="flex items-center gap-4 text-[10px] uppercase tracking-[0.5em] text-[--ink-soft]"
+            className=""
           >
-            <span className="h-px w-10 bg-[--gold]" />
-            {t("about.eyebrow")}
+            <span className="inline-flex items-center gap-3 rounded-full border border-ink/25 bg-ink/[0.04] px-6 py-2.5 text-[10px] uppercase tracking-[0.35em] text-ink backdrop-blur sm:px-7 sm:py-3 sm:text-[11px]">
+              {t("about.eyebrow")}
+            </span>
           </motion.div>
-
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-15%" }}
-            transition={{ duration: 0.9, delay: 0.15, ease }}
-            className="mt-6 font-serif-display italic leading-[0.95] tracking-tight text-ink"
-            style={{ fontSize: "clamp(2.75rem, 5.2vw, 4.75rem)" }}
-          >
-            {t("about.name")}
-          </motion.h2>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -272,43 +244,13 @@ export function About() {
             {t("about.p3") && <p>{t("about.p3")}</p>}
           </motion.div>
 
-          {/* 2x2 stats grid */}
-          <motion.dl
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, margin: "-10%" }}
-            variants={{
-              hidden: {},
-              show: { transition: { staggerChildren: 0.12, delayChildren: 0.45 } },
-            }}
-            className="mt-14 grid max-w-xl grid-cols-2 gap-x-8 gap-y-10 border-t border-[--border] pt-10"
-          >
-            {stats.map((s) => (
-              <motion.div
-                key={s.l}
-                variants={{
-                  hidden: { opacity: 0, y: 14 },
-                  show: { opacity: 1, y: 0, transition: { duration: 0.8, ease } },
-                }}
-                className="relative"
-              >
-                <dd
-                  className="font-serif-display italic leading-[0.9] text-ink"
-                  style={{ fontSize: "clamp(2.5rem, 4vw, 3.75rem)" }}
-                >
-                  {s.v}
-                </dd>
-                <dt className="mt-3 text-[11px] uppercase leading-relaxed tracking-[0.3em] text-[--ink-soft]">
-                  {s.l}
-                </dt>
-              </motion.div>
-            ))}
-          </motion.dl>
+          {/* Stats — 2 under text */}
+          <StatsRow stats={stats.slice(0, 2)} className="mt-auto pt-10" />
         </div>
 
         {/* RIGHT — portrait */}
         <div
-          className="relative"
+          className="relative flex flex-col"
           style={{ perspective: "1200px" }}
           onMouseMove={onMouseMove}
           onMouseLeave={onMouseLeave}
@@ -326,7 +268,7 @@ export function About() {
           <motion.div
             ref={photoWrapRef}
             style={{ y: photoY }}
-            className="relative mx-auto w-full max-w-[560px]"
+            className="relative mx-auto w-full max-w-[560px] flex-1"
           >
             <motion.img
               src={gagaAbout.url}
@@ -339,15 +281,57 @@ export function About() {
               animate={{ rotateX: tilt.rx, rotateY: tilt.ry }}
               className="block h-auto w-full will-change-transform"
               style={{
-                marginTop: "-4rem",
-                marginBottom: "-4rem",
                 transformStyle: "preserve-3d",
               }}
             />
           </motion.div>
+
+          {/* Stats — 2 under photo */}
+          <StatsRow stats={stats.slice(2, 4)} className="pt-10" />
         </div>
       </div>
     </section>
+  );
+}
+
+function StatsRow({
+  stats,
+  className = "",
+}: {
+  stats: Array<{ v: string; l: string }>;
+  className?: string;
+}) {
+  return (
+    <motion.dl
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, margin: "-10%" }}
+      variants={{
+        hidden: {},
+        show: { transition: { staggerChildren: 0.12, delayChildren: 0.2 } },
+      }}
+      className={`grid grid-cols-2 gap-x-8 border-t border-[--border] ${className}`}
+    >
+      {stats.map((s) => (
+        <motion.div
+          key={s.l}
+          variants={{
+            hidden: { opacity: 0, y: 14 },
+            show: { opacity: 1, y: 0, transition: { duration: 0.8, ease } },
+          }}
+        >
+          <dd
+            className="font-serif-display italic leading-[0.9] text-ink"
+            style={{ fontSize: "clamp(2.25rem, 3.4vw, 3.25rem)" }}
+          >
+            {s.v}
+          </dd>
+          <dt className="mt-3 text-[11px] uppercase leading-relaxed tracking-[0.3em] text-[--ink-soft]">
+            {s.l}
+          </dt>
+        </motion.div>
+      ))}
+    </motion.dl>
   );
 }
 
