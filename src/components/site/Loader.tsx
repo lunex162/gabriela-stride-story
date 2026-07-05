@@ -24,29 +24,19 @@ export function Loader() {
       className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-background transition-opacity duration-700"
       style={{ opacity: done ? 0 : 1 }}
     >
-      <svg viewBox="0 0 1200 80" className="w-[80vw] max-w-3xl" fill="none">
-        <path
-          d="M0 40 L1200 40"
-          stroke="var(--gold)"
-          strokeWidth="1.5"
-          strokeDasharray="1200"
-          strokeDashoffset="1200"
-          className="animate-draw-line"
-        />
-      </svg>
+      <img
+        src={logoAsset.url}
+        alt="GAGA"
+        className="h-16 w-auto opacity-0 md:h-20"
+        style={{ animation: "fade-up 1s ease-out 0.6s forwards" }}
+      />
       <div
-        className="mt-10 font-display text-2xl tracking-[0.4em] text-ink opacity-0 md:text-3xl"
-        style={{ animation: "fade-up 1s ease-out 1.2s forwards" }}
-      >
-        GABRIELA
-        <span className="ml-3 font-serif-display italic text-[--gold]">Gajanová</span>
-      </div>
-      <div
-        className="mt-4 text-[10px] uppercase tracking-[0.5em] text-ink-soft opacity-0"
-        style={{ animation: "fade-up 1s ease-out 1.8s forwards" }}
+        className="mt-6 text-[10px] uppercase tracking-[0.5em] text-ink-soft opacity-0"
+        style={{ animation: "fade-up 1s ease-out 1.4s forwards" }}
       >
         {t("loader.tagline")}
       </div>
+      <div className="mt-8 h-px w-24 bg-[--gold] opacity-0" style={{ animation: "fade-up 1s ease-out 1.8s forwards" }} />
     </div>
   );
 }
