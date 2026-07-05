@@ -220,7 +220,7 @@ export function About() {
     <section
       id="about"
       ref={sectionRef}
-      className="relative overflow-hidden bg-background px-5 py-20 text-ink md:px-12 md:py-28"
+      className="relative overflow-hidden px-5 py-20 text-ink md:px-12 md:py-28"
     >
       {/* Subtle pink wash on top right */}
       <div
@@ -762,7 +762,7 @@ export function Achievements() {
   return (
     <section
       id="achievements"
-      className="relative overflow-hidden bg-[--powder-soft] px-5 py-20 text-ink md:px-12 md:py-28"
+      className="relative overflow-hidden px-5 py-20 text-ink md:px-12 md:py-28"
     >
       <div
         aria-hidden
@@ -915,7 +915,7 @@ const SPONSOR_LAYOUT = [
 export function Partners() {
   const t = useT();
   return (
-    <section className="relative overflow-hidden bg-background px-5 py-20 text-ink md:px-12 md:py-28">
+    <section className="relative overflow-hidden px-5 py-20 text-ink md:px-12 md:py-28">
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0"
@@ -1032,7 +1032,7 @@ export function Contact() {
   return (
     <section
       id="contact"
-      className="relative overflow-hidden bg-[--beige] px-5 py-20 text-ink md:px-12 md:py-28"
+      className="relative overflow-hidden px-5 py-20 text-ink md:px-12 md:py-28"
     >
       <div
         aria-hidden

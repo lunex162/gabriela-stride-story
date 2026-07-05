@@ -16,7 +16,13 @@ import {
 export function HomePage({ locale }: { locale: Locale }) {
   return (
     <LocaleProvider locale={locale}>
-      <main className="relative bg-background text-foreground">
+      <main
+        className="relative text-foreground"
+        style={{
+          background:
+            "linear-gradient(180deg, #fce7e7 0%, #fff9ef 28%, #fce7e7 52%, #fff9ef 76%, #fce7e7 100%)",
+        }}
+      >
         <Loader />
         <Nav />
         <Hero />
