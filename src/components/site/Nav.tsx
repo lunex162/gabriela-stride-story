@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocale, useT } from "@/i18n/LocaleContext";
+import logoAsset from "@/assets/gaga-logo-transparent.png.asset.json";
 
 export function Nav() {
   const t = useT();
