@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useT } from "@/i18n/LocaleContext";
+import logoAsset from "@/assets/gaga-logo-transparent.png.asset.json";
 
 export function Loader() {
   const t = useT();
