@@ -50,15 +50,21 @@ export function Nav() {
           ))}
         </ul>
         <div className="flex items-center gap-4">
-          <LangSwitch current={locale} scrolled={scrolled} />
-          <a
-            href="mailto:ggajanova@gmail.com"
-            className={`hidden text-xs uppercase tracking-[0.2em] underline-offset-8 hover:underline lg:inline ${
-              scrolled ? "text-navy-deep" : "text-white/80"
+          <div
+            className={`flex items-center gap-4 transition-all duration-500 ${
+              scrolled ? "pointer-events-none opacity-0" : ""
             }`}
           >
-            ggajanova@gmail.com
-          </a>
+            <LangSwitch current={locale} scrolled={scrolled} />
+            <a
+              href="mailto:ggajanova@gmail.com"
+              className={`hidden text-xs uppercase tracking-[0.2em] underline-offset-8 hover:underline lg:inline ${
+                scrolled ? "text-navy-deep" : "text-white/80"
+              }`}
+            >
+              ggajanova@gmail.com
+            </a>
+          </div>
           <button
             onClick={() => setMenuOpen((o) => !o)}
             className="flex flex-col items-center justify-center gap-[5px] md:hidden"
