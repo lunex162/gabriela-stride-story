@@ -243,8 +243,8 @@ export function About() {
             {t("about.p3") && <p>{t("about.p3")}</p>}
           </motion.div>
 
-          {/* Stats — 2 under text */}
-          <StatsRow stats={stats.slice(0, 2)} className="mt-auto pt-10" />
+          {/* Stats — 2 under text (desktop only) */}
+          <StatsRow stats={stats.slice(0, 2)} className="mt-auto hidden pt-10 md:grid" />
         </div>
 
         {/* RIGHT — portrait */}
@@ -285,8 +285,11 @@ export function About() {
             />
           </motion.div>
 
-          {/* Stats — 2 under photo */}
-          <StatsRow stats={stats.slice(2, 4)} className="pt-10" />
+          {/* Stats — 2 under photo (desktop only) */}
+          <StatsRow stats={stats.slice(2, 4)} className="hidden pt-10 md:grid" />
+
+          {/* Stats — all 4 under photo (mobile only) */}
+          <StatsRow stats={stats} className="pt-10 md:hidden" />
         </div>
       </div>
     </section>
