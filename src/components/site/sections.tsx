@@ -189,7 +189,6 @@ export function About() {
     offset: ["start end", "end start"],
   });
   const photoY = useTransform(scrollYProgress, [0, 1], ["-6%", "6%"]);
-  const bgWordX = useTransform(scrollYProgress, [0, 1], ["-4%", "4%"]);
 
   // Subtle 3D tilt on mouse move
   const [tilt, setTilt] = useState({ rx: 0, ry: 0 });
