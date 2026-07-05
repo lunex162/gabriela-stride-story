@@ -55,10 +55,12 @@ export function Nav() {
           ))}
         </ul>
         <div className="flex items-center gap-4">
-          <LangSwitch current={locale} />
+          <LangSwitch current={locale} scrolled={scrolled} />
           <a
             href="mailto:ggajanova@gmail.com"
-            className="hidden text-xs uppercase tracking-[0.2em] text-navy-deep underline-offset-8 hover:underline lg:inline"
+            className={`hidden text-xs uppercase tracking-[0.2em] underline-offset-8 hover:underline lg:inline ${
+              scrolled ? "text-navy-deep" : "text-white/80"
+            }`}
           >
             ggajanova@gmail.com
           </a>
