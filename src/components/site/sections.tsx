@@ -209,7 +209,7 @@ export function About() {
         }}
       />
 
-      <div className="relative mx-auto grid max-w-[1700px] grid-cols-1 items-start gap-12 md:grid-cols-12 md:gap-20">
+      <div className="relative mx-auto grid max-w-[1700px] grid-cols-1 items-stretch gap-12 md:grid-cols-12 md:gap-20">
         {/* LEFT — copy */}
         <div className="md:col-span-7 md:pt-10">
           <Reveal>
