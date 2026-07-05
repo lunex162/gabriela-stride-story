@@ -197,88 +197,70 @@ export function About() {
     <section
       id="about"
       ref={sectionRef}
-      className="relative overflow-hidden px-5 py-20 text-ink md:px-12 md:py-28"
+      className="relative overflow-hidden text-ink"
     >
-      {/* Subtle pink wash on top right */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0"
-        style={{
-          background:
-            "radial-gradient(60% 50% at 100% 0%, rgba(232,207,198,0.45) 0%, transparent 55%)",
-        }}
-      />
+      {/* Full-size photo background — no crop */}
+      <div className="relative w-full">
+        <img
+          src={gagaAbout.url}
+          alt="Gabriela Gajanová"
+          className="h-auto w-full"
+          loading="lazy"
+        />
 
-      <div className="relative mx-auto grid max-w-[1700px] grid-cols-1 items-stretch gap-12 md:grid-cols-12 md:gap-20">
-        {/* LEFT — copy */}
-        <div className="md:col-span-7">
-          <Reveal>
-            <div className="flex items-center gap-4 text-[10px] uppercase tracking-[0.45em] text-ink-soft">
-              <span className="h-px w-10 bg-[--gold]" />
-              <span>{"\n"}</span>
-            </div>
-          </Reveal>
-
-          <Reveal delay={120}>
-            <h2 className="mt-8 font-serif-display text-[5.5vw] leading-[1.15] tracking-tight text-ink md:text-[2.4vw] xl:text-[2.6rem]">
-              <span className="block italic text-[--gold]">
-                {t("about.headline.line1")}
-              </span>
-              <span className="mt-2 block italic text-ink/80">
-                {t("about.headline.line2")}
-              </span>
-            </h2>
-          </Reveal>
-
-          <Reveal delay={220}>
-            <div className="mt-10 max-w-xl space-y-5 text-[15px] leading-[1.75] text-ink md:text-base">
-              <p>{t("about.p1")}</p>
-              {t("about.p2") && <p>{t("about.p2")}</p>}
-              {t("about.p3") && <p>{t("about.p3")}</p>}
-            </div>
-          </Reveal>
-
-          {/* Stats row */}
-          <Reveal delay={320}>
-            <dl className="mt-14 grid max-w-2xl grid-cols-2 gap-x-10 gap-y-8 border-t border-ink/15 pt-10 md:grid-cols-4">
-              {[
-                ["2×", t("about.stats.olympics")],
-                ["1:58.22", t("about.stats.record")],
-                [t("about.stats.silver.value"), t("about.stats.silver")],
-                [t("about.stats.athlete.value"), t("about.stats.athlete")],
-              ].map(([v, l]) => (
-                <div key={l}>
-                  <dd className="font-serif-display text-2xl italic leading-none text-ink md:text-[2rem]">
-                    {v}
-                  </dd>
-                  <dt className="mt-3 text-[10px] uppercase tracking-[0.35em] text-ink-soft">
-                    {l}
-                  </dt>
+        {/* Text overlay */}
+        <div className="absolute inset-0 flex items-center">
+          <div className="mx-auto w-full max-w-[1700px] px-5 md:px-12">
+            <div className="max-w-xl md:max-w-2xl">
+              <Reveal>
+                <div className="flex items-center gap-4 text-[10px] uppercase tracking-[0.45em] text-white/70">
+                  <span className="h-px w-10 bg-[--gold]" />
+                  <span>{"\n"}</span>
                 </div>
-              ))}
-            </dl>
-          </Reveal>
-        </div>
+              </Reveal>
 
-        {/* RIGHT — portrait */}
-        <Reveal className="md:col-span-5 h-full" delay={180}>
-          <div className="relative h-full">
-            <div className="relative h-full w-full overflow-hidden bg-[--beige] aspect-[3/4] md:aspect-auto">
-              <div
-                className="absolute inset-0"
-                style={{ transform: `translateY(${y}px) scale(1.05)` }}
-              >
-                <img
-                  src={gagaAbout.url}
-                  alt="Gabriela Gajanová"
-                  className="h-full w-full object-cover"
-                  loading="lazy"
-                />
-              </div>
-              
+              <Reveal delay={120}>
+                <h2 className="mt-6 font-serif-display text-[5.5vw] leading-[1.15] tracking-tight text-white md:mt-8 md:text-[2.4vw] xl:text-[2.6rem]">
+                  <span className="block italic text-[--gold]">
+                    {t("about.headline.line1")}
+                  </span>
+                  <span className="mt-2 block italic text-white/90">
+                    {t("about.headline.line2")}
+                  </span>
+                </h2>
+              </Reveal>
+
+              <Reveal delay={220}>
+                <div className="mt-8 space-y-5 text-[14px] leading-[1.75] text-white/90 md:mt-10 md:text-base">
+                  <p>{t("about.p1")}</p>
+                  {t("about.p2") && <p>{t("about.p2")}</p>}
+                  {t("about.p3") && <p>{t("about.p3")}</p>}
+                </div>
+              </Reveal>
+
+              {/* Stats row */}
+              <Reveal delay={320}>
+                <dl className="mt-12 grid grid-cols-2 gap-x-8 gap-y-6 border-t border-white/20 pt-8 md:mt-14 md:grid-cols-4 md:gap-x-10 md:gap-y-8 md:pt-10">
+                  {[
+                    ["2×", t("about.stats.olympics")],
+                    ["1:58.22", t("about.stats.record")],
+                    [t("about.stats.silver.value"), t("about.stats.silver")],
+                    [t("about.stats.athlete.value"), t("about.stats.athlete")],
+                  ].map(([v, l]) => (
+                    <div key={l}>
+                      <dd className="font-serif-display text-2xl italic leading-none text-white md:text-[2rem]">
+                        {v}
+                      </dd>
+                      <dt className="mt-3 text-[10px] uppercase tracking-[0.35em] text-white/70">
+                        {l}
+                      </dt>
+                    </div>
+                  ))}
+                </dl>
+              </Reveal>
             </div>
           </div>
-        </Reveal>
+        </div>
       </div>
     </section>
   );
