@@ -868,111 +868,131 @@ export function Contact() {
   return (
     <section
       id="contact"
-      className="relative overflow-hidden px-5 py-20 text-ink md:px-12 md:py-28"
+      className="relative overflow-hidden bg-background px-5 py-20 text-ink md:px-12 md:py-28"
     >
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0"
         style={{
           background:
-            "radial-gradient(45% 50% at 100% 100%, rgba(232,207,198,0.45) 0%, transparent 60%)",
+            "radial-gradient(55% 40% at 50% 0%, rgba(214,189,159,0.22) 0%, transparent 60%)",
         }}
       />
 
-      <div className="relative mx-auto grid max-w-[1700px] gap-14 md:grid-cols-12 md:gap-20">
-        <div className="md:col-span-5">
-          <Reveal>
-            <div className="flex items-center gap-3 text-[10px] uppercase tracking-[0.45em] text-ink-soft">
-              <span className="h-px w-10 bg-[--gold]" /> {t("contact.eyebrow")}
-            </div>
-            <h2 className="mt-6 font-display leading-[0.92] tracking-tight text-ink">
-              <span className="block text-[12vw] sm:text-[8vw] md:text-[4.8vw] xl:text-[5.5rem]">
-                {t("contact.title.line1")}
-              </span>
-              <span
-                className="block font-serif-display italic text-[--gold] text-[12vw] sm:text-[8vw] md:text-[4.8vw] xl:text-[5.5rem]"
-                style={{ marginTop: "-0.05em" }}
-              >
-                {t("contact.title.line2")}
-              </span>
-            </h2>
-            <p className="mt-8 max-w-md text-[14px] leading-[1.75] text-ink/85 md:text-[15px]">
-              {t("contact.lead")}
-            </p>
-
-            <dl className="mt-12 space-y-7 text-sm">
-              <div>
-                <dt className="text-[10px] uppercase tracking-[0.35em] text-ink-soft">
-                  E-mail
-                </dt>
-                <dd className="mt-2">
-                  <a
-                    href="mailto:ggajanova@gmail.com"
-                    className="group inline-flex items-center gap-3 font-display text-2xl tracking-wide text-ink md:text-3xl"
-                  >
-                    <span className="relative">
-                      ggajanova@gmail.com
-                      <span className="absolute -bottom-1 left-0 h-px w-full origin-left scale-x-0 bg-[--gold] transition-transform duration-700 group-hover:scale-x-100" />
-                    </span>
-                  </a>
-                </dd>
-              </div>
-              <div className="flex gap-12">
-                {[
-                  ["Instagram", "@gabriela.gajanova"],
-                  ["Threads", "@gabriela.gajanova"],
-                ].map(([label, handle]) => (
-                  <div key={label}>
-                    <dt className="text-[10px] uppercase tracking-[0.35em] text-ink-soft">
-                      {label}
-                    </dt>
-                    <dd className="mt-2">
-                      <a href="#" className="font-display text-lg text-ink hover:text-[--gold] md:text-xl">
-                        {handle}
-                      </a>
-                    </dd>
-                  </div>
-                ))}
-              </div>
-            </dl>
-          </Reveal>
-        </div>
-
-        <Reveal className="md:col-span-7" delay={150}>
-          <form
-            onSubmit={(e) => e.preventDefault()}
-            className="relative space-y-8 border border-ink/15 bg-background p-8 md:p-12"
-          >
-            <Field label={t("contact.form.name")} id="name" type="text" placeholder={t("form.placeholder.name")} />
-            <Field label={t("contact.form.email")} id="email" type="email" placeholder="you@example.com" />
-            <div>
-              <label
-                htmlFor="message"
-                className="text-[10px] uppercase tracking-[0.35em] text-ink-soft"
-              >
-                {t("contact.form.message")}
-              </label>
-              <textarea
-                id="message"
-                rows={5}
-                placeholder={t("form.placeholder.message")}
-                className="mt-3 w-full resize-none border-0 border-b border-ink/20 bg-transparent pb-3 text-base text-ink placeholder:text-ink-soft/60 focus:border-[--gold] focus:outline-none"
-              />
-            </div>
-            <button
-              type="submit"
-              className="group relative inline-flex items-center gap-3 overflow-hidden rounded-full bg-[--gold] px-10 py-4 text-[11px] uppercase tracking-[0.35em] text-[#1A130E] transition-transform hover:-translate-y-0.5"
-              style={{ boxShadow: "0 14px 40px -16px rgba(176,147,94,0.6)" }}
+      <div className="relative mx-auto max-w-[1700px]">
+        {/* Centered title, matching achievements */}
+        <Reveal className="text-center">
+          <div className="flex items-center justify-center gap-3 text-[10px] uppercase tracking-[0.45em] text-ink-soft">
+            <span className="h-px w-10 bg-[--gold]" /> {t("contact.eyebrow")}
+          </div>
+          <h2 className="mt-6 font-display leading-[0.92] tracking-tight text-ink">
+            <span className="block text-[12vw] sm:text-[8vw] md:text-[5.5vw] xl:text-[6.5rem]">
+              {t("contact.title.line1")}
+            </span>
+            <span
+              className="block font-serif-display italic text-[--gold] text-[12vw] sm:text-[8vw] md:text-[5.5vw] xl:text-[6.5rem]"
+              style={{ marginTop: "-0.06em" }}
             >
-              <span
-                aria-hidden
-                className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/55 to-transparent transition-transform duration-700 group-hover:translate-x-full"
-              />
-              <span className="relative">{t("contact.form.send")}</span>
-              <span className="relative transition-transform group-hover:translate-x-1">→</span>
-            </button>
-          </form>
+              {t("contact.title.line2")}
+            </span>
+          </h2>
         </Reveal>
+
+        {/* Dark 3D card holding contact info + form */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-10%" }}
+          transition={{ duration: 0.9, ease }}
+          whileHover={{ y: -4 }}
+          className="group relative isolate mt-14 overflow-hidden rounded-[28px] bg-[#15100B] text-white shadow-[0_18px_60px_-30px_rgba(20,15,10,0.35)] transition-shadow duration-700 ease-out hover:shadow-[0_40px_100px_-30px_rgba(20,15,10,0.55)] md:mt-20"
+          style={{ willChange: "transform" }}
+        >
+          {/* Ambient gold glow inside the card */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0 opacity-70"
+            style={{
+              background:
+                "radial-gradient(60% 55% at 100% 0%, rgba(176,147,94,0.22) 0%, transparent 60%), radial-gradient(50% 50% at 0% 100%, rgba(176,147,94,0.14) 0%, transparent 65%)",
+            }}
+          />
+
+          <div className="relative grid gap-12 p-8 md:grid-cols-12 md:gap-16 md:p-14 lg:p-16">
+            {/* Left — direct contact */}
+            <div className="md:col-span-5">
+              <span className="mb-6 block h-px w-10 bg-[--gold-soft]" />
+              <dl className="space-y-8 text-sm">
+                <div>
+                  <dt className="text-[10px] uppercase tracking-[0.5em] text-white/60">
+                    E-mail
+                  </dt>
+                  <dd className="mt-3">
+                    <a
+                      href="mailto:ggajanova@gmail.com"
+                      className="group/mail inline-flex items-center gap-3 font-display text-2xl tracking-wide text-white md:text-3xl"
+                    >
+                      <span className="relative">
+                        ggajanova@gmail.com
+                        <span className="absolute -bottom-1 left-0 h-px w-full origin-left scale-x-0 bg-[--gold-soft] transition-transform duration-700 group-hover/mail:scale-x-100" />
+                      </span>
+                    </a>
+                  </dd>
+                </div>
+                <div className="flex gap-12">
+                  {[
+                    ["Instagram", "@gabriela.gajanova"],
+                    ["Threads", "@gabriela.gajanova"],
+                  ].map(([label, handle]) => (
+                    <div key={label}>
+                      <dt className="text-[10px] uppercase tracking-[0.5em] text-white/60">
+                        {label}
+                      </dt>
+                      <dd className="mt-3">
+                        <a
+                          href="#"
+                          className="font-display text-lg text-white transition-colors hover:text-[--gold-soft] md:text-xl"
+                        >
+                          {handle}
+                        </a>
+                      </dd>
+                    </div>
+                  ))}
+                </div>
+              </dl>
+            </div>
+
+            {/* Right — form */}
+            <form
+              onSubmit={(e) => e.preventDefault()}
+              className="space-y-8 md:col-span-7"
+            >
+              <Field label={t("contact.form.name")} id="name" type="text" placeholder={t("form.placeholder.name")} />
+              <Field label={t("contact.form.email")} id="email" type="email" placeholder="you@example.com" />
+              <div>
+                <label
+                  htmlFor="message"
+                  className="text-[10px] uppercase tracking-[0.5em] text-white/60"
+                >
+                  {t("contact.form.message")}
+                </label>
+                <textarea
+                  id="message"
+                  rows={5}
+                  placeholder={t("form.placeholder.message")}
+                  className="mt-3 w-full resize-none border-0 border-b border-white/20 bg-transparent pb-3 text-base text-white placeholder:text-white/40 focus:border-[--gold-soft] focus:outline-none"
+                />
+              </div>
+              <button
+                type="submit"
+                className="inline-flex items-center justify-center gap-3 rounded-full border border-white/40 bg-white/[0.04] px-9 py-4 text-[11px] uppercase tracking-[0.35em] text-white backdrop-blur transition-colors hover:border-[--gold-soft] hover:text-[--gold-soft]"
+              >
+                <span>{t("contact.form.send")}</span>
+                <span aria-hidden className="transition-transform">→</span>
+              </button>
+            </form>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
@@ -991,14 +1011,14 @@ function Field({
 }) {
   return (
     <div>
-      <label htmlFor={id} className="text-[10px] uppercase tracking-[0.35em] text-ink-soft">
+      <label htmlFor={id} className="text-[10px] uppercase tracking-[0.5em] text-white/60">
         {label}
       </label>
       <input
         id={id}
         type={type}
         placeholder={placeholder}
-        className="mt-3 w-full border-0 border-b border-ink/20 bg-transparent pb-3 text-base text-ink placeholder:text-ink-soft/60 focus:border-[--gold] focus:outline-none"
+        className="mt-3 w-full border-0 border-b border-white/20 bg-transparent pb-3 text-base text-white placeholder:text-white/40 focus:border-[--gold-soft] focus:outline-none"
       />
     </div>
   );
