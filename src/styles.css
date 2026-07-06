@@ -260,3 +260,13 @@
 @utility animate-track-shimmer {
   animation: track-shimmer 3s ease-in-out infinite;
 }
+
+@keyframes milestone-ripple {
+  0%   { transform: translate(-50%, -50%) scale(0.6); opacity: 0.75; }
+  80%  { transform: translate(-50%, -50%) scale(4.2); opacity: 0.05; }
+  100% { transform: translate(-50%, -50%) scale(4.6); opacity: 0; }
+}
+
+@utility animate-milestone-ripple {
+  animation: milestone-ripple 0.7s cubic-bezier(.16,1,.3,1) forwards;
+}
