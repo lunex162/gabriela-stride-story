@@ -1013,16 +1013,16 @@ export function Footer() {
   const t = useT();
   const year = new Date().getFullYear();
   return (
-    <footer className="relative overflow-hidden bg-[#15100B] px-6 pt-24 pb-10 text-white md:px-12">
+    <footer className="relative overflow-hidden bg-[#15100B] px-6 pt-12 pb-5 text-white md:px-12">
       <div className="mx-auto max-w-[1700px]">
-        <div className="grid gap-12 md:grid-cols-12">
+        <div className="grid gap-6 md:grid-cols-12">
           <div className="md:col-span-6">
             <img
               src={logoAsset.url}
               alt="GAGA"
-              className="h-40 w-auto brightness-0 invert"
+              className="h-20 w-auto brightness-0 invert"
             />
-            <p className="mt-8 max-w-sm text-sm leading-relaxed text-white/65">
+            <p className="mt-4 max-w-sm text-sm leading-relaxed text-white/65">
               {t("footer.tagline")}
             </p>
           </div>
@@ -1030,7 +1030,7 @@ export function Footer() {
             <div className="text-[10px] uppercase tracking-[0.35em] text-[--gold-soft]">
               {t("footer.follow")}
             </div>
-            <ul className="mt-5 space-y-3 text-sm">
+            <ul className="mt-2.5 space-y-3 text-sm">
               <li><a href="#" className="hover:text-[--gold-soft]">Instagram</a></li>
               <li><a href="#" className="hover:text-[--gold-soft]">Threads</a></li>
             </ul>
@@ -1039,7 +1039,7 @@ export function Footer() {
             <div className="text-[10px] uppercase tracking-[0.35em] text-[--gold-soft]">
               {t("footer.contact")}
             </div>
-            <ul className="mt-5 space-y-3 text-sm">
+            <ul className="mt-2.5 space-y-3 text-sm">
               <li>
                 <a href="mailto:ggajanova@gmail.com" className="hover:text-[--gold-soft]">
                   ggajanova@gmail.com
@@ -1050,7 +1050,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-20 flex flex-col items-start justify-between gap-4 border-t border-white/10 pt-8 text-[10px] uppercase tracking-[0.35em] text-white/45 md:flex-row md:items-center">
+        <div className="mt-10 flex flex-col items-start justify-between gap-4 border-t border-white/10 pt-4 text-[10px] uppercase tracking-[0.35em] text-white/45 md:flex-row md:items-center">
           <span>© {year} Gabriela Gajanová · {t("footer.rights")}</span>
           <span>{t("footer.location")}</span>
         </div>
