@@ -379,7 +379,9 @@ export function Journey() {
   );
 
   useEffect(() => {
-    const onScroll = () => {
+    let raf = 0;
+    const compute = () => {
+      raf = 0;
       const el = sectionRef.current;
       if (!el) return;
       const rect = el.getBoundingClientRect();
@@ -387,17 +389,22 @@ export function Journey() {
       const scrolled = Math.min(Math.max(-rect.top, 0), total);
       setProgress(total > 0 ? scrolled / total : 0);
     };
-    onScroll();
+    const onScroll = () => {
+      if (raf) return;
+      raf = requestAnimationFrame(compute);
+    };
+    compute();
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
     return () => {
+      if (raf) cancelAnimationFrame(raf);
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
     };
   }, []);
 
   const distance = Math.round(progress * 800);
-  const activeIdx = Math.min(8, Math.round((progress * 800) / 100));
+  const activeIdx = Math.min(8, Math.floor((progress * 800) / 100));
   const active = milestones[activeIdx];
 
   return (
@@ -532,11 +539,10 @@ export function Journey() {
             {/* Lane */}
             <div className="relative h-px w-full bg-white/20">
               <div
-                className="absolute inset-y-0 left-0 bg-[--gold-soft]"
+                className="absolute inset-y-0 left-0 bg-[--gold-soft] will-change-[width]"
                 style={{
                   width: `${progress * 100}%`,
-                  transition: "width 0.18s linear",
-                  boxShadow: "0 0 14px rgba(214,189,159,0.6)",
+                  boxShadow: "0 0 14px rgba(214,189,159,0.65)",
                 }}
               />
               {/* Tick markers */}
@@ -545,16 +551,31 @@ export function Journey() {
                   const reached = m.idx <= activeIdx;
                   const current = m.idx === activeIdx;
                   return (
-                    <span
-                      key={m.idx}
-                      className={`block transition-all duration-300 ${
-                        current
-                          ? "h-3 w-3 rounded-full bg-[--gold-soft] ring-4 ring-[rgba(214,189,159,0.20)]"
-                          : reached
-                            ? "h-1.5 w-1.5 rounded-full bg-[--gold-soft]"
-                            : "h-1.5 w-1.5 rounded-full bg-white/30"
-                      }`}
-                    />
+                    <span key={m.idx} className="relative block">
+                      <span
+                        className={`block transition-all duration-500 ease-out ${
+                          current
+                            ? "h-3 w-3 rounded-full bg-[--gold-soft] ring-4 ring-[rgba(214,189,159,0.22)] shadow-[0_0_18px_rgba(214,189,159,0.85)]"
+                            : reached
+                              ? "h-1.5 w-1.5 rounded-full bg-[--gold-soft]"
+                              : "h-1.5 w-1.5 rounded-full bg-white/30"
+                        }`}
+                      />
+                      {current && !reduce && (
+                        <>
+                          <span
+                            key={`ping-${m.idx}-${activeIdx}`}
+                            aria-hidden
+                            className="pointer-events-none absolute left-1/2 top-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[--gold-soft] opacity-70 animate-milestone-ripple"
+                          />
+                          <span
+                            key={`ping2-${m.idx}-${activeIdx}`}
+                            aria-hidden
+                            className="pointer-events-none absolute left-1/2 top-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[--gold-soft] opacity-40 animate-milestone-ripple [animation-delay:120ms]"
+                          />
+                        </>
+                      )}
+                    </span>
                   );
                 })}
               </div>
