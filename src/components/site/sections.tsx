@@ -379,7 +379,9 @@ export function Journey() {
   );
 
   useEffect(() => {
-    const onScroll = () => {
+    let raf = 0;
+    const compute = () => {
+      raf = 0;
       const el = sectionRef.current;
       if (!el) return;
       const rect = el.getBoundingClientRect();
@@ -387,10 +389,15 @@ export function Journey() {
       const scrolled = Math.min(Math.max(-rect.top, 0), total);
       setProgress(total > 0 ? scrolled / total : 0);
     };
-    onScroll();
+    const onScroll = () => {
+      if (raf) return;
+      raf = requestAnimationFrame(compute);
+    };
+    compute();
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
     return () => {
+      if (raf) cancelAnimationFrame(raf);
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
     };
