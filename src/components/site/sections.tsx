@@ -222,7 +222,7 @@ export function About() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-15%" }}
             transition={{ duration: 0.9, delay: 0.2, ease }}
-            className="mt-8 space-y-5 text-[15px] leading-[1.8] text-[--ink-soft] md:text-[16px]"
+            className="mt-8 space-y-5 text-[18px] leading-[1.8] text-[--ink-soft] md:text-[19px]"
           >
             <p>{t("about.p1")}</p>
             {t("about.p2") && <p>{t("about.p2")}</p>}
@@ -254,7 +254,7 @@ export function About() {
 
           <motion.div
             ref={photoWrapRef}
-            className="relative mx-auto w-full max-w-[540px] flex-1 overflow-hidden rounded-2xl md:h-full"
+            className="relative mx-auto w-full max-w-[430px] flex-1 overflow-hidden rounded-2xl md:h-full"
           >
             <motion.img
               src={gagaAbout.url}
@@ -450,7 +450,7 @@ export function Journey() {
         </div>
 
         {/* ===== BOTTOM TRACK — 800m with 9 markers ===== */}
-        <div className="absolute inset-x-0 bottom-0 z-30 px-6 pb-10 md:px-12 md:pb-12">
+        <div className="absolute inset-x-0 bottom-6 z-30 px-6 pb-10 md:bottom-10 md:px-12 md:pb-12">
           <div className="mx-auto max-w-[1700px]">
             {/* Year/dist row */}
             <div className="mb-5 hidden items-end justify-between text-[11px] uppercase tracking-[0.4em] md:flex">
@@ -561,11 +561,11 @@ export function Achievements() {
               <span className="h-px w-10 bg-[--gold]" /> {t("achievements.eyebrow")}
             </div>
             <h2 className="mt-6 font-display leading-[0.92] tracking-tight text-ink">
-              <span className="block text-[12vw] sm:text-[8vw] md:text-[5.5vw] xl:text-[6.5rem]">
+              <span className="block text-[9.5vw] sm:text-[6.5vw] md:text-[4.5vw] xl:text-[5.2rem]">
                 {t("achievements.title.line1")}
               </span>
               <span
-                className="block font-serif-display italic text-[--gold] text-[12vw] sm:text-[8vw] md:text-[5.5vw] xl:text-[6.5rem]"
+                className="block font-serif-display italic text-[--gold] text-[9.5vw] sm:text-[6.5vw] md:text-[4.5vw] xl:text-[5.2rem]"
                 style={{ marginTop: "-0.06em" }}
               >
                 {t("achievements.title.line2")}
@@ -833,11 +833,11 @@ export function Press() {
               </div>
             )}
             <h2 className="font-display leading-[0.92] tracking-tight text-ink">
-              <span className="block text-[10vw] sm:text-[7vw] md:text-[4.6vw] xl:text-[5.2rem]">
+              <span className="block text-[8vw] sm:text-[5.5vw] md:text-[3.7vw] xl:text-[4.2rem]">
                 {t("press.title.line1")}
               </span>
               <span
-                className="block font-serif-display italic text-[--gold] text-[10vw] sm:text-[7vw] md:text-[4.6vw] xl:text-[5.2rem]"
+                className="block font-serif-display italic text-[--gold] text-[8vw] sm:text-[5.5vw] md:text-[3.7vw] xl:text-[4.2rem]"
                 style={{ marginTop: "-0.05em" }}
               >
                 {t("press.title.line2")}
@@ -1053,11 +1053,11 @@ export function Partners() {
               <span className="h-px w-10 bg-[--gold]" /> {t("partners.eyebrow")}
             </div>
             <h2 className="font-display leading-[0.92] tracking-tight text-ink">
-              <span className="block text-[10vw] sm:text-[7vw] md:text-[4.6vw] xl:text-[5.2rem]">
+              <span className="block text-[8vw] sm:text-[5.5vw] md:text-[3.7vw] xl:text-[4.2rem]">
                 {t("partners.title.line1")}
               </span>
               <span
-                className="block font-serif-display italic text-[--gold] text-[10vw] sm:text-[7vw] md:text-[4.6vw] xl:text-[5.2rem]"
+                className="block font-serif-display italic text-[--gold] text-[8vw] sm:text-[5.5vw] md:text-[3.7vw] xl:text-[4.2rem]"
                 style={{ marginTop: "-0.05em" }}
               >
                 {t("partners.title.line2")}
@@ -1179,11 +1179,11 @@ export function Contact() {
             <span className="h-px w-10 bg-[--gold]" /> {t("contact.eyebrow")}
           </div>
           <h2 className="mt-6 font-display leading-[0.92] tracking-tight text-ink">
-            <span className="block text-[12vw] sm:text-[8vw] md:text-[5.5vw] xl:text-[6.5rem]">
+            <span className="block text-[9.5vw] sm:text-[6.5vw] md:text-[4.5vw] xl:text-[5.2rem]">
               {t("contact.title.line1")}
             </span>
             <span
-              className="block font-serif-display italic text-[--gold] text-[12vw] sm:text-[8vw] md:text-[5.5vw] xl:text-[6.5rem]"
+              className="block font-serif-display italic text-[--gold] text-[9.5vw] sm:text-[6.5vw] md:text-[4.5vw] xl:text-[5.2rem]"
               style={{ marginTop: "-0.06em" }}
             >
               {t("contact.title.line2")}
