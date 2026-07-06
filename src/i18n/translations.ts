@@ -194,7 +194,7 @@ export const translations: Record<Locale, Dict> = {
     "press.title.line1": "Napísali",
     "press.title.line2": "o mne",
     "press.lead":
-      "Výber článkov z prestížnych slovenských médií, ktoré priblížili moju cestu, úspechy a míľniky.",
+      "\n",
     "press.cta": "Prečítať článok",
     "press.date1": "Máj 2025",
     "press.title1": "Gabriela Gajanová medzi Forbes 30 pod 30",
@@ -434,7 +434,7 @@ export const translations: Record<Locale, Dict> = {
     "press.title.line1": "Featured",
     "press.title.line2": "in press",
     "press.lead":
-      "A selection of pieces from leading Slovak outlets covering my journey, achievements and milestones.",
+      "\n",
     "press.cta": "Read article",
     "press.date1": "May 2025",
     "press.title1": "Gabriela Gajanová among Forbes 30 Under 30",
