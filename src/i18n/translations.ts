@@ -115,11 +115,11 @@ export const translations: Record<Locale, Dict> = {
     "journey.distanceLabel": "vzdialenosť",
     "journey.metersShort": "m",
 
-    "m0.title": "Začiatok",
+    "m0.title": "Začiatky",
     "m0.place": "Bobrovec · Liptov",
     "m0.year": "~2010",
     "m0.body":
-      "Salaš v Bobroveckej doline, futbal s chlapcami a prvé behy do kopcov. Mala som jedenásť, keď som prešla z futbalu na atletiku.",
+      "Futbal, prvé behy do kopcov...",
 
     "m1.title": "Prvá medaila",
     "m1.place": "Tbilisi · ME junioriek",
