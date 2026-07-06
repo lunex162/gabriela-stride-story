@@ -267,7 +267,7 @@ export function About() {
           <motion.div
             ref={photoWrapRef}
             style={{ y: photoY }}
-            className="relative mx-auto w-full max-w-[560px] flex-1"
+            className="relative mx-auto w-full max-w-[560px]"
           >
             <motion.img
               src={gagaAbout.url}
