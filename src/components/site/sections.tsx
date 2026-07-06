@@ -470,18 +470,18 @@ export function Journey() {
         </div>
 
         {/* ===== MAIN — kinetic numeral + body ===== */}
-        <div className="absolute inset-0 z-10 flex items-center px-6 md:px-12">
-          <div className="mx-auto grid w-full max-w-[1700px] grid-cols-1 place-items-center gap-10 md:grid-cols-12 md:gap-16">
+        <div className="absolute inset-0 z-10 flex items-start pt-28 md:pt-36 px-6 md:px-12">
+          <div className="mx-auto grid w-full max-w-[1700px] grid-cols-1 gap-10 md:grid-cols-12 md:gap-16">
             {/* LEFT: HUGE distance numeral over place pill */}
             <motion.div
               key={`L-${activeIdx}`}
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.9, ease }}
-              className="text-center md:col-span-7"
+              className="text-left md:col-span-7"
             >
               <h3
-                className="mt-4 text-center font-display leading-[0.78] tracking-tight"
+                className="mt-4 text-left font-display leading-[0.78] tracking-tight"
                 style={{
                   fontSize: "clamp(7rem, 22vw, 22rem)",
                   textShadow: "0 18px 60px rgba(0,0,0,0.55)",
@@ -491,7 +491,7 @@ export function Journey() {
                 <span className="ml-2 align-baseline text-[0.2em] text-[--gold-soft]">m</span>
               </h3>
               <div
-                className="mt-2 font-serif-display italic leading-[0.95] text-[--gold-soft]"
+                className="mt-2 text-left font-serif-display italic leading-[0.95] text-[--gold-soft]"
                 style={{ fontSize: "clamp(2rem, 5vw, 4.5rem)" }}
               >
                 {active.title.toLowerCase()}
@@ -507,7 +507,7 @@ export function Journey() {
               className="md:col-span-5"
             >
               <div className="border-l border-white/25 pl-7 md:pl-10">
-                <p className="text-center text-[17px] leading-[1.7] text-white/95 md:text-[19px] md:leading-[1.65]">
+                <p className="text-left text-[17px] leading-[1.7] text-white/95 md:text-[19px] md:leading-[1.65]">
                   {active.body}
                 </p>
               </div>
