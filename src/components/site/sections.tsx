@@ -242,8 +242,6 @@ export function About() {
             {t("about.p3") && <p>{t("about.p3")}</p>}
           </motion.div>
 
-          {/* Premium badges — 2×2 pill grid */}
-          <PremiumBadges stats={stats} />
         </div>
 
         {/* RIGHT — portrait */}
