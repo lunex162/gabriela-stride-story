@@ -515,20 +515,20 @@ export function Journey() {
           </div>
         </div>
 
-        {/* ===== BOTTOM TRACK — hairline 800m with 9 markers ===== */}
+        {/* ===== BOTTOM TRACK — 800m with 9 markers ===== */}
         <div className="absolute inset-x-0 bottom-0 z-30 px-6 pb-10 md:px-12 md:pb-12">
           <div className="mx-auto max-w-[1700px]">
             {/* Year/dist row */}
-            <div className="mb-3 hidden items-end justify-between text-[10px] uppercase tracking-[0.4em] md:flex">
+            <div className="mb-5 hidden items-end justify-between text-[11px] uppercase tracking-[0.4em] md:flex">
               {milestones.map((m) => (
                 <span
                   key={m.idx}
                   className={
                     m.idx === activeIdx
-                      ? "text-[--gold-soft] transition-colors"
+                      ? "text-[--gold-soft] transition-colors font-medium"
                       : m.idx < activeIdx
-                        ? "text-white/65 transition-colors"
-                        : "text-white/30"
+                        ? "text-white/75 transition-colors"
+                        : "text-white/40"
                   }
                 >
                   {m.dist}m
@@ -537,12 +537,12 @@ export function Journey() {
             </div>
 
             {/* Lane */}
-            <div className="relative h-px w-full bg-white/20">
+            <div className="relative h-[2px] w-full bg-white/30">
               <div
                 className="absolute inset-y-0 left-0 bg-[--gold-soft] will-change-[width]"
                 style={{
                   width: `${progress * 100}%`,
-                  boxShadow: "0 0 14px rgba(214,189,159,0.65)",
+                  boxShadow: "0 0 16px rgba(214,189,159,0.85)",
                 }}
               />
               {/* Tick markers */}
@@ -555,10 +555,10 @@ export function Journey() {
                       <span
                         className={`block transition-all duration-500 ease-out ${
                           current
-                            ? "h-3 w-3 rounded-full bg-[--gold-soft] ring-4 ring-[rgba(214,189,159,0.22)] shadow-[0_0_18px_rgba(214,189,159,0.85)]"
+                            ? "h-4 w-4 rounded-full bg-[--gold-soft] ring-[6px] ring-[rgba(214,189,159,0.25)] shadow-[0_0_22px_rgba(214,189,159,0.95)]"
                             : reached
-                              ? "h-1.5 w-1.5 rounded-full bg-[--gold-soft]"
-                              : "h-1.5 w-1.5 rounded-full bg-white/30"
+                              ? "h-2.5 w-2.5 rounded-full bg-[--gold-soft]"
+                              : "h-2.5 w-2.5 rounded-full bg-white/40"
                         }`}
                       />
                       {current && !reduce && (
@@ -566,12 +566,12 @@ export function Journey() {
                           <span
                             key={`ping-${m.idx}-${activeIdx}`}
                             aria-hidden
-                            className="pointer-events-none absolute left-1/2 top-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[--gold-soft] opacity-70 animate-milestone-ripple"
+                            className="pointer-events-none absolute left-1/2 top-1/2 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[--gold-soft] opacity-70 animate-milestone-ripple"
                           />
                           <span
                             key={`ping2-${m.idx}-${activeIdx}`}
                             aria-hidden
-                            className="pointer-events-none absolute left-1/2 top-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[--gold-soft] opacity-40 animate-milestone-ripple [animation-delay:120ms]"
+                            className="pointer-events-none absolute left-1/2 top-1/2 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[--gold-soft] opacity-40 animate-milestone-ripple [animation-delay:120ms]"
                           />
                         </>
                       )}
@@ -579,15 +579,6 @@ export function Journey() {
                   );
                 })}
               </div>
-            </div>
-
-            {/* Distance counter line below lane */}
-            <div className="mt-5 flex items-center justify-center">
-              <span className="font-display text-2xl tabular-nums leading-none md:text-3xl">
-                <span className="text-[--gold-soft]">{String(distance).padStart(3, "0")}</span>
-                <span className="text-white/35">/800</span>
-                <span className="ml-1 text-base text-[--gold-soft]">m</span>
-              </span>
             </div>
           </div>
         </div>
