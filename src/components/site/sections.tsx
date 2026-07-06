@@ -1350,7 +1350,7 @@ export function Footer() {
             <img
               src={logoAsset.url}
               alt="GAGA"
-              className="h-20 w-auto brightness-0 invert"
+              className="h-40 w-auto brightness-0 invert"
             />
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-white/65">
               {t("footer.tagline")}
