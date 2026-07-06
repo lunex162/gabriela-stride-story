@@ -214,17 +214,16 @@ export function About() {
     <section
       id="about"
       ref={sectionRef}
-      className="relative isolate overflow-hidden bg-background pb-28 pt-12 text-ink md:pb-40 md:pt-20"
+      className="relative isolate overflow-hidden bg-background pb-28 pt-16 text-ink md:pb-40 md:pt-24"
     >
-      <div className="mx-auto grid max-w-[1500px] grid-cols-1 items-start gap-12 px-6 md:grid-cols-[45fr_55fr] md:gap-20 md:px-12">
-        {/* LEFT — text */}
+      <div className="mx-auto grid max-w-[1500px] grid-cols-1 items-start gap-16 px-6 md:grid-cols-2 md:gap-[96px] md:px-12">
+        {/* LEFT — text + badges */}
         <div className="relative flex flex-col">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-15%" }}
             transition={{ duration: 0.8, ease }}
-            className=""
           >
             <span className="inline-flex items-center gap-3 rounded-full border border-ink/25 bg-ink/[0.04] px-6 py-2.5 text-[10px] uppercase tracking-[0.35em] text-ink backdrop-blur sm:px-7 sm:py-3 sm:text-[11px]">
               {t("about.eyebrow")}
@@ -235,26 +234,30 @@ export function About() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-15%" }}
-            transition={{ duration: 0.9, delay: 0.3, ease }}
-            className="mt-8 max-w-xl space-y-5 text-[15px] leading-[1.8] text-[--ink-soft] md:text-[16px]"
+            transition={{ duration: 0.9, delay: 0.2, ease }}
+            className="mt-8 space-y-5 text-[15px] leading-[1.8] text-[--ink-soft] md:text-[16px]"
           >
             <p>{t("about.p1")}</p>
             {t("about.p2") && <p>{t("about.p2")}</p>}
             {t("about.p3") && <p>{t("about.p3")}</p>}
           </motion.div>
 
-          {/* Stats — 2 under text (desktop only) */}
-          <StatsRow stats={stats.slice(0, 2)} className="mt-auto hidden pt-6 md:grid" />
+          {/* Premium badges — 2×2 pill grid */}
+          <PremiumBadges stats={stats} />
         </div>
 
         {/* RIGHT — portrait */}
-        <div
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-10%" }}
+          transition={{ duration: 1, delay: 0.5, ease }}
           className="relative flex flex-col"
           style={{ perspective: "1200px" }}
           onMouseMove={onMouseMove}
           onMouseLeave={onMouseLeave}
         >
-          {/* Soft circular gradient glow behind */}
+          {/* Soft radial glow */}
           <div
             aria-hidden
             className="pointer-events-none absolute inset-0 -z-10"
@@ -267,42 +270,25 @@ export function About() {
           <motion.div
             ref={photoWrapRef}
             style={{ y: photoY }}
-            className="relative mx-auto w-full max-w-[560px]"
+            className="relative mx-auto w-full max-w-[620px]"
           >
             <motion.img
               src={gagaAbout.url}
               alt="Gabriela Gajanová — Tokyo 2025"
               loading="lazy"
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true, margin: "-10%" }}
-              transition={{ duration: 1.2, ease }}
               animate={{ rotateX: tilt.rx, rotateY: tilt.ry }}
+              transition={{ duration: 0.6, ease }}
               className="block h-auto w-full rounded-2xl will-change-transform"
-              style={{
-                transformStyle: "preserve-3d",
-              }}
+              style={{ transformStyle: "preserve-3d" }}
             />
           </motion.div>
-
-          {/* Stats — 2 under photo (desktop only) */}
-          <StatsRow stats={stats.slice(2, 4)} className="hidden pt-6 md:grid" />
-
-          {/* Stats — all 4 under photo (mobile only) */}
-          <StatsRow stats={stats} className="gap-y-10 pt-10 text-center justify-items-center md:hidden" />
-        </div>
+        </motion.div>
       </div>
     </section>
   );
 }
 
-function StatsRow({
-  stats,
-  className = "",
-}: {
-  stats: Array<{ v: string; l: string }>;
-  className?: string;
-}) {
+function PremiumBadges({ stats }: { stats: Array<{ v: string; l: string }> }) {
   return (
     <motion.dl
       initial="hidden"
@@ -310,27 +296,41 @@ function StatsRow({
       viewport={{ once: true, margin: "-10%" }}
       variants={{
         hidden: {},
-        show: { transition: { staggerChildren: 0.12, delayChildren: 0.2 } },
+        show: { transition: { staggerChildren: 0.12, delayChildren: 0.7 } },
       }}
-      className={`grid grid-cols-2 gap-x-8 border-t border-[--border] ${className}`}
+      className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 md:mt-14"
     >
       {stats.map((s) => (
         <motion.div
           key={s.l}
           variants={{
-            hidden: { opacity: 0, y: 14 },
-            show: { opacity: 1, y: 0, transition: { duration: 0.8, ease } },
+            hidden: { opacity: 0, y: 20 },
+            show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } },
+          }}
+          whileHover={{ y: -3, scale: 1.02 }}
+          transition={{ duration: 0.35, ease: "easeOut" }}
+          className="group relative overflow-hidden rounded-full border border-white/60 px-7 py-5 backdrop-blur-md shadow-[0_10px_30px_-15px_rgba(122,94,50,0.35),inset_0_1px_0_rgba(255,255,255,0.75)] transition-shadow duration-500 hover:shadow-[0_18px_40px_-18px_rgba(122,94,50,0.30),inset_0_1px_0_rgba(255,255,255,0.85)]"
+          style={{
+            background:
+              "linear-gradient(135deg, rgba(255,253,247,0.85) 0%, rgba(245,235,215,0.70) 55%, rgba(232,214,178,0.55) 100%)",
           }}
         >
-          <dd
-            className="font-serif-display italic leading-[0.9] text-ink"
-            style={{ fontSize: "clamp(2.25rem, 3.4vw, 3.25rem)" }}
-          >
-            {s.v}
-          </dd>
-          <dt className="mt-3 text-[11px] uppercase leading-relaxed tracking-[0.3em] text-[--ink-soft]">
-            {s.l}
-          </dt>
+          {/* soft inner highlight */}
+          <span
+            aria-hidden
+            className="pointer-events-none absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-white/90 to-transparent"
+          />
+          <div className="relative flex items-baseline gap-3">
+            <dd
+              className="font-serif-display italic leading-none text-ink"
+              style={{ fontSize: "clamp(1.6rem, 2.2vw, 2rem)" }}
+            >
+              {s.v}
+            </dd>
+            <dt className="text-[11px] uppercase leading-snug tracking-[0.22em] text-[--ink-soft]">
+              {s.l}
+            </dt>
+          </div>
         </motion.div>
       ))}
     </motion.dl>
