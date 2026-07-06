@@ -1076,7 +1076,7 @@ export function Partners() {
   // Duplicate for seamless marquee loop
   const loop = [...PARTNER_LOGOS, ...PARTNER_LOGOS];
   return (
-    <section className="relative overflow-hidden bg-background px-5 py-24 text-ink md:px-12 md:py-32">
+    <section className="relative overflow-hidden px-5 py-16 text-ink md:px-12 md:py-20">
 
       <div className="relative mx-auto max-w-[1700px]">
         {/* ── Editorial header ── */}
@@ -1194,7 +1194,7 @@ export function Contact() {
   return (
     <section
       id="contact"
-      className="relative overflow-hidden bg-background px-5 py-20 text-ink md:px-12 md:py-28"
+      className="relative overflow-hidden px-5 py-16 text-ink md:px-12 md:py-20"
     >
       <div
         aria-hidden
