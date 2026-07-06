@@ -212,9 +212,8 @@ export const translations: Record<Locale, Dict> = {
     "contact.form.name": "Meno",
     "contact.form.email": "E-mail",
     "contact.form.message": "Správa",
-    "contact.form.send": "Odoslať správu",
-
-    "footer.tagline": "Slovenská reprezentantka v behu na 800 m",
+    "contact.form.send": "",
+    "footer.tagline": "\n",
     "footer.rights": "Všetky práva vyhradené.",
 
     "lang.sk": "SK",
@@ -427,9 +426,8 @@ export const translations: Record<Locale, Dict> = {
     "contact.form.name": "Name",
     "contact.form.email": "Email",
     "contact.form.message": "Message",
-    "contact.form.send": "Send message",
-
-    "footer.tagline": "Slovak national team athlete · 800 metres",
+    "contact.form.send": "",
+    "footer.tagline": "\n",
     "footer.rights": "All rights reserved.",
 
     "lang.sk": "SK",
