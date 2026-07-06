@@ -451,33 +451,14 @@ export function Journey() {
         />
 
         {/* ===== HEADER — magazine masthead ===== */}
-        <div className="absolute inset-x-0 top-0 z-30 px-6 pt-24 md:px-12 md:pt-28">
+        <div className="absolute inset-x-0 top-0 z-30 px-6 pt-10 md:px-12 md:pt-14">
           <div className="mx-auto flex max-w-[1700px] items-end justify-between gap-6 border-b border-white/20 pb-5">
-            <div>
-              <div className="mb-3 flex items-center gap-3 text-[10px] uppercase tracking-[0.5em] text-white/60">
-                <span className="h-px w-8 bg-[--gold-soft]" /> {t("journey.eyebrow")}
-              </div>
-              <h2 className="font-display leading-[0.92] tracking-tight">
-                <span className="text-3xl md:text-5xl">{t("journey.title.line1")}</span>{" "}
-                <span className="font-serif-display italic text-[--gold-soft] text-3xl md:text-5xl">
-                  {t("journey.title.line2")}
-                </span>
-              </h2>
-            </div>
-            <motion.div
-              key={`hd-${activeIdx}`}
-              initial={{ opacity: 0, y: 6 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease }}
-              className="hidden text-right md:block"
-            >
-              <div className="text-[10px] uppercase tracking-[0.45em] text-white/55">
-                {t("journey.chapter")} {String(active.idx + 1).padStart(2, "0")} / 09
-              </div>
-              <div className="mt-1 font-serif-display text-2xl italic text-[--gold-soft] md:text-3xl">
-                {active.year}
-              </div>
-            </motion.div>
+            <h2 className="font-display leading-[0.92] tracking-tight">
+              <span className="text-3xl md:text-5xl">{t("journey.title.line1")}</span>{" "}
+              <span className="font-serif-display italic text-[--gold-soft] text-3xl md:text-5xl">
+                {t("journey.title.line2")}
+              </span>
+            </h2>
           </div>
         </div>
 
@@ -492,10 +473,6 @@ export function Journey() {
               transition={{ duration: 0.9, ease }}
               className="md:col-span-7"
             >
-              <div className="flex items-center gap-3 text-[10px] uppercase tracking-[0.4em] text-white/70">
-                <span className="h-px w-8 bg-[--gold-soft]" />
-                {active.place}
-              </div>
               <h3
                 className="mt-4 font-display leading-[0.78] tracking-tight"
                 style={{
@@ -526,14 +503,6 @@ export function Journey() {
                 <p className="text-[17px] leading-[1.7] text-white/95 md:text-[19px] md:leading-[1.65]">
                   {active.body}
                 </p>
-                {activeIdx < 8 && (
-                  <div className="mt-10 flex items-center justify-between border-t border-white/15 pt-6 text-[11px] uppercase tracking-[0.35em] text-white/60 md:text-[12px]">
-                    <span>{t("journey.next")}</span>
-                    <span className="font-serif-display text-base italic normal-case tracking-normal text-white/90 md:text-lg">
-                      {milestones[activeIdx + 1].dist}m — {milestones[activeIdx + 1].title}
-                    </span>
-                  </div>
-                )}
               </div>
             </motion.div>
           </div>
@@ -592,10 +561,7 @@ export function Journey() {
             </div>
 
             {/* Distance counter line below lane */}
-            <div className="mt-5 flex items-center justify-between">
-              <span className="text-[10px] uppercase tracking-[0.45em] text-white/55">
-                {t("journey.distanceLabel")}
-              </span>
+            <div className="mt-5 flex items-center justify-end">
               <span className="font-display text-2xl tabular-nums leading-none md:text-3xl">
                 <span className="text-[--gold-soft]">{String(distance).padStart(3, "0")}</span>
                 <span className="text-white/35">/800</span>
