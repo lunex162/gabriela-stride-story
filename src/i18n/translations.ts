@@ -38,6 +38,8 @@ export const translations: Record<Locale, Dict> = {
       "Volám sa Gabriela Gajanová a beh je už dlhé roky neoddeliteľnou súčasťou môjho života. Som slovenská reprezentantka v behu na 800 metrov, dvojnásobná olympionička a strieborná medailistka z Majstrovstiev Európy 2024 v Ríme.",
     "about.p2":
       "Pochádzam z Bobrovca na Liptove, kde ma formovala príroda, rodina aj život na rodinnom salaši. Skôr než som objavila atletiku, hrala som futbal. Beh si ma však získal už v jedenástich rokoch a odvtedy je mojou najväčšou vášňou.",
+    "about.p3":
+      "Dnes reprezentujem klub AK ZŤS Martin a od roku 2021 trénujem v medzinárodnej tréningovej skupine TeamLouis pod vedením švajčiarskeho trénera Louisa Heyera.",
     "about.quote": "Najväčšou motiváciou je pre mňa vedomie, že som každý deň urobila maximum.",
 
     "about.stat1.value": "800 m",
