@@ -167,7 +167,7 @@ export const translations: Record<Locale, Dict> = {
     "m8.place": "Tokio 2025 · Los Angeles 2028",
     "m8.year": "→",
     "m8.body":
-      "Pred sebou mám MS v Tokiu 2025 a olympijský cyklus smerom k LA 2028. Cieľová páska je len ďalší štart.",
+      "Čo ma čaká",
 
     "gallery.eyebrow": "Galéria",
     "gallery.title": "Momenty z trate",
