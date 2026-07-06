@@ -244,7 +244,7 @@ export function About() {
           </motion.div>
 
           {/* Stats — 2 under text (desktop only) */}
-          <StatsRow stats={stats.slice(0, 2)} className="mt-auto hidden pt-10 md:grid" />
+          <StatsRow stats={stats.slice(0, 2)} className="mt-auto hidden pt-6 md:grid" />
         </div>
 
         {/* RIGHT — portrait */}
