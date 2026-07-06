@@ -853,9 +853,9 @@ export function Partners() {
 
       <div className="relative mx-auto max-w-[1700px]">
         {/* ── Editorial header ── */}
-        <div className="grid items-end gap-12 md:grid-cols-12 md:gap-16">
-          <Reveal className="md:col-span-7">
-            <div className="mb-6 flex items-center gap-3 text-[10px] uppercase tracking-[0.45em] text-[--gold]">
+        <div className="text-center">
+          <Reveal>
+            <div className="mb-6 flex items-center justify-center gap-3 text-[10px] uppercase tracking-[0.45em] text-[--gold]">
               <span className="h-px w-10 bg-[--gold]" /> {t("partners.eyebrow")}
             </div>
             <h2 className="font-display leading-[0.92] tracking-tight text-ink">
@@ -870,7 +870,7 @@ export function Partners() {
               </span>
             </h2>
           </Reveal>
-          <Reveal className="md:col-span-4 md:col-start-9" delay={120}>
+          <Reveal className="mx-auto mt-8 max-w-xl" delay={120}>
             <p className="text-[14px] leading-[1.8] text-ink/75 md:text-[15px]">
               {t("partners.lead")}
             </p>
