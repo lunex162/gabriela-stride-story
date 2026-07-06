@@ -507,7 +507,7 @@ export function Journey() {
               className="md:col-span-5"
             >
               <div className="border-l border-white/25 pl-7 md:pl-10">
-                <p className="text-[17px] leading-[1.7] text-white/95 md:text-[19px] md:leading-[1.65]">
+                <p className="text-center text-[17px] leading-[1.7] text-white/95 md:text-[19px] md:leading-[1.65]">
                   {active.body}
                 </p>
               </div>
