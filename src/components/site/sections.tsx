@@ -253,7 +253,7 @@ export function About() {
 
           <motion.div
             ref={photoWrapRef}
-            className="relative mx-auto w-full max-w-[620px] flex-1 overflow-hidden rounded-2xl md:h-full"
+            className="relative mx-auto w-full max-w-[540px] flex-1 overflow-hidden rounded-2xl md:h-full"
           >
             <motion.img
               src={gagaAbout.url}
