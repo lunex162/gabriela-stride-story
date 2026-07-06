@@ -871,9 +871,11 @@ export function Quote() {
 
       <div className="relative z-10 mx-auto flex h-full max-w-[1500px] items-center justify-center px-6 text-center md:px-12">
         <Reveal>
-          <span className="mb-10 inline-block text-[10px] uppercase tracking-[0.55em] text-[--gold-soft]">
-            {t("quote.eyebrow")}
-          </span>
+          {t("quote.eyebrow") && (
+            <span className="mb-10 inline-block text-[10px] uppercase tracking-[0.55em] text-[--gold-soft]">
+              {t("quote.eyebrow")}
+            </span>
+          )}
           <blockquote className="font-serif-display italic leading-[1.1]" style={{ fontSize: "clamp(1.75rem, 5vw, 4rem)" }}>
             "{t("quote.text")}"
           </blockquote>

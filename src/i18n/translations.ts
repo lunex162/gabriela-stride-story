@@ -78,7 +78,7 @@ export const translations: Record<Locale, Dict> = {
 
     "contact.title.line1": "NAPÍŠTE",
     "contact.title.line2": "mi",
-    "quote.eyebrow": "v jej slovách",
+    "quote.eyebrow": "",
     "footer.follow": "Sledujte",
     "footer.contact": "Kontakt",
     "footer.location": "Bobrovec · Liptov · Svet",
@@ -293,7 +293,7 @@ export const translations: Record<Locale, Dict> = {
 
     "contact.title.line1": "WRITE",
     "contact.title.line2": "to me",
-    "quote.eyebrow": "in her own words",
+    "quote.eyebrow": "",
     "footer.follow": "Follow",
     "footer.contact": "Contact",
     "footer.location": "Bobrovec · Liptov · World",
