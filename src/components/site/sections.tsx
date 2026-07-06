@@ -950,7 +950,7 @@ export function Contact() {
                     </a>
                   </dd>
                 </div>
-                <div className="flex gap-12">
+                <div className="flex flex-col gap-8">
                   {[
                     ["Instagram", "@gabriela.gajanova"],
                     ["Threads", "@gabriela.gajanova"],
