@@ -222,11 +222,11 @@ export function About() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-15%" }}
             transition={{ duration: 0.9, delay: 0.2, ease }}
-            className="mt-8 space-y-5 text-[18px] leading-[1.8] text-[--ink-soft] md:text-[19px]"
+            className="mt-10"
           >
-            <p>{t("about.p1")}</p>
-            {t("about.p2") && <p>{t("about.p2")}</p>}
-            {t("about.p3") && <p>{t("about.p3")}</p>}
+            <blockquote className="font-serif-display italic leading-[0.95] tracking-tight text-ink" style={{ fontSize: "clamp(1.8rem, 4.5vw, 3.6rem)" }}>
+              „{t("about.quote")}“
+            </blockquote>
           </motion.div>
 
         </div>
