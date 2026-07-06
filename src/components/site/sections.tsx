@@ -742,6 +742,222 @@ export function Quote() {
  *  marks, big sans wordmark + italic role + supporting copy.
  *  Feels like a tribute plaque, not a logo dump.
  * ============================================================ */
+
+/* ============================================================
+ *  PRESS — editorial "As featured in" selection
+ *  Three magazine-style article cards. Desktop: 3-up grid.
+ *  Mobile: horizontal snap carousel. Cover image ~60% height,
+ *  outlet logo top-left, date, headline, excerpt, subtle link.
+ * ============================================================ */
+type PressItem = {
+  outlet: string;
+  outletMark: ReactNode;
+  dateKey: string;
+  titleKey: string;
+  excerptKey: string;
+  href: string;
+  cover: string;
+  focus?: string;
+};
+
+const PRESS_ITEMS: PressItem[] = [
+  {
+    outlet: "Forbes Slovensko",
+    outletMark: (
+      <svg viewBox="0 0 120 28" aria-hidden className="h-full w-full">
+        <text
+          x="0"
+          y="22"
+          fill="currentColor"
+          fontFamily="'Times New Roman', Georgia, serif"
+          fontWeight={900}
+          fontStyle="italic"
+          fontSize="26"
+          letterSpacing="-1"
+        >
+          Forbes
+        </text>
+      </svg>
+    ),
+    dateKey: "press.date1",
+    titleKey: "press.title1",
+    excerptKey: "press.excerpt1",
+    href: "https://www.forbes.sk/lists/rebricek-forbes-30-pod-30-2025/sport/gabriela-gajanova/",
+    cover: "https://cdn.forbes.sk/uploads/2025/05/gajanova_gabriela.jpg",
+    focus: "center 25%",
+  },
+  {
+    outlet: "Slovenský olympijský tím",
+    outletMark: (
+      <svg viewBox="0 0 160 28" aria-hidden className="h-full w-full">
+        <text
+          x="0"
+          y="20"
+          fill="currentColor"
+          fontFamily="'Helvetica Neue', Arial, sans-serif"
+          fontWeight={700}
+          fontSize="11"
+          letterSpacing="3"
+        >
+          OLYMPIC.SK
+        </text>
+      </svg>
+    ),
+    dateKey: "press.date2",
+    titleKey: "press.title2",
+    excerptKey: "press.excerpt2",
+    href: "https://www.olympic.sk/clanok/atlet-roka-2024-kralovnou-prvy-raz-gabriela-gajanova",
+    cover:
+      "https://www.olympic.sk/sites/default/files/styles/gallery_full_watermark/public/field_media_image/2024-11/20240711_atlet_roka24_12085956.jpg",
+    focus: "center 30%",
+  },
+  {
+    outlet: "Atletika.sk",
+    outletMark: (
+      <svg viewBox="0 0 160 28" aria-hidden className="h-full w-full">
+        <text
+          x="0"
+          y="20"
+          fill="currentColor"
+          fontFamily="'Helvetica Neue', Arial, sans-serif"
+          fontWeight={700}
+          fontSize="11"
+          letterSpacing="3"
+        >
+          ATLETIKA.SK
+        </text>
+      </svg>
+    ),
+    dateKey: "press.date3",
+    titleKey: "press.title3",
+    excerptKey: "press.excerpt3",
+    href: "https://www.atletika.sk/gabriela-gajanova-prekonala-na-zlatom-mitingu-vo-francuzskom-lievine-vlastny-slovensky-rekord-na-800-m/",
+    cover:
+      "https://www.atletika.sk/wp-content/uploads/2025/02/Gajanova-Gabriela-Lievin-2025-.jpg",
+    focus: "center 25%",
+  },
+];
+
+export function Press() {
+  const t = useT();
+  return (
+    <section
+      id="press"
+      className="relative overflow-hidden px-5 py-24 text-ink md:px-12 md:py-32"
+    >
+      <div className="relative mx-auto max-w-[1400px]">
+        {/* Editorial header */}
+        <div className="text-center">
+          <Reveal>
+            <div className="mb-6 flex items-center justify-center gap-3 text-[10px] uppercase tracking-[0.45em] text-[--gold]">
+              <span className="h-px w-10 bg-[--gold]" />
+              {t("press.eyebrow")}
+              <span className="h-px w-10 bg-[--gold]" />
+            </div>
+            <h2 className="font-display leading-[0.92] tracking-tight text-ink">
+              <span className="block text-[10vw] sm:text-[7vw] md:text-[4.6vw] xl:text-[5.2rem]">
+                {t("press.title.line1")}
+              </span>
+              <span
+                className="block font-serif-display italic text-[--gold] text-[10vw] sm:text-[7vw] md:text-[4.6vw] xl:text-[5.2rem]"
+                style={{ marginTop: "-0.05em" }}
+              >
+                {t("press.title.line2")}
+              </span>
+            </h2>
+          </Reveal>
+          <Reveal className="mx-auto mt-8 max-w-xl" delay={120}>
+            <p className="text-[14px] leading-[1.8] text-ink/75 md:text-[15px]">
+              {t("press.lead")}
+            </p>
+          </Reveal>
+        </div>
+
+        {/* Cards: mobile snap carousel → desktop 3-up grid */}
+        <div
+          className="mt-16 -mx-5 flex snap-x snap-mandatory gap-5 overflow-x-auto px-5 pb-6 md:mx-0 md:grid md:grid-cols-3 md:gap-8 md:overflow-visible md:px-0 md:pb-0"
+          style={{ scrollbarWidth: "none" }}
+        >
+          {PRESS_ITEMS.map((item, i) => (
+            <Reveal
+              key={item.href}
+              delay={200 + i * 120}
+              className="min-w-[85%] snap-start sm:min-w-[70%] md:min-w-0"
+            >
+              <a
+                href={item.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group/press flex h-full flex-col overflow-hidden rounded-[24px] border border-[--gold]/25 bg-[#fdfaf3] transition-all duration-500 ease-[cubic-bezier(.16,1,.3,1)] hover:-translate-y-1.5"
+                style={{
+                  boxShadow:
+                    "0 10px 30px -20px rgba(60,45,25,0.25), 0 2px 8px -4px rgba(60,45,25,0.08)",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.boxShadow =
+                    "0 30px 60px -25px rgba(60,45,25,0.35), 0 8px 20px -10px rgba(60,45,25,0.15)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.boxShadow =
+                    "0 10px 30px -20px rgba(60,45,25,0.25), 0 2px 8px -4px rgba(60,45,25,0.08)";
+                }}
+              >
+                {/* Cover ~60% height */}
+                <div className="relative aspect-[4/3] w-full overflow-hidden">
+                  <img
+                    src={item.cover}
+                    alt={item.outlet}
+                    loading="lazy"
+                    className="h-full w-full object-cover transition-transform duration-[900ms] ease-[cubic-bezier(.16,1,.3,1)] group-hover/press:scale-[1.06]"
+                    style={{ objectPosition: item.focus ?? "center" }}
+                  />
+                  <div
+                    aria-hidden
+                    className="pointer-events-none absolute inset-0"
+                    style={{
+                      background:
+                        "linear-gradient(180deg, rgba(20,15,10,0.35) 0%, rgba(20,15,10,0) 45%)",
+                    }}
+                  />
+                  {/* Outlet mark, top-left */}
+                  <div className="absolute left-4 top-4 flex h-7 items-center rounded-full bg-white/90 px-3 text-ink shadow-sm backdrop-blur">
+                    <div className="h-4">{item.outletMark}</div>
+                  </div>
+                </div>
+
+                {/* Body */}
+                <div className="flex flex-1 flex-col p-6 md:p-7">
+                  <div className="text-[10px] uppercase tracking-[0.35em] text-ink/55">
+                    {t(item.dateKey)}
+                  </div>
+                  <h3 className="mt-3 font-display text-[22px] leading-[1.15] text-ink md:text-[24px]">
+                    {t(item.titleKey)}
+                  </h3>
+                  <p className="mt-3 text-[14px] leading-[1.7] text-ink/70">
+                    {t(item.excerptKey)}
+                  </p>
+                  <div className="mt-6 flex items-center gap-2 text-[12px] uppercase tracking-[0.3em] text-[--gold]">
+                    <span className="relative">
+                      {t("press.cta")}
+                      <span
+                        aria-hidden
+                        className="absolute -bottom-0.5 left-0 h-px w-full origin-left scale-x-0 bg-[--gold] transition-transform duration-500 ease-[cubic-bezier(.16,1,.3,1)] group-hover/press:scale-x-100"
+                      />
+                    </span>
+                    <span className="transition-transform duration-500 ease-[cubic-bezier(.16,1,.3,1)] group-hover/press:translate-x-1">
+                      →
+                    </span>
+                  </div>
+                </div>
+              </a>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 /* Partner wordmark SVGs — single-colour (currentColor), each a stylised
  * typographic mark. Rendered white on the dark strip, gently tinted on hover. */
 const PARTNER_LOGOS: { name: string; svg: ReactNode }[] = [
