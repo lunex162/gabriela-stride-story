@@ -189,6 +189,25 @@ export const translations: Record<Locale, Dict> = {
     "partners.lead":
       "Za každým úspechom stojí tím ľudí a partnerov, ktorí mi pomáhajú posúvať hranice. Ďakujem, že ste súčasťou mojej cesty.",
 
+    "press.eyebrow": "V médiách",
+    "press.title.line1": "Napísali",
+    "press.title.line2": "o mne",
+    "press.lead":
+      "Výber článkov z prestížnych slovenských médií, ktoré priblížili moju cestu, úspechy a míľniky.",
+    "press.cta": "Prečítať článok",
+    "press.date1": "Máj 2025",
+    "press.title1": "Gabriela Gajanová medzi Forbes 30 pod 30",
+    "press.excerpt1":
+      "Vicemajsterka Európy sa zaradila medzi najvýraznejšie mladé osobnosti Slovenska v prestížnom rebríčku Forbes 30 pod 30.",
+    "press.date2": "7. november 2024",
+    "press.title2": "Atlétka roka 2024: Prvýkrát na tróne",
+    "press.excerpt2":
+      "Po životnej sezóne, striebre z Majstrovstiev Európy a slovenskom rekorde získala Gabriela Gajanová premiérovo titul Atlétka roka Slovenska.",
+    "press.date3": "13. február 2025",
+    "press.title3": "Slovenský rekord opäť posunutý",
+    "press.excerpt3":
+      "Na mítingu vo francúzskom Liévine prekonala vlastný slovenský rekord na 800 metrov a opäť potvrdila svoje miesto medzi európskou elitou.",
+
     "spn1.role": "Technický partner",
     "spn1.body": "Tréningová a pretekárska obuv pre 800 m — od Montegorda po Paríž.",
     "spn2.role": "Národný zväz",
