@@ -535,12 +535,12 @@ export function Journey() {
             </div>
 
             {/* Lane */}
-            <div className="relative h-[2px] w-full bg-white/30">
+            <div className="relative h-[3px] w-full bg-white/25">
               <div
                 className="absolute inset-y-0 left-0 bg-[--gold-soft] will-change-[width]"
                 style={{
                   width: `${progress * 100}%`,
-                  boxShadow: "0 0 16px rgba(214,189,159,0.85)",
+                  boxShadow: "0 0 24px rgba(214,189,159,0.95), 0 0 8px rgba(214,189,159,0.85)",
                 }}
               />
               {/* Tick markers */}
@@ -553,10 +553,10 @@ export function Journey() {
                       <span
                         className={`block transition-all duration-500 ease-out ${
                           current
-                            ? "h-4 w-4 rounded-full bg-[--gold-soft] ring-[6px] ring-[rgba(214,189,159,0.25)] shadow-[0_0_22px_rgba(214,189,159,0.95)]"
+                            ? "h-5 w-5 rounded-full bg-[--gold-soft] ring-[8px] ring-[rgba(214,189,159,0.35)] shadow-[0_0_28px_rgba(214,189,159,1),0_0_10px_rgba(214,189,159,0.9)]"
                             : reached
-                              ? "h-2.5 w-2.5 rounded-full bg-[--gold-soft]"
-                              : "h-2.5 w-2.5 rounded-full bg-white/40"
+                              ? "h-3 w-3 rounded-full bg-[--gold-soft] shadow-[0_0_12px_rgba(214,189,159,0.7)]"
+                              : "h-2.5 w-2.5 rounded-full bg-white/30"
                         }`}
                       />
                       {current && !reduce && (
