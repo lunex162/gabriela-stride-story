@@ -298,7 +298,7 @@ function PremiumBadges({ stats }: { stats: Array<{ v: string; l: string }> }) {
         hidden: {},
         show: { transition: { staggerChildren: 0.12, delayChildren: 0.7 } },
       }}
-      className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 md:mt-14"
+      className="mt-12 flex flex-wrap gap-3 md:mt-14"
     >
       {stats.map((s) => (
         <motion.div
@@ -307,30 +307,16 @@ function PremiumBadges({ stats }: { stats: Array<{ v: string; l: string }> }) {
             hidden: { opacity: 0, y: 20 },
             show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } },
           }}
-          whileHover={{ y: -3, scale: 1.02 }}
+          whileHover={{ y: -2 }}
           transition={{ duration: 0.35, ease: "easeOut" }}
-          className="group relative overflow-hidden rounded-full border border-white/60 px-7 py-5 backdrop-blur-md shadow-[0_10px_30px_-15px_rgba(122,94,50,0.35),inset_0_1px_0_rgba(255,255,255,0.75)] transition-shadow duration-500 hover:shadow-[0_18px_40px_-18px_rgba(122,94,50,0.30),inset_0_1px_0_rgba(255,255,255,0.85)]"
-          style={{
-            background:
-              "linear-gradient(135deg, rgba(255,253,247,0.85) 0%, rgba(245,235,215,0.70) 55%, rgba(232,214,178,0.55) 100%)",
-          }}
+          className="group relative inline-flex items-center gap-2.5 overflow-hidden rounded-full border border-ink/25 bg-ink/[0.04] px-5 py-2.5 text-ink backdrop-blur-sm transition-colors duration-300 hover:border-ink/40 hover:bg-ink/[0.07] sm:px-6 sm:py-3"
         >
-          {/* soft inner highlight */}
-          <span
-            aria-hidden
-            className="pointer-events-none absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-white/90 to-transparent"
-          />
-          <div className="relative flex items-baseline gap-3">
-            <dd
-              className="font-serif-display italic leading-none text-ink"
-              style={{ fontSize: "clamp(1.6rem, 2.2vw, 2rem)" }}
-            >
-              {s.v}
-            </dd>
-            <dt className="text-[11px] uppercase leading-snug tracking-[0.22em] text-[--ink-soft]">
-              {s.l}
-            </dt>
-          </div>
+          <dd className="font-serif-display italic leading-none" style={{ fontSize: "clamp(1.1rem, 1.4vw, 1.35rem)" }}>
+            {s.v}
+          </dd>
+          <dt className="text-[10px] uppercase leading-none tracking-[0.2em] text-[--ink-soft] sm:text-[11px]">
+            {s.l}
+          </dt>
         </motion.div>
       ))}
     </motion.dl>
