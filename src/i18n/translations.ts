@@ -80,7 +80,7 @@ export const translations: Record<Locale, Dict> = {
     "quote.eyebrow": "",
     "footer.follow": "Sledujte",
     "footer.contact": "Kontakt",
-    "footer.location": "Bobrovec · Liptov · Svet",
+    "footer.location": "\n",
     "form.placeholder.name": "Vaše meno",
     "form.placeholder.message": "O čom by ste sa chceli porozprávať...",
 
@@ -212,9 +212,8 @@ export const translations: Record<Locale, Dict> = {
     "contact.form.name": "Meno",
     "contact.form.email": "E-mail",
     "contact.form.message": "Správa",
-    "contact.form.send": "Odoslať správu",
-
-    "footer.tagline": "Slovenská reprezentantka v behu na 800 m",
+    "contact.form.send": "",
+    "footer.tagline": "\n",
     "footer.rights": "Všetky práva vyhradené.",
 
     "lang.sk": "SK",
@@ -293,7 +292,7 @@ export const translations: Record<Locale, Dict> = {
     "quote.eyebrow": "",
     "footer.follow": "Follow",
     "footer.contact": "Contact",
-    "footer.location": "Bobrovec · Liptov · World",
+    "footer.location": "\n",
     "form.placeholder.name": "Your name",
     "form.placeholder.message": "What would you like to talk about...",
     "achievements.lead": "\n",
@@ -427,9 +426,8 @@ export const translations: Record<Locale, Dict> = {
     "contact.form.name": "Name",
     "contact.form.email": "Email",
     "contact.form.message": "Message",
-    "contact.form.send": "Send message",
-
-    "footer.tagline": "Slovak national team athlete · 800 metres",
+    "contact.form.send": "",
+    "footer.tagline": "\n",
     "footer.rights": "All rights reserved.",
 
     "lang.sk": "SK",
