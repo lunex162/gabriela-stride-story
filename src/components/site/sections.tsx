@@ -216,7 +216,7 @@ export function About() {
       ref={sectionRef}
       className="relative isolate overflow-hidden bg-background pb-28 pt-12 text-ink md:pb-40 md:pt-20"
     >
-      <div className="mx-auto grid max-w-[1500px] grid-cols-1 items-stretch gap-12 px-6 md:grid-cols-[45fr_55fr] md:gap-20 md:px-12">
+      <div className="mx-auto grid max-w-[1500px] grid-cols-1 items-start gap-12 px-6 md:grid-cols-[45fr_55fr] md:gap-20 md:px-12">
         {/* LEFT — text */}
         <div className="relative flex flex-col">
           <motion.div
