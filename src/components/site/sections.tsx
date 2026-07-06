@@ -10,6 +10,7 @@ import action2 from "@/assets/photos/action-2.jpg";
 import action3 from "@/assets/photos/action-3.jpg";
 import action4 from "@/assets/photos/action-4.jpg";
 import gagaAbout from "@/assets/gaga-tokyo-applause.jpg.asset.json";
+import quotePhoto from "@/assets/quote.jpg";
 
 /* ============================================================
  *  Shared motion constants — single curve everywhere
