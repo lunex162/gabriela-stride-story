@@ -183,11 +183,11 @@ export const translations: Record<Locale, Dict> = {
     "eight.line3": "Posledných sto metrov, kde sa rozhoduje o všetkom.",
 
     "partners.eyebrow": "S poďakovaním",
-    "partners.title": "Sponzori",
-    "partners.title.line1": "S",
-    "partners.title.line2": "poďakovaním",
+    "partners.title": "Partneri mojej cesty",
+    "partners.title.line1": "Partneri",
+    "partners.title.line2": "mojej cesty",
     "partners.lead":
-      "Tréning, štart, regenerácia, výbava. Bez týchto ľudí a inštitúcií by sa moja cesta nedala robiť. Ďakujem.",
+      "Za každým úspechom stojí tím ľudí a partnerov, ktorí mi pomáhajú posúvať hranice. Ďakujem, že ste súčasťou mojej cesty.",
 
     "spn1.role": "Technický partner",
     "spn1.body": "Tréningová a pretekárska obuv pre 800 m — od Montegorda po Paríž.",
