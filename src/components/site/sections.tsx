@@ -908,6 +908,17 @@ export function Contact() {
           className="group relative isolate mt-14 overflow-hidden rounded-[28px] bg-[#15100B] text-white shadow-[0_18px_60px_-30px_rgba(20,15,10,0.35)] transition-shadow duration-700 ease-out hover:shadow-[0_40px_100px_-30px_rgba(20,15,10,0.55)] md:mt-20"
           style={{ willChange: "transform" }}
         >
+          {/* Background photo */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0 bg-cover bg-center"
+            style={{ backgroundImage: `url(${portraitStadium})` }}
+          />
+          {/* 80% black overlay */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0 bg-black/80"
+          />
           {/* Ambient gold glow inside the card */}
           <div
             aria-hidden
