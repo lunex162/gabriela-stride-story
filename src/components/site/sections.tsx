@@ -212,7 +212,7 @@ export function About() {
             viewport={{ once: true, margin: "-15%" }}
             transition={{ duration: 0.8, ease }}
           >
-            <blockquote className="font-serif-display italic leading-[0.95] tracking-tight text-ink text-[5.6vw] sm:text-[3.85vw] md:text-[2.6vw] xl:text-[2.9rem]">
+            <blockquote className="font-serif-display italic leading-[0.95] tracking-tight text-ink text-[18px] sm:text-[3.85vw] md:text-[2.6vw] xl:text-[2.9rem]">
               „{t("about.quote")}“
             </blockquote>
           </motion.div>
@@ -1350,7 +1350,7 @@ export function Footer() {
             <img
               src={logoAsset.url}
               alt="GAGA"
-              className="h-20 w-auto brightness-0 invert"
+              className="h-40 w-auto brightness-0 invert"
             />
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-white/65">
               {t("footer.tagline")}
