@@ -849,11 +849,13 @@ export function Press() {
         {/* Editorial header */}
         <div className="text-center">
           <Reveal>
-            <div className="mb-6 flex items-center justify-center gap-3 text-[10px] uppercase tracking-[0.45em] text-[--gold]">
-              <span className="h-px w-10 bg-[--gold]" />
-              {t("press.eyebrow")}
-              <span className="h-px w-10 bg-[--gold]" />
-            </div>
+            {t("press.eyebrow") && (
+              <div className="mb-6 flex items-center justify-center gap-3 text-[10px] uppercase tracking-[0.45em] text-[--gold]">
+                <span className="h-px w-10 bg-[--gold]" />
+                {t("press.eyebrow")}
+                <span className="h-px w-10 bg-[--gold]" />
+              </div>
+            )}
             <h2 className="font-display leading-[0.92] tracking-tight text-ink">
               <span className="block text-[10vw] sm:text-[7vw] md:text-[4.6vw] xl:text-[5.2rem]">
                 {t("press.title.line1")}

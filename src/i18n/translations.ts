@@ -189,7 +189,7 @@ export const translations: Record<Locale, Dict> = {
     "partners.lead":
       "Za každým úspechom stojí tím ľudí a partnerov, ktorí mi pomáhajú posúvať hranice. Ďakujem, že ste súčasťou mojej cesty.",
 
-    "press.eyebrow": "V médiách",
+    "press.eyebrow": "",
     "press.title.line1": "Napísali",
     "press.title.line2": "o mne",
     "press.lead":
@@ -428,7 +428,7 @@ export const translations: Record<Locale, Dict> = {
     "partners.lead":
       "Behind every success there is a team of people and partners who help me push my limits. Thank you for being part of my journey.",
 
-    "press.eyebrow": "In the media",
+    "press.eyebrow": "",
     "press.title.line1": "Featured",
     "press.title.line2": "in press",
     "press.lead":
