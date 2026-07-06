@@ -10,7 +10,7 @@ import action2 from "@/assets/photos/action-2.jpg";
 import action3 from "@/assets/photos/action-3.jpg";
 import action4 from "@/assets/photos/action-4.jpg";
 import gagaAbout from "@/assets/gaga-tokyo-applause.jpg.asset.json";
-import quotePhoto from "@/assets/quote.jpg";
+import quoteRaceAsset from "@/assets/quote-race.jpg.asset.json";
 
 /* ============================================================
  *  Shared motion constants — single curve everywhere
@@ -677,9 +677,9 @@ function AchievementCard({
 export function Quote() {
   const t = useT();
   return (
-    <section className="relative isolate h-[100svh] overflow-hidden text-white">
+    <section className="relative isolate mb-12 h-[80svh] overflow-hidden text-white md:mb-16">
       <img
-        src={quotePhoto}
+        src={quoteRaceAsset.url}
         alt=""
         className="absolute inset-0 h-full w-full object-cover"
       />
@@ -819,7 +819,7 @@ export function Press() {
   return (
     <section
       id="press"
-      className="relative overflow-hidden px-5 pt-8 pb-16 text-ink md:px-12 md:pb-20"
+      className="relative overflow-hidden px-5 pt-8 pb-10 text-ink md:px-12 md:pb-12"
     >
       <div className="relative mx-auto max-w-[1400px]">
         {/* Editorial header */}
@@ -1043,7 +1043,7 @@ export function Partners() {
   // Duplicate for seamless marquee loop
   const loop = [...PARTNER_LOGOS, ...PARTNER_LOGOS];
   return (
-    <section className="relative overflow-hidden px-5 py-16 text-ink md:px-12 md:py-20">
+    <section className="relative overflow-hidden px-5 py-10 text-ink md:px-12 md:py-12">
 
       <div className="relative mx-auto max-w-[1700px]">
         {/* ── Editorial header ── */}
@@ -1161,7 +1161,7 @@ export function Contact() {
   return (
     <section
       id="contact"
-      className="relative overflow-hidden px-5 py-16 text-ink md:px-12 md:py-20"
+      className="relative overflow-hidden px-5 pt-10 pb-16 text-ink md:px-12 md:pt-12 md:pb-20"
     >
       <div
         aria-hidden
