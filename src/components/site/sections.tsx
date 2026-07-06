@@ -212,7 +212,7 @@ export function About() {
             viewport={{ once: true, margin: "-15%" }}
             transition={{ duration: 0.8, ease }}
           >
-            <blockquote className="font-serif-display italic leading-[0.95] tracking-tight text-ink text-[18px] sm:text-[3.85vw] md:text-[2.6vw] xl:text-[2.9rem]">
+            <blockquote className="font-serif-display text-center italic leading-[0.95] tracking-tight text-ink text-[36px] sm:text-[7.7vw] md:text-[5.2vw] xl:text-[5.8rem]">
               „{t("about.quote")}“
             </blockquote>
           </motion.div>
