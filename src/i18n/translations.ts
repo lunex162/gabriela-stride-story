@@ -133,7 +133,7 @@ export const translations: Record<Locale, Dict> = {
     "m2.body":
       "Druhá juniorská medaila v rade. 2:07.15 — signál, že 800 m sa stáva mojím svetom.",
 
-    "m3.title": "Svetová úroveň",
+    "m3.title": "MS",
     "m3.place": "Tampere · MS juniorov",
     "m3.year": "2018",
     "m3.body":
