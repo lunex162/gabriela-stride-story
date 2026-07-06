@@ -282,6 +282,10 @@ export function About() {
           </motion.div>
         </motion.div>
       </div>
+
+      <div className="mx-auto mt-10 max-w-[1500px] px-6 md:mt-14 md:px-12">
+        <PremiumBadges stats={stats} />
+      </div>
     </section>
   );
 }
