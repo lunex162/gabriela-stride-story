@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { motion, useReducedMotion } from "motion/react";
 import { Reveal } from "./Reveal";
 import { useT } from "@/i18n/LocaleContext";
@@ -742,40 +742,212 @@ export function Quote() {
  *  marks, big sans wordmark + italic role + supporting copy.
  *  Feels like a tribute plaque, not a logo dump.
  * ============================================================ */
-const SPONSOR_LAYOUT = [
-  { key: "spn1", name: "On Running", mono: "On", caption: "Switzerland · Footwear" },
-  { key: "spn2", name: "Slovenský atletický zväz", mono: "SAZ", caption: "Bratislava · Federation" },
-  { key: "spn3", name: "VŠC Dukla", mono: "Dukla", caption: "Banská Bystrica · Centre" },
+/* Partner wordmark SVGs — single-colour (currentColor), each a stylised
+ * typographic mark. Rendered white on the dark strip, gently tinted on hover. */
+const PARTNER_LOGOS: { name: string; svg: ReactNode }[] = [
+  {
+    name: "On Running",
+    svg: (
+      <svg viewBox="0 0 140 40" fill="currentColor" aria-hidden>
+        <text
+          x="0" y="30"
+          fontFamily="'Helvetica Neue', Arial, sans-serif"
+          fontWeight={800}
+          fontSize="34"
+          letterSpacing="-1"
+        >
+          On
+        </text>
+        <circle cx="70" cy="20" r="3" />
+        <text
+          x="82" y="26"
+          fontFamily="'Helvetica Neue', Arial, sans-serif"
+          fontWeight={400}
+          fontSize="10"
+          letterSpacing="4"
+        >
+          RUN
+        </text>
+      </svg>
+    ),
+  },
+  {
+    name: "Slovenský atletický zväz",
+    svg: (
+      <svg viewBox="0 0 200 40" fill="currentColor" aria-hidden>
+        <text
+          x="0" y="24"
+          fontFamily="'Helvetica Neue', Arial, sans-serif"
+          fontWeight={800}
+          fontSize="26"
+          letterSpacing="2"
+        >
+          SAZ
+        </text>
+        <line x1="70" y1="10" x2="70" y2="34" stroke="currentColor" strokeWidth="1" />
+        <text
+          x="80" y="18"
+          fontFamily="'Helvetica Neue', Arial, sans-serif"
+          fontWeight={500}
+          fontSize="9"
+          letterSpacing="3"
+        >
+          SLOVENSKÝ
+        </text>
+        <text
+          x="80" y="30"
+          fontFamily="'Helvetica Neue', Arial, sans-serif"
+          fontWeight={400}
+          fontSize="8"
+          letterSpacing="3"
+          opacity="0.85"
+        >
+          ATLETICKÝ ZVÄZ
+        </text>
+      </svg>
+    ),
+  },
+  {
+    name: "VŠC Dukla",
+    svg: (
+      <svg viewBox="0 0 170 40" fill="currentColor" aria-hidden>
+        <rect x="0" y="8" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" />
+        <text
+          x="6" y="27"
+          fontFamily="'Helvetica Neue', Arial, sans-serif"
+          fontWeight={800}
+          fontSize="14"
+        >
+          D
+        </text>
+        <text
+          x="34" y="27"
+          fontFamily="'Helvetica Neue', Arial, sans-serif"
+          fontWeight={800}
+          fontSize="22"
+          letterSpacing="2"
+        >
+          DUKLA
+        </text>
+        <text
+          x="34" y="38"
+          fontFamily="'Helvetica Neue', Arial, sans-serif"
+          fontWeight={400}
+          fontSize="7"
+          letterSpacing="4"
+          opacity="0.8"
+        >
+          BANSKÁ BYSTRICA
+        </text>
+      </svg>
+    ),
+  },
+  {
+    name: "adidas",
+    svg: (
+      // adidas trefoil-inspired three-stripe mark + wordmark
+      <svg viewBox="0 0 160 40" fill="currentColor" aria-hidden>
+        <g transform="translate(0,4)">
+          <polygon points="0,30 10,30 22,6 12,6" />
+          <polygon points="14,30 24,30 34,6 24,6" />
+          <polygon points="28,30 38,30 46,6 36,6" />
+        </g>
+        <text
+          x="56" y="28"
+          fontFamily="'Helvetica Neue', Arial, sans-serif"
+          fontWeight={700}
+          fontSize="22"
+          letterSpacing="-0.5"
+        >
+          adidas
+        </text>
+      </svg>
+    ),
+  },
+  {
+    name: "Slovenský olympijský tím",
+    svg: (
+      <svg viewBox="0 0 200 44" fill="currentColor" aria-hidden>
+        <g transform="translate(2,10)" fill="none" stroke="currentColor" strokeWidth="1.5">
+          <circle cx="8" cy="8" r="7" />
+          <circle cx="20" cy="8" r="7" />
+          <circle cx="32" cy="8" r="7" />
+          <circle cx="14" cy="16" r="7" />
+          <circle cx="26" cy="16" r="7" />
+        </g>
+        <text
+          x="52" y="20"
+          fontFamily="'Helvetica Neue', Arial, sans-serif"
+          fontWeight={700}
+          fontSize="11"
+          letterSpacing="2.5"
+        >
+          SLOVENSKÝ
+        </text>
+        <text
+          x="52" y="34"
+          fontFamily="'Helvetica Neue', Arial, sans-serif"
+          fontWeight={400}
+          fontSize="9"
+          letterSpacing="3"
+          opacity="0.85"
+        >
+          OLYMPIJSKÝ TÍM
+        </text>
+      </svg>
+    ),
+  },
+  {
+    name: "AK ZŤS Martin",
+    svg: (
+      <svg viewBox="0 0 170 40" fill="currentColor" aria-hidden>
+        <text
+          x="0" y="26"
+          fontFamily="'Helvetica Neue', Arial, sans-serif"
+          fontWeight={800}
+          fontSize="22"
+          letterSpacing="4"
+        >
+          AK ZŤS
+        </text>
+        <line x1="86" y1="10" x2="86" y2="34" stroke="currentColor" strokeWidth="1" />
+        <text
+          x="94" y="20"
+          fontFamily="'Helvetica Neue', Arial, sans-serif"
+          fontWeight={500}
+          fontSize="10"
+          letterSpacing="3"
+        >
+          MARTIN
+        </text>
+        <text
+          x="94" y="32"
+          fontFamily="'Helvetica Neue', Arial, sans-serif"
+          fontWeight={400}
+          fontSize="7"
+          letterSpacing="4"
+          opacity="0.8"
+        >
+          ATLETICKÝ KLUB
+        </text>
+      </svg>
+    ),
+  },
 ];
 
 export function Partners() {
   const t = useT();
+  // Duplicate for seamless marquee loop
+  const loop = [...PARTNER_LOGOS, ...PARTNER_LOGOS];
   return (
     <section className="relative overflow-hidden px-5 py-24 text-ink md:px-12 md:py-32">
-      {/* Editorial background — ivory gradient + faint gold rings */}
+      {/* Ivory gradient background — continues the site tone */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0"
         style={{
           background:
             "linear-gradient(180deg, #FBF7EE 0%, #F6EEDE 55%, #FBF7EE 100%)",
-        }}
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 opacity-70"
-        style={{
-          background:
-            "radial-gradient(40% 30% at 12% 20%, rgba(176,147,94,0.18) 0%, transparent 60%), radial-gradient(38% 32% at 88% 80%, rgba(176,147,94,0.14) 0%, transparent 65%)",
-        }}
-      />
-      {/* Very faint hairline track lines */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-1/2 h-40 -translate-y-1/2 opacity-[0.08]"
-        style={{
-          backgroundImage:
-            "repeating-linear-gradient(180deg, rgba(176,147,94,0.9) 0px, rgba(176,147,94,0.9) 1px, transparent 1px, transparent 22px)",
         }}
       />
 
@@ -787,11 +959,11 @@ export function Partners() {
               <span className="h-px w-10 bg-[--gold]" /> {t("partners.eyebrow")}
             </div>
             <h2 className="font-display leading-[0.92] tracking-tight text-ink">
-              <span className="block text-[12vw] sm:text-[8vw] md:text-[5.2vw] xl:text-[6rem]">
+              <span className="block text-[10vw] sm:text-[7vw] md:text-[4.6vw] xl:text-[5.2rem]">
                 {t("partners.title.line1")}
               </span>
               <span
-                className="block font-serif-display italic text-[--gold] text-[12vw] sm:text-[8vw] md:text-[5.2vw] xl:text-[6rem]"
+                className="block font-serif-display italic text-[--gold] text-[10vw] sm:text-[7vw] md:text-[4.6vw] xl:text-[5.2rem]"
                 style={{ marginTop: "-0.05em" }}
               >
                 {t("partners.title.line2")}
@@ -805,95 +977,83 @@ export function Partners() {
           </Reveal>
         </div>
 
-        {/* ── Premium partner cards ── */}
-        {/* Mobile: horizontal snap carousel · Desktop: 3 equal columns */}
-        <div className="mt-20 md:mt-28">
+        {/* ── Partner strip — dark luxury panel with slow marquee ── */}
+        <Reveal delay={200} className="mt-20 md:mt-28">
           <div
-            className="-mx-5 flex snap-x snap-mandatory gap-5 overflow-x-auto px-5 pb-6 [scrollbar-width:none] [-ms-overflow-style:none] md:mx-0 md:grid md:grid-cols-3 md:gap-10 md:overflow-visible md:px-0 md:pb-0 lg:gap-14"
-            style={{ WebkitOverflowScrolling: "touch" }}
+            className="group/strip relative overflow-hidden rounded-[32px]"
+            style={{
+              background:
+                "linear-gradient(180deg, #1b1611 0%, #161311 50%, #100d0a 100%)",
+              boxShadow:
+                "0 40px 90px -50px rgba(20,15,10,0.55), 0 20px 40px -30px rgba(120,90,40,0.15)",
+            }}
           >
             <style>{`
-              .partner-scroll::-webkit-scrollbar { display: none; }
-              @keyframes partnerShine {
-                0%   { transform: translateX(-120%) skewX(-18deg); }
-                100% { transform: translateX(220%) skewX(-18deg); }
+              @keyframes partnerMarquee {
+                0%   { transform: translateX(0); }
+                100% { transform: translateX(-50%); }
               }
-              .partner-card .partner-shine { transform: translateX(-120%) skewX(-18deg); opacity: 0; }
-              .partner-card:hover .partner-shine { opacity: 1; animation: partnerShine 1.1s ease-out forwards; }
+              .partner-track { animation: partnerMarquee 60s linear infinite; }
+              .group\\/strip:hover .partner-track { animation-play-state: paused; }
+              .partner-logo { transition: transform 500ms cubic-bezier(.16,1,.3,1), opacity 500ms; }
+              .partner-logo:hover { transform: scale(1.12); opacity: 1 !important; }
             `}</style>
-            {SPONSOR_LAYOUT.map((p, i) => (
-              <Reveal
-                key={p.key}
-                delay={i * 140}
-                className="min-w-[82%] shrink-0 snap-center first:pl-0 last:pr-0 sm:min-w-[62%] md:min-w-0 md:shrink"
-              >
-                <motion.article
-                  whileHover={{ y: -8, scale: 1.02 }}
-                  transition={{ duration: 0.45, ease }}
-                  className="group partner-card relative flex h-full min-h-[420px] flex-col overflow-hidden rounded-[26px] border border-[--gold]/25 p-8 text-center md:min-h-[480px] md:p-10"
-                  style={{
-                    background:
-                      "linear-gradient(160deg, rgba(255,251,242,0.92) 0%, rgba(246,238,222,0.78) 60%, rgba(238,226,201,0.72) 100%)",
-                    backdropFilter: "blur(14px) saturate(140%)",
-                    boxShadow:
-                      "0 30px 70px -40px rgba(120,90,40,0.35), inset 0 1px 0 rgba(255,255,255,0.7), inset 0 0 40px rgba(214,189,159,0.15)",
-                  }}
-                >
-                  {/* Inner glow ring */}
-                  <span
-                    aria-hidden
-                    className="pointer-events-none absolute inset-0 rounded-[26px] transition-all duration-500 group-hover:shadow-[inset_0_0_0_1px_rgba(176,147,94,0.55)]"
-                  />
-                  {/* Gold shine sweep on hover */}
-                  <span
-                    aria-hidden
-                    className="pointer-events-none absolute inset-0 overflow-hidden rounded-[26px]"
+
+            {/* Gold top edge highlight */}
+            <span
+              aria-hidden
+              className="pointer-events-none absolute inset-x-0 top-0 h-px"
+              style={{
+                background:
+                  "linear-gradient(90deg, transparent, rgba(214,189,159,0.55), transparent)",
+              }}
+            />
+            {/* Inner glow */}
+            <span
+              aria-hidden
+              className="pointer-events-none absolute inset-0 rounded-[32px]"
+              style={{
+                boxShadow:
+                  "inset 0 1px 0 rgba(255,240,210,0.06), inset 0 -30px 60px rgba(0,0,0,0.45), inset 0 0 60px rgba(214,189,159,0.05)",
+              }}
+            />
+            {/* Edge fade masks */}
+            <span
+              aria-hidden
+              className="pointer-events-none absolute inset-y-0 left-0 w-24 z-10"
+              style={{
+                background:
+                  "linear-gradient(90deg, #161311 0%, rgba(22,19,17,0) 100%)",
+              }}
+            />
+            <span
+              aria-hidden
+              className="pointer-events-none absolute inset-y-0 right-0 w-24 z-10"
+              style={{
+                background:
+                  "linear-gradient(270deg, #161311 0%, rgba(22,19,17,0) 100%)",
+              }}
+            />
+
+            {/* Marquee track */}
+            <div className="relative flex h-[140px] items-center overflow-hidden md:h-[170px]">
+              <div className="partner-track flex shrink-0 items-center gap-16 pl-16 md:gap-24 md:pl-24">
+                {loop.map((p, i) => (
+                  <div
+                    key={`${p.name}-${i}`}
+                    className="partner-logo flex h-16 shrink-0 items-center text-white/70 md:h-20"
+                    title={p.name}
+                    aria-label={p.name}
                   >
-                    <span
-                      className="partner-shine absolute top-0 h-full w-1/3"
-                      style={{
-                        background:
-                          "linear-gradient(115deg, transparent 0%, rgba(255,240,205,0.55) 45%, rgba(255,255,255,0.9) 50%, rgba(255,240,205,0.55) 55%, transparent 100%)",
-                      }}
-                    />
-                  </span>
-
-                  {/* Top eyebrow — PARTNER 01 */}
-                  <div className="relative text-[10px] uppercase tracking-[0.5em] text-ink-soft">
-                    Partner · {String(i + 1).padStart(2, "0")}
-                  </div>
-
-                  {/* Big wordmark logo */}
-                  <div className="relative mt-auto flex flex-col items-center pt-10">
-                    <div
-                      className="font-serif-display text-[64px] italic leading-none text-ink transition-transform duration-500 group-hover:scale-[1.06] md:text-[84px]"
-                      style={{
-                        textShadow:
-                          "0 1px 0 rgba(255,255,255,0.6), 0 8px 22px rgba(120,90,40,0.18)",
-                      }}
-                    >
-                      {p.mono}
-                    </div>
-                    <div className="mt-5 h-px w-10 bg-[--gold]/60" />
-                    <div className="mt-4 font-display text-[11px] uppercase tracking-[0.4em] text-ink/80 md:text-xs">
-                      {p.name}
+                    <div className="h-full w-auto [&_svg]:h-full [&_svg]:w-auto">
+                      {p.svg}
                     </div>
                   </div>
-
-                  {/* Role label */}
-                  <div className="relative mt-8 text-[10px] uppercase tracking-[0.45em] text-[--gold]">
-                    {t(`${p.key}.role`)}
-                  </div>
-
-                  {/* Elegant italic line */}
-                  <p className="relative mt-4 font-serif-display text-[15px] italic leading-[1.6] text-ink/70 md:text-base">
-                    {t(`${p.key}.body`)}
-                  </p>
-                </motion.article>
-              </Reveal>
-            ))}
+                ))}
+              </div>
+            </div>
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

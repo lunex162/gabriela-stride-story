@@ -183,11 +183,11 @@ export const translations: Record<Locale, Dict> = {
     "eight.line3": "Posledných sto metrov, kde sa rozhoduje o všetkom.",
 
     "partners.eyebrow": "S poďakovaním",
-    "partners.title": "Sponzori",
-    "partners.title.line1": "S",
-    "partners.title.line2": "poďakovaním",
+    "partners.title": "Partneri mojej cesty",
+    "partners.title.line1": "Partneri",
+    "partners.title.line2": "mojej cesty",
     "partners.lead":
-      "Tréning, štart, regenerácia, výbava. Bez týchto ľudí a inštitúcií by sa moja cesta nedala robiť. Ďakujem.",
+      "Za každým úspechom stojí tím ľudí a partnerov, ktorí mi pomáhajú posúvať hranice. Ďakujem, že ste súčasťou mojej cesty.",
 
     "spn1.role": "Technický partner",
     "spn1.body": "Tréningová a pretekárska obuv pre 800 m — od Montegorda po Paríž.",
@@ -395,9 +395,9 @@ export const translations: Record<Locale, Dict> = {
     "eight.line3": "The final hundred metres, where everything is decided.",
 
     "partners.eyebrow": "With gratitude",
-    "partners.title": "Sponsors",
-    "partners.title.line1": "With",
-    "partners.title.line2": "gratitude",
+    "partners.title": "Partners of my journey",
+    "partners.title.line1": "Partners",
+    "partners.title.line2": "of my journey",
     
 
     "spn1.role": "Technical partner",
@@ -407,7 +407,7 @@ export const translations: Record<Locale, Dict> = {
     "spn3.role": "Training centre",
     "spn3.body": "Home base and elite-sport support from Banská Bystrica.",
     "partners.lead":
-      "Dukla Banská Bystrica, the Slovak Athletics Federation and partners who become allies every day.",
+      "Behind every success there is a team of people and partners who help me push my limits. Thank you for being part of my journey.",
 
     "social.eyebrow": "Social",
     "social.title": "Follow my journey",
