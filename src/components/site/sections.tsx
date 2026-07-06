@@ -403,7 +403,7 @@ export function Journey() {
     };
   }, []);
 
-  const distance = Math.round(progress * 800);
+  
   const activeIdx = Math.min(8, Math.floor((progress * 800) / 100));
   const active = milestones[activeIdx];
 
@@ -459,8 +459,8 @@ export function Journey() {
 
         {/* ===== HEADER — magazine masthead ===== */}
         <div className="absolute inset-x-0 top-0 z-30 px-6 pt-10 md:px-12 md:pt-14">
-          <div className="mx-auto flex max-w-[1700px] items-center justify-center gap-6">
-            <h2 className="font-display text-center leading-[0.92] tracking-tight">
+          <div className="mx-auto flex max-w-[1700px] items-center justify-start gap-6">
+            <h2 className="font-display text-left leading-[0.92] tracking-tight">
               <span className="text-3xl md:text-5xl">{t("journey.title.line1")}</span>{" "}
               <span className="font-serif-display italic text-[--gold-soft] text-3xl md:text-5xl">
                 {t("journey.title.line2")}
@@ -470,18 +470,18 @@ export function Journey() {
         </div>
 
         {/* ===== MAIN — kinetic numeral + body ===== */}
-        <div className="absolute inset-0 z-10 flex items-center px-6 md:px-12">
-          <div className="mx-auto grid w-full max-w-[1700px] grid-cols-1 place-items-center gap-10 md:grid-cols-12 md:gap-16">
+        <div className="absolute inset-0 z-10 flex items-start pt-28 md:pt-36 px-6 md:px-12">
+          <div className="mx-auto grid w-full max-w-[1700px] grid-cols-1 gap-10 md:grid-cols-12 md:gap-16">
             {/* LEFT: HUGE distance numeral over place pill */}
             <motion.div
               key={`L-${activeIdx}`}
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.9, ease }}
-              className="text-center md:col-span-7"
+              className="text-left md:col-span-7"
             >
               <h3
-                className="mt-4 text-center font-display leading-[0.78] tracking-tight"
+                className="mt-4 text-left font-display leading-[0.78] tracking-tight"
                 style={{
                   fontSize: "clamp(7rem, 22vw, 22rem)",
                   textShadow: "0 18px 60px rgba(0,0,0,0.55)",
@@ -491,7 +491,7 @@ export function Journey() {
                 <span className="ml-2 align-baseline text-[0.2em] text-[--gold-soft]">m</span>
               </h3>
               <div
-                className="mt-2 font-serif-display italic leading-[0.95] text-[--gold-soft]"
+                className="mt-2 text-left font-serif-display italic leading-[0.95] text-[--gold-soft]"
                 style={{ fontSize: "clamp(2rem, 5vw, 4.5rem)" }}
               >
                 {active.title.toLowerCase()}
@@ -507,7 +507,7 @@ export function Journey() {
               className="md:col-span-5"
             >
               <div className="border-l border-white/25 pl-7 md:pl-10">
-                <p className="text-center text-[17px] leading-[1.7] text-white/95 md:text-[19px] md:leading-[1.65]">
+                <p className="text-left text-[17px] leading-[1.7] text-white/95 md:text-[19px] md:leading-[1.65]">
                   {active.body}
                 </p>
               </div>
@@ -515,20 +515,20 @@ export function Journey() {
           </div>
         </div>
 
-        {/* ===== BOTTOM TRACK — hairline 800m with 9 markers ===== */}
+        {/* ===== BOTTOM TRACK — 800m with 9 markers ===== */}
         <div className="absolute inset-x-0 bottom-0 z-30 px-6 pb-10 md:px-12 md:pb-12">
           <div className="mx-auto max-w-[1700px]">
             {/* Year/dist row */}
-            <div className="mb-3 hidden items-end justify-between text-[10px] uppercase tracking-[0.4em] md:flex">
+            <div className="mb-5 hidden items-end justify-between text-[11px] uppercase tracking-[0.4em] md:flex">
               {milestones.map((m) => (
                 <span
                   key={m.idx}
                   className={
                     m.idx === activeIdx
-                      ? "text-[--gold-soft] transition-colors"
+                      ? "text-[--gold-soft] transition-colors font-medium"
                       : m.idx < activeIdx
-                        ? "text-white/65 transition-colors"
-                        : "text-white/30"
+                        ? "text-white/75 transition-colors"
+                        : "text-white/40"
                   }
                 >
                   {m.dist}m
@@ -537,12 +537,12 @@ export function Journey() {
             </div>
 
             {/* Lane */}
-            <div className="relative h-px w-full bg-white/20">
+            <div className="relative h-[2px] w-full bg-white/30">
               <div
                 className="absolute inset-y-0 left-0 bg-[--gold-soft] will-change-[width]"
                 style={{
                   width: `${progress * 100}%`,
-                  boxShadow: "0 0 14px rgba(214,189,159,0.65)",
+                  boxShadow: "0 0 16px rgba(214,189,159,0.85)",
                 }}
               />
               {/* Tick markers */}
@@ -555,10 +555,10 @@ export function Journey() {
                       <span
                         className={`block transition-all duration-500 ease-out ${
                           current
-                            ? "h-3 w-3 rounded-full bg-[--gold-soft] ring-4 ring-[rgba(214,189,159,0.22)] shadow-[0_0_18px_rgba(214,189,159,0.85)]"
+                            ? "h-4 w-4 rounded-full bg-[--gold-soft] ring-[6px] ring-[rgba(214,189,159,0.25)] shadow-[0_0_22px_rgba(214,189,159,0.95)]"
                             : reached
-                              ? "h-1.5 w-1.5 rounded-full bg-[--gold-soft]"
-                              : "h-1.5 w-1.5 rounded-full bg-white/30"
+                              ? "h-2.5 w-2.5 rounded-full bg-[--gold-soft]"
+                              : "h-2.5 w-2.5 rounded-full bg-white/40"
                         }`}
                       />
                       {current && !reduce && (
@@ -566,12 +566,12 @@ export function Journey() {
                           <span
                             key={`ping-${m.idx}-${activeIdx}`}
                             aria-hidden
-                            className="pointer-events-none absolute left-1/2 top-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[--gold-soft] opacity-70 animate-milestone-ripple"
+                            className="pointer-events-none absolute left-1/2 top-1/2 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[--gold-soft] opacity-70 animate-milestone-ripple"
                           />
                           <span
                             key={`ping2-${m.idx}-${activeIdx}`}
                             aria-hidden
-                            className="pointer-events-none absolute left-1/2 top-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[--gold-soft] opacity-40 animate-milestone-ripple [animation-delay:120ms]"
+                            className="pointer-events-none absolute left-1/2 top-1/2 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[--gold-soft] opacity-40 animate-milestone-ripple [animation-delay:120ms]"
                           />
                         </>
                       )}
@@ -579,15 +579,6 @@ export function Journey() {
                   );
                 })}
               </div>
-            </div>
-
-            {/* Distance counter line below lane */}
-            <div className="mt-5 flex items-center justify-center">
-              <span className="font-display text-2xl tabular-nums leading-none md:text-3xl">
-                <span className="text-[--gold-soft]">{String(distance).padStart(3, "0")}</span>
-                <span className="text-white/35">/800</span>
-                <span className="ml-1 text-base text-[--gold-soft]">m</span>
-              </span>
             </div>
           </div>
         </div>
