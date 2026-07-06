@@ -692,7 +692,7 @@ export function Quote() {
   return (
     <section
       ref={sectionRef}
-      className="relative isolate h-[100svh] overflow-hidden bg-[#15100B] text-white"
+      className="relative isolate h-[80svh] overflow-hidden text-ink"
     >
       <div
         className="absolute inset-0"
@@ -711,21 +711,30 @@ export function Quote() {
         className="absolute inset-0"
         style={{
           background:
-            "linear-gradient(180deg, rgba(26,19,14,0.55) 0%, rgba(26,19,14,0.35) 50%, rgba(26,19,14,0.80) 100%)",
+            "linear-gradient(180deg, rgba(249,246,241,0.45) 0%, rgba(249,246,241,0.22) 45%, rgba(249,246,241,0.75) 100%)",
+        }}
+      />
+      {/* Smooth fade into page background */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-28 md:h-40"
+        style={{
+          background:
+            "linear-gradient(to top, #F9F6F1 0%, rgba(249,246,241,0.95) 30%, transparent 100%)",
         }}
       />
 
       <div className="relative z-10 mx-auto flex h-full max-w-[1500px] items-center justify-center px-6 text-center md:px-12">
         <Reveal>
           {t("quote.eyebrow") && (
-            <span className="mb-10 inline-block text-[10px] uppercase tracking-[0.55em] text-[--gold-soft]">
+            <span className="mb-10 inline-block text-[10px] uppercase tracking-[0.55em] text-[--gold]">
               {t("quote.eyebrow")}
             </span>
           )}
           <blockquote className="font-serif-display italic leading-[1.1]" style={{ fontSize: "clamp(1.75rem, 5vw, 4rem)" }}>
             "{t("quote.text")}"
           </blockquote>
-          <div className="mt-12 flex items-center justify-center gap-4 text-[10px] uppercase tracking-[0.5em] text-white/75">
+          <div className="mt-12 flex items-center justify-center gap-4 text-[10px] uppercase tracking-[0.5em] text-ink/70">
             <span className="h-px w-16 bg-[--gold-soft]" />
             {t("quote.author")}
             <span className="h-px w-16 bg-[--gold-soft]" />
@@ -843,7 +852,7 @@ export function Press() {
   return (
     <section
       id="press"
-      className="relative overflow-hidden px-5 py-24 text-ink md:px-12 md:py-32"
+      className="relative overflow-hidden px-5 pt-8 pb-16 text-ink md:px-12 md:pb-20"
     >
       <div className="relative mx-auto max-w-[1400px]">
         {/* Editorial header */}
@@ -1067,7 +1076,7 @@ export function Partners() {
   // Duplicate for seamless marquee loop
   const loop = [...PARTNER_LOGOS, ...PARTNER_LOGOS];
   return (
-    <section className="relative overflow-hidden bg-background px-5 py-24 text-ink md:px-12 md:py-32">
+    <section className="relative overflow-hidden px-5 py-16 text-ink md:px-12 md:py-20">
 
       <div className="relative mx-auto max-w-[1700px]">
         {/* ── Editorial header ── */}
@@ -1185,7 +1194,7 @@ export function Contact() {
   return (
     <section
       id="contact"
-      className="relative overflow-hidden bg-background px-5 py-20 text-ink md:px-12 md:py-28"
+      className="relative overflow-hidden px-5 py-16 text-ink md:px-12 md:py-20"
     >
       <div
         aria-hidden
