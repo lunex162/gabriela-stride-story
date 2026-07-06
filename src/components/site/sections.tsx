@@ -224,7 +224,7 @@ export function About() {
             transition={{ duration: 0.9, delay: 0.2, ease }}
             className="mt-10"
           >
-            <blockquote className="font-serif-display italic leading-[0.95] tracking-tight text-ink" style={{ fontSize: "clamp(1.8rem, 4.5vw, 3.6rem)" }}>
+            <blockquote className="font-serif-display italic leading-[0.95] tracking-tight text-ink text-[5.6vw] sm:text-[3.85vw] md:text-[2.6vw] xl:text-[2.9rem]">
               „{t("about.quote")}“
             </blockquote>
           </motion.div>
