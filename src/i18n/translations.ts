@@ -143,7 +143,7 @@ export const translations: Record<Locale, Dict> = {
     "m4.place": "Tokio · Olympijské hry",
     "m4.year": "2021",
     "m4.body":
-      "Debut pod piatimi kruhmi v Tokiu. V tom istom roku odchádzam z Martina a stávam sa súčasťou TeamLouis Louisa Heyera.",
+      "Tokio.",
 
     "m5.title": "Bronz Európskych hier",
     "m5.place": "Chorzów · Európske hry",
