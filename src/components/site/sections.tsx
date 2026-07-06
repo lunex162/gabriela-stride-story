@@ -677,12 +677,17 @@ function AchievementCard({
 export function Quote() {
   const t = useT();
   return (
-    <section className="relative isolate h-[100svh] overflow-hidden bg-[#15100B] text-white">
+    <section className="relative isolate h-[100svh] overflow-hidden text-white">
+      <img
+        src={quotePhoto}
+        alt=""
+        className="absolute inset-0 h-full w-full object-cover"
+      />
       <div
         className="absolute inset-0"
         style={{
           background:
-            "linear-gradient(180deg, rgba(26,19,14,0.55) 0%, rgba(26,19,14,0.35) 50%, rgba(26,19,14,0.80) 100%)",
+            "linear-gradient(180deg, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.55) 50%, rgba(0,0,0,0.75) 100%)",
         }}
       />
 
