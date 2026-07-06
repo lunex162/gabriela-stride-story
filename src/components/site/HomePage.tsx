@@ -8,6 +8,7 @@ import {
   Achievements,
   Journey,
   Partners,
+  Press,
   Quote,
   Contact,
   Footer,
@@ -36,6 +37,7 @@ export function HomePage({ locale }: { locale: Locale }) {
         <Journey />
         <Achievements />
         <Quote />
+        <Press />
         <Partners />
         <Contact />
         <Footer />
