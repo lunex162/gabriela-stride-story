@@ -266,11 +266,10 @@ export const translations: Record<Locale, Dict> = {
     "about.stat4.value": "Silver",
     "about.stat4.label": "2024 Euros · Rome",
 
-    "achievements.eyebrow": "Honours",
+    "achievements.eyebrow": "\n",
     "achievements.title": "Greatest honours",
     "achievements.title.line1": "GREATEST",
     "achievements.title.line2": "honours",
-
     "med1.title": "European Championships",
     "med1.place": "Rome · Italy",
     "med1.result": "Silver · 1:58.79",
@@ -289,7 +288,6 @@ export const translations: Record<Locale, Dict> = {
     "med6.title": "European U20",
     "med6.place": "Grosseto · Italy",
     "med6.result": "Bronze · 2:07.15",
-
     "contact.title.line1": "WRITE",
     "contact.title.line2": "to me",
     "quote.eyebrow": "",
@@ -298,8 +296,7 @@ export const translations: Record<Locale, Dict> = {
     "footer.location": "Bobrovec · Liptov · World",
     "form.placeholder.name": "Your name",
     "form.placeholder.message": "What would you like to talk about...",
-    "achievements.lead":
-      "From junior medals on the continent to the European Championship podium and a Slovak record on the Olympic stage.",
+    "achievements.lead": "\n",
 
     "ach1.year": "2024",
     "ach1.title": "European Silver · Rome",
