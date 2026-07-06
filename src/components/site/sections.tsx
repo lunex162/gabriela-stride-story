@@ -471,7 +471,7 @@ export function Journey() {
 
         {/* ===== MAIN — kinetic numeral + body ===== */}
         <div className="absolute inset-0 z-10 flex items-center px-6 md:px-12">
-          <div className="mx-auto grid w-full max-w-[1700px] grid-cols-1 items-end gap-10 md:grid-cols-12 md:gap-16">
+          <div className="mx-auto grid w-full max-w-[1700px] grid-cols-1 place-items-center gap-10 md:grid-cols-12 md:gap-16">
             {/* LEFT: HUGE distance numeral over place pill */}
             <motion.div
               key={`L-${activeIdx}`}
