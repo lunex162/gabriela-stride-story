@@ -203,13 +203,6 @@ export function About() {
   };
   const onMouseLeave = () => setTilt({ rx: 0, ry: 0 });
 
-  const stats: Array<{ v: string; l: string }> = [
-    { v: "2×", l: t("about.stats.olympics") },
-    { v: "1:58.22", l: t("about.stats.record") },
-    { v: t("about.stats.silver.value"), l: t("about.stats.silver") },
-    { v: t("about.stats.athlete.value"), l: t("about.stats.athlete") },
-  ];
-
   return (
     <section
       id="about"
@@ -283,45 +276,7 @@ export function About() {
         </motion.div>
       </div>
 
-      <div className="mx-auto mt-10 max-w-[1500px] px-6 md:mt-14 md:px-12">
-        <PremiumBadges stats={stats} />
-      </div>
     </section>
-  );
-}
-
-function PremiumBadges({ stats }: { stats: Array<{ v: string; l: string }> }) {
-  return (
-    <motion.dl
-      initial="hidden"
-      whileInView="show"
-      viewport={{ once: true, margin: "-10%" }}
-      variants={{
-        hidden: {},
-        show: { transition: { staggerChildren: 0.12, delayChildren: 0.7 } },
-      }}
-      className="mt-10 flex flex-wrap gap-2 md:mt-12 md:flex-nowrap md:gap-3 lg:gap-4"
-    >
-      {stats.map((s) => (
-        <motion.div
-          key={s.l}
-          variants={{
-            hidden: { opacity: 0, y: 20 },
-            show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } },
-          }}
-          whileHover={{ y: -2 }}
-          transition={{ duration: 0.35, ease: "easeOut" }}
-          className="group relative inline-flex items-center gap-1.5 overflow-hidden rounded-full border border-ink/25 bg-ink/[0.04] px-3.5 py-2 text-ink backdrop-blur-sm transition-colors duration-300 hover:border-ink/40 hover:bg-ink/[0.07] sm:px-4 sm:py-2.5 md:gap-2 md:px-5"
-        >
-          <dd className="font-serif-display italic leading-none" style={{ fontSize: "clamp(0.9rem, 1.1vw, 1.1rem)" }}>
-            {s.v}
-          </dd>
-          <dt className="text-[9px] uppercase leading-none tracking-[0.16em] text-[--ink-soft] sm:text-[10px] md:tracking-[0.18em]">
-            {s.l}
-          </dt>
-        </motion.div>
-      ))}
-    </motion.dl>
   );
 }
 
