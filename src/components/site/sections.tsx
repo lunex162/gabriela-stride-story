@@ -818,6 +818,8 @@ export function Partners() {
                 0%   { transform: translateX(-120%) skewX(-18deg); }
                 100% { transform: translateX(220%) skewX(-18deg); }
               }
+              .partner-card .partner-shine { transform: translateX(-120%) skewX(-18deg); opacity: 0; }
+              .partner-card:hover .partner-shine { opacity: 1; animation: partnerShine 1.1s ease-out forwards; }
             `}</style>
             {SPONSOR_LAYOUT.map((p, i) => (
               <Reveal
@@ -828,7 +830,7 @@ export function Partners() {
                 <motion.article
                   whileHover={{ y: -8, scale: 1.02 }}
                   transition={{ duration: 0.45, ease }}
-                  className="group relative flex h-full min-h-[420px] flex-col overflow-hidden rounded-[26px] border border-[--gold]/25 p-8 text-center md:min-h-[480px] md:p-10"
+                  className="group partner-card relative flex h-full min-h-[420px] flex-col overflow-hidden rounded-[26px] border border-[--gold]/25 p-8 text-center md:min-h-[480px] md:p-10"
                   style={{
                     background:
                       "linear-gradient(160deg, rgba(255,251,242,0.92) 0%, rgba(246,238,222,0.78) 60%, rgba(238,226,201,0.72) 100%)",
@@ -848,22 +850,10 @@ export function Partners() {
                     className="pointer-events-none absolute inset-0 overflow-hidden rounded-[26px]"
                   >
                     <span
-                      className="absolute top-0 h-full w-1/3 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                      className="partner-shine absolute top-0 h-full w-1/3"
                       style={{
                         background:
-                          "linear-gradient(115deg, transparent 0%, rgba(255,240,205,0.55) 45%, rgba(255,255,255,0.85) 50%, rgba(255,240,205,0.55) 55%, transparent 100%)",
-                        animation: "partnerShine 1.4s ease-out",
-                        animationPlayState: "paused",
-                      }}
-                      onAnimationEnd={(e) => {
-                        (e.currentTarget as HTMLElement).style.animationPlayState = "paused";
-                      }}
-                    />
-                    <span
-                      className="absolute inset-0"
-                      style={{
-                        background:
-                          "linear-gradient(120deg, transparent 40%, rgba(255,255,255,0) 60%)",
+                          "linear-gradient(115deg, transparent 0%, rgba(255,240,205,0.55) 45%, rgba(255,255,255,0.9) 50%, rgba(255,240,205,0.55) 55%, transparent 100%)",
                       }}
                     />
                   </span>
