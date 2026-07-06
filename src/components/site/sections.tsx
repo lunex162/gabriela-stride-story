@@ -212,9 +212,9 @@ export function About() {
             viewport={{ once: true, margin: "-15%" }}
             transition={{ duration: 0.8, ease }}
           >
-            <span className="inline-flex items-center gap-3 rounded-full border border-ink/25 bg-ink/[0.04] px-6 py-2.5 text-[10px] uppercase tracking-[0.35em] text-ink backdrop-blur sm:px-7 sm:py-3 sm:text-[11px]">
-              {t("about.eyebrow")}
-            </span>
+            <blockquote className="font-serif-display italic leading-[0.95] tracking-tight text-ink text-[5.6vw] sm:text-[3.85vw] md:text-[2.6vw] xl:text-[2.9rem]">
+              „{t("about.quote")}“
+            </blockquote>
           </motion.div>
 
           <motion.div
@@ -222,11 +222,17 @@ export function About() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-15%" }}
             transition={{ duration: 0.9, delay: 0.2, ease }}
-            className="mt-10"
+            className="mt-10 space-y-6"
           >
-            <blockquote className="font-serif-display italic leading-[0.95] tracking-tight text-ink text-[5.6vw] sm:text-[3.85vw] md:text-[2.6vw] xl:text-[2.9rem]">
-              „{t("about.quote")}“
-            </blockquote>
+            <p className="text-[18px] leading-[1.7] text-ink/80 md:text-[19px]">
+              {t("about.p1")}
+            </p>
+            <p className="text-[18px] leading-[1.7] text-ink/80 md:text-[19px]">
+              {t("about.p2")}
+            </p>
+            <p className="text-[18px] leading-[1.7] text-ink/80 md:text-[19px]">
+              {t("about.p3")}
+            </p>
           </motion.div>
 
         </div>
