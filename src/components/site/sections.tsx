@@ -542,7 +542,7 @@ export function Achievements() {
   return (
     <section
       id="achievements"
-      className="relative overflow-hidden bg-background px-5 py-24 text-ink md:px-12 md:py-36"
+      className="relative overflow-hidden bg-background px-5 py-14 text-ink md:px-12 md:py-20"
     >
       <div
         aria-hidden
@@ -554,9 +554,9 @@ export function Achievements() {
       />
 
       <div className="relative mx-auto max-w-[1700px]">
-        <div className="grid gap-10 md:grid-cols-12 md:items-end">
-          <Reveal className="md:col-span-7">
-            <div className="flex items-center gap-3 text-[10px] uppercase tracking-[0.45em] text-ink-soft">
+        <div className="grid gap-10 md:grid-cols-12 md:items-center">
+          <Reveal className="md:col-span-12 text-center">
+            <div className="flex items-center justify-center gap-3 text-[10px] uppercase tracking-[0.45em] text-ink-soft">
               <span className="h-px w-10 bg-[--gold]" /> {t("achievements.eyebrow")}
             </div>
             <h2 className="mt-6 font-display leading-[0.92] tracking-tight text-ink">
@@ -571,7 +571,7 @@ export function Achievements() {
               </span>
             </h2>
           </Reveal>
-          <Reveal className="md:col-span-4 md:col-start-9" delay={150}>
+          <Reveal className="hidden md:col-span-4 md:col-start-9" delay={150}>
             <p className="text-[14px] leading-relaxed text-ink/80 md:text-[15px]">
               {t("achievements.lead")}
             </p>
