@@ -459,8 +459,8 @@ export function Journey() {
 
         {/* ===== HEADER — magazine masthead ===== */}
         <div className="absolute inset-x-0 top-0 z-30 px-6 pt-10 md:px-12 md:pt-14">
-          <div className="mx-auto flex max-w-[1700px] items-end justify-between gap-6">
-            <h2 className="font-display leading-[0.92] tracking-tight">
+          <div className="mx-auto flex max-w-[1700px] items-center justify-center gap-6">
+            <h2 className="font-display text-center leading-[0.92] tracking-tight">
               <span className="text-3xl md:text-5xl">{t("journey.title.line1")}</span>{" "}
               <span className="font-serif-display italic text-[--gold-soft] text-3xl md:text-5xl">
                 {t("journey.title.line2")}
