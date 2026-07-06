@@ -451,33 +451,14 @@ export function Journey() {
         />
 
         {/* ===== HEADER — magazine masthead ===== */}
-        <div className="absolute inset-x-0 top-0 z-30 px-6 pt-24 md:px-12 md:pt-28">
+        <div className="absolute inset-x-0 top-0 z-30 px-6 pt-10 md:px-12 md:pt-14">
           <div className="mx-auto flex max-w-[1700px] items-end justify-between gap-6 border-b border-white/20 pb-5">
-            <div>
-              <div className="mb-3 flex items-center gap-3 text-[10px] uppercase tracking-[0.5em] text-white/60">
-                <span className="h-px w-8 bg-[--gold-soft]" /> {t("journey.eyebrow")}
-              </div>
-              <h2 className="font-display leading-[0.92] tracking-tight">
-                <span className="text-3xl md:text-5xl">{t("journey.title.line1")}</span>{" "}
-                <span className="font-serif-display italic text-[--gold-soft] text-3xl md:text-5xl">
-                  {t("journey.title.line2")}
-                </span>
-              </h2>
-            </div>
-            <motion.div
-              key={`hd-${activeIdx}`}
-              initial={{ opacity: 0, y: 6 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease }}
-              className="hidden text-right md:block"
-            >
-              <div className="text-[10px] uppercase tracking-[0.45em] text-white/55">
-                {t("journey.chapter")} {String(active.idx + 1).padStart(2, "0")} / 09
-              </div>
-              <div className="mt-1 font-serif-display text-2xl italic text-[--gold-soft] md:text-3xl">
-                {active.year}
-              </div>
-            </motion.div>
+            <h2 className="font-display leading-[0.92] tracking-tight">
+              <span className="text-3xl md:text-5xl">{t("journey.title.line1")}</span>{" "}
+              <span className="font-serif-display italic text-[--gold-soft] text-3xl md:text-5xl">
+                {t("journey.title.line2")}
+              </span>
+            </h2>
           </div>
         </div>
 
