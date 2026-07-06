@@ -56,14 +56,6 @@ export function Nav() {
             }`}
           >
             <LangSwitch current={locale} scrolled={scrolled} />
-            <a
-              href="mailto:ggajanova@gmail.com"
-              className={`hidden text-xs uppercase tracking-[0.2em] underline-offset-8 hover:underline lg:inline ${
-                scrolled ? "text-navy-deep" : "text-white/80"
-              }`}
-            >
-              ggajanova@gmail.com
-            </a>
           </div>
           <button
             onClick={() => setMenuOpen((o) => !o)}
