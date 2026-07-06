@@ -238,8 +238,8 @@ export function About() {
 
         {/* RIGHT — portrait */}
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           viewport={{ once: true, margin: "-10%" }}
           transition={{ duration: 1, delay: 0.5, ease }}
           className="relative flex flex-col self-stretch"
