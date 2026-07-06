@@ -274,6 +274,7 @@ export const translations: Record<Locale, Dict> = {
       "I come from Bobrovec in Liptov, where I was shaped by nature, family and life on our sheep farm. Before I discovered athletics, I played football. Running won me over at the age of eleven and has been my greatest passion ever since.",
     "about.p3":
       "Today I represent AK ZŤS Martin and since 2021 I have trained in the international TeamLouis group under the guidance of Swiss coach Louis Heyer.",
+    "about.quote": "The greatest motivation for me is knowing that I have given my best every day.",
 
     "about.stat1.value": "800 m",
     "about.stat1.label": "Main discipline",
