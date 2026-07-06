@@ -472,7 +472,7 @@ export function Journey() {
         {/* ===== MAIN — kinetic numeral + body ===== */}
         <div className="absolute inset-0 z-10 flex items-start pt-28 md:pt-36 px-6 md:px-12">
           <div className="mx-auto grid w-full max-w-[1700px] grid-cols-1 gap-10 md:grid-cols-12 md:gap-16">
-            {/* LEFT: HUGE distance numeral over place pill */}
+            {/* LEFT: HUGE distance numeral */}
             <motion.div
               key={`L-${activeIdx}`}
               initial={{ opacity: 0, y: 30 }}
@@ -490,15 +490,9 @@ export function Journey() {
                 {active.dist}
                 <span className="ml-2 align-baseline text-[0.2em] text-[--gold-soft]">m</span>
               </h3>
-              <div
-                className="mt-2 text-left font-serif-display italic leading-[0.95] text-[--gold-soft]"
-                style={{ fontSize: "clamp(2rem, 5vw, 4.5rem)" }}
-              >
-                {active.title.toLowerCase()}
-              </div>
             </motion.div>
 
-            {/* RIGHT: narrative panel */}
+            {/* RIGHT: title + narrative */}
             <motion.div
               key={`R-${activeIdx}`}
               initial={{ opacity: 0, x: 28 }}
@@ -506,11 +500,15 @@ export function Journey() {
               transition={{ duration: 0.9, delay: 0.1, ease }}
               className="md:col-span-5"
             >
-              <div className="border-l border-white/25 pl-7 md:pl-10">
-                <p className="text-left text-[17px] leading-[1.7] text-white/95 md:text-[19px] md:leading-[1.65]">
-                  {active.body}
-                </p>
+              <div
+                className="text-left font-serif-display italic leading-[0.95] text-[--gold-soft]"
+                style={{ fontSize: "clamp(2rem, 5vw, 4.5rem)" }}
+              >
+                {active.title}
               </div>
+              <p className="mt-4 text-left text-[17px] leading-[1.7] text-white/95 md:text-[19px] md:leading-[1.65]">
+                {active.body}
+              </p>
             </motion.div>
           </div>
         </div>
