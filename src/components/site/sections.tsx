@@ -473,10 +473,6 @@ export function Journey() {
               transition={{ duration: 0.9, ease }}
               className="md:col-span-7"
             >
-              <div className="flex items-center gap-3 text-[10px] uppercase tracking-[0.4em] text-white/70">
-                <span className="h-px w-8 bg-[--gold-soft]" />
-                {active.place}
-              </div>
               <h3
                 className="mt-4 font-display leading-[0.78] tracking-tight"
                 style={{
