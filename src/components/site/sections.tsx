@@ -478,10 +478,10 @@ export function Journey() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.9, ease }}
-              className="md:col-span-7"
+              className="text-center md:col-span-7"
             >
               <h3
-                className="mt-4 font-display leading-[0.78] tracking-tight"
+                className="mt-4 text-center font-display leading-[0.78] tracking-tight"
                 style={{
                   fontSize: "clamp(7rem, 22vw, 22rem)",
                   textShadow: "0 18px 60px rgba(0,0,0,0.55)",
