@@ -203,13 +203,6 @@ export function About() {
   };
   const onMouseLeave = () => setTilt({ rx: 0, ry: 0 });
 
-  const stats: Array<{ v: string; l: string }> = [
-    { v: "2×", l: t("about.stats.olympics") },
-    { v: "1:58.22", l: t("about.stats.record") },
-    { v: t("about.stats.silver.value"), l: t("about.stats.silver") },
-    { v: t("about.stats.athlete.value"), l: t("about.stats.athlete") },
-  ];
-
   return (
     <section
       id="about"
