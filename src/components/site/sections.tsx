@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
+import { motion, useReducedMotion } from "motion/react";
 import { Reveal } from "./Reveal";
 import { useT } from "@/i18n/LocaleContext";
 import portraitStadium from "@/assets/photos/portrait-stadium.jpg";
@@ -182,12 +182,6 @@ export function About() {
   const sectionRef = useRef<HTMLElement | null>(null);
   const photoWrapRef = useRef<HTMLDivElement | null>(null);
   const reduce = useReducedMotion();
-
-  // Parallax: photo moves slower than text, big background word crawls
-  useScroll({
-    target: sectionRef,
-    offset: ["start end", "end start"],
-  });
 
   // Subtle 3D tilt on mouse move
   const [tilt, setTilt] = useState({ rx: 0, ry: 0 });
