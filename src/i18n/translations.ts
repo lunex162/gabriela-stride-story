@@ -204,7 +204,7 @@ export const translations: Record<Locale, Dict> = {
     "quote.text": "Každý štart je nová príležitosť prekonať samu seba.",
     "quote.author": "Gabriela Gajanová",
 
-    "contact.eyebrow": "Kontakt",
+    "contact.eyebrow": "\n",
     "contact.title": "Pre médiá, partnerstvá a spolupráce",
     "contact.lead": "\n",
     "contact.emailLabel": "E-mail",
@@ -417,7 +417,7 @@ export const translations: Record<Locale, Dict> = {
     "quote.text": "Every start is a new chance to outrun yourself.",
     "quote.author": "Gabriela Gajanová",
 
-    "contact.eyebrow": "Contact",
+    "contact.eyebrow": "\n",
     "contact.title": "For media, partnerships and collaborations",
     "contact.lead": "\n",
     "contact.emailLabel": "Email",
