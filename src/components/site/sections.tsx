@@ -542,7 +542,7 @@ export function Achievements() {
   return (
     <section
       id="achievements"
-      className="relative overflow-hidden bg-background px-5 py-24 text-ink md:px-12 md:py-36"
+      className="relative overflow-hidden bg-background px-5 py-14 text-ink md:px-12 md:py-20"
     >
       <div
         aria-hidden
