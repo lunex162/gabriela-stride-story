@@ -216,7 +216,7 @@ export function About() {
       ref={sectionRef}
       className="relative isolate overflow-hidden bg-background pb-28 pt-12 text-ink md:pb-40 md:pt-20"
     >
-      <div className="mx-auto grid max-w-[1500px] grid-cols-1 items-stretch gap-12 px-6 md:grid-cols-[45fr_55fr] md:gap-20 md:px-12">
+      <div className="mx-auto grid max-w-[1500px] grid-cols-1 items-start gap-12 px-6 md:grid-cols-[45fr_55fr] md:gap-20 md:px-12">
         {/* LEFT — text */}
         <div className="relative flex flex-col">
           <motion.div
@@ -244,7 +244,7 @@ export function About() {
           </motion.div>
 
           {/* Stats — 2 under text (desktop only) */}
-          <StatsRow stats={stats.slice(0, 2)} className="mt-auto hidden pt-10 md:grid" />
+          <StatsRow stats={stats.slice(0, 2)} className="mt-auto hidden pt-6 md:grid" />
         </div>
 
         {/* RIGHT — portrait */}
@@ -267,7 +267,7 @@ export function About() {
           <motion.div
             ref={photoWrapRef}
             style={{ y: photoY }}
-            className="relative mx-auto w-full max-w-[560px] flex-1"
+            className="relative mx-auto w-full max-w-[560px]"
           >
             <motion.img
               src={gagaAbout.url}
@@ -286,7 +286,7 @@ export function About() {
           </motion.div>
 
           {/* Stats — 2 under photo (desktop only) */}
-          <StatsRow stats={stats.slice(2, 4)} className="hidden pt-10 md:grid" />
+          <StatsRow stats={stats.slice(2, 4)} className="hidden pt-6 md:grid" />
 
           {/* Stats — all 4 under photo (mobile only) */}
           <StatsRow stats={stats} className="gap-y-10 pt-10 text-center justify-items-center md:hidden" />
