@@ -206,8 +206,7 @@ export const translations: Record<Locale, Dict> = {
 
     "contact.eyebrow": "Kontakt",
     "contact.title": "Pre médiá, partnerstvá a spolupráce",
-    "contact.lead":
-      "Píšte mi ohľadom rozhovorov, partnerských projektov, podujatí alebo komerčných spoluprác.",
+    "contact.lead": "\n",
     "contact.emailLabel": "E-mail",
     "contact.form.name": "Meno",
     "contact.form.email": "E-mail",
@@ -420,8 +419,7 @@ export const translations: Record<Locale, Dict> = {
 
     "contact.eyebrow": "Contact",
     "contact.title": "For media, partnerships and collaborations",
-    "contact.lead":
-      "Reach out for interviews, partner projects, events or commercial collaborations.",
+    "contact.lead": "\n",
     "contact.emailLabel": "Email",
     "contact.form.name": "Name",
     "contact.form.email": "Email",
