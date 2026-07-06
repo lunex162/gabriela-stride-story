@@ -182,7 +182,7 @@ export const translations: Record<Locale, Dict> = {
     "eight.line2": "Jedna stratégia.",
     "eight.line3": "Posledných sto metrov, kde sa rozhoduje o všetkom.",
 
-    "partners.eyebrow": "S poďakovaním",
+    "partners.eyebrow": "",
     "partners.title": "Partneri mojej cesty",
     "partners.title.line1": "Partneri",
     "partners.title.line2": "mojej cesty",
@@ -394,7 +394,7 @@ export const translations: Record<Locale, Dict> = {
     "eight.line2": "One strategy.",
     "eight.line3": "The final hundred metres, where everything is decided.",
 
-    "partners.eyebrow": "With gratitude",
+    "partners.eyebrow": "",
     "partners.title": "Partners of my journey",
     "partners.title.line1": "Partners",
     "partners.title.line2": "of my journey",
