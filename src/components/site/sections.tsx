@@ -10,6 +10,7 @@ import action2 from "@/assets/photos/action-2.jpg";
 import action3 from "@/assets/photos/action-3.jpg";
 import action4 from "@/assets/photos/action-4.jpg";
 import gagaAbout from "@/assets/gaga-tokyo-applause.jpg.asset.json";
+import quotePhoto from "@/assets/quote.jpg";
 
 /* ============================================================
  *  Shared motion constants — single curve everywhere
@@ -676,12 +677,17 @@ function AchievementCard({
 export function Quote() {
   const t = useT();
   return (
-    <section className="relative isolate h-[100svh] overflow-hidden bg-[#15100B] text-white">
+    <section className="relative isolate h-[100svh] overflow-hidden text-white">
+      <img
+        src={quotePhoto}
+        alt=""
+        className="absolute inset-0 h-full w-full object-cover"
+      />
       <div
         className="absolute inset-0"
         style={{
           background:
-            "linear-gradient(180deg, rgba(26,19,14,0.55) 0%, rgba(26,19,14,0.35) 50%, rgba(26,19,14,0.80) 100%)",
+            "linear-gradient(180deg, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.55) 50%, rgba(0,0,0,0.75) 100%)",
         }}
       />
 
