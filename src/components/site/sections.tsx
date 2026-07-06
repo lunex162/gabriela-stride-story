@@ -300,8 +300,7 @@ function PremiumBadges({ stats }: { stats: Array<{ v: string; l: string }> }) {
         hidden: {},
         show: { transition: { staggerChildren: 0.12, delayChildren: 0.7 } },
       }}
-      className="mt-10 flex flex-nowrap gap-2 overflow-x-auto pb-1 md:mt-12 md:gap-3"
-      style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+      className="mt-10 flex flex-wrap gap-2 md:mt-12 md:flex-nowrap md:gap-3 lg:gap-4"
     >
       {stats.map((s) => (
         <motion.div
@@ -312,12 +311,12 @@ function PremiumBadges({ stats }: { stats: Array<{ v: string; l: string }> }) {
           }}
           whileHover={{ y: -2 }}
           transition={{ duration: 0.35, ease: "easeOut" }}
-          className="group relative inline-flex shrink-0 items-center gap-2 overflow-hidden rounded-full border border-ink/25 bg-ink/[0.04] px-4 py-2 text-ink backdrop-blur-sm transition-colors duration-300 hover:border-ink/40 hover:bg-ink/[0.07] sm:px-5 sm:py-2.5"
+          className="group relative inline-flex items-center gap-1.5 overflow-hidden rounded-full border border-ink/25 bg-ink/[0.04] px-3.5 py-2 text-ink backdrop-blur-sm transition-colors duration-300 hover:border-ink/40 hover:bg-ink/[0.07] sm:px-4 sm:py-2.5 md:gap-2 md:px-5"
         >
-          <dd className="font-serif-display italic leading-none" style={{ fontSize: "clamp(1rem, 1.2vw, 1.2rem)" }}>
+          <dd className="font-serif-display italic leading-none" style={{ fontSize: "clamp(0.9rem, 1.1vw, 1.1rem)" }}>
             {s.v}
           </dd>
-          <dt className="text-[10px] uppercase leading-none tracking-[0.18em] text-[--ink-soft] sm:text-[11px]">
+          <dt className="text-[9px] uppercase leading-none tracking-[0.16em] text-[--ink-soft] sm:text-[10px] md:tracking-[0.18em]">
             {s.l}
           </dt>
         </motion.div>
