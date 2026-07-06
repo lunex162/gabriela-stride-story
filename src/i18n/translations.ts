@@ -149,7 +149,7 @@ export const translations: Record<Locale, Dict> = {
     "m5.place": "Chorzów · Európske hry",
     "m5.year": "2023",
     "m5.body":
-      "Prvá medaila zo seniorskej európskej akcie — 1:59.92. Prvýkrát pod hranicou dvoch minút.",
+      "Prvá medaila zo seniorskej európskej akcie — 1:59.92. ",
 
     "m6.title": "Striebro z ME",
     "m6.place": "Rím · Majstrovstvá Európy",
