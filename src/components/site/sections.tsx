@@ -842,97 +842,6 @@ const PARTNER_LOGOS: { name: string; svg: ReactNode }[] = [
       </svg>
     ),
   },
-  {
-    name: "adidas",
-    svg: (
-      // adidas trefoil-inspired three-stripe mark + wordmark
-      <svg viewBox="0 0 160 40" fill="currentColor" aria-hidden>
-        <g transform="translate(0,4)">
-          <polygon points="0,30 10,30 22,6 12,6" />
-          <polygon points="14,30 24,30 34,6 24,6" />
-          <polygon points="28,30 38,30 46,6 36,6" />
-        </g>
-        <text
-          x="56" y="28"
-          fontFamily="'Helvetica Neue', Arial, sans-serif"
-          fontWeight={700}
-          fontSize="22"
-          letterSpacing="-0.5"
-        >
-          adidas
-        </text>
-      </svg>
-    ),
-  },
-  {
-    name: "Slovenský olympijský tím",
-    svg: (
-      <svg viewBox="0 0 200 44" fill="currentColor" aria-hidden>
-        <g transform="translate(2,10)" fill="none" stroke="currentColor" strokeWidth="1.5">
-          <circle cx="8" cy="8" r="7" />
-          <circle cx="20" cy="8" r="7" />
-          <circle cx="32" cy="8" r="7" />
-          <circle cx="14" cy="16" r="7" />
-          <circle cx="26" cy="16" r="7" />
-        </g>
-        <text
-          x="52" y="20"
-          fontFamily="'Helvetica Neue', Arial, sans-serif"
-          fontWeight={700}
-          fontSize="11"
-          letterSpacing="2.5"
-        >
-          SLOVENSKÝ
-        </text>
-        <text
-          x="52" y="34"
-          fontFamily="'Helvetica Neue', Arial, sans-serif"
-          fontWeight={400}
-          fontSize="9"
-          letterSpacing="3"
-          opacity="0.85"
-        >
-          OLYMPIJSKÝ TÍM
-        </text>
-      </svg>
-    ),
-  },
-  {
-    name: "AK ZŤS Martin",
-    svg: (
-      <svg viewBox="0 0 170 40" fill="currentColor" aria-hidden>
-        <text
-          x="0" y="26"
-          fontFamily="'Helvetica Neue', Arial, sans-serif"
-          fontWeight={800}
-          fontSize="22"
-          letterSpacing="4"
-        >
-          AK ZŤS
-        </text>
-        <line x1="86" y1="10" x2="86" y2="34" stroke="currentColor" strokeWidth="1" />
-        <text
-          x="94" y="20"
-          fontFamily="'Helvetica Neue', Arial, sans-serif"
-          fontWeight={500}
-          fontSize="10"
-          letterSpacing="3"
-        >
-          MARTIN
-        </text>
-        <text
-          x="94" y="32"
-          fontFamily="'Helvetica Neue', Arial, sans-serif"
-          fontWeight={400}
-          fontSize="7"
-          letterSpacing="4"
-          opacity="0.8"
-        >
-          ATLETICKÝ KLUB
-        </text>
-      </svg>
-    ),
-  },
 ];
 
 export function Partners() {
@@ -940,22 +849,13 @@ export function Partners() {
   // Duplicate for seamless marquee loop
   const loop = [...PARTNER_LOGOS, ...PARTNER_LOGOS];
   return (
-    <section className="relative overflow-hidden px-5 py-24 text-ink md:px-12 md:py-32">
-      {/* Ivory gradient background — continues the site tone */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0"
-        style={{
-          background:
-            "linear-gradient(180deg, #FBF7EE 0%, #F6EEDE 55%, #FBF7EE 100%)",
-        }}
-      />
+    <section className="relative overflow-hidden bg-background px-5 py-24 text-ink md:px-12 md:py-32">
 
       <div className="relative mx-auto max-w-[1700px]">
         {/* ── Editorial header ── */}
-        <div className="grid items-end gap-12 md:grid-cols-12 md:gap-16">
-          <Reveal className="md:col-span-7">
-            <div className="mb-6 flex items-center gap-3 text-[10px] uppercase tracking-[0.45em] text-[--gold]">
+        <div className="text-center">
+          <Reveal>
+            <div className="mb-6 flex items-center justify-center gap-3 text-[10px] uppercase tracking-[0.45em] text-[--gold]">
               <span className="h-px w-10 bg-[--gold]" /> {t("partners.eyebrow")}
             </div>
             <h2 className="font-display leading-[0.92] tracking-tight text-ink">
@@ -970,7 +870,7 @@ export function Partners() {
               </span>
             </h2>
           </Reveal>
-          <Reveal className="md:col-span-4 md:col-start-9" delay={120}>
+          <Reveal className="mx-auto mt-8 max-w-xl" delay={120}>
             <p className="text-[14px] leading-[1.8] text-ink/75 md:text-[15px]">
               {t("partners.lead")}
             </p>
