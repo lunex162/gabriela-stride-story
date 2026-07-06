@@ -459,8 +459,8 @@ export function Journey() {
 
         {/* ===== HEADER — magazine masthead ===== */}
         <div className="absolute inset-x-0 top-0 z-30 px-6 pt-10 md:px-12 md:pt-14">
-          <div className="mx-auto flex max-w-[1700px] items-end justify-between gap-6">
-            <h2 className="font-display leading-[0.92] tracking-tight">
+          <div className="mx-auto flex max-w-[1700px] items-center justify-center gap-6">
+            <h2 className="font-display text-center leading-[0.92] tracking-tight">
               <span className="text-3xl md:text-5xl">{t("journey.title.line1")}</span>{" "}
               <span className="font-serif-display italic text-[--gold-soft] text-3xl md:text-5xl">
                 {t("journey.title.line2")}
@@ -471,17 +471,17 @@ export function Journey() {
 
         {/* ===== MAIN — kinetic numeral + body ===== */}
         <div className="absolute inset-0 z-10 flex items-center px-6 md:px-12">
-          <div className="mx-auto grid w-full max-w-[1700px] grid-cols-1 items-end gap-10 md:grid-cols-12 md:gap-16">
+          <div className="mx-auto grid w-full max-w-[1700px] grid-cols-1 place-items-center gap-10 md:grid-cols-12 md:gap-16">
             {/* LEFT: HUGE distance numeral over place pill */}
             <motion.div
               key={`L-${activeIdx}`}
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.9, ease }}
-              className="md:col-span-7"
+              className="text-center md:col-span-7"
             >
               <h3
-                className="mt-4 font-display leading-[0.78] tracking-tight"
+                className="mt-4 text-center font-display leading-[0.78] tracking-tight"
                 style={{
                   fontSize: "clamp(7rem, 22vw, 22rem)",
                   textShadow: "0 18px 60px rgba(0,0,0,0.55)",
@@ -582,7 +582,7 @@ export function Journey() {
             </div>
 
             {/* Distance counter line below lane */}
-            <div className="mt-5 flex items-center justify-end">
+            <div className="mt-5 flex items-center justify-center">
               <span className="font-display text-2xl tabular-nums leading-none md:text-3xl">
                 <span className="text-[--gold-soft]">{String(distance).padStart(3, "0")}</span>
                 <span className="text-white/35">/800</span>
