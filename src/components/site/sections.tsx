@@ -503,14 +503,6 @@ export function Journey() {
                 <p className="text-[17px] leading-[1.7] text-white/95 md:text-[19px] md:leading-[1.65]">
                   {active.body}
                 </p>
-                {activeIdx < 8 && (
-                  <div className="mt-10 flex items-center justify-between border-t border-white/15 pt-6 text-[11px] uppercase tracking-[0.35em] text-white/60 md:text-[12px]">
-                    <span>{t("journey.next")}</span>
-                    <span className="font-serif-display text-base italic normal-case tracking-normal text-white/90 md:text-lg">
-                      {milestones[activeIdx + 1].dist}m — {milestones[activeIdx + 1].title}
-                    </span>
-                  </div>
-                )}
               </div>
             </motion.div>
           </div>
