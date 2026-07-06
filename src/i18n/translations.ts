@@ -80,7 +80,7 @@ export const translations: Record<Locale, Dict> = {
     "quote.eyebrow": "",
     "footer.follow": "Sledujte",
     "footer.contact": "Kontakt",
-    "footer.location": "Bobrovec · Liptov · Svet",
+    "footer.location": "\n",
     "form.placeholder.name": "Vaše meno",
     "form.placeholder.message": "O čom by ste sa chceli porozprávať...",
 
@@ -293,7 +293,7 @@ export const translations: Record<Locale, Dict> = {
     "quote.eyebrow": "",
     "footer.follow": "Follow",
     "footer.contact": "Contact",
-    "footer.location": "Bobrovec · Liptov · World",
+    "footer.location": "\n",
     "form.placeholder.name": "Your name",
     "form.placeholder.message": "What would you like to talk about...",
     "achievements.lead": "\n",
