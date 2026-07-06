@@ -586,178 +586,35 @@ export function Journey() {
 }
 
 /* ============================================================
- *  ACHIEVEMENTS — medal plaque grid
- *  Each award is presented as a refined hairline-framed plaque
- *  with an engraved typography hierarchy and a hand-drawn SVG
- *  medal disc at the top (laurel wreath + place number).
- *  Minimalist + realistic — no photos, just metal-finish elegance.
+ *  ACHIEVEMENTS — cinematic photo cards
+ *  Each honour is a tall, full-bleed photograph card with a
+ *  gentle dark gradient, a small year eyebrow, a dominant title
+ *  and a short two-sentence description. Hover: subtle scale,
+ *  slow image zoom, gradient lift, text rises. Feels like a
+ *  premium sports documentary — no medals, no dashboards.
  * ============================================================ */
-type MedalKind = "gold" | "silver" | "bronze" | "honour";
-
-const ACHIEVEMENT_LAYOUT: Array<{
-  key: string;
-  year: string;
-  kind: MedalKind;
-  photo: string;
-}> = [
-  { key: "med1", year: "2024", kind: "silver", photo: action1 },
-  { key: "med2", year: "2024", kind: "honour", photo: parisRace },
-  { key: "med3", year: "2024", kind: "honour", photo: portraitStadium },
-  { key: "med4", year: "2023", kind: "bronze", photo: action4 },
-  { key: "med5", year: "2023", kind: "honour", photo: indoorRace },
-  { key: "med6", year: "2017", kind: "bronze", photo: action2 },
+const ACHIEVEMENT_CARDS: Array<{ key: string; photo: string }> = [
+  { key: "ach1", photo: action1 },
+  { key: "ach2", photo: parisRace },
+  { key: "ach3", photo: portraitStadium },
+  { key: "ach4", photo: action4 },
+  { key: "ach5", photo: indoorRace },
+  { key: "ach6", photo: action2 },
 ];
-
-const MEDAL_TONES: Record<MedalKind, { outer: string; inner: string; deep: string; ribbon: string; label: string }> = {
-  gold:   { outer: "#D6BD9F", inner: "#B0935E", deep: "#7A5E32", ribbon: "#B0935E", label: "1." },
-  silver: { outer: "#D9D2C8", inner: "#9B9085", deep: "#5F564D", ribbon: "#8E8378", label: "2." },
-  bronze: { outer: "#D2A684", inner: "#9A6D45", deep: "#5E3B1F", ribbon: "#9A6D45", label: "3." },
-  honour: { outer: "#E8CFC6", inner: "#B0935E", deep: "#7A5E32", ribbon: "#B0935E", label: "★" },
-};
-
-/**
- * Medal = circular gold-rimmed photo frame.
- *   - thin ribbon at top
- *   - outer gold ring (light) + inner gold ring (deeper) for the bezel
- *   - event photo cropped to circle inside
- *   - place/honour stamp at bottom of the disc
- */
-function MedalFrame({
-  kind,
-  photo,
-  alt,
-}: {
-  kind: MedalKind;
-  photo: string;
-  alt: string;
-}) {
-  const c = MEDAL_TONES[kind];
-  const id = `clip-${kind}-${alt.length}`;
-  return (
-    <div className="relative mx-auto w-full max-w-[320px]">
-      {/* Ribbon — twin tape */}
-      <svg
-        viewBox="0 0 320 110"
-        aria-hidden
-        className="absolute inset-x-0 top-0 -mt-2 h-[60px] w-full md:h-[80px]"
-      >
-        <defs>
-          <linearGradient id={`rib-${id}`} x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor={c.ribbon} stopOpacity="0.95" />
-            <stop offset="100%" stopColor={c.deep} stopOpacity="0.95" />
-          </linearGradient>
-        </defs>
-        <path
-          d="M120 0 L150 90 L170 90 L200 0 Z"
-          fill={`url(#rib-${id})`}
-          opacity="0.92"
-        />
-        <path d="M120 0 L150 90" stroke={c.outer} strokeWidth="0.5" opacity="0.7" />
-        <path d="M200 0 L170 90" stroke={c.outer} strokeWidth="0.5" opacity="0.7" />
-      </svg>
-
-      {/* Disc — outer ring, inner ring, photo */}
-      <svg
-        viewBox="0 0 340 340"
-        className="relative z-10 mt-[42px] w-full md:mt-[56px]"
-        aria-hidden
-      >
-        <defs>
-          <clipPath id={id}>
-            <circle cx="170" cy="170" r="118" />
-          </clipPath>
-          <radialGradient id={`shine-${id}`} cx="40%" cy="35%" r="60%">
-            <stop offset="0%" stopColor="#FFFEF5" stopOpacity="0.95" />
-            <stop offset="55%" stopColor={c.outer} />
-            <stop offset="100%" stopColor={c.deep} />
-          </radialGradient>
-          <radialGradient id={`inner-${id}`} cx="40%" cy="35%" r="60%">
-            <stop offset="0%" stopColor="#FFFCF1" stopOpacity="0.85" />
-            <stop offset="60%" stopColor={c.inner} />
-            <stop offset="100%" stopColor={c.deep} />
-          </radialGradient>
-        </defs>
-
-        {/* Outer bezel */}
-        <circle cx="170" cy="170" r="160" fill={`url(#shine-${id})`} />
-        {/* Decorative tick marks around bezel */}
-        {Array.from({ length: 48 }).map((_, i) => {
-          const a = (i / 48) * Math.PI * 2;
-          const x1 = 170 + Math.cos(a) * 146;
-          const y1 = 170 + Math.sin(a) * 146;
-          const x2 = 170 + Math.cos(a) * 152;
-          const y2 = 170 + Math.sin(a) * 152;
-          return (
-            <line
-              key={i}
-              x1={x1}
-              y1={y1}
-              x2={x2}
-              y2={y2}
-              stroke={c.deep}
-              strokeWidth="0.8"
-              opacity="0.5"
-            />
-          );
-        })}
-        {/* Inner bezel — gold rim around photo */}
-        <circle cx="170" cy="170" r="128" fill={`url(#inner-${id})`} />
-        <circle cx="170" cy="170" r="120" fill="none" stroke={c.deep} strokeWidth="0.8" opacity="0.6" />
-
-        {/* Photo clipped to circle */}
-        <image
-          href={photo}
-          x="50"
-          y="50"
-          width="240"
-          height="240"
-          preserveAspectRatio="xMidYMid slice"
-          clipPath={`url(#${id})`}
-        />
-        {/* Photo inner hairline */}
-        <circle cx="170" cy="170" r="118" fill="none" stroke={c.deep} strokeWidth="0.5" opacity="0.45" />
-
-        {/* Bottom stamp — place number / star inside small disc */}
-        <g transform="translate(170 286)">
-          <circle r="22" fill={c.outer} stroke={c.deep} strokeWidth="1" />
-          <text
-            textAnchor="middle"
-            y={kind === "honour" ? 8 : 6}
-            fontSize={kind === "honour" ? 20 : 18}
-            fontFamily="Bebas Neue, Oswald, sans-serif"
-            fill={c.deep}
-            style={{ letterSpacing: "-0.02em" }}
-          >
-            {c.label}
-          </text>
-        </g>
-
-        {/* Soft highlight glint */}
-        <path
-          d="M 80 110 Q 170 50, 260 110"
-          fill="none"
-          stroke="rgba(255,255,255,0.55)"
-          strokeWidth="2"
-          strokeLinecap="round"
-        />
-      </svg>
-    </div>
-  );
-}
 
 export function Achievements() {
   const t = useT();
   return (
     <section
       id="achievements"
-      className="relative overflow-hidden px-5 py-20 text-ink md:px-12 md:py-28"
+      className="relative overflow-hidden bg-background px-5 py-24 text-ink md:px-12 md:py-36"
     >
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0"
         style={{
           background:
-            "radial-gradient(55% 40% at 50% 0%, rgba(214,189,159,0.30) 0%, transparent 60%)",
+            "radial-gradient(55% 40% at 50% 0%, rgba(214,189,159,0.22) 0%, transparent 60%)",
         }}
       />
 
@@ -786,41 +643,95 @@ export function Achievements() {
           </Reveal>
         </div>
 
-        {/* Medal grid — circular gold-rimmed photo frames */}
-        <div className="mt-12 grid grid-cols-1 gap-12 sm:grid-cols-2 md:mt-16 md:gap-14 lg:grid-cols-3">
-          {ACHIEVEMENT_LAYOUT.map((a, i) => {
-            const title = t(`${a.key}.title`);
-            const place = t(`${a.key}.place`);
-            const result = t(`${a.key}.result`);
-            return (
-              <Reveal key={a.key} delay={i * 80}>
-                <motion.article
-                  whileHover={{ y: -6 }}
-                  transition={{ duration: 0.5, ease }}
-                  className="group relative flex flex-col items-center text-center"
-                >
-                  <MedalFrame kind={a.kind} photo={a.photo} alt={title} />
-
-                  <div className="mt-6 text-[10px] uppercase tracking-[0.5em] text-[--gold]">
-                    {a.year}
-                  </div>
-                  <h3 className="mt-3 font-display text-2xl leading-[1.05] tracking-tight text-ink md:text-3xl">
-                    {title.toUpperCase()}
-                  </h3>
-                  <div className="mt-2 font-serif-display text-base italic text-ink-soft md:text-lg">
-                    {place}
-                  </div>
-                  <div className="mt-4 h-px w-10 bg-[--gold]/45" />
-                  <div className="mt-4 text-[11px] uppercase tracking-[0.35em] text-ink/75">
-                    {result}
-                  </div>
-                </motion.article>
-              </Reveal>
-            );
-          })}
+        {/* Cinematic card gallery
+            Desktop: grid of tall photo cards.
+            Mobile: horizontal snap carousel with edge padding. */}
+        <div className="mt-14 md:mt-20">
+          <div className="-mx-5 flex snap-x snap-mandatory gap-5 overflow-x-auto px-5 pb-4 md:hidden [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            {ACHIEVEMENT_CARDS.map((a, i) => (
+              <div key={a.key} className="shrink-0 basis-[82%] snap-center">
+                <AchievementCard index={i} data={a} t={t} />
+              </div>
+            ))}
+          </div>
+          <div className="hidden gap-8 md:grid md:grid-cols-2 lg:grid-cols-3 lg:gap-10">
+            {ACHIEVEMENT_CARDS.map((a, i) => (
+              <AchievementCard key={a.key} index={i} data={a} t={t} />
+            ))}
+          </div>
         </div>
       </div>
     </section>
+  );
+}
+
+function AchievementCard({
+  data,
+  index,
+  t,
+}: {
+  data: { key: string; photo: string };
+  index: number;
+  t: (key: string) => string;
+}) {
+  const year = t(`${data.key}.year`);
+  const title = t(`${data.key}.title`);
+  const body = t(`${data.key}.body`);
+  const ordinal = String(index + 1).padStart(2, "0");
+
+  return (
+    <motion.article
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-10%" }}
+      transition={{ duration: 0.9, delay: index * 0.08, ease }}
+      whileHover={{ scale: 1.03 }}
+      className="group relative isolate block aspect-[3/4] w-full overflow-hidden rounded-[28px] bg-[#15100B] shadow-[0_18px_60px_-30px_rgba(20,15,10,0.35)] transition-shadow duration-700 ease-out hover:shadow-[0_30px_80px_-30px_rgba(20,15,10,0.45)]"
+      style={{ willChange: "transform" }}
+    >
+      <motion.img
+        src={data.photo}
+        alt={title}
+        loading="lazy"
+        className="absolute inset-0 h-full w-full object-cover"
+        initial={false}
+        whileHover={{ scale: 1.06 }}
+        transition={{ duration: 1.6, ease }}
+      />
+
+      <div
+        aria-hidden
+        className="absolute inset-0 transition-opacity duration-700 ease-out group-hover:opacity-90"
+        style={{
+          background:
+            "linear-gradient(180deg, rgba(21,16,11,0.15) 0%, rgba(21,16,11,0.10) 40%, rgba(21,16,11,0.78) 100%)",
+        }}
+      />
+
+      <div className="absolute inset-x-0 top-0 z-10 flex items-center justify-between px-7 pt-7 md:px-8 md:pt-8">
+        <span className="text-[10px] uppercase tracking-[0.5em] text-white/70">
+          {ordinal}
+        </span>
+        <span className="text-[10px] uppercase tracking-[0.5em] text-[--gold-soft]">
+          {year}
+        </span>
+      </div>
+
+      <div className="absolute inset-x-0 bottom-0 z-10 px-7 pb-8 md:px-8 md:pb-10">
+        <div className="transition-transform duration-700 ease-out group-hover:-translate-y-1">
+          <span
+            aria-hidden
+            className="mb-5 block h-px w-10 bg-[--gold-soft] transition-all duration-700 ease-out group-hover:w-16"
+          />
+          <h3 className="font-display text-[26px] leading-[1.05] tracking-tight text-white md:text-[30px]">
+            {title}
+          </h3>
+          <p className="mt-4 max-w-[36ch] text-[13px] leading-[1.65] text-white/75 md:text-[14px]">
+            {body}
+          </p>
+        </div>
+      </div>
+    </motion.article>
   );
 }
 
