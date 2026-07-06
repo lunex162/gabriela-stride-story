@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
+import { motion, useReducedMotion } from "motion/react";
 import { Reveal } from "./Reveal";
 import { useT } from "@/i18n/LocaleContext";
 import portraitStadium from "@/assets/photos/portrait-stadium.jpg";
@@ -183,13 +183,6 @@ export function About() {
   const photoWrapRef = useRef<HTMLDivElement | null>(null);
   const reduce = useReducedMotion();
 
-  // Parallax: photo moves slower than text, big background word crawls
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "end start"],
-  });
-  const photoY = useTransform(scrollYProgress, [0, 1], ["-6%", "6%"]);
-
   // Subtle 3D tilt on mouse move
   const [tilt, setTilt] = useState({ rx: 0, ry: 0 });
   const onMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -209,9 +202,9 @@ export function About() {
       ref={sectionRef}
       className="relative isolate overflow-hidden bg-background pb-28 pt-16 text-ink md:pb-40 md:pt-24"
     >
-      <div className="mx-auto grid max-w-[1500px] grid-cols-1 items-start gap-16 px-6 md:grid-cols-2 md:gap-[96px] md:px-12">
+      <div className="mx-auto grid max-w-[1500px] grid-cols-1 items-start gap-16 px-6 md:grid-cols-2 md:items-stretch md:gap-[96px] md:px-12">
         {/* LEFT — text + badges */}
-        <div className="relative flex flex-col">
+        <div className="relative flex flex-col self-stretch">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -239,11 +232,11 @@ export function About() {
 
         {/* RIGHT — portrait */}
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           viewport={{ once: true, margin: "-10%" }}
           transition={{ duration: 1, delay: 0.5, ease }}
-          className="relative flex flex-col"
+          className="relative flex flex-col self-stretch"
           style={{ perspective: "1200px" }}
           onMouseMove={onMouseMove}
           onMouseLeave={onMouseLeave}
@@ -260,8 +253,7 @@ export function About() {
 
           <motion.div
             ref={photoWrapRef}
-            style={{ y: photoY }}
-            className="relative mx-auto w-full max-w-[620px]"
+            className="relative mx-auto w-full max-w-[620px] flex-1 overflow-hidden rounded-2xl md:h-full"
           >
             <motion.img
               src={gagaAbout.url}
@@ -269,7 +261,7 @@ export function About() {
               loading="lazy"
               animate={{ rotateX: tilt.rx, rotateY: tilt.ry }}
               transition={{ duration: 0.6, ease }}
-              className="block h-auto w-full rounded-2xl will-change-transform"
+              className="block h-auto w-full rounded-2xl will-change-transform md:h-full md:object-cover"
               style={{ transformStyle: "preserve-3d" }}
             />
           </motion.div>
