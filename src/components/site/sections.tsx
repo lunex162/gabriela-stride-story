@@ -561,11 +561,11 @@ export function Achievements() {
               <span className="h-px w-10 bg-[--gold]" /> {t("achievements.eyebrow")}
             </div>
             <h2 className="mt-6 font-display leading-[0.92] tracking-tight text-ink">
-              <span className="block text-[9.5vw] sm:text-[6.5vw] md:text-[4.5vw] xl:text-[5.2rem]">
+              <span className="block text-[8vw] sm:text-[5.5vw] md:text-[3.7vw] xl:text-[4.2rem]">
                 {t("achievements.title.line1")}
               </span>
               <span
-                className="block font-serif-display italic text-[--gold] text-[9.5vw] sm:text-[6.5vw] md:text-[4.5vw] xl:text-[5.2rem]"
+                className="block font-serif-display italic text-[--gold] text-[8vw] sm:text-[5.5vw] md:text-[3.7vw] xl:text-[4.2rem]"
                 style={{ marginTop: "-0.06em" }}
               >
                 {t("achievements.title.line2")}
@@ -1179,11 +1179,11 @@ export function Contact() {
             <span className="h-px w-10 bg-[--gold]" /> {t("contact.eyebrow")}
           </div>
           <h2 className="mt-6 font-display leading-[0.92] tracking-tight text-ink">
-            <span className="block text-[9.5vw] sm:text-[6.5vw] md:text-[4.5vw] xl:text-[5.2rem]">
+            <span className="block text-[8vw] sm:text-[5.5vw] md:text-[3.7vw] xl:text-[4.2rem]">
               {t("contact.title.line1")}
             </span>
             <span
-              className="block font-serif-display italic text-[--gold] text-[9.5vw] sm:text-[6.5vw] md:text-[4.5vw] xl:text-[5.2rem]"
+              className="block font-serif-display italic text-[--gold] text-[8vw] sm:text-[5.5vw] md:text-[3.7vw] xl:text-[4.2rem]"
               style={{ marginTop: "-0.06em" }}
             >
               {t("contact.title.line2")}
