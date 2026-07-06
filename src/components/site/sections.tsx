@@ -751,20 +751,39 @@ const SPONSOR_LAYOUT = [
 export function Partners() {
   const t = useT();
   return (
-    <section className="relative overflow-hidden px-5 py-20 text-ink md:px-12 md:py-28">
+    <section className="relative overflow-hidden px-5 py-24 text-ink md:px-12 md:py-32">
+      {/* Editorial background — ivory gradient + faint gold rings */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0"
         style={{
           background:
-            "radial-gradient(50% 40% at 0% 100%, rgba(214,189,159,0.20) 0%, transparent 60%)",
+            "linear-gradient(180deg, #FBF7EE 0%, #F6EEDE 55%, #FBF7EE 100%)",
+        }}
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 opacity-70"
+        style={{
+          background:
+            "radial-gradient(40% 30% at 12% 20%, rgba(176,147,94,0.18) 0%, transparent 60%), radial-gradient(38% 32% at 88% 80%, rgba(176,147,94,0.14) 0%, transparent 65%)",
+        }}
+      />
+      {/* Very faint hairline track lines */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 top-1/2 h-40 -translate-y-1/2 opacity-[0.08]"
+        style={{
+          backgroundImage:
+            "repeating-linear-gradient(180deg, rgba(176,147,94,0.9) 0px, rgba(176,147,94,0.9) 1px, transparent 1px, transparent 22px)",
         }}
       />
 
       <div className="relative mx-auto max-w-[1700px]">
-        <div className="grid items-end gap-10 md:grid-cols-12">
+        {/* ── Editorial header ── */}
+        <div className="grid items-end gap-12 md:grid-cols-12 md:gap-16">
           <Reveal className="md:col-span-7">
-            <div className="mb-5 flex items-center gap-3 text-[10px] uppercase tracking-[0.45em] text-[--gold]">
+            <div className="mb-6 flex items-center gap-3 text-[10px] uppercase tracking-[0.45em] text-[--gold]">
               <span className="h-px w-10 bg-[--gold]" /> {t("partners.eyebrow")}
             </div>
             <h2 className="font-display leading-[0.92] tracking-tight text-ink">
@@ -780,80 +799,110 @@ export function Partners() {
             </h2>
           </Reveal>
           <Reveal className="md:col-span-4 md:col-start-9" delay={120}>
-            <p className="text-[14px] leading-[1.75] text-ink/80 md:text-[15px]">
+            <p className="text-[14px] leading-[1.8] text-ink/75 md:text-[15px]">
               {t("partners.lead")}
             </p>
           </Reveal>
         </div>
 
-        {/* Sponsor tribute cards */}
-        <div className="mt-14 grid grid-cols-1 gap-6 md:mt-20 md:grid-cols-3 md:gap-8">
-          {SPONSOR_LAYOUT.map((p, i) => (
-            <Reveal key={p.key} delay={i * 120}>
-              <motion.article
-                whileHover={{ y: -4 }}
-                transition={{ duration: 0.5, ease }}
-                className="group relative flex h-full flex-col bg-[#FBF6EA]"
+        {/* ── Premium partner cards ── */}
+        {/* Mobile: horizontal snap carousel · Desktop: 3 equal columns */}
+        <div className="mt-20 md:mt-28">
+          <div
+            className="-mx-5 flex snap-x snap-mandatory gap-5 overflow-x-auto px-5 pb-6 [scrollbar-width:none] [-ms-overflow-style:none] md:mx-0 md:grid md:grid-cols-3 md:gap-10 md:overflow-visible md:px-0 md:pb-0 lg:gap-14"
+            style={{ WebkitOverflowScrolling: "touch" }}
+          >
+            <style>{`
+              .partner-scroll::-webkit-scrollbar { display: none; }
+              @keyframes partnerShine {
+                0%   { transform: translateX(-120%) skewX(-18deg); }
+                100% { transform: translateX(220%) skewX(-18deg); }
+              }
+            `}</style>
+            {SPONSOR_LAYOUT.map((p, i) => (
+              <Reveal
+                key={p.key}
+                delay={i * 140}
+                className="min-w-[82%] shrink-0 snap-center first:pl-0 last:pr-0 sm:min-w-[62%] md:min-w-0 md:shrink"
               >
-                {/* Hairline double frame */}
-                <span
-                  aria-hidden
-                  className="pointer-events-none absolute inset-0 border border-[--gold]/40 transition-colors duration-500 group-hover:border-[--gold]"
-                />
-                <span
-                  aria-hidden
-                  className="pointer-events-none absolute inset-[7px] border border-[--gold]/15"
-                />
-                {/* Ornate corner marks */}
-                {[
-                  "top-2 left-2",
-                  "top-2 right-2 rotate-90",
-                  "bottom-2 left-2 -rotate-90",
-                  "bottom-2 right-2 rotate-180",
-                ].map((pos) => (
+                <motion.article
+                  whileHover={{ y: -8, scale: 1.02 }}
+                  transition={{ duration: 0.45, ease }}
+                  className="group relative flex h-full min-h-[420px] flex-col overflow-hidden rounded-[26px] border border-[--gold]/25 p-8 text-center md:min-h-[480px] md:p-10"
+                  style={{
+                    background:
+                      "linear-gradient(160deg, rgba(255,251,242,0.92) 0%, rgba(246,238,222,0.78) 60%, rgba(238,226,201,0.72) 100%)",
+                    backdropFilter: "blur(14px) saturate(140%)",
+                    boxShadow:
+                      "0 30px 70px -40px rgba(120,90,40,0.35), inset 0 1px 0 rgba(255,255,255,0.7), inset 0 0 40px rgba(214,189,159,0.15)",
+                  }}
+                >
+                  {/* Inner glow ring */}
                   <span
-                    key={pos}
                     aria-hidden
-                    className={`pointer-events-none absolute h-4 w-4 ${pos}`}
+                    className="pointer-events-none absolute inset-0 rounded-[26px] transition-all duration-500 group-hover:shadow-[inset_0_0_0_1px_rgba(176,147,94,0.55)]"
+                  />
+                  {/* Gold shine sweep on hover */}
+                  <span
+                    aria-hidden
+                    className="pointer-events-none absolute inset-0 overflow-hidden rounded-[26px]"
                   >
-                    <span className="absolute left-0 top-0 h-px w-3 bg-[--gold]" />
-                    <span className="absolute left-0 top-0 h-3 w-px bg-[--gold]" />
+                    <span
+                      className="absolute top-0 h-full w-1/3 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                      style={{
+                        background:
+                          "linear-gradient(115deg, transparent 0%, rgba(255,240,205,0.55) 45%, rgba(255,255,255,0.85) 50%, rgba(255,240,205,0.55) 55%, transparent 100%)",
+                        animation: "partnerShine 1.4s ease-out",
+                        animationPlayState: "paused",
+                      }}
+                      onAnimationEnd={(e) => {
+                        (e.currentTarget as HTMLElement).style.animationPlayState = "paused";
+                      }}
+                    />
+                    <span
+                      className="absolute inset-0"
+                      style={{
+                        background:
+                          "linear-gradient(120deg, transparent 40%, rgba(255,255,255,0) 60%)",
+                      }}
+                    />
                   </span>
-                ))}
 
-                <div className="relative flex flex-1 flex-col items-center justify-between gap-10 px-8 py-12 text-center md:px-10 md:py-16">
-                  {/* Small caption top */}
-                  <div className="text-[10px] uppercase tracking-[0.45em] text-ink-soft">
+                  {/* Top eyebrow — PARTNER 01 */}
+                  <div className="relative text-[10px] uppercase tracking-[0.5em] text-ink-soft">
                     Partner · {String(i + 1).padStart(2, "0")}
                   </div>
 
-                  {/* Wordmark — display + italic blend */}
-                  <div className="flex flex-col items-center">
-                    <div className="font-serif-display text-6xl italic leading-none text-ink md:text-7xl">
+                  {/* Big wordmark logo */}
+                  <div className="relative mt-auto flex flex-col items-center pt-10">
+                    <div
+                      className="font-serif-display text-[64px] italic leading-none text-ink transition-transform duration-500 group-hover:scale-[1.06] md:text-[84px]"
+                      style={{
+                        textShadow:
+                          "0 1px 0 rgba(255,255,255,0.6), 0 8px 22px rgba(120,90,40,0.18)",
+                      }}
+                    >
                       {p.mono}
                     </div>
-                    <div className="mt-4 h-px w-12 bg-[--gold]" />
-                    <div className="mt-4 font-display text-sm tracking-[0.35em] text-ink/80 uppercase md:text-base">
+                    <div className="mt-5 h-px w-10 bg-[--gold]/60" />
+                    <div className="mt-4 font-display text-[11px] uppercase tracking-[0.4em] text-ink/80 md:text-xs">
                       {p.name}
-                    </div>
-                    <div className="mt-2 text-[10px] uppercase tracking-[0.35em] text-ink-soft">
-                      {p.caption}
                     </div>
                   </div>
 
-                  {/* Role + body */}
-                  <div className="space-y-3">
-                    <div className="text-[10px] uppercase tracking-[0.4em] text-[--gold]">
-                      {t(`${p.key}.role`)}
-                    </div>
-                    <p className="font-serif-display text-base italic leading-[1.55] text-ink/85 md:text-lg">
-                      {t(`${p.key}.body`)}
-                    </p>
+                  {/* Role label */}
+                  <div className="relative mt-8 text-[10px] uppercase tracking-[0.45em] text-[--gold]">
+                    {t(`${p.key}.role`)}
                   </div>
-                </div>
-              </motion.article>
-            </Reveal>
-          ))}
+
+                  {/* Elegant italic line */}
+                  <p className="relative mt-4 font-serif-display text-[15px] italic leading-[1.6] text-ink/70 md:text-base">
+                    {t(`${p.key}.body`)}
+                  </p>
+                </motion.article>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </div>
     </section>
