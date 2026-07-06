@@ -582,7 +582,7 @@ export function Journey() {
             </div>
 
             {/* Distance counter line below lane */}
-            <div className="mt-5 flex items-center justify-end">
+            <div className="mt-5 flex items-center justify-center">
               <span className="font-display text-2xl tabular-nums leading-none md:text-3xl">
                 <span className="text-[--gold-soft]">{String(distance).padStart(3, "0")}</span>
                 <span className="text-white/35">/800</span>
