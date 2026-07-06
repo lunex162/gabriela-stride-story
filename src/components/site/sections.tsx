@@ -286,7 +286,7 @@ export function About() {
           </motion.div>
 
           {/* Stats — 2 under photo (desktop only) */}
-          <StatsRow stats={stats.slice(2, 4)} className="hidden pt-10 md:grid" />
+          <StatsRow stats={stats.slice(2, 4)} className="hidden pt-6 md:grid" />
 
           {/* Stats — all 4 under photo (mobile only) */}
           <StatsRow stats={stats} className="gap-y-10 pt-10 text-center justify-items-center md:hidden" />
