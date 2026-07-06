@@ -849,16 +849,7 @@ export function Partners() {
   // Duplicate for seamless marquee loop
   const loop = [...PARTNER_LOGOS, ...PARTNER_LOGOS];
   return (
-    <section className="relative overflow-hidden px-5 py-24 text-ink md:px-12 md:py-32">
-      {/* Ivory gradient background — continues the site tone */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0"
-        style={{
-          background:
-            "linear-gradient(180deg, #FBF7EE 0%, #F6EEDE 55%, #FBF7EE 100%)",
-        }}
-      />
+    <section className="relative overflow-hidden bg-background px-5 py-24 text-ink md:px-12 md:py-32">
 
       <div className="relative mx-auto max-w-[1700px]">
         {/* ── Editorial header ── */}
