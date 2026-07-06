@@ -819,7 +819,7 @@ export function Press() {
   return (
     <section
       id="press"
-      className="relative overflow-hidden px-5 pt-8 pb-10 text-ink md:px-12 md:pb-12"
+      className="relative overflow-hidden px-5 pt-8 pb-6 text-ink md:px-12 md:pb-8"
     >
       <div className="relative mx-auto max-w-[1400px]">
         {/* Editorial header */}
@@ -1043,7 +1043,7 @@ export function Partners() {
   // Duplicate for seamless marquee loop
   const loop = [...PARTNER_LOGOS, ...PARTNER_LOGOS];
   return (
-    <section className="relative overflow-hidden px-5 py-10 text-ink md:px-12 md:py-12">
+    <section className="relative overflow-hidden px-5 pt-6 pb-10 text-ink md:px-12 md:pt-8 md:pb-12">
 
       <div className="relative mx-auto max-w-[1700px]">
         {/* ── Editorial header ── */}
@@ -1072,7 +1072,7 @@ export function Partners() {
         </div>
 
         {/* ── Partner strip — dark luxury panel with slow marquee ── */}
-        <Reveal delay={200} className="mt-20 md:mt-28">
+        <Reveal delay={200} className="mt-14 md:mt-20">
           <div
             className="group/strip relative overflow-hidden rounded-[32px]"
             style={{
