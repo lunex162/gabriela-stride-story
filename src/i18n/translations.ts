@@ -428,6 +428,25 @@ export const translations: Record<Locale, Dict> = {
     "partners.lead":
       "Behind every success there is a team of people and partners who help me push my limits. Thank you for being part of my journey.",
 
+    "press.eyebrow": "In the media",
+    "press.title.line1": "Featured",
+    "press.title.line2": "in press",
+    "press.lead":
+      "A selection of pieces from leading Slovak outlets covering my journey, achievements and milestones.",
+    "press.cta": "Read article",
+    "press.date1": "May 2025",
+    "press.title1": "Gabriela Gajanová among Forbes 30 Under 30",
+    "press.excerpt1":
+      "The European silver medallist joined the most prominent young Slovak personalities in the prestigious Forbes 30 Under 30 list.",
+    "press.date2": "November 7, 2024",
+    "press.title2": "Athlete of the Year 2024: First time on the throne",
+    "press.excerpt2":
+      "After a breakthrough season, European silver and a national record, Gabriela Gajanová won her first Slovak Athlete of the Year title.",
+    "press.date3": "February 13, 2025",
+    "press.title3": "Slovak record pushed once again",
+    "press.excerpt3":
+      "At the meeting in Liévin, France, she broke her own Slovak 800 m record and reaffirmed her place among Europe's elite.",
+
     "social.eyebrow": "Social",
     "social.title": "Follow my journey",
     "social.lead":
