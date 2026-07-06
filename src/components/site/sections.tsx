@@ -819,7 +819,7 @@ export function Press() {
   return (
     <section
       id="press"
-      className="relative overflow-hidden px-5 pt-8 pb-16 text-ink md:px-12 md:pb-20"
+      className="relative overflow-hidden px-5 pt-8 pb-10 text-ink md:px-12 md:pb-12"
     >
       <div className="relative mx-auto max-w-[1400px]">
         {/* Editorial header */}
@@ -1043,7 +1043,7 @@ export function Partners() {
   // Duplicate for seamless marquee loop
   const loop = [...PARTNER_LOGOS, ...PARTNER_LOGOS];
   return (
-    <section className="relative overflow-hidden px-5 py-16 text-ink md:px-12 md:py-20">
+    <section className="relative overflow-hidden px-5 py-10 text-ink md:px-12 md:py-12">
 
       <div className="relative mx-auto max-w-[1700px]">
         {/* ── Editorial header ── */}
@@ -1161,7 +1161,7 @@ export function Contact() {
   return (
     <section
       id="contact"
-      className="relative overflow-hidden px-5 py-16 text-ink md:px-12 md:py-20"
+      className="relative overflow-hidden px-5 pt-10 pb-16 text-ink md:px-12 md:pt-12 md:pb-20"
     >
       <div
         aria-hidden
