@@ -397,7 +397,7 @@ export function Journey() {
   }, []);
 
   const distance = Math.round(progress * 800);
-  const activeIdx = Math.min(8, Math.round((progress * 800) / 100));
+  const activeIdx = Math.min(8, Math.floor((progress * 800) / 100));
   const active = milestones[activeIdx];
 
   return (
