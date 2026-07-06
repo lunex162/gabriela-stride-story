@@ -852,7 +852,7 @@ export function Press() {
   return (
     <section
       id="press"
-      className="relative overflow-hidden px-5 py-24 text-ink md:px-12 md:py-32"
+      className="relative overflow-hidden px-5 pt-8 pb-16 text-ink md:px-12 md:pb-20"
     >
       <div className="relative mx-auto max-w-[1400px]">
         {/* Editorial header */}
