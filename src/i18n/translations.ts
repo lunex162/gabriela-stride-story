@@ -50,12 +50,11 @@ export const translations: Record<Locale, Dict> = {
     "about.stat4.value": "Striebro",
     "about.stat4.label": "ME 2024 Rím",
 
-    "achievements.eyebrow": "Úspechy",
+    "achievements.eyebrow": "\n",
     "achievements.title": "Najväčšie úspechy",
     "achievements.title.line1": "NAJVÄČŠIE",
     "achievements.title.line2": "úspechy",
-    "achievements.lead":
-      "Od slovenských juniorských medailí po pódium na Majstrovstvách Európy a slovenský rekord na olympiáde v Paríži.",
+    "achievements.lead": "\n",
 
     "med1.title": "Majstrovstvá Európy",
     "med1.place": "Rím · Taliansko",
