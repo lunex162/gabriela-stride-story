@@ -1359,33 +1359,41 @@ export function Footer() {
   const t = useT();
   const year = new Date().getFullYear();
   return (
-    <footer className="relative overflow-hidden bg-[#15100B] px-6 pt-12 pb-5 text-white md:px-12">
-      <div className="mx-auto max-w-[1700px]">
-        <div className="grid gap-8 md:grid-cols-12">
-          <div className="md:col-span-4">
-            <img
-              src={logoAsset.url}
-              alt="GAGA"
-              className="h-40 w-auto brightness-0 invert"
-            />
-            <p className="mt-4 max-w-sm text-sm leading-relaxed text-white/65">
-              {t("footer.tagline")}
-            </p>
-          </div>
-          <div className="md:col-span-2 md:col-start-5">
+    <footer className="relative overflow-hidden bg-[#15100B] px-6 pt-14 pb-6 text-white md:px-12">
+      <div className="mx-auto max-w-[1200px]">
+        {/* Logo */}
+        <div className="mb-10 flex justify-center md:mb-12">
+          <img
+            src={logoAsset.url}
+            alt="GAGA"
+            className="h-24 w-auto brightness-0 invert md:h-28"
+          />
+        </div>
+
+        {/* 3 columns */}
+        <div className="grid gap-10 md:grid-cols-3 md:gap-8">
+          {/* GaGa s.r.o. */}
+          <div className="text-center md:text-left">
             <div className="text-[10px] uppercase tracking-[0.35em] text-[--gold-soft]">
-              {t("footer.follow")}
+              GaGa s. r. o.
             </div>
-            <ul className="mt-2.5 space-y-3 text-sm">
-              <li><a href="#" className="hover:text-[--gold-soft]">Instagram</a></li>
-              <li><a href="#" className="hover:text-[--gold-soft]">Threads</a></li>
+            <ul className="mt-4 space-y-2.5 text-sm text-white/70">
+              <li>IČO: 56948344</li>
+              <li>DIČ: 2122531455</li>
+              <li className="pt-1 leading-relaxed">
+                Sídlo:<br />
+                Martina Martinčeka 4701/2<br />
+                031 01 Liptovský Mikuláš
+              </li>
             </ul>
           </div>
-          <div className="md:col-span-3">
+
+          {/* Kontakt */}
+          <div className="text-center md:text-left">
             <div className="text-[10px] uppercase tracking-[0.35em] text-[--gold-soft]">
               {t("footer.contact")}
             </div>
-            <ul className="mt-2.5 space-y-3 text-sm">
+            <ul className="mt-4 space-y-2.5 text-sm">
               <li>
                 <a href="mailto:ggajanova@gmail.com" className="hover:text-[--gold-soft]">
                   ggajanova@gmail.com
@@ -1396,26 +1404,32 @@ export function Footer() {
                   mariagajanova17@gmail.com
                 </a>
               </li>
-              <li><a href="#contact" className="hover:text-[--gold-soft]">{t("contact.form.send")}</a></li>
+              <li>
+                <a href="#contact" className="hover:text-[--gold-soft]">
+                  {t("contact.form.send") || "Kontaktný formulár"}
+                </a>
+              </li>
             </ul>
           </div>
-          <div className="md:col-span-3">
+
+          {/* Sledujte ma */}
+          <div className="text-center md:text-left">
             <div className="text-[10px] uppercase tracking-[0.35em] text-[--gold-soft]">
-              GaGa s. r. o.
+              {t("footer.follow")}
             </div>
-            <ul className="mt-2.5 space-y-3 text-sm text-white/65">
-              <li>IČO: 56948344</li>
-              <li>DIČ: 2122531455</li>
+            <ul className="mt-4 space-y-2.5 text-sm">
               <li>
-                Sídlo:<br />
-                Martina Martinčeka 4701/2<br />
-                031 01 Liptovský Mikuláš
+                <a href="#" className="hover:text-[--gold-soft]">Instagram</a>
+              </li>
+              <li>
+                <a href="#" className="hover:text-[--gold-soft]">Threads</a>
               </li>
             </ul>
           </div>
         </div>
 
-        <div className="mt-10 flex flex-col items-start justify-between gap-4 border-t border-white/10 pt-4 text-[10px] uppercase tracking-[0.35em] text-white/45 md:flex-row md:items-center">
+        {/* Bottom bar */}
+        <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-white/10 pt-5 text-[10px] uppercase tracking-[0.35em] text-white/45 md:flex-row md:gap-0">
           <span>© {year} Gabriela Gajanová · {t("footer.rights")}</span>
           <span>{t("footer.location")}</span>
         </div>
