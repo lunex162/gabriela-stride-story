@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "asset_id": "2b6f38d9-dd22-49e9-b950-ab8551ee2570",
+  "asset_id": "bb9792ca-dc34-4971-a803-c6a47fbb03d1",
   "project_id": "832634b5-f51a-475e-a270-3f7533798a77",
-  "url": "/__l5e/assets-v1/2b6f38d9-dd22-49e9-b950-ab8551ee2570/gaga-about.png",
-  "r2_key": "a/v1/832634b5-f51a-475e-a270-3f7533798a77/2b6f38d9-dd22-49e9-b950-ab8551ee2570/gaga-about.png",
-  "original_filename": "gaga-about.png",
-  "size": 3065062,
-  "content_type": "image/png",
-  "created_at": "2026-07-05T22:12:31Z"
+  "url": "/__l5e/assets-v1/bb9792ca-dc34-4971-a803-c6a47fbb03d1/gaga-about.webp",
+  "r2_key": "a/v1/832634b5-f51a-475e-a270-3f7533798a77/bb9792ca-dc34-4971-a803-c6a47fbb03d1/gaga-about.webp",
+  "original_filename": "gaga-about.webp",
+  "size": 170428,
+  "content_type": "image/webp",
+  "created_at": "2026-09-02T22:55:44Z"
 }
