@@ -1251,16 +1251,18 @@ export function Contact() {
                 </div>
                 <div className="flex flex-col gap-8">
                   {[
-                    ["Instagram", "@gabriela.gajanova"],
-                    ["Threads", "@gabriela.gajanova"],
-                  ].map(([label, handle]) => (
+                    ["Instagram", "@gabigajanova", "https://www.instagram.com/gabigajanova/"],
+                    ["Threads", "@gabigajanova", "https://www.threads.net/@gabigajanova"],
+                  ].map(([label, handle, url]) => (
                     <div key={label}>
                       <dt className="text-[10px] uppercase tracking-[0.5em] text-white/60">
                         {label}
                       </dt>
                       <dd className="mt-3">
                         <a
-                          href="#"
+                          href={url}
+                          target="_blank"
+                          rel="noopener noreferrer"
                           className="font-display text-lg text-white transition-colors hover:text-[--gold-soft] md:text-xl"
                         >
                           {handle}
@@ -1419,10 +1421,10 @@ export function Footer() {
             </div>
             <ul className="mt-4 space-y-2.5 text-sm">
               <li>
-                <a href="#" className="hover:text-[--gold-soft]">Instagram</a>
+                <a href="https://www.instagram.com/gabigajanova/" target="_blank" rel="noopener noreferrer" className="hover:text-[--gold-soft]">Instagram</a>
               </li>
               <li>
-                <a href="#" className="hover:text-[--gold-soft]">Threads</a>
+                <a href="https://www.threads.net/@gabigajanova" target="_blank" rel="noopener noreferrer" className="hover:text-[--gold-soft]">Threads</a>
               </li>
             </ul>
           </div>
