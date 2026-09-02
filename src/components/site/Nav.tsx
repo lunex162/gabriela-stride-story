@@ -28,6 +28,8 @@ export function Nav() {
           <img
             src={logoAsset.url}
             alt="GAGA"
+            loading="lazy"
+            decoding="async"
             className={`h-16 w-auto transition-all duration-500 md:h-20 ${
               scrolled ? "opacity-0" : "brightness-0 invert"
             }`}
