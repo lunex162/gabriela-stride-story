@@ -1391,6 +1391,11 @@ export function Footer() {
                   ggajanova@gmail.com
                 </a>
               </li>
+              <li>
+                <a href="mailto:mariagajanova17@gmail.com" className="hover:text-[--gold-soft]">
+                  mariagajanova17@gmail.com
+                </a>
+              </li>
               <li><a href="#contact" className="hover:text-[--gold-soft]">{t("contact.form.send")}</a></li>
             </ul>
           </div>
