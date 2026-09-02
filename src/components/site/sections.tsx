@@ -3,6 +3,7 @@ import { motion, useReducedMotion } from "motion/react";
 import { Reveal } from "./Reveal";
 import { useT } from "@/i18n/LocaleContext";
 import portraitStadium from "@/assets/photos/portrait-stadium.jpg";
+import { HeroVideo } from "./HeroVideo";
 import parisRace from "@/assets/photos/paris-race.jpg";
 import indoorRace from "@/assets/photos/indoor-race.jpg";
 import action1 from "@/assets/photos/action-1.jpg";
@@ -44,15 +45,7 @@ export function Hero() {
           transform: `translate3d(0, ${y * 0.2}px, 0) scale(${1.04 + y * 0.00012})`,
         }}
       >
-        <video
-          className="h-full w-full object-cover"
-          autoPlay
-          muted
-          loop
-          playsInline
-          poster={portraitStadium}
-          src="/video/hero.mp4"
-        />
+        <HeroVideo poster={portraitStadium} className="h-full w-full" />
       </div>
 
       {/* Warm deep overlay — feels like sunset stadium, not harsh black */}
@@ -687,6 +680,8 @@ export function Quote() {
       <img
         src={quoteRaceAsset.url}
         alt=""
+        loading="lazy"
+        decoding="async"
         className="absolute inset-0 h-full w-full object-cover"
       />
       <div
@@ -1368,6 +1363,8 @@ export function Footer() {
           <img
             src={logoAsset.url}
             alt="GAGA"
+            loading="lazy"
+            decoding="async"
             className="h-24 w-auto brightness-0 invert md:h-28"
           />
         </div>
