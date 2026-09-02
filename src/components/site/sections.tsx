@@ -1361,8 +1361,8 @@ export function Footer() {
   return (
     <footer className="relative overflow-hidden bg-[#15100B] px-6 pt-12 pb-5 text-white md:px-12">
       <div className="mx-auto max-w-[1700px]">
-        <div className="grid gap-6 md:grid-cols-12">
-          <div className="md:col-span-6">
+        <div className="grid gap-8 md:grid-cols-12">
+          <div className="md:col-span-4">
             <img
               src={logoAsset.url}
               alt="GAGA"
@@ -1372,7 +1372,7 @@ export function Footer() {
               {t("footer.tagline")}
             </p>
           </div>
-          <div className="md:col-span-3 md:col-start-8">
+          <div className="md:col-span-2 md:col-start-5">
             <div className="text-[10px] uppercase tracking-[0.35em] text-[--gold-soft]">
               {t("footer.follow")}
             </div>
@@ -1397,6 +1397,20 @@ export function Footer() {
                 </a>
               </li>
               <li><a href="#contact" className="hover:text-[--gold-soft]">{t("contact.form.send")}</a></li>
+            </ul>
+          </div>
+          <div className="md:col-span-3">
+            <div className="text-[10px] uppercase tracking-[0.35em] text-[--gold-soft]">
+              GaGa s. r. o.
+            </div>
+            <ul className="mt-2.5 space-y-3 text-sm text-white/65">
+              <li>IČO: 56948344</li>
+              <li>DIČ: 2122531455</li>
+              <li>
+                Sídlo:<br />
+                Martina Martinčeka 4701/2<br />
+                031 01 Liptovský Mikuláš
+              </li>
             </ul>
           </div>
         </div>
