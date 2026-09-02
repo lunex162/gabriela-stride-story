@@ -1237,13 +1237,22 @@ export function Contact() {
                   <dt className="text-[10px] uppercase tracking-[0.5em] text-white/60">
                     E-mail
                   </dt>
-                  <dd className="mt-3">
+                  <dd className="mt-3 space-y-2">
                     <a
                       href="mailto:ggajanova@gmail.com"
                       className="group/mail inline-flex items-center gap-3 font-display text-2xl tracking-wide text-white md:text-3xl"
                     >
                       <span className="relative">
                         ggajanova@gmail.com
+                        <span className="absolute -bottom-1 left-0 h-px w-full origin-left scale-x-0 bg-[--gold-soft] transition-transform duration-700 group-hover/mail:scale-x-100" />
+                      </span>
+                    </a>
+                    <a
+                      href="mailto:mariagajanova17@gmail.com"
+                      className="group/mail block font-display text-2xl tracking-wide text-white md:text-3xl"
+                    >
+                      <span className="relative">
+                        mariagajanova17@gmail.com
                         <span className="absolute -bottom-1 left-0 h-px w-full origin-left scale-x-0 bg-[--gold-soft] transition-transform duration-700 group-hover/mail:scale-x-100" />
                       </span>
                     </a>
