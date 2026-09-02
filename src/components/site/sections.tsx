@@ -1233,6 +1233,22 @@ export function Contact() {
             <div className="md:col-span-5">
               <span className="mb-6 block h-px w-10 bg-[--gold-soft]" />
               <dl className="space-y-8 text-sm">
+                <div>
+                  <dt className="text-[10px] uppercase tracking-[0.5em] text-white/60">
+                    E-mail
+                  </dt>
+                  <dd className="mt-3">
+                    <a
+                      href="mailto:ggajanova@gmail.com"
+                      className="group/mail inline-flex items-center gap-3 font-display text-2xl tracking-wide text-white md:text-3xl"
+                    >
+                      <span className="relative">
+                        ggajanova@gmail.com
+                        <span className="absolute -bottom-1 left-0 h-px w-full origin-left scale-x-0 bg-[--gold-soft] transition-transform duration-700 group-hover/mail:scale-x-100" />
+                      </span>
+                    </a>
+                  </dd>
+                </div>
                 <div className="flex flex-col gap-8">
                   {[
                     ["Instagram", "@gabriela.gajanova"],
@@ -1257,19 +1273,10 @@ export function Contact() {
                   <dt className="text-[10px] uppercase tracking-[0.5em] text-white/60">
                     ADMINISTRATÍVA & SPOLUPRÁCE
                   </dt>
-                  <dd className="mt-3 space-y-2">
-                    <a
-                      href="mailto:ggajanova@gmail.com"
-                      className="group/mail block font-display text-2xl tracking-wide text-white md:text-3xl"
-                    >
-                      <span className="relative">
-                        ggajanova@gmail.com
-                        <span className="absolute -bottom-1 left-0 h-px w-full origin-left scale-x-0 bg-[--gold-soft] transition-transform duration-700 group-hover/mail:scale-x-100" />
-                      </span>
-                    </a>
+                  <dd className="mt-3">
                     <a
                       href="mailto:mariagajanova17@gmail.com"
-                      className="group/mail block font-display text-2xl tracking-wide text-white md:text-3xl"
+                      className="group/mail inline-flex items-center gap-3 font-display text-2xl tracking-wide text-white md:text-3xl"
                     >
                       <span className="relative">
                         mariagajanova17@gmail.com
