@@ -259,6 +259,7 @@ export function About() {
               src={gagaAbout.url}
               alt="Gabriela Gajanová — Tokyo 2025"
               loading="lazy"
+              decoding="async"
               animate={{ rotateX: tilt.rx, rotateY: tilt.ry }}
               transition={{ duration: 0.6, ease }}
               className="block h-auto w-full rounded-2xl will-change-transform md:h-full md:object-cover"
@@ -628,6 +629,7 @@ function AchievementCard({
         src={data.photo}
         alt={title}
         loading="lazy"
+        decoding="async"
         className="absolute inset-0 h-full w-full object-cover"
         initial={false}
         whileHover={{ scale: 1.06 }}
@@ -887,6 +889,7 @@ export function Press() {
                     src={item.cover}
                     alt={item.outlet}
                     loading="lazy"
+                    decoding="async"
                     className="h-full w-full object-cover transition-transform duration-[900ms] ease-[cubic-bezier(.16,1,.3,1)] group-hover/press:scale-[1.06]"
                     style={{ objectPosition: item.focus ?? "center" }}
                   />
