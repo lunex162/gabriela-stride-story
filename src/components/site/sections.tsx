@@ -1433,7 +1433,14 @@ export function Footer() {
         {/* Bottom bar */}
         <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-white/10 pt-5 text-[10px] uppercase tracking-[0.35em] text-white/45 md:flex-row md:gap-0">
           <span>© {year} Gabriela Gajanová · {t("footer.rights")}</span>
-          <span>{t("footer.location")}</span>
+          <a
+            href="https://www.callora.sk"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="transition-colors hover:text-[--gold-soft]"
+          >
+            Web vytvorila callora.sk
+          </a>
         </div>
       </div>
     </footer>
