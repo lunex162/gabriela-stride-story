@@ -374,7 +374,7 @@ export function Press() {
   return (
     <section
       id="press"
-      className="relative overflow-hidden px-5 pt-8 pb-6 text-ink md:px-12 md:pb-8"
+      className="relative overflow-hidden px-5 pt-20 pb-6 text-ink md:px-12 md:pt-28 md:pb-8"
     >
       <div className="relative mx-auto max-w-[1400px]">
         {/* Editorial header */}
@@ -691,14 +691,6 @@ export function Contact() {
       id="contact"
       className="relative overflow-hidden px-5 pt-10 pb-16 text-ink md:px-12 md:pt-12 md:pb-20"
     >
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0"
-        style={{
-          background:
-            "radial-gradient(55% 40% at 50% 0%, rgba(214,189,159,0.22) 0%, transparent 60%)",
-        }}
-      />
 
       <div className="relative mx-auto max-w-[1700px]">
         {/* Centered title, matching achievements */}
