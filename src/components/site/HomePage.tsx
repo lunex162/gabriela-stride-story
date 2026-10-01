@@ -2,6 +2,8 @@ import { LocaleProvider } from "@/i18n/LocaleContext";
 import type { Locale } from "@/i18n/translations";
 import { Loader } from "./Loader";
 import { Nav } from "./Nav";
+import { RankingSection } from "./RankingSection";
+import { SocialsSection } from "./SocialsSection";
 import {
   Hero,
   About,
@@ -31,7 +33,9 @@ export function HomePage({ locale }: { locale: Locale }) {
         <Nav />
         <Hero />
         <About />
+        <RankingSection />
         <Press />
+        <SocialsSection />
         <Partners />
         <Contact />
         <Footer />

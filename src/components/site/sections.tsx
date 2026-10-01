@@ -2,7 +2,7 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
 import { motion, useReducedMotion } from "motion/react";
 import { Reveal } from "./Reveal";
 import { useLocale, useT } from "@/i18n/LocaleContext";
-import { getWorldRanking, WORLD_RANKING_URL, type WorldRanking } from "@/lib/worldRanking";
+import { formatRankingDate, useWorldRanking } from "./RankingSection";
 import portraitStadium from "@/assets/photos/portrait-stadium.jpg";
 import { HeroVideo } from "./HeroVideo";
 import { SOCIALS } from "@/lib/socials";
@@ -277,25 +277,12 @@ export function About() {
 function WorldRankingBadge() {
   const t = useT();
   const locale = useLocale();
-  const [ranking, setRanking] = useState<WorldRanking>(null);
-
-  useEffect(() => {
-    getWorldRanking().then(setRanking, () => {});
-  }, []);
-
-  const date = ranking?.date
-    ? new Date(ranking.date).toLocaleDateString(locale === "sk" ? "sk-SK" : "en-GB", {
-        day: "numeric",
-        month: "long",
-        year: "numeric",
-      })
-    : null;
+  const { ranking } = useWorldRanking();
+  const date = ranking ? formatRankingDate(ranking.date, locale) : null;
 
   return (
     <motion.a
-      href={WORLD_RANKING_URL}
-      target="_blank"
-      rel="noopener noreferrer"
+      href="#ranking"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-15%" }}
@@ -304,7 +291,7 @@ function WorldRankingBadge() {
       aria-label={t("ranking.cta")}
     >
       <span className="font-display text-[3.25rem] leading-none tracking-tight text-ink md:text-[3.75rem]">
-        {ranking ? (
+        {ranking?.rank ? (
           <>
             <span className="text-[--gold]">#</span>
             {ranking.rank}
@@ -652,6 +639,32 @@ const PARTNER_LOGOS: { name: string; svg: ReactNode }[] = [
           opacity="0.8"
         >
           BANSKÁ BYSTRICA
+        </text>
+      </svg>
+    ),
+  },
+  {
+    name: "EP Management",
+    svg: (
+      <svg viewBox="0 0 190 40" fill="currentColor" aria-hidden>
+        <text
+          x="0" y="31"
+          fontFamily="'Helvetica Neue', Arial, sans-serif"
+          fontWeight={300}
+          fontSize="34"
+          letterSpacing="4"
+        >
+          EP
+        </text>
+        <line x1="58" y1="8" x2="58" y2="34" stroke="currentColor" strokeWidth="1" />
+        <text
+          x="68" y="26"
+          fontFamily="'Helvetica Neue', Arial, sans-serif"
+          fontWeight={500}
+          fontSize="11"
+          letterSpacing="4"
+        >
+          MANAGEMENT
         </text>
       </svg>
     ),

@@ -18,6 +18,7 @@ export function Nav() {
 
   const links = [
     { href: "#about", label: t("nav.about") },
+    { href: "#ranking", label: t("nav.ranking") },
     { href: "#contact", label: t("nav.contact") },
   ];
   const linkClass =
@@ -42,25 +43,27 @@ export function Nav() {
             scrolled ? "pointer-events-none opacity-0" : ""
           }`}
         >
-          <li>
-            <a href={links[0].href} className={linkClass}>
-              {links[0].label}
-            </a>
-          </li>
+          {links.slice(0, 2).map((l) => (
+            <li key={l.href}>
+              <a href={l.href} className={linkClass}>
+                {l.label}
+              </a>
+            </li>
+          ))}
           <li
             className="relative"
             onMouseEnter={() => setSocialsOpen(true)}
             onMouseLeave={() => setSocialsOpen(false)}
           >
-            <button
-              type="button"
-              onClick={() => setSocialsOpen((o) => !o)}
+            <a
+              href="#socials"
+              onFocus={() => setSocialsOpen(true)}
               aria-expanded={socialsOpen}
               aria-haspopup="true"
-              className={`${linkClass} cursor-pointer`}
+              className={linkClass}
             >
               {t("nav.socials")}
-            </button>
+            </a>
             <div
               className={`absolute left-1/2 top-full -translate-x-1/2 pt-4 transition-all duration-300 ${
                 socialsOpen ? "visible opacity-100" : "invisible opacity-0"
@@ -78,8 +81,8 @@ export function Nav() {
             </div>
           </li>
           <li>
-            <a href={links[1].href} className={linkClass}>
-              {links[1].label}
+            <a href={links[2].href} className={linkClass}>
+              {links[2].label}
             </a>
           </li>
         </ul>
