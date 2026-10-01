@@ -50,9 +50,9 @@ export const translations: Record<Locale, Dict> = {
     "about.p1":
       "Volám sa Gabriela Gajanová a beh je už dlhé roky neoddeliteľnou súčasťou môjho života. Som slovenská reprezentantka v behu na 800 metrov, dvojnásobná olympionička a strieborná medailistka z Majstrovstiev Európy 2024 v Ríme.",
     "about.p2":
-      "Pochádzam z Bobrovca na Liptove, kde ma formovala príroda, rodina aj život na rodinnom salaši. Skôr než som objavila atletiku, hrala som futbal. Beh si ma však získal už v jedenástich rokoch a odvtedy je mojou najväčšou vášňou.",
+      "Pochádzam z Bobrovca na Liptove, kde ma formovala príroda, rodina aj život na rodinnom salaši. Beh si ma získal už v jedenástich rokoch a odvtedy je mojou najväčšou vášňou.",
     "about.p3":
-      "Dnes reprezentujem klub AK ZŤS Martin a od roku 2021 trénujem v medzinárodnej tréningovej skupine TeamLouis pod vedením švajčiarskeho trénera Louisa Heyera.",
+      "Dnes reprezentujem VŠC Dukla Banská Bystrica a od roku 2021 trénujem v medzinárodnej tréningovej skupine TeamLouis pod vedením švajčiarskeho trénera Louisa Heyera.",
     "ranking.label": "Svetový rebríček · 800 m",
     "ranking.updated": "Aktualizované",
     "ranking.cta": "Svetový rebríček World Athletics",
@@ -120,70 +120,15 @@ export const translations: Record<Locale, Dict> = {
     "ach6.title": "Bronz · ME do 20 rokov",
     "ach6.body": "Grosseto · 2:07.15 — prvá medzinárodná medaila v juniorskej kategórii.",
 
-    "journey.eyebrow": "Cesta",
-    "journey.title": "Moja cesta",
-    "journey.title.line1": "MOJA",
-    "journey.title.line2": "cesta",
-    "journey.chapter": "Kapitola",
-    "journey.next": "Ďalej",
-    "journey.lead":
-      "Skrolujte. Bežím s vami 800 metrov. Každých 100 metrov je míľnik — miesto, kde sa môj príbeh posunul vpred.",
-    "journey.distanceLabel": "vzdialenosť",
-    "journey.metersShort": "m",
 
-    "m0.title": "Začiatky",
-    "m0.place": "Bobrovec · Liptov",
-    "m0.year": "~2010",
-    "m0.body":
-      "Futbal, prvé behy do kopcov...",
 
-    "m1.title": "Prvá medaila",
-    "m1.place": "Tbilisi · ME junioriek",
-    "m1.year": "2016",
-    "m1.body":
-      "Bronz na Majstrovstvách Európy do 18 rokov — prvý raz na medzinárodnom pódiu. Čas 2:09.43.",
 
-    "m2.title": "Bronz juniorov",
-    "m2.place": "Grosseto · ME do 20 rokov",
-    "m2.year": "2017",
-    "m2.body":
-      "Druhá juniorská medaila v rade. 2:07.15 — signál, že 800 m sa stáva mojím svetom.",
 
-    "m3.title": "MS",
-    "m3.place": "Tampere · MS juniorov",
-    "m3.year": "2018",
-    "m3.body":
-      "Štvrté miesto na MS do 20 rokov v čase 2:01.90. Olympijský sen prestáva byť abstraktný.",
 
-    "m4.title": "Prvá olympiáda",
-    "m4.place": "Tokio · Olympijské hry",
-    "m4.year": "2021",
-    "m4.body":
-      "Tokio.",
 
-    "m5.title": "Bronz Európskych hier",
-    "m5.place": "Chorzów · Európske hry",
-    "m5.year": "2023",
-    "m5.body":
-      "Prvá medaila zo seniorskej európskej akcie — 1:59.92. ",
 
-    "m6.title": "Striebro z ME",
-    "m6.place": "Rím · Majstrovstvá Európy",
-    "m6.year": "2024",
-    "m6.body":
-      "Strieborná medaila na 800 m časom 1:58.79. Najväčší moment kariéry — historický úspech pre slovenskú atletiku.",
 
-    "m7.title": "Slovenský rekord",
-    "m7.place": "Paríž · Olympijské hry",
-    "m7.year": "2024",
-    "m7.body":
-      "1:58.22 v olympijskom semifinále — nový slovenský rekord, ktorý prvý raz zlomil 37 rokov starý čas spod limitu 1:58.",
 
-    "m8.title": "Cesta pokračuje",
-    "m8.place": "Tokio 2025 · Los Angeles 2028",
-    "m8.year": "→",
-    "m8.body":
-      "Čo ma čaká",
 
     "gallery.eyebrow": "Galéria",
     "gallery.title": "Momenty z trate",
@@ -301,9 +246,9 @@ export const translations: Record<Locale, Dict> = {
     "about.p1":
       "My name is Gabriela Gajanová and running has been an inseparable part of my life for many years. I am a Slovak representative in the 800 metres, a two-time Olympian and a silver medalist from the 2024 European Championships in Rome.",
     "about.p2":
-      "I come from Bobrovec in Liptov, where I was shaped by nature, family and life on our sheep farm. Before I discovered athletics, I played football. Running won me over at the age of eleven and has been my greatest passion ever since.",
+      "I come from Bobrovec in Liptov, where I was shaped by nature, family and life on our sheep farm. Running won me over at the age of eleven and has been my greatest passion ever since.",
     "about.p3":
-      "Today I represent AK ZŤS Martin and since 2021 I have trained in the international TeamLouis group under the guidance of Swiss coach Louis Heyer.",
+      "Today I represent VŠC Dukla Banská Bystrica and since 2021 I have trained in the international TeamLouis group under the guidance of Swiss coach Louis Heyer.",
     "ranking.label": "World ranking · 800 m",
     "ranking.updated": "Updated",
     "ranking.cta": "World Athletics world ranking",
@@ -369,70 +314,15 @@ export const translations: Record<Locale, Dict> = {
     "ach6.title": "Bronze · European U20",
     "ach6.body": "Grosseto · 2:07.15 — first international medal at junior level.",
 
-    "journey.eyebrow": "The journey",
-    "journey.title": "My journey",
-    "journey.title.line1": "MY",
-    "journey.title.line2": "journey",
-    "journey.chapter": "Chapter",
-    "journey.next": "Next",
-    "journey.lead":
-      "Scroll. Run with me for 800 metres. Every 100 metres is a milestone — a moment when the story moved forward.",
-    "journey.distanceLabel": "distance",
-    "journey.metersShort": "m",
 
-    "m0.title": "The beginning",
-    "m0.place": "Bobrovec · Liptov",
-    "m0.year": "~2010",
-    "m0.body":
-      "A sheep farm in the Bobrovec valley, football with the boys and the first runs up the hills. I was eleven when I traded football for athletics.",
 
-    "m1.title": "First medal",
-    "m1.place": "Tbilisi · European Youth",
-    "m1.year": "2016",
-    "m1.body":
-      "Bronze at the European U18 Championships — my first international podium. Time: 2:09.43.",
 
-    "m2.title": "Junior bronze",
-    "m2.place": "Grosseto · European U20",
-    "m2.year": "2017",
-    "m2.body":
-      "Second junior medal in a row. 2:07.15 — the signal that the 800 m was becoming my world.",
 
-    "m3.title": "World stage",
-    "m3.place": "Tampere · World U20",
-    "m3.year": "2018",
-    "m3.body":
-      "Fourth place at the World U20 Championships in 2:01.90. The Olympic dream stopped feeling abstract.",
 
-    "m4.title": "First Olympics",
-    "m4.place": "Tokyo · Olympic Games",
-    "m4.year": "2021",
-    "m4.body":
-      "My Olympic debut. The same year I left my Martin training base and joined Louis Heyer's TeamLouis.",
 
-    "m5.title": "European bronze",
-    "m5.place": "Chorzów · European Games",
-    "m5.year": "2023",
-    "m5.body":
-      "First senior European medal — 1:59.92. The first time I broke the two-minute barrier.",
 
-    "m6.title": "European silver",
-    "m6.place": "Rome · European Championships",
-    "m6.year": "2024",
-    "m6.body":
-      "Silver over 800 m in 1:58.79. The biggest moment of my career and a historic result for Slovak athletics.",
 
-    "m7.title": "Slovak record",
-    "m7.place": "Paris · Olympic Games",
-    "m7.year": "2024",
-    "m7.body":
-      "1:58.22 in the Olympic semifinal — a new Slovak record, breaking under 1:58 for the first time after 37 years.",
 
-    "m8.title": "The journey continues",
-    "m8.place": "Tokyo 2025 · Los Angeles 2028",
-    "m8.year": "→",
-    "m8.body":
-      "Worlds in Tokyo 2025 and the Olympic cycle towards LA 2028 are ahead. The finish line is just another start.",
 
     "gallery.eyebrow": "Gallery",
     "gallery.title": "Moments from the track",
