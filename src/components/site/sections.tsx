@@ -876,81 +876,30 @@ export function Footer() {
   const t = useT();
   const year = new Date().getFullYear();
   return (
-    <footer className="relative overflow-hidden bg-[#15100B] px-6 pt-14 pb-6 text-white md:px-12">
+    <footer className="relative overflow-hidden bg-[#15100B] px-6 pt-10 pb-5 text-white md:px-12">
       <div className="mx-auto max-w-[1200px]">
-        {/* Logo */}
-        <div className="mb-10 flex justify-center md:mb-12">
+        <div className="flex flex-col items-center gap-6 md:flex-row md:justify-between">
           <img
             src={logoAsset.url}
             alt="GAGA"
             loading="lazy"
             decoding="async"
-            className="h-24 w-auto brightness-0 invert md:h-28"
+            className="h-14 w-auto brightness-0 invert md:h-16"
           />
-        </div>
 
-        {/* 3 columns */}
-        <div className="grid gap-10 md:grid-cols-3 md:gap-8">
-          {/* GaGa s.r.o. */}
-          <div className="text-center md:text-left">
-            <div className="text-[10px] uppercase tracking-[0.35em] text-[--gold-soft]">
+          {/* GaGa s. r. o. */}
+          <div className="text-center text-[12px] leading-relaxed text-white/55 md:text-right">
+            <div className="mb-1 text-[10px] uppercase tracking-[0.35em] text-white/80">
               GaGa s. r. o.
             </div>
-            <ul className="mt-4 space-y-2.5 text-sm text-white/70">
-              <li>IČO: 56948344</li>
-              <li>DIČ: 2122531455</li>
-              <li className="pt-1 leading-relaxed">
-                Sídlo:<br />
-                Martina Martinčeka 4701/2<br />
-                031 01 Liptovský Mikuláš
-              </li>
-            </ul>
-          </div>
-
-          {/* Kontakt */}
-          <div className="text-center md:text-left">
-            <div className="text-[10px] uppercase tracking-[0.35em] text-[--gold-soft]">
-              {t("footer.contact")}
-            </div>
-            <ul className="mt-4 space-y-2.5 text-sm">
-              <li>
-                <a href="mailto:ggajanova@gmail.com" className="hover:text-[--gold-soft]">
-                  ggajanova@gmail.com
-                </a>
-              </li>
-              <li>
-                <a href="mailto:mariagajanova17@gmail.com" className="hover:text-[--gold-soft]">
-                  mariagajanova17@gmail.com
-                </a>
-              </li>
-              <li>
-                <a href="#contact" className="hover:text-[--gold-soft]">
-                  {t("contact.form.send") || "Kontaktný formulár"}
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          {/* Sledujte ma */}
-          <div className="text-center md:text-left">
-            <div className="text-[10px] uppercase tracking-[0.35em] text-[--gold-soft]">
-              {t("footer.follow")}
-            </div>
-            <ul className="mt-4 space-y-2.5 text-sm">
-              {SOCIALS.map((s) => (
-                <li key={s.label}>
-                  <a href={s.url} target="_blank" rel="noopener noreferrer" className="hover:text-[--gold-soft]">
-                    {s.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
+            <div>IČO: 56948344 · DIČ: 2122531455</div>
+            <div>Martina Martinčeka 4701/2, 031 01 Liptovský Mikuláš</div>
           </div>
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-white/10 pt-5 text-[10px] uppercase tracking-[0.35em] text-white/45 md:flex-row md:gap-0">
-          <span>© {year} Gabriela Gajanová · {t("footer.rights")}</span>
+        <div className="mt-8 flex flex-col items-center justify-between gap-3 border-t border-white/10 pt-4 text-[10px] uppercase tracking-[0.35em] text-white/45 md:flex-row md:gap-0">
+          <span className="text-center">© {year} Gabriela Gajanová · {t("footer.rights")}</span>
           <a
             href="https://www.callora.sk"
             target="_blank"
