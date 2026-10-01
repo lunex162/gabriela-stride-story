@@ -14,22 +14,16 @@ type Props = {
  *   pokus sa opakuje po každom dotyku, kliknutí, skrole a po `canplay`.
  * - Ak súbor zlyhá (404, kodek), video sa odstráni a zostane statická snímka.
  *   Pomalá sieť nie je dôvod vzdať sa: do prvého snímku video nevidno.
- * - Úzke displeje dostanú menší súbor (~1 MB namiesto 5 MB).
  */
 export function HeroVideo({ poster, className = "" }: Props) {
   const ref = useRef<HTMLVideoElement>(null);
-  const [src, setSrc] = useState<string | null>(null);
+  const src = "/video/hero.mp4";
   const [bezi, setBezi] = useState(false);
   const [vzdal, setVzdal] = useState(false);
 
   useEffect(() => {
-    const mobile = window.matchMedia("(max-width: 767px)").matches;
-    setSrc(mobile ? "/video/hero-mobile.mp4" : "/video/hero.mp4");
-  }, []);
-
-  useEffect(() => {
     const el = ref.current;
-    if (!el || !src) return;
+    if (!el) return;
 
     let settled = false;
     const events = ["pointerdown", "touchstart", "touchend", "click", "scroll", "keydown"] as const;
@@ -88,7 +82,7 @@ export function HeroVideo({ poster, className = "" }: Props) {
         aria-hidden
         className="absolute inset-0 h-full w-full object-cover"
       />
-      {src && !vzdal && (
+      {!vzdal && (
         <video
           ref={ref}
           src={src}
