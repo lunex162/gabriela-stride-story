@@ -5,6 +5,8 @@ import { useT } from "@/i18n/LocaleContext";
 import portraitStadium from "@/assets/photos/portrait-stadium.jpg";
 import { HeroVideo } from "./HeroVideo";
 import { SOCIALS } from "@/lib/socials";
+import forbesCover from "@/assets/press/forbes-30-pod-30.jpg";
+import athleteOfYearCover from "@/assets/press/atletka-roka-2024.jpg";
 import gagaAbout from "@/assets/gaga-tokyo-applause.jpg.asset.json";
 
 /* ============================================================
@@ -314,8 +316,8 @@ const PRESS_ITEMS: PressItem[] = [
     titleKey: "press.title1",
     excerptKey: "press.excerpt1",
     href: "https://www.forbes.sk/lists/rebricek-forbes-30-pod-30-2025/sport/gabriela-gajanova/",
-    cover: "https://cdn.forbes.sk/uploads/2025/05/gajanova_gabriela.jpg",
-    focus: "center 25%",
+    cover: forbesCover,
+    focus: "center 35%",
   },
   {
     outlet: "Slovenský olympijský tím",
@@ -338,9 +340,8 @@ const PRESS_ITEMS: PressItem[] = [
     titleKey: "press.title2",
     excerptKey: "press.excerpt2",
     href: "https://www.olympic.sk/clanok/atlet-roka-2024-kralovnou-prvy-raz-gabriela-gajanova",
-    cover:
-      "https://www.olympic.sk/sites/default/files/styles/gallery_full_watermark/public/field_media_image/2024-11/20240711_atlet_roka24_12085956.jpg",
-    focus: "center 30%",
+    cover: athleteOfYearCover,
+    focus: "center 20%",
   },
   {
     outlet: "Atletika.sk",
