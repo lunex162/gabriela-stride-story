@@ -230,6 +230,7 @@ export const translations: Record<Locale, Dict> = {
     "spn2.role": "Národný zväz",
     "spn2.body": "Reprezentácia, podpora a profesionálne zázemie slovenskej atletiky.",
     "spn3.role": "Tréningové centrum",
+    "spn4.role": "Manažment",
     "spn3.body": "Domáce zázemie a podpora vrcholového športu od Banskej Bystrice.",
 
     "social.eyebrow": "Sociálne siete",
@@ -458,6 +459,7 @@ export const translations: Record<Locale, Dict> = {
     "spn2.role": "National federation",
     "spn2.body": "Representation, support and the professional backbone of Slovak athletics.",
     "spn3.role": "Training centre",
+    "spn4.role": "Management",
     "spn3.body": "Home base and elite-sport support from Banská Bystrica.",
     "partners.lead":
       "Behind every success there is a team of people and partners who help me push my limits. Thank you for being part of my journey.",

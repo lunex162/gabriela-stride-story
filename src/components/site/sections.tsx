@@ -1,8 +1,7 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { motion, useReducedMotion } from "motion/react";
 import { Reveal } from "./Reveal";
-import { useLocale, useT } from "@/i18n/LocaleContext";
-import { formatRankingDate, useWorldRanking } from "./RankingSection";
+import { useT } from "@/i18n/LocaleContext";
 import portraitStadium from "@/assets/photos/portrait-stadium.jpg";
 import { HeroVideo } from "./HeroVideo";
 import { SOCIALS } from "@/lib/socials";
@@ -223,8 +222,6 @@ export function About() {
             </p>
           </motion.div>
 
-          <WorldRankingBadge />
-
         </div>
 
         {/* RIGHT — portrait */}
@@ -267,54 +264,6 @@ export function About() {
       </div>
 
     </section>
-  );
-}
-
-/* ============================================================
- *  WORLD RANKING — aktuálne miesto zo svetového rebríčka
- *  World Athletics (800 m ženy), odkaz vedie priamo na rebríček.
- * ============================================================ */
-function WorldRankingBadge() {
-  const t = useT();
-  const locale = useLocale();
-  const { ranking } = useWorldRanking();
-  const date = ranking ? formatRankingDate(ranking.date, locale) : null;
-
-  return (
-    <motion.a
-      href="#ranking"
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-15%" }}
-      transition={{ duration: 0.9, delay: 0.3, ease }}
-      className="group mt-10 flex items-center gap-6 rounded-2xl border border-[--gold]/30 bg-white/50 px-6 py-5 transition-colors duration-300 hover:border-[--gold]"
-      aria-label={t("ranking.cta")}
-    >
-      <span className="font-display text-[3.25rem] leading-none tracking-tight text-ink md:text-[3.75rem]">
-        {ranking?.rank ? (
-          <>
-            <span className="text-[--gold]">#</span>
-            {ranking.rank}
-          </>
-        ) : (
-          <span className="text-[--gold]">WA</span>
-        )}
-      </span>
-      <span className="flex flex-1 flex-col gap-1.5">
-        <span className="text-[11px] uppercase tracking-[0.35em] text-ink">
-          {t("ranking.label")}
-        </span>
-        <span className="text-[13px] text-ink/60">
-          {date ? `${t("ranking.updated")} ${date}` : "World Athletics"}
-        </span>
-      </span>
-      <span
-        aria-hidden
-        className="text-[--gold] transition-transform duration-300 group-hover:translate-x-1"
-      >
-        →
-      </span>
-    </motion.a>
   );
 }
 
@@ -545,9 +494,10 @@ export function Press() {
 
 /* Partner wordmark SVGs — single-colour (currentColor), each a stylised
  * typographic mark. Rendered white on the dark strip, gently tinted on hover. */
-const PARTNER_LOGOS: { name: string; svg: ReactNode }[] = [
+const PARTNER_LOGOS: { name: string; roleKey: string; svg: ReactNode }[] = [
   {
     name: "On Running",
+    roleKey: "spn1.role",
     svg: (
       <svg viewBox="0 0 140 40" fill="currentColor" aria-hidden>
         <text
@@ -574,6 +524,7 @@ const PARTNER_LOGOS: { name: string; svg: ReactNode }[] = [
   },
   {
     name: "Slovenský atletický zväz",
+    roleKey: "spn2.role",
     svg: (
       <svg viewBox="0 0 200 40" fill="currentColor" aria-hidden>
         <text
@@ -610,6 +561,7 @@ const PARTNER_LOGOS: { name: string; svg: ReactNode }[] = [
   },
   {
     name: "VŠC Dukla",
+    roleKey: "spn3.role",
     svg: (
       <svg viewBox="0 0 170 40" fill="currentColor" aria-hidden>
         <rect x="0" y="8" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" />
@@ -645,6 +597,7 @@ const PARTNER_LOGOS: { name: string; svg: ReactNode }[] = [
   },
   {
     name: "EP Management",
+    roleKey: "spn4.role",
     svg: (
       <svg viewBox="0 0 190 40" fill="currentColor" aria-hidden>
         <text
@@ -673,8 +626,6 @@ const PARTNER_LOGOS: { name: string; svg: ReactNode }[] = [
 
 export function Partners() {
   const t = useT();
-  // Duplicate for seamless marquee loop
-  const loop = [...PARTNER_LOGOS, ...PARTNER_LOGOS];
   return (
     <section className="relative overflow-hidden px-5 pt-6 pb-10 text-ink md:px-12 md:pt-8 md:pb-12">
 
@@ -693,82 +644,37 @@ export function Partners() {
           </Reveal>
         </div>
 
-        {/* ── Partner strip — dark luxury panel with slow marquee ── */}
-        <Reveal delay={200} className="mt-14 md:mt-20">
-          <div
-            className="group/strip relative overflow-hidden rounded-[32px]"
-            style={{
-              background:
-                "linear-gradient(180deg, #1b1611 0%, #161311 50%, #100d0a 100%)",
-              boxShadow:
-                "0 40px 90px -50px rgba(20,15,10,0.55), 0 20px 40px -30px rgba(120,90,40,0.15)",
-            }}
-          >
-            <style>{`
-              @keyframes partnerMarquee {
-                0%   { transform: translateX(0); }
-                100% { transform: translateX(-50%); }
-              }
-              .partner-track { animation: partnerMarquee 60s linear infinite; }
-              .group\\/strip:hover .partner-track { animation-play-state: paused; }
-              .partner-logo { transition: transform 500ms cubic-bezier(.16,1,.3,1), opacity 500ms; }
-              .partner-logo:hover { transform: scale(1.12); opacity: 1 !important; }
-            `}</style>
-
-            {/* Gold top edge highlight */}
-            <span
-              aria-hidden
-              className="pointer-events-none absolute inset-x-0 top-0 h-px"
-              style={{
-                background:
-                  "linear-gradient(90deg, transparent, rgba(214,189,159,0.55), transparent)",
-              }}
-            />
-            {/* Inner glow */}
-            <span
-              aria-hidden
-              className="pointer-events-none absolute inset-0 rounded-[32px]"
-              style={{
-                boxShadow:
-                  "inset 0 1px 0 rgba(255,240,210,0.06), inset 0 -30px 60px rgba(0,0,0,0.45), inset 0 0 60px rgba(214,189,159,0.05)",
-              }}
-            />
-            {/* Edge fade masks */}
-            <span
-              aria-hidden
-              className="pointer-events-none absolute inset-y-0 left-0 w-24 z-10"
-              style={{
-                background:
-                  "linear-gradient(90deg, #161311 0%, rgba(22,19,17,0) 100%)",
-              }}
-            />
-            <span
-              aria-hidden
-              className="pointer-events-none absolute inset-y-0 right-0 w-24 z-10"
-              style={{
-                background:
-                  "linear-gradient(270deg, #161311 0%, rgba(22,19,17,0) 100%)",
-              }}
-            />
-
-            {/* Marquee track */}
-            <div className="relative flex h-[140px] items-center overflow-hidden md:h-[170px]">
-              <div className="partner-track flex shrink-0 items-center gap-16 pl-16 md:gap-24 md:pl-24">
-                {loop.map((p, i) => (
-                  <div
-                    key={`${p.name}-${i}`}
-                    className="partner-logo flex h-16 shrink-0 items-center text-white/70 md:h-20"
-                    title={p.name}
-                    aria-label={p.name}
-                  >
-                    <div className="h-full w-auto [&_svg]:h-full [&_svg]:w-auto">
-                      {p.svg}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
+        {/* ── Partner row — light, hairline dividers, logo + role ── */}
+        <Reveal delay={200} className="mx-auto mt-12 max-w-[1300px] md:mt-16">
+          <ul className="grid grid-cols-2 border-y border-ink/10 md:grid-cols-4">
+            {PARTNER_LOGOS.map((p, i) => (
+              <li
+                key={p.name}
+                className={`group flex flex-col items-center justify-center gap-6 px-5 py-10 md:px-8 text-center md:py-14 ${
+                  i % 2 === 1 ? "border-l border-ink/10" : ""
+                } ${i >= 2 ? "border-t border-ink/10 md:border-t-0" : ""} ${
+                  i === 2 ? "md:border-l" : ""
+                }`}
+                title={p.name}
+              >
+                <div
+                  className="h-10 w-full max-w-[240px] text-ink/75 transition-colors duration-300 group-hover:text-ink md:h-14 [&_svg]:h-full [&_svg]:w-full [&_svg]:overflow-visible"
+                  aria-label={p.name}
+                >
+                  {p.svg}
+                </div>
+                <div className="flex flex-col items-center gap-3">
+                  <span
+                    aria-hidden
+                    className="h-px w-8 bg-[#b0935e] transition-all duration-500 group-hover:w-14"
+                  />
+                  <span className="text-[10px] uppercase tracking-[0.35em] text-ink/55">
+                    {t(p.roleKey)}
+                  </span>
+                </div>
+              </li>
+            ))}
+          </ul>
         </Reveal>
       </div>
     </section>
