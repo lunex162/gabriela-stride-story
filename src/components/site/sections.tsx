@@ -1,17 +1,12 @@
-import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { motion, useReducedMotion } from "motion/react";
 import { Reveal } from "./Reveal";
-import { useT } from "@/i18n/LocaleContext";
+import { useLocale, useT } from "@/i18n/LocaleContext";
+import { getWorldRanking, WORLD_RANKING_URL, type WorldRanking } from "@/lib/worldRanking";
 import portraitStadium from "@/assets/photos/portrait-stadium.jpg";
 import { HeroVideo } from "./HeroVideo";
-import parisRace from "@/assets/photos/paris-race.jpg";
-import indoorRace from "@/assets/photos/indoor-race.jpg";
-import action1 from "@/assets/photos/action-1.jpg";
-import action2 from "@/assets/photos/action-2.jpg";
-import action3 from "@/assets/photos/action-3.jpg";
-import action4 from "@/assets/photos/action-4.jpg";
+import { SOCIALS } from "@/lib/socials";
 import gagaAbout from "@/assets/gaga-tokyo-applause.jpg.asset.json";
-import quoteRaceAsset from "@/assets/quote-race.jpg.asset.json";
 
 /* ============================================================
  *  Shared motion constants — single curve everywhere
@@ -228,6 +223,8 @@ export function About() {
             </p>
           </motion.div>
 
+          <WorldRankingBadge />
+
         </div>
 
         {/* RIGHT — portrait */}
@@ -274,444 +271,63 @@ export function About() {
 }
 
 /* ============================================================
- *  JOURNEY 800M — cinematic full-bleed photo per milestone
- *  Sticky scroll, 9 stages from 0m → 800m. Each stage:
- *    - full-bleed photo background with slow Ken-Burns zoom
- *    - warm deep overlay for legibility
- *    - magazine masthead with section number + year + place
- *    - HUGE kinetic distance numeral overlapping a italic serif title
- *    - delicate body text
- *  Bottom: hairline track lane with 9 markers + distance ticker
- *  Crossfade between milestones using motion + key-based remount.
+ *  WORLD RANKING — aktuálne miesto zo svetového rebríčka
+ *  World Athletics (800 m ženy), odkaz vedie priamo na rebríček.
  * ============================================================ */
-export function Journey() {
+function WorldRankingBadge() {
   const t = useT();
-  const sectionRef = useRef<HTMLElement | null>(null);
-  const [progress, setProgress] = useState(0);
-  const reduce = useReducedMotion();
-
-  const milestones = useMemo(
-    () =>
-      [0, 1, 2, 3, 4, 5, 6, 7, 8].map((n) => ({
-        idx: n,
-        dist: n * 100,
-        title: t(`m${n}.title`),
-        place: t(`m${n}.place`),
-        year: t(`m${n}.year`),
-        body: t(`m${n}.body`),
-        photo: [
-          action4,
-          action2,
-          action1,
-          indoorRace,
-          portraitStadium,
-          action3,
-          action1,
-          parisRace,
-          parisRace,
-        ][n],
-      })),
-    [t],
-  );
+  const locale = useLocale();
+  const [ranking, setRanking] = useState<WorldRanking>(null);
 
   useEffect(() => {
-    let raf = 0;
-    const compute = () => {
-      raf = 0;
-      const el = sectionRef.current;
-      if (!el) return;
-      const rect = el.getBoundingClientRect();
-      const total = el.offsetHeight - window.innerHeight;
-      const scrolled = Math.min(Math.max(-rect.top, 0), total);
-      setProgress(total > 0 ? scrolled / total : 0);
-    };
-    const onScroll = () => {
-      if (raf) return;
-      raf = requestAnimationFrame(compute);
-    };
-    compute();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    return () => {
-      if (raf) cancelAnimationFrame(raf);
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-    };
+    getWorldRanking().then(setRanking, () => {});
   }, []);
 
-  
-  const activeIdx = Math.min(8, Math.floor((progress * 800) / 100));
-  const active = milestones[activeIdx];
+  const date = ranking?.date
+    ? new Date(ranking.date).toLocaleDateString(locale === "sk" ? "sk-SK" : "en-GB", {
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+      })
+    : null;
 
   return (
-    <section
-      id="journey"
-      ref={sectionRef}
-      className="relative isolate bg-[#15100B] text-white"
-      style={{ height: "750vh" }}
-    >
-      <div className="sticky top-0 h-[100svh] w-full overflow-hidden">
-        {/* ===== Background photo crossfade ===== */}
-        {milestones.map((m) => {
-          const visible = m.idx === activeIdx;
-          return (
-            <motion.div
-              key={m.idx}
-              aria-hidden
-              initial={false}
-              animate={{ opacity: visible ? 1 : 0 }}
-              transition={{ duration: 0.9, ease }}
-              className="absolute inset-0"
-            >
-              <motion.img
-                src={m.photo}
-                alt=""
-                className="h-full w-full object-cover"
-                initial={false}
-                animate={visible && !reduce ? { scale: [1.06, 1.12] } : { scale: 1.06 }}
-                transition={{ duration: 8, ease: "linear" }}
-              />
-            </motion.div>
-          );
-        })}
-
-        {/* Warm deep overlay */}
-        <div
-          aria-hidden
-          className="absolute inset-0"
-          style={{
-            background:
-              "linear-gradient(180deg, rgba(26,19,14,0.65) 0%, rgba(26,19,14,0.30) 40%, rgba(26,19,14,0.85) 100%)",
-          }}
-        />
-        <div
-          aria-hidden
-          className="absolute inset-0"
-          style={{
-            background:
-              "radial-gradient(60% 70% at 20% 35%, rgba(214,189,159,0.18) 0%, transparent 55%)",
-          }}
-        />
-
-        {/* ===== HEADER — magazine masthead ===== */}
-        <div className="absolute inset-x-0 top-0 z-30 px-6 pt-10 md:px-12 md:pt-14">
-          <div className="mx-auto flex max-w-[1700px] items-center justify-start gap-6">
-            <h2 className="font-display text-left leading-[0.92] tracking-tight">
-              <span className="text-3xl md:text-5xl">{t("journey.title.line1")}</span>{" "}
-              <span className="font-serif-display italic text-[--gold-soft] text-3xl md:text-5xl">
-                {t("journey.title.line2")}
-              </span>
-            </h2>
-          </div>
-        </div>
-
-        {/* ===== MAIN — kinetic numeral + body ===== */}
-        <div className="absolute inset-0 z-10 flex items-start pt-28 md:pt-36 px-6 md:px-12">
-          <div className="mx-auto grid w-full max-w-[1700px] grid-cols-1 gap-10 md:grid-cols-12 md:gap-16">
-            {/* LEFT: HUGE distance numeral */}
-            <motion.div
-              key={`L-${activeIdx}`}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.9, ease }}
-              className="text-left md:col-span-7"
-            >
-              <h3
-                className="mt-4 text-left font-display leading-[0.78] tracking-tight"
-                style={{
-                  fontSize: "clamp(7rem, 22vw, 22rem)",
-                  textShadow: "0 18px 60px rgba(0,0,0,0.55)",
-                }}
-              >
-                {active.dist}
-                <span className="ml-2 align-baseline text-[0.2em] text-[--gold-soft]">m</span>
-              </h3>
-            </motion.div>
-
-            {/* RIGHT: title + narrative */}
-            <motion.div
-              key={`R-${activeIdx}`}
-              initial={{ opacity: 0, x: 28 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.9, delay: 0.1, ease }}
-              className="md:col-span-5"
-            >
-              <div
-                className="text-left font-serif-display italic leading-[0.95] text-[--gold-soft]"
-                style={{ fontSize: "clamp(2rem, 5vw, 4.5rem)" }}
-              >
-                {active.title}
-              </div>
-              <p className="mt-4 text-left text-[17px] leading-[1.7] text-white/95 md:text-[19px] md:leading-[1.65]">
-                {active.body}
-              </p>
-            </motion.div>
-          </div>
-        </div>
-
-        {/* ===== BOTTOM TRACK — 800m with 9 markers ===== */}
-        <div className="absolute inset-x-0 bottom-6 z-30 px-6 pb-10 md:bottom-10 md:px-12 md:pb-12">
-          <div className="mx-auto max-w-[1700px]">
-            {/* Year/dist row */}
-            <div className="mb-5 hidden items-end justify-between text-[11px] uppercase tracking-[0.4em] md:flex">
-              {milestones.map((m) => (
-                <span
-                  key={m.idx}
-                  className={
-                    m.idx === activeIdx
-                      ? "text-[--gold-soft] transition-colors font-medium"
-                      : m.idx < activeIdx
-                        ? "text-white/75 transition-colors"
-                        : "text-white/40"
-                  }
-                >
-                  {m.dist}m
-                </span>
-              ))}
-            </div>
-
-            {/* Lane */}
-            <div className="relative h-[3px] w-full bg-white/25">
-              <div
-                className="absolute inset-y-0 left-0 bg-[--gold-soft] will-change-[width]"
-                style={{
-                  width: `${progress * 100}%`,
-                  boxShadow: "0 0 24px rgba(214,189,159,0.95), 0 0 8px rgba(214,189,159,0.85)",
-                }}
-              />
-              {/* Tick markers */}
-              <div className="absolute inset-0 flex items-center justify-between">
-                {milestones.map((m) => {
-                  const reached = m.idx <= activeIdx;
-                  const current = m.idx === activeIdx;
-                  return (
-                    <span key={m.idx} className="relative block">
-                      <span
-                        className={`block transition-all duration-500 ease-out ${
-                          current
-                            ? "h-5 w-5 rounded-full bg-[--gold-soft] ring-[8px] ring-[rgba(214,189,159,0.35)] shadow-[0_0_28px_rgba(214,189,159,1),0_0_10px_rgba(214,189,159,0.9)]"
-                            : reached
-                              ? "h-3 w-3 rounded-full bg-[--gold-soft] shadow-[0_0_12px_rgba(214,189,159,0.7)]"
-                              : "h-2.5 w-2.5 rounded-full bg-white/30"
-                        }`}
-                      />
-                      {current && !reduce && (
-                        <>
-                          <span
-                            key={`ping-${m.idx}-${activeIdx}`}
-                            aria-hidden
-                            className="pointer-events-none absolute left-1/2 top-1/2 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[--gold-soft] opacity-70 animate-milestone-ripple"
-                          />
-                          <span
-                            key={`ping2-${m.idx}-${activeIdx}`}
-                            aria-hidden
-                            className="pointer-events-none absolute left-1/2 top-1/2 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[--gold-soft] opacity-40 animate-milestone-ripple [animation-delay:120ms]"
-                          />
-                        </>
-                      )}
-                    </span>
-                  );
-                })}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ============================================================
- *  ACHIEVEMENTS — cinematic photo cards
- *  Each honour is a tall, full-bleed photograph card with a
- *  gentle dark gradient, a small year eyebrow, a dominant title
- *  and a short two-sentence description. Hover: subtle scale,
- *  slow image zoom, gradient lift, text rises. Feels like a
- *  premium sports documentary — no medals, no dashboards.
- * ============================================================ */
-const ACHIEVEMENT_CARDS: Array<{ key: string; photo: string }> = [
-  { key: "ach1", photo: action1 },
-  { key: "ach2", photo: parisRace },
-  { key: "ach3", photo: portraitStadium },
-  { key: "ach4", photo: action4 },
-  { key: "ach5", photo: indoorRace },
-  { key: "ach6", photo: action2 },
-];
-
-export function Achievements() {
-  const t = useT();
-  return (
-    <section
-      id="achievements"
-      className="relative overflow-hidden bg-background px-5 py-14 text-ink md:px-12 md:py-20"
-    >
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0"
-        style={{
-          background:
-            "radial-gradient(55% 40% at 50% 0%, rgba(214,189,159,0.22) 0%, transparent 60%)",
-        }}
-      />
-
-      <div className="relative mx-auto max-w-[1700px]">
-        <div className="grid gap-10 md:grid-cols-12 md:items-center">
-          <Reveal className="md:col-span-12 text-center">
-            <div className="flex items-center justify-center gap-3 text-[10px] uppercase tracking-[0.45em] text-ink-soft">
-              <span className="h-px w-10 bg-[--gold]" /> {t("achievements.eyebrow")}
-            </div>
-            <h2 className="mt-6 font-display leading-[0.92] tracking-tight text-ink">
-              <span className="block text-[8vw] sm:text-[5.5vw] md:text-[3.7vw] xl:text-[4.2rem]">
-                {t("achievements.title.line1")}
-              </span>
-              <span
-                className="block font-serif-display italic text-[--gold] text-[8vw] sm:text-[5.5vw] md:text-[3.7vw] xl:text-[4.2rem]"
-                style={{ marginTop: "-0.06em" }}
-              >
-                {t("achievements.title.line2")}
-              </span>
-            </h2>
-          </Reveal>
-          <Reveal className="hidden md:col-span-4 md:col-start-9" delay={150}>
-            <p className="text-[14px] leading-relaxed text-ink/80 md:text-[15px]">
-              {t("achievements.lead")}
-            </p>
-          </Reveal>
-        </div>
-
-        {/* Cinematic card gallery
-            Desktop: grid of tall photo cards.
-            Mobile: horizontal snap carousel with edge padding. */}
-        <div className="mt-14 md:mt-20">
-          <div className="-mx-5 flex snap-x snap-mandatory gap-5 overflow-x-auto px-5 pb-4 md:hidden [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-            {ACHIEVEMENT_CARDS.map((a, i) => (
-              <div key={a.key} className="shrink-0 basis-[82%] snap-center">
-                <AchievementCard index={i} data={a} t={t} />
-              </div>
-            ))}
-          </div>
-          <div className="hidden gap-8 md:grid md:grid-cols-2 lg:grid-cols-3 lg:gap-10">
-            {ACHIEVEMENT_CARDS.map((a, i) => (
-              <AchievementCard key={a.key} index={i} data={a} t={t} />
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function AchievementCard({
-  data,
-  index,
-  t,
-}: {
-  data: { key: string; photo: string };
-  index: number;
-  t: (key: string) => string;
-}) {
-  const year = t(`${data.key}.year`);
-  const title = t(`${data.key}.title`);
-  const body = t(`${data.key}.body`);
-  const ordinal = String(index + 1).padStart(2, "0");
-
-  return (
-    <motion.article
-      initial={{ opacity: 0, y: 40 }}
+    <motion.a
+      href={WORLD_RANKING_URL}
+      target="_blank"
+      rel="noopener noreferrer"
+      initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-10%" }}
-      transition={{ duration: 0.9, delay: index * 0.08, ease }}
-      whileHover={{ scale: 1.03 }}
-      className="group relative isolate block aspect-[3/4] w-full overflow-hidden rounded-[28px] bg-[#15100B] shadow-[0_18px_60px_-30px_rgba(20,15,10,0.35)] transition-shadow duration-700 ease-out hover:shadow-[0_30px_80px_-30px_rgba(20,15,10,0.45)]"
-      style={{ willChange: "transform" }}
+      viewport={{ once: true, margin: "-15%" }}
+      transition={{ duration: 0.9, delay: 0.3, ease }}
+      className="group mt-10 flex items-center gap-6 rounded-2xl border border-[--gold]/30 bg-white/50 px-6 py-5 transition-colors duration-300 hover:border-[--gold]"
+      aria-label={t("ranking.cta")}
     >
-      <motion.img
-        src={data.photo}
-        alt={title}
-        loading="lazy"
-        decoding="async"
-        className="absolute inset-0 h-full w-full object-cover"
-        initial={false}
-        whileHover={{ scale: 1.06 }}
-        transition={{ duration: 1.6, ease }}
-      />
-
-      <div
+      <span className="font-display text-[3.25rem] leading-none tracking-tight text-ink md:text-[3.75rem]">
+        {ranking ? (
+          <>
+            <span className="text-[--gold]">#</span>
+            {ranking.rank}
+          </>
+        ) : (
+          <span className="text-[--gold]">WA</span>
+        )}
+      </span>
+      <span className="flex flex-1 flex-col gap-1.5">
+        <span className="text-[11px] uppercase tracking-[0.35em] text-ink">
+          {t("ranking.label")}
+        </span>
+        <span className="text-[13px] text-ink/60">
+          {date ? `${t("ranking.updated")} ${date}` : "World Athletics"}
+        </span>
+      </span>
+      <span
         aria-hidden
-        className="absolute inset-0 transition-opacity duration-700 ease-out group-hover:opacity-90"
-        style={{
-          background:
-            "linear-gradient(180deg, rgba(21,16,11,0.15) 0%, rgba(21,16,11,0.10) 40%, rgba(21,16,11,0.78) 100%)",
-        }}
-      />
-
-      <div className="absolute inset-x-0 top-0 z-10 flex items-center justify-between px-7 pt-7 md:px-8 md:pt-8">
-        <span className="text-[10px] uppercase tracking-[0.5em] text-white/70">
-          {ordinal}
-        </span>
-        <span className="text-[10px] uppercase tracking-[0.5em] text-[--gold-soft]">
-          {year}
-        </span>
-      </div>
-
-      <div className="absolute inset-x-0 bottom-0 z-10 px-7 pb-8 md:px-8 md:pb-10">
-        <div className="transition-transform duration-700 ease-out group-hover:-translate-y-1">
-          <span
-            aria-hidden
-            className="mb-5 block h-px w-10 bg-[--gold-soft] transition-all duration-700 ease-out group-hover:w-16"
-          />
-          <h3 className="font-display text-[26px] leading-[1.05] tracking-tight text-white md:text-[30px]">
-            {title}
-          </h3>
-          <p className="mt-4 max-w-[36ch] text-[13px] leading-[1.65] text-white/75 md:text-[14px]">
-            {body}
-          </p>
-        </div>
-      </div>
-    </motion.article>
-  );
-}
-
-/* ============================================================
- *  QUOTE — full-bleed Paris race photo, dark overlay, italic
- * ============================================================ */
-export function Quote() {
-  const t = useT();
-  return (
-    <section className="relative isolate mb-12 h-[80svh] overflow-hidden text-white md:mb-16">
-      <img
-        src={quoteRaceAsset.url}
-        alt=""
-        loading="lazy"
-        decoding="async"
-        className="absolute inset-0 h-full w-full object-cover"
-      />
-      <div
-        className="absolute inset-0"
-        style={{
-          background:
-            "linear-gradient(180deg, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.55) 50%, rgba(0,0,0,0.75) 100%)",
-        }}
-      />
-
-      <div className="relative z-10 mx-auto flex h-full max-w-[1500px] items-center justify-center px-6 text-center md:px-12">
-        <Reveal>
-          {t("quote.eyebrow") && (
-            <span className="mb-10 inline-block text-[10px] uppercase tracking-[0.55em] text-[--gold-soft]">
-              {t("quote.eyebrow")}
-            </span>
-          )}
-          <blockquote className="font-serif-display italic leading-[1.1]" style={{ fontSize: "clamp(1.75rem, 5vw, 4rem)" }}>
-            "{t("quote.text")}"
-          </blockquote>
-          <div className="mt-12 flex items-center justify-center gap-4 text-[10px] uppercase tracking-[0.5em] text-white/75">
-            <span className="h-px w-16 bg-[--gold-soft]" />
-            {t("quote.author")}
-            <span className="h-px w-16 bg-[--gold-soft]" />
-          </div>
-        </Reveal>
-      </div>
-    </section>
+        className="text-[--gold] transition-transform duration-300 group-hover:translate-x-1"
+      >
+        →
+      </span>
+    </motion.a>
   );
 }
 
@@ -1060,18 +676,7 @@ export function Partners() {
               <span className="block text-[8vw] sm:text-[5.5vw] md:text-[3.7vw] xl:text-[4.2rem]">
                 {t("partners.title.line1")}
               </span>
-              <span
-                className="block font-serif-display italic text-[--gold] text-[8vw] sm:text-[5.5vw] md:text-[3.7vw] xl:text-[4.2rem]"
-                style={{ marginTop: "-0.05em" }}
-              >
-                {t("partners.title.line2")}
-              </span>
             </h2>
-          </Reveal>
-          <Reveal className="mx-auto mt-8 max-w-xl" delay={120}>
-            <p className="text-[14px] leading-[1.8] text-ink/75 md:text-[15px]">
-              {t("partners.lead")}
-            </p>
           </Reveal>
         </div>
 
@@ -1249,8 +854,8 @@ export function Contact() {
                 </div>
                 <div className="flex flex-col gap-8">
                   {[
-                    ["Instagram", "@gabigajanova", "https://www.instagram.com/gabigajanova/"],
-                    ["Threads", "@gabigajanova", "https://www.threads.net/@gabigajanova"],
+                    ...SOCIALS.map((s) => [s.label, s.handle, s.url]),
+                    ["Management", "EP Management", "https://www.ep-management.ch/"],
                   ].map(([label, handle, url]) => (
                     <div key={label}>
                       <dt className="text-[10px] uppercase tracking-[0.5em] text-white/60">
@@ -1420,12 +1025,13 @@ export function Footer() {
               {t("footer.follow")}
             </div>
             <ul className="mt-4 space-y-2.5 text-sm">
-              <li>
-                <a href="https://www.instagram.com/gabigajanova/" target="_blank" rel="noopener noreferrer" className="hover:text-[--gold-soft]">Instagram</a>
-              </li>
-              <li>
-                <a href="https://www.threads.net/@gabigajanova" target="_blank" rel="noopener noreferrer" className="hover:text-[--gold-soft]">Threads</a>
-              </li>
+              {SOCIALS.map((s) => (
+                <li key={s.label}>
+                  <a href={s.url} target="_blank" rel="noopener noreferrer" className="hover:text-[--gold-soft]">
+                    {s.label}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
         </div>

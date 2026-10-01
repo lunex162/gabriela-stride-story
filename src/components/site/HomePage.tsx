@@ -5,11 +5,8 @@ import { Nav } from "./Nav";
 import {
   Hero,
   About,
-  Achievements,
-  Journey,
   Partners,
   Press,
-  Quote,
   Contact,
   Footer,
 } from "./sections";
@@ -34,9 +31,6 @@ export function HomePage({ locale }: { locale: Locale }) {
         <Nav />
         <Hero />
         <About />
-        <Journey />
-        <Achievements />
-        <Quote />
         <Press />
         <Partners />
         <Contact />

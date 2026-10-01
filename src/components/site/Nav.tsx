@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import { useLocale, useT } from "@/i18n/LocaleContext";
 import logoAsset from "@/assets/gaga-logo-transparent.png.asset.json";
+import { SOCIALS } from "@/lib/socials";
 
 export function Nav() {
   const t = useT();
   const locale = useLocale();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [socialsOpen, setSocialsOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -16,10 +18,10 @@ export function Nav() {
 
   const links = [
     { href: "#about", label: t("nav.about") },
-    { href: "#journey", label: t("nav.journey") },
-    { href: "#achievements", label: t("nav.achievements") },
     { href: "#contact", label: t("nav.contact") },
   ];
+  const linkClass =
+    "text-xs uppercase tracking-[0.2em] text-white/80 transition-colors hover:text-gold-soft";
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 transition-all duration-500 bg-transparent">
@@ -40,16 +42,46 @@ export function Nav() {
             scrolled ? "pointer-events-none opacity-0" : ""
           }`}
         >
-          {links.map((l) => (
-            <li key={l.href}>
-              <a
-                href={l.href}
-                className="text-xs uppercase tracking-[0.2em] text-white/80 transition-colors hover:text-gold-soft"
-              >
-                {l.label}
-              </a>
-            </li>
-          ))}
+          <li>
+            <a href={links[0].href} className={linkClass}>
+              {links[0].label}
+            </a>
+          </li>
+          <li
+            className="relative"
+            onMouseEnter={() => setSocialsOpen(true)}
+            onMouseLeave={() => setSocialsOpen(false)}
+          >
+            <button
+              type="button"
+              onClick={() => setSocialsOpen((o) => !o)}
+              aria-expanded={socialsOpen}
+              aria-haspopup="true"
+              className={`${linkClass} cursor-pointer`}
+            >
+              {t("nav.socials")}
+            </button>
+            <div
+              className={`absolute left-1/2 top-full -translate-x-1/2 pt-4 transition-all duration-300 ${
+                socialsOpen ? "visible opacity-100" : "invisible opacity-0"
+              }`}
+            >
+              <ul className="flex flex-col gap-3 rounded-2xl border border-white/20 bg-[#15100B]/70 px-6 py-4 backdrop-blur-xl">
+                {SOCIALS.map((s) => (
+                  <li key={s.label}>
+                    <a href={s.url} target="_blank" rel="noopener noreferrer" className={linkClass}>
+                      {s.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </li>
+          <li>
+            <a href={links[1].href} className={linkClass}>
+              {links[1].label}
+            </a>
+          </li>
         </ul>
         <div className="flex items-center gap-4">
           <div
@@ -99,6 +131,19 @@ export function Nav() {
                   className="block text-center text-xs uppercase tracking-[0.2em] text-white/80 transition-colors hover:text-gold-soft"
                 >
                   {l.label}
+                </a>
+              </li>
+            ))}
+            {SOCIALS.map((s) => (
+              <li key={s.label}>
+                <a
+                  href={s.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setMenuOpen(false)}
+                  className="block text-center text-xs uppercase tracking-[0.2em] text-white/80 transition-colors hover:text-gold-soft"
+                >
+                  {s.label}
                 </a>
               </li>
             ))}

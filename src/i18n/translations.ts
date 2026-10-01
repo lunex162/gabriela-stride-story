@@ -11,6 +11,7 @@ export const translations: Record<Locale, Dict> = {
     "nav.journey": "Cesta",
     "nav.gallery": "Galéria",
     "nav.contact": "Kontakt",
+    "nav.socials": "Sociálne siete",
     "nav.discoverStory": "Objavte môj príbeh",
 
     "loader.tagline": "Olympionička · 800 m",
@@ -19,7 +20,7 @@ export const translations: Record<Locale, Dict> = {
     "hero.firstName": "GABRIELA",
     "hero.lastName": "GAJANOVÁ",
     "hero.subhead":
-      "Olympijská reprezentantka v behu na 800 metrov",
+      "OLYMPIONIČKA",
     "hero.cta.story": "O mne",
     "hero.cta.contact": "Kontakt",
     "hero.scroll": "\n",
@@ -40,6 +41,9 @@ export const translations: Record<Locale, Dict> = {
       "Pochádzam z Bobrovca na Liptove, kde ma formovala príroda, rodina aj život na rodinnom salaši. Skôr než som objavila atletiku, hrala som futbal. Beh si ma však získal už v jedenástich rokoch a odvtedy je mojou najväčšou vášňou.",
     "about.p3":
       "Dnes reprezentujem klub AK ZŤS Martin a od roku 2021 trénujem v medzinárodnej tréningovej skupine TeamLouis pod vedením švajčiarskeho trénera Louisa Heyera.",
+    "ranking.label": "Svetový rebríček · 800 m",
+    "ranking.updated": "Aktualizované",
+    "ranking.cta": "Svetový rebríček World Athletics",
     "about.quote": "Najväčšou motiváciou je pre mňa vedomie, že som každý deň urobila maximum.",
 
     "about.stat1.value": "800 m",
@@ -245,6 +249,7 @@ export const translations: Record<Locale, Dict> = {
     "nav.journey": "Journey",
     "nav.gallery": "Gallery",
     "nav.contact": "Contact",
+    "nav.socials": "Socials",
     "nav.discoverStory": "Discover My Story",
 
     "loader.tagline": "Olympian · 800 metres",
@@ -253,7 +258,7 @@ export const translations: Record<Locale, Dict> = {
     "hero.firstName": "GABRIELA",
     "hero.lastName": "GAJANOVÁ",
     "hero.subhead":
-      "Olympic representative · 800 metres",
+      "OLYMPIAN",
     "hero.cta.story": "About",
     "hero.cta.contact": "Contact",
     "hero.scroll": "\n",
@@ -274,6 +279,9 @@ export const translations: Record<Locale, Dict> = {
       "I come from Bobrovec in Liptov, where I was shaped by nature, family and life on our sheep farm. Before I discovered athletics, I played football. Running won me over at the age of eleven and has been my greatest passion ever since.",
     "about.p3":
       "Today I represent AK ZŤS Martin and since 2021 I have trained in the international TeamLouis group under the guidance of Swiss coach Louis Heyer.",
+    "ranking.label": "World ranking · 800 m",
+    "ranking.updated": "Updated",
+    "ranking.cta": "World Athletics world ranking",
     "about.quote": "The greatest motivation for me is knowing that I have given my best every day.",
 
     "about.stat1.value": "800 m",
@@ -308,7 +316,7 @@ export const translations: Record<Locale, Dict> = {
     "med6.place": "Grosseto · Italy",
     "med6.result": "Bronze · 2:07.15",
     "contact.title.line1": "WRITE",
-    "contact.title.line2": "to me",
+    "contact.title.line2": "me",
     "quote.eyebrow": "",
     "footer.follow": "FOLLOW ME",
     "footer.contact": "Contact",
