@@ -3,9 +3,9 @@ export const SOCIALS = [
   {
     label: "Facebook",
     handle: "Gabriela Gajanová fanpage",
-    url: "https://www.facebook.com/profile.php?id=100064142978092",
+    url: "https://www.facebook.com/p/Gabriela-Gajanov%C3%A1-fanpage-100064142978092/",
   },
-  { label: "Threads", handle: "@gabigajanova", url: "https://www.threads.net/@gabigajanova" },
+  { label: "Threads", handle: "@gabigajanova", url: "https://www.threads.com/@gabigajanova" },
 ];
 
 /*
