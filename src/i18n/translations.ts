@@ -41,6 +41,10 @@ export const translations: Record<Locale, Dict> = {
 
     "about.eyebrow": "O mne",
     "about.name": "Gabriela Gajanová",
+    "about.title.line1": "MÔJ",
+    "about.title.line2": "príbeh",
+    "about.fact3.value": "ELLE8",
+    "about.fact3.label": "Tréningová skupina",
     "about.stats.olympics": "Olympijská účastníčka",
     "about.stats.record": "Osobný rekord na 800 m",
     "about.stats.silver": "Majstrovstvá Európy · Rím 2024",
@@ -48,9 +52,9 @@ export const translations: Record<Locale, Dict> = {
     "about.stats.silver.value": "Striebro",
     "about.stats.athlete.value": "Atlétka roka",
     "about.p1":
-      "Volám sa Gabriela Gajanová a beh je už dlhé roky neoddeliteľnou súčasťou môjho života. Som slovenská reprezentantka v behu na 800 metrov, dvojnásobná olympionička a strieborná medailistka z Majstrovstiev Európy 2024 v Ríme.",
+      "Volám sa Gabriela Gajanová a beh je už dlhé roky neoddeliteľnou súčasťou môjho života. Som slovenská reprezentantka v behu na 800 metrov, dvojnásobná olympionička a strieborná medailistka z Majstrovstiev Európy 2024 v Ríme.",
     "about.p2":
-      "Pochádzam z Bobrovca na Liptove, kde ma formovala príroda, rodina aj život na rodinnom salaši. Beh si ma získal už v jedenástich rokoch a odvtedy je mojou najväčšou vášňou.",
+      "Pochádzam z Bobrovca na Liptove, kde ma formovala príroda, rodina aj život na rodinnom salaši. Beh si ma získal už v jedenástich rokoch a odvtedy je mojou najväčšou vášňou.",
     "about.p3":
       "Dnes reprezentujem Slovensko na medzinárodnej úrovni a som členkou VŠC Dukla Banská Bystrica. Od roku 2021 trénujem v medzinárodnej tréningovej skupine ELLE8 pod vedením švajčiarskeho trénera Louisa Heyera.",
     "ranking.label": "Svetový rebríček · 800 m",
@@ -149,8 +153,6 @@ export const translations: Record<Locale, Dict> = {
     "partners.title.line1": "Partneri",
     "partners.title.line2": "mojej cesty",
     "management.title": "Manažment",
-    "management.title.line2": "a manažment",
-    "partners.group": "Partneri",
     "partners.lead":
       "Za každým úspechom stojí tím ľudí a partnerov, ktorí mi pomáhajú posúvať hranice. Ďakujem, že ste súčasťou mojej cesty.",
 
@@ -262,6 +264,10 @@ export const translations: Record<Locale, Dict> = {
 
     "about.eyebrow": "About me",
     "about.name": "Gabriela Gajanová",
+    "about.title.line1": "MY",
+    "about.title.line2": "story",
+    "about.fact3.value": "ELLE8",
+    "about.fact3.label": "Training group",
     "about.stats.olympics": "Olympian",
     "about.stats.record": "Personal best · 800 m",
     "about.stats.silver": "European Championships · Rome 2024",
@@ -269,9 +275,9 @@ export const translations: Record<Locale, Dict> = {
     "about.stats.silver.value": "Silver",
     "about.stats.athlete.value": "Athlete of the Year",
     "about.p1":
-      "My name is Gabriela Gajanová and running has been a huge part of my life for many years. I am two-time Olympian, silver European medalist and represent Slovakia internationally on 800 metres.",
+      "My name is Gabriela Gajanová and running has been a huge part of my life for many years. I am two-time Olympian, silver European medalist and represent Slovakia internationally on 800 metres.",
     "about.p2":
-      "I come from a small village Bobrovec in Liptov region, where I was shaped by nature, family and life on our farm. I started running at the age of eleven at primary school and it has been my passion ever since.",
+      "I come from a small village Bobrovec in Liptov region, where I was shaped by nature, family and life on our farm. I started running at the age of eleven at primary school and it has been my passion ever since.",
     "about.p3":
       "Today I am part of international running group ELLE8 based in Switzerland coached by Louis Heyer. I am also member of Slovak sport centre VŠC Dukla Banská Bystrica.",
     "ranking.label": "World ranking · 800 m",
@@ -368,8 +374,6 @@ export const translations: Record<Locale, Dict> = {
     "partners.title.line1": "Partners",
     "partners.title.line2": "of my journey",
     "management.title": "Management",
-    "management.title.line2": "& management",
-    "partners.group": "Partners",
     
 
     "spn1.role": "Technical partner",

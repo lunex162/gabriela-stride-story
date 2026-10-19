@@ -185,26 +185,63 @@ export function About() {
       className="relative isolate overflow-hidden bg-background pb-28 pt-16 text-ink md:pb-40 md:pt-24"
     >
       <div className="mx-auto grid max-w-[1500px] grid-cols-1 items-start gap-16 px-6 md:grid-cols-2 md:items-stretch md:gap-[96px] md:px-12">
-        {/* LEFT — text + badges */}
+        {/* LEFT — title, lead, story, facts */}
         <div className="relative flex flex-col self-stretch">
+          <Reveal>
+            <div className="mb-6 flex items-center gap-3 text-[10px] uppercase tracking-[0.45em] text-gold">
+              <span className="h-px w-10 bg-gold" />
+              {t("about.eyebrow")}
+            </div>
+            <h2 className="font-display leading-[0.92] tracking-tight text-ink">
+              <span className="block text-[12vw] sm:text-[8vw] md:text-[4.6vw] xl:text-[5rem]">
+                {t("about.title.line1")}
+              </span>
+              <span
+                className="block font-serif-display italic text-gold text-[12vw] sm:text-[8vw] md:text-[4.6vw] xl:text-[5rem]"
+                style={{ marginTop: "-0.05em" }}
+              >
+                {t("about.title.line2")}
+              </span>
+            </h2>
+          </Reveal>
+
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-15%" }}
             transition={{ duration: 0.9, delay: 0.2, ease }}
-            className="space-y-6"
+            className="mt-10 space-y-6 md:mt-12"
           >
-            <p className="text-[18px] leading-[1.7] text-ink/80 md:text-[19px]">
+            <p className="border-l-2 border-gold pl-5 text-[20px] leading-[1.55] text-ink md:pl-6 md:text-[23px]">
               {t("about.p1")}
             </p>
-            <p className="text-[18px] leading-[1.7] text-ink/80 md:text-[19px]">
+            <p className="text-[17px] leading-[1.75] text-ink/75 md:text-[18px]">
               {t("about.p2")}
             </p>
-            <p className="text-[18px] leading-[1.7] text-ink/80 md:text-[19px]">
+            <p className="text-[17px] leading-[1.75] text-ink/75 md:text-[18px]">
               {t("about.p3")}
             </p>
           </motion.div>
 
+          {/* Facts strip — taken from her own story */}
+          <Reveal delay={300} className="mt-12 md:mt-auto md:pt-14">
+            <dl className="grid grid-cols-3 border-t border-ink/15 pt-6">
+              {[
+                ["about.stat2.value", "about.stat2.label"],
+                ["about.stat1.value", "about.stat1.label"],
+                ["about.fact3.value", "about.fact3.label"],
+              ].map(([v, l], i) => (
+                <div key={v} className={i > 0 ? "border-l border-ink/10 pl-4 md:pl-6" : "pr-4"}>
+                  <dt className="font-display text-[30px] leading-none text-ink md:text-[42px]">
+                    {t(v)}
+                  </dt>
+                  <dd className="mt-3 text-[9px] uppercase leading-[1.5] tracking-[0.3em] text-ink/55 md:text-[10px]">
+                    {t(l)}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          </Reveal>
         </div>
 
         {/* RIGHT — portrait */}
@@ -228,9 +265,14 @@ export function About() {
             }}
           />
 
+          <div className="relative mx-auto w-full max-w-[430px] flex-1 md:h-full">
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0 translate-x-4 translate-y-4 rounded-2xl border border-gold/60 md:translate-x-6 md:translate-y-6"
+          />
           <motion.div
             ref={photoWrapRef}
-            className="relative mx-auto w-full max-w-[430px] flex-1 overflow-hidden rounded-2xl md:h-full"
+            className="relative h-full w-full overflow-hidden rounded-2xl shadow-[0_30px_60px_-30px_rgba(60,45,25,0.45)]"
           >
             <motion.img
               src={gagaAbout.url}
@@ -243,6 +285,7 @@ export function About() {
               style={{ transformStyle: "preserve-3d" }}
             />
           </motion.div>
+          </div>
         </motion.div>
       </div>
 
@@ -721,18 +764,8 @@ const EP_MANAGEMENT_LOGO = (
 );
 
 const LOGO_BOX =
-  "h-10 w-full max-w-[240px] text-ink/75 transition-colors duration-300 group-hover:text-ink md:h-12 [&_svg]:h-full [&_svg]:w-full [&_svg]:overflow-visible";
+  "h-10 w-full max-w-[240px] text-ink/75 transition-colors duration-300 group-hover:text-ink md:h-14 [&_svg]:h-full [&_svg]:w-full [&_svg]:overflow-visible";
 
-function GroupLabel({ children }: { children: ReactNode }) {
-  return (
-    <div className="mb-5 flex items-center gap-3 text-[10px] uppercase tracking-[0.45em] text-gold">
-      <span className="h-px w-8 bg-gold" />
-      {children}
-    </div>
-  );
-}
-
-/* Partners and management share one band, as two clearly labelled groups. */
 export function Partners() {
   const t = useT();
   return (
@@ -745,55 +778,67 @@ export function Partners() {
               <span className="block text-[8vw] sm:text-[5.5vw] md:text-[3.7vw] xl:text-[4.2rem]">
                 {t("partners.title.line1")}
               </span>
-              <span
-                className="block font-serif-display italic text-gold text-[8vw] sm:text-[5.5vw] md:text-[3.7vw] xl:text-[4.2rem]"
-                style={{ marginTop: "-0.05em" }}
-              >
-                {t("management.title.line2")}
-              </span>
             </h2>
           </Reveal>
         </div>
 
-        <Reveal
-          delay={200}
-          className="mx-auto mt-12 grid max-w-[1300px] grid-cols-1 gap-12 md:mt-16 lg:grid-cols-[3fr_1fr] lg:gap-10"
-        >
-          {/* Partners */}
-          <div>
-            <GroupLabel>{t("partners.group")}</GroupLabel>
-            <ul className="grid grid-cols-1 divide-y divide-ink/10 border-y border-ink/10 md:grid-cols-3 md:divide-x md:divide-y-0">
-              {PARTNER_LOGOS.map((p) => (
-                <li
-                  key={p.name}
-                  className="group flex items-center justify-center px-5 py-10 text-center md:px-8 md:py-12"
-                  title={p.name}
-                >
-                  <div className={LOGO_BOX} aria-label={p.name}>
-                    {p.svg}
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Management */}
-          <div>
-            <GroupLabel>{t("management.title")}</GroupLabel>
-            <a
-              href="https://www.ep-management.ch/"
-              target="_blank"
-              rel="noopener noreferrer"
-              title="EP Management"
-              className="group flex items-center justify-center border-y-2 border-gold/50 bg-white/40 px-5 py-10 transition-colors duration-300 hover:bg-white/70 md:py-12"
-            >
-              <div className={LOGO_BOX} aria-label="EP Management">
-                {EP_MANAGEMENT_LOGO}
-              </div>
-            </a>
-          </div>
+        {/* ── Partner row — light, hairline dividers ── */}
+        <Reveal delay={200} className="mx-auto mt-12 max-w-[1300px] md:mt-16">
+          <ul className="grid grid-cols-1 divide-y divide-ink/10 border-y border-ink/10 md:grid-cols-3 md:divide-x md:divide-y-0">
+            {PARTNER_LOGOS.map((p) => (
+              <li
+                key={p.name}
+                className="group flex items-center justify-center px-5 py-10 text-center md:px-8 md:py-14"
+                title={p.name}
+              >
+                <div className={LOGO_BOX} aria-label={p.name}>
+                  {p.svg}
+                </div>
+              </li>
+            ))}
+          </ul>
         </Reveal>
       </div>
+    </section>
+  );
+}
+
+/* ============================================================
+ *  MANAGEMENT — own champagne band so it never reads as a partner
+ * ============================================================ */
+export function Management() {
+  const t = useT();
+  return (
+    <section className="relative px-5 pt-14 pb-16 text-ink md:px-12 md:pt-20 md:pb-24">
+      <Reveal className="relative mx-auto max-w-[1300px]">
+        <a
+          href="https://www.ep-management.ch/"
+          target="_blank"
+          rel="noopener noreferrer"
+          title="EP Management"
+          className="group relative block overflow-hidden rounded-[28px] border border-gold/40 px-6 py-12 text-center transition-shadow duration-500 hover:shadow-[0_30px_60px_-30px_rgba(60,45,25,0.4)] md:px-12 md:py-16"
+          style={{
+            background:
+              "linear-gradient(135deg, #f3e7d3 0%, #fbf5ea 50%, #efe1c8 100%)",
+          }}
+        >
+          <div className="flex items-center justify-center gap-3 text-[10px] uppercase tracking-[0.45em] text-gold">
+            <span className="h-px w-10 bg-gold" />
+            {t("management.title")}
+            <span className="h-px w-10 bg-gold" />
+          </div>
+          <div
+            className="mx-auto mt-8 h-14 w-full max-w-[320px] text-ink transition-transform duration-500 ease-[cubic-bezier(.16,1,.3,1)] group-hover:scale-[1.04] md:mt-10 md:h-20 md:max-w-[420px] [&_svg]:h-full [&_svg]:w-full [&_svg]:overflow-visible"
+            aria-label="EP Management"
+          >
+            {EP_MANAGEMENT_LOGO}
+          </div>
+          <div className="mt-8 inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.3em] text-ink/60 transition-colors group-hover:text-ink md:mt-10">
+            ep-management.ch
+            <span className="transition-transform duration-500 group-hover:translate-x-1">→</span>
+          </div>
+        </a>
+      </Reveal>
     </section>
   );
 }
