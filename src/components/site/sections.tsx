@@ -10,6 +10,8 @@ import athleteOfYearCover from "@/assets/press/atletka-roka-2024.jpg";
 import euros2026Cover from "@/assets/press/me-2026-birmingham.jpg";
 import worldIndoors2026Cover from "@/assets/press/halove-ms-2026-torun.jpg";
 import worlds2025Cover from "@/assets/press/ms-2025-tokio.jpg";
+import rovereto2026Cover from "@/assets/press/rovereto-2026.jpg";
+import pts2026Cover from "@/assets/press/pts-2026.jpg";
 import gagaAbout from "@/assets/gaga-tokyo-applause.jpg.asset.json";
 
 /* ============================================================
@@ -274,6 +276,30 @@ type PressItem = {
 
 const PRESS_ITEMS: PressItem[] = [
   {
+    outlet: "Atletika.sk",
+    outletMark: (
+      <svg viewBox="0 0 160 28" aria-hidden className="h-full w-full">
+        <text
+          x="0"
+          y="20"
+          fill="currentColor"
+          fontFamily="'Helvetica Neue', Arial, sans-serif"
+          fontWeight={700}
+          fontSize="11"
+          letterSpacing="3"
+        >
+          ATLETIKA.SK
+        </text>
+      </svg>
+    ),
+    dateKey: "press.date7",
+    titleKey: "press.title7",
+    excerptKey: "press.excerpt7",
+    href: "https://www.atletika.sk/gabriela-gajanova-je-na-konci-sezony-coraz-rychlejsia-v-roverete-vyhrala-a-atakovala-vlastny-slovensky-rekord-odolal-jej-o-15-stotin/",
+    cover: rovereto2026Cover,
+    focus: "center 20%",
+  },
+  {
     outlet: "Sportnet",
     outletMark: (
       <svg viewBox="0 0 160 28" aria-hidden className="h-full w-full">
@@ -296,6 +322,30 @@ const PRESS_ITEMS: PressItem[] = [
     href: "https://sportnet.sme.sk/spravy/gabriela-gajanova-vysledok-rozbeh-800-m-me-v-atletike-2026/",
     cover: euros2026Cover,
     focus: "center 30%",
+  },
+  {
+    outlet: "Sportnet",
+    outletMark: (
+      <svg viewBox="0 0 160 28" aria-hidden className="h-full w-full">
+        <text
+          x="0"
+          y="20"
+          fill="currentColor"
+          fontFamily="'Helvetica Neue', Arial, sans-serif"
+          fontWeight={700}
+          fontSize="11"
+          letterSpacing="3"
+        >
+          SPORTNET
+        </text>
+      </svg>
+    ),
+    dateKey: "press.date8",
+    titleKey: "press.title8",
+    excerptKey: "press.excerpt8",
+    href: "https://sportnet.sme.sk/spravy/atletika-gabriela-gajanova-800-m-vysledky-dnes-miting-pts-2026/",
+    cover: pts2026Cover,
+    focus: "center 25%",
   },
   {
     outlet: "STVR Šport",
@@ -371,30 +421,6 @@ const PRESS_ITEMS: PressItem[] = [
     focus: "center 35%",
   },
   {
-    outlet: "Slovenský olympijský tím",
-    outletMark: (
-      <svg viewBox="0 0 160 28" aria-hidden className="h-full w-full">
-        <text
-          x="0"
-          y="20"
-          fill="currentColor"
-          fontFamily="'Helvetica Neue', Arial, sans-serif"
-          fontWeight={700}
-          fontSize="11"
-          letterSpacing="3"
-        >
-          OLYMPIC.SK
-        </text>
-      </svg>
-    ),
-    dateKey: "press.date2",
-    titleKey: "press.title2",
-    excerptKey: "press.excerpt2",
-    href: "https://www.olympic.sk/clanok/atlet-roka-2024-kralovnou-prvy-raz-gabriela-gajanova",
-    cover: athleteOfYearCover,
-    focus: "center 20%",
-  },
-  {
     outlet: "Atletika.sk",
     outletMark: (
       <svg viewBox="0 0 160 28" aria-hidden className="h-full w-full">
@@ -418,6 +444,30 @@ const PRESS_ITEMS: PressItem[] = [
     cover:
       "https://www.atletika.sk/wp-content/uploads/2025/02/Gajanova-Gabriela-Lievin-2025-.jpg",
     focus: "center 25%",
+  },
+  {
+    outlet: "Slovenský olympijský tím",
+    outletMark: (
+      <svg viewBox="0 0 160 28" aria-hidden className="h-full w-full">
+        <text
+          x="0"
+          y="20"
+          fill="currentColor"
+          fontFamily="'Helvetica Neue', Arial, sans-serif"
+          fontWeight={700}
+          fontSize="11"
+          letterSpacing="3"
+        >
+          OLYMPIC.SK
+        </text>
+      </svg>
+    ),
+    dateKey: "press.date2",
+    titleKey: "press.title2",
+    excerptKey: "press.excerpt2",
+    href: "https://www.olympic.sk/clanok/atlet-roka-2024-kralovnou-prvy-raz-gabriela-gajanova",
+    cover: athleteOfYearCover,
+    focus: "center 20%",
   },
 ];
 
@@ -460,7 +510,7 @@ export function Press() {
 
         {/* Cards: mobile snap carousel → desktop 3-up grid */}
         <div
-          className="mt-16 -mx-5 flex snap-x snap-mandatory gap-5 overflow-x-auto px-5 pb-6 md:mx-0 md:grid md:grid-cols-3 md:gap-8 md:overflow-visible md:px-0 md:pb-0"
+          className="mt-16 -mx-5 flex snap-x snap-mandatory gap-5 overflow-x-auto px-5 pb-6 md:mx-0 md:grid md:grid-cols-2 md:gap-8 md:overflow-visible lg:grid-cols-4 lg:gap-6 md:px-0 md:pb-0"
           style={{ scrollbarWidth: "none" }}
         >
           {PRESS_ITEMS.map((item, i) => (
@@ -512,11 +562,11 @@ export function Press() {
                 </div>
 
                 {/* Body */}
-                <div className="flex flex-1 flex-col p-6 md:p-7">
+                <div className="flex flex-1 flex-col p-6 md:p-7 lg:p-6">
                   <div className="text-[10px] uppercase tracking-[0.35em] text-ink/55">
                     {t(item.dateKey)}
                   </div>
-                  <h3 className="mt-3 font-display text-[22px] leading-[1.15] text-ink md:text-[24px]">
+                  <h3 className="mt-3 font-display text-[22px] leading-[1.15] text-ink md:text-[24px] lg:text-[21px]">
                     {t(item.titleKey)}
                   </h3>
                   <p className="mt-3 text-[14px] leading-[1.7] text-ink/70">
@@ -720,7 +770,7 @@ const EP_MANAGEMENT_LOGO = (
 export function Management() {
   const t = useT();
   return (
-    <section className="relative overflow-hidden px-5 pt-6 pb-10 text-ink md:px-12 md:pt-8 md:pb-12">
+    <section className="relative overflow-hidden px-5 pt-16 pb-12 text-ink md:px-12 md:pt-24 md:pb-16">
       <div className="relative mx-auto max-w-[1700px]">
         <div className="text-center">
           <Reveal>
@@ -732,13 +782,13 @@ export function Management() {
           </Reveal>
         </div>
 
-        <Reveal delay={200} className="mx-auto mt-12 max-w-[1300px] md:mt-16">
+        <Reveal delay={200} className="mx-auto mt-10 max-w-[460px] md:mt-12">
           <a
             href="https://www.ep-management.ch/"
             target="_blank"
             rel="noopener noreferrer"
             title="EP Management"
-            className="group flex items-center justify-center border-y border-ink/10 px-5 py-10 md:py-14"
+            className="group flex items-center justify-center rounded-[24px] border border-[--gold]/30 bg-[#fdfaf3] px-8 py-10 shadow-[0_10px_30px_-20px_rgba(60,45,25,0.25)] transition-all duration-500 ease-[cubic-bezier(.16,1,.3,1)] hover:-translate-y-1 hover:shadow-[0_30px_60px_-25px_rgba(60,45,25,0.35)] md:py-12"
           >
             <div
               className="h-10 w-full max-w-[240px] text-ink/75 transition-colors duration-300 group-hover:text-ink md:h-14 [&_svg]:h-full [&_svg]:w-full [&_svg]:overflow-visible"
@@ -859,7 +909,7 @@ export function Contact() {
                 </div>
                 <div>
                   <dt className="text-[10px] uppercase tracking-[0.5em] text-white/60">
-                    ADMINISTRATÍVA & SPOLUPRÁCE
+                    {t("contact.admin")}
                   </dt>
                   <dd className="mt-3">
                     <a
@@ -968,7 +1018,7 @@ export function Footer() {
             rel="noopener noreferrer"
             className="transition-colors hover:text-[--gold-soft]"
           >
-            Web vytvorila callora.sk
+            {t("footer.madeBy")}
           </a>
         </div>
       </div>

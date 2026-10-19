@@ -170,6 +170,14 @@ export const translations: Record<Locale, Dict> = {
     "press.title3": "Slovenský rekord opäť posunutý",
     "press.excerpt3":
       "Na mítingu vo francúzskom Liévine prekonala vlastný slovenský rekord na 800 metrov a opäť potvrdila svoje miesto medzi európskou elitou.",
+    "press.date7": "September 2026",
+    "press.title7": "Víťazstvo v Roverete a druhý najlepší čas kariéry",
+    "press.excerpt7":
+      "Na mítingu v talianskom Roverete zvíťazila v čase 1:58.37 a na vlastný slovenský rekord jej chýbalo iba 15 stotín.",
+    "press.date8": "Júl 2026",
+    "press.title8": "P-T-S Banská Bystrica: Blízko pódia na domácom mítingu",
+    "press.excerpt8":
+      "Na mítingu P-T-S v Banskej Bystrici sa držala v strede poľa, v závere zabrala a skončila štvrtá.",
     "press.date4": "August 2026",
     "press.title4": "ME Birmingham: Skvelý finiš a postup do semifinále",
     "press.excerpt4":
@@ -209,6 +217,8 @@ export const translations: Record<Locale, Dict> = {
     "contact.form.send": "",
     "footer.tagline": "\n",
     "footer.rights": "Všetky práva vyhradené.",
+    "footer.madeBy": "Web vytvorila callora.sk",
+    "contact.admin": "Administratíva & spolupráce",
 
     "lang.sk": "SK",
     "lang.en": "EN",
@@ -386,6 +396,14 @@ export const translations: Record<Locale, Dict> = {
     "press.title3": "Slovak record pushed once again",
     "press.excerpt3":
       "At the meeting in Liévin, France, she broke her own Slovak 800 m record and reaffirmed her place among Europe's elite.",
+    "press.date7": "September 2026",
+    "press.title7": "A win in Rovereto and the second-fastest time of her career",
+    "press.excerpt7":
+      "She won the meeting in Rovereto, Italy, in 1:58.37, just 15 hundredths of a second outside her own Slovak record.",
+    "press.date8": "July 2026",
+    "press.title8": "P-T-S Banská Bystrica: Close to the podium at home",
+    "press.excerpt8":
+      "At the P-T-S meeting in Banská Bystrica she sat mid-pack, pushed in the closing stretch and finished fourth.",
     "press.date4": "August 2026",
     "press.title4": "European Championships Birmingham: A strong finish into the semis",
     "press.excerpt4":
@@ -417,6 +435,8 @@ export const translations: Record<Locale, Dict> = {
     "contact.form.send": "",
     "footer.tagline": "\n",
     "footer.rights": "All rights reserved.",
+    "footer.madeBy": "Website by callora.sk",
+    "contact.admin": "Administration & collaborations",
 
     "lang.sk": "SK",
     "lang.en": "EN",
