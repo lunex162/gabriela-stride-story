@@ -215,6 +215,20 @@ export function About() {
             <p className="border-l-2 border-gold pl-5 text-[20px] leading-[1.55] text-ink md:pl-6 md:text-[23px]">
               {t("about.p1")}
             </p>
+            {/* Mobile: photo sits between the lead and the story */}
+            <div className="relative !my-12 mr-4 md:hidden">
+              <div
+                aria-hidden
+                className="pointer-events-none absolute inset-0 translate-x-4 translate-y-4 rounded-2xl border border-gold/60"
+              />
+              <img
+                src={gagaAbout.url}
+                alt="Gabriela Gajanová — Tokyo 2025"
+                loading="lazy"
+                decoding="async"
+                className="relative block h-auto w-full rounded-2xl shadow-[0_30px_60px_-30px_rgba(60,45,25,0.45)]"
+              />
+            </div>
             <p className="text-[17px] leading-[1.75] text-ink/75 md:text-[18px]">
               {t("about.p2")}
             </p>
@@ -250,7 +264,7 @@ export function About() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true, margin: "-10%" }}
           transition={{ duration: 1, delay: 0.5, ease }}
-          className="relative flex flex-col self-stretch"
+          className="relative hidden flex-col self-stretch md:flex"
           style={{ perspective: "1200px" }}
           onMouseMove={onMouseMove}
           onMouseLeave={onMouseLeave}
@@ -804,36 +818,30 @@ export function Partners() {
 }
 
 /* ============================================================
- *  MANAGEMENT — own champagne band so it never reads as a partner
+ *  MANAGEMENT — own quiet band, set apart from partners by
+ *  gold hairlines and a label
  * ============================================================ */
 export function Management() {
   const t = useT();
   return (
-    <section className="relative px-5 pt-14 pb-16 text-ink md:px-12 md:pt-20 md:pb-24">
-      <Reveal className="relative mx-auto max-w-[1300px]">
+    <section className="relative px-5 pt-12 pb-14 text-ink md:px-12 md:pt-16 md:pb-20">
+      <Reveal className="relative mx-auto max-w-[760px]">
+        <div className="flex items-center justify-center gap-3 text-[10px] uppercase tracking-[0.45em] text-gold">
+          <span className="h-px w-10 bg-gold" />
+          {t("management.title")}
+          <span className="h-px w-10 bg-gold" />
+        </div>
         <a
           href="https://www.ep-management.ch/"
           target="_blank"
           rel="noopener noreferrer"
           title="EP Management"
-          className="group relative block overflow-hidden rounded-[28px] border border-gold/40 px-6 py-12 text-center transition-shadow duration-500 hover:shadow-[0_30px_60px_-30px_rgba(60,45,25,0.4)] md:px-12 md:py-16"
-          style={{
-            background:
-              "linear-gradient(135deg, #f3e7d3 0%, #fbf5ea 50%, #efe1c8 100%)",
-          }}
+          className="group mt-6 flex flex-col items-center border-y border-gold/40 px-5 py-10 md:py-12"
         >
-          <div className="flex items-center justify-center gap-3 text-[10px] uppercase tracking-[0.45em] text-gold">
-            <span className="h-px w-10 bg-gold" />
-            {t("management.title")}
-            <span className="h-px w-10 bg-gold" />
-          </div>
-          <div
-            className="mx-auto mt-8 h-14 w-full max-w-[320px] text-ink transition-transform duration-500 ease-[cubic-bezier(.16,1,.3,1)] group-hover:scale-[1.04] md:mt-10 md:h-20 md:max-w-[420px] [&_svg]:h-full [&_svg]:w-full [&_svg]:overflow-visible"
-            aria-label="EP Management"
-          >
+          <div className={LOGO_BOX} aria-label="EP Management">
             {EP_MANAGEMENT_LOGO}
           </div>
-          <div className="mt-8 inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.3em] text-ink/60 transition-colors group-hover:text-ink md:mt-10">
+          <div className="mt-6 inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.3em] text-ink/50 transition-colors group-hover:text-ink">
             ep-management.ch
             <span className="transition-transform duration-500 group-hover:translate-x-1">→</span>
           </div>
