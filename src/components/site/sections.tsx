@@ -7,6 +7,9 @@ import { HeroVideo } from "./HeroVideo";
 import { SOCIALS } from "@/lib/socials";
 import forbesCover from "@/assets/press/forbes-30-pod-30.jpg";
 import athleteOfYearCover from "@/assets/press/atletka-roka-2024.jpg";
+import euros2026Cover from "@/assets/press/me-2026-birmingham.jpg";
+import worldIndoors2026Cover from "@/assets/press/halove-ms-2026-torun.jpg";
+import worlds2025Cover from "@/assets/press/ms-2025-tokio.jpg";
 import gagaAbout from "@/assets/gaga-tokyo-applause.jpg.asset.json";
 
 /* ============================================================
@@ -114,19 +117,6 @@ export function Hero() {
         <motion.div
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 1.1 }}
-          className="mt-8 flex max-w-2xl items-center justify-center gap-4 md:mt-10"
-        >
-          <span className="mt-2 hidden h-px w-10 shrink-0 bg-[--gold-soft] md:block" />
-          <p className="text-[13px] leading-relaxed text-white/85 md:text-base md:tracking-[0.04em]">
-            {t("hero.subhead")}
-          </p>
-          <span className="mt-2 hidden h-px w-10 shrink-0 bg-[--gold-soft] md:block" />
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 14 }}
-          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 1.3 }}
           className="mt-10 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center md:mt-12 md:gap-4"
         >
@@ -196,22 +186,11 @@ export function About() {
         {/* LEFT — text + badges */}
         <div className="relative flex flex-col self-stretch">
           <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-15%" }}
-            transition={{ duration: 0.8, ease }}
-          >
-            <blockquote className="font-serif-display italic leading-[0.95] tracking-tight text-ink hidden md:block md:text-[2.6vw] xl:text-[2.9rem]">
-              „{t("about.quote")}“
-            </blockquote>
-          </motion.div>
-
-          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-15%" }}
             transition={{ duration: 0.9, delay: 0.2, ease }}
-            className="mt-10 space-y-6"
+            className="space-y-6"
           >
             <p className="text-[18px] leading-[1.7] text-ink/80 md:text-[19px]">
               {t("about.p1")}
@@ -294,6 +273,78 @@ type PressItem = {
 };
 
 const PRESS_ITEMS: PressItem[] = [
+  {
+    outlet: "Sportnet",
+    outletMark: (
+      <svg viewBox="0 0 160 28" aria-hidden className="h-full w-full">
+        <text
+          x="0"
+          y="20"
+          fill="currentColor"
+          fontFamily="'Helvetica Neue', Arial, sans-serif"
+          fontWeight={700}
+          fontSize="11"
+          letterSpacing="3"
+        >
+          SPORTNET
+        </text>
+      </svg>
+    ),
+    dateKey: "press.date4",
+    titleKey: "press.title4",
+    excerptKey: "press.excerpt4",
+    href: "https://sportnet.sme.sk/spravy/gabriela-gajanova-vysledok-rozbeh-800-m-me-v-atletike-2026/",
+    cover: euros2026Cover,
+    focus: "center 30%",
+  },
+  {
+    outlet: "STVR Šport",
+    outletMark: (
+      <svg viewBox="0 0 160 28" aria-hidden className="h-full w-full">
+        <text
+          x="0"
+          y="20"
+          fill="currentColor"
+          fontFamily="'Helvetica Neue', Arial, sans-serif"
+          fontWeight={700}
+          fontSize="11"
+          letterSpacing="3"
+        >
+          STVR
+        </text>
+      </svg>
+    ),
+    dateKey: "press.date5",
+    titleKey: "press.title5",
+    excerptKey: "press.excerpt5",
+    href: "https://spravy.stvr.sk/2026/03/halove-ms-atletika-gajanova-800m-semifinale",
+    cover: worldIndoors2026Cover,
+    focus: "center 50%",
+  },
+  {
+    outlet: "Sportnet",
+    outletMark: (
+      <svg viewBox="0 0 160 28" aria-hidden className="h-full w-full">
+        <text
+          x="0"
+          y="20"
+          fill="currentColor"
+          fontFamily="'Helvetica Neue', Arial, sans-serif"
+          fontWeight={700}
+          fontSize="11"
+          letterSpacing="3"
+        >
+          SPORTNET
+        </text>
+      </svg>
+    ),
+    dateKey: "press.date6",
+    titleKey: "press.title6",
+    excerptKey: "press.excerpt6",
+    href: "https://sportnet.sme.sk/spravy/gabriela-gajanova-vysledky-dnes-rozbehy-800-m-ms-v-atletike-2025/",
+    cover: worlds2025Cover,
+    focus: "center 25%",
+  },
   {
     outlet: "Forbes Slovensko",
     outletMark: (
@@ -495,10 +546,9 @@ export function Press() {
 
 /* Partner wordmark SVGs — single-colour (currentColor), each a stylised
  * typographic mark. Rendered white on the dark strip, gently tinted on hover. */
-const PARTNER_LOGOS: { name: string; roleKey: string; svg: ReactNode }[] = [
+const PARTNER_LOGOS: { name: string; svg: ReactNode }[] = [
   {
     name: "On Running",
-    roleKey: "spn1.role",
     svg: (
       <svg viewBox="0 0 140 40" fill="currentColor" aria-hidden>
         <text
@@ -525,7 +575,6 @@ const PARTNER_LOGOS: { name: string; roleKey: string; svg: ReactNode }[] = [
   },
   {
     name: "Slovenský atletický zväz",
-    roleKey: "spn2.role",
     svg: (
       <svg viewBox="0 0 200 40" fill="currentColor" aria-hidden>
         <text
@@ -562,7 +611,6 @@ const PARTNER_LOGOS: { name: string; roleKey: string; svg: ReactNode }[] = [
   },
   {
     name: "VŠC Dukla",
-    roleKey: "spn3.role",
     svg: (
       <svg viewBox="0 0 170 40" fill="currentColor" aria-hidden>
         <rect x="0" y="8" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" />
@@ -596,33 +644,6 @@ const PARTNER_LOGOS: { name: string; roleKey: string; svg: ReactNode }[] = [
       </svg>
     ),
   },
-  {
-    name: "EP Management",
-    roleKey: "spn4.role",
-    svg: (
-      <svg viewBox="0 0 190 40" fill="currentColor" aria-hidden>
-        <text
-          x="0" y="31"
-          fontFamily="'Helvetica Neue', Arial, sans-serif"
-          fontWeight={300}
-          fontSize="34"
-          letterSpacing="4"
-        >
-          EP
-        </text>
-        <line x1="58" y1="8" x2="58" y2="34" stroke="currentColor" strokeWidth="1" />
-        <text
-          x="68" y="26"
-          fontFamily="'Helvetica Neue', Arial, sans-serif"
-          fontWeight={500}
-          fontSize="11"
-          letterSpacing="4"
-        >
-          MANAGEMENT
-        </text>
-      </svg>
-    ),
-  },
 ];
 
 export function Partners() {
@@ -647,15 +668,11 @@ export function Partners() {
 
         {/* ── Partner row — light, hairline dividers, logo + role ── */}
         <Reveal delay={200} className="mx-auto mt-12 max-w-[1300px] md:mt-16">
-          <ul className="grid grid-cols-2 border-y border-ink/10 md:grid-cols-4">
-            {PARTNER_LOGOS.map((p, i) => (
+          <ul className="grid grid-cols-1 divide-y divide-ink/10 border-y border-ink/10 md:grid-cols-3 md:divide-x md:divide-y-0">
+            {PARTNER_LOGOS.map((p) => (
               <li
                 key={p.name}
-                className={`group flex flex-col items-center justify-center gap-6 px-5 py-10 md:px-8 text-center md:py-14 ${
-                  i % 2 === 1 ? "border-l border-ink/10" : ""
-                } ${i >= 2 ? "border-t border-ink/10 md:border-t-0" : ""} ${
-                  i === 2 ? "md:border-l" : ""
-                }`}
+                className="group flex items-center justify-center px-5 py-10 text-center md:px-8 md:py-14"
                 title={p.name}
               >
                 <div
@@ -664,18 +681,72 @@ export function Partners() {
                 >
                   {p.svg}
                 </div>
-                <div className="flex flex-col items-center gap-3">
-                  <span
-                    aria-hidden
-                    className="h-px w-8 bg-[#b0935e] transition-all duration-500 group-hover:w-14"
-                  />
-                  <span className="text-[10px] uppercase tracking-[0.35em] text-ink/55">
-                    {t(p.roleKey)}
-                  </span>
-                </div>
               </li>
             ))}
           </ul>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
+/* ============================================================
+ *  MANAGEMENT — EP Management, kept apart from partners
+ * ============================================================ */
+const EP_MANAGEMENT_LOGO = (
+  <svg viewBox="0 0 190 40" fill="currentColor" aria-hidden>
+    <text
+      x="0" y="31"
+      fontFamily="'Helvetica Neue', Arial, sans-serif"
+      fontWeight={300}
+      fontSize="34"
+      letterSpacing="4"
+    >
+      EP
+    </text>
+    <line x1="58" y1="8" x2="58" y2="34" stroke="currentColor" strokeWidth="1" />
+    <text
+      x="68" y="26"
+      fontFamily="'Helvetica Neue', Arial, sans-serif"
+      fontWeight={500}
+      fontSize="11"
+      letterSpacing="4"
+    >
+      MANAGEMENT
+    </text>
+  </svg>
+);
+
+export function Management() {
+  const t = useT();
+  return (
+    <section className="relative overflow-hidden px-5 pt-6 pb-10 text-ink md:px-12 md:pt-8 md:pb-12">
+      <div className="relative mx-auto max-w-[1700px]">
+        <div className="text-center">
+          <Reveal>
+            <h2 className="font-display leading-[0.92] tracking-tight text-ink">
+              <span className="block text-[8vw] sm:text-[5.5vw] md:text-[3.7vw] xl:text-[4.2rem]">
+                {t("management.title")}
+              </span>
+            </h2>
+          </Reveal>
+        </div>
+
+        <Reveal delay={200} className="mx-auto mt-12 max-w-[1300px] md:mt-16">
+          <a
+            href="https://www.ep-management.ch/"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="EP Management"
+            className="group flex items-center justify-center border-y border-ink/10 px-5 py-10 md:py-14"
+          >
+            <div
+              className="h-10 w-full max-w-[240px] text-ink/75 transition-colors duration-300 group-hover:text-ink md:h-14 [&_svg]:h-full [&_svg]:w-full [&_svg]:overflow-visible"
+              aria-label="EP Management"
+            >
+              {EP_MANAGEMENT_LOGO}
+            </div>
+          </a>
         </Reveal>
       </div>
     </section>
@@ -878,7 +949,7 @@ export function Footer() {
   return (
     <footer className="relative overflow-hidden bg-[#15100B] px-6 pt-10 pb-5 text-white md:px-12">
       <div className="mx-auto max-w-[1200px]">
-        <div className="flex flex-col items-center gap-6 md:flex-row md:justify-between">
+        <div className="flex justify-center">
           <img
             src={logoAsset.url}
             alt="GAGA"
@@ -886,15 +957,6 @@ export function Footer() {
             decoding="async"
             className="h-14 w-auto brightness-0 invert md:h-16"
           />
-
-          {/* GaGa s. r. o. */}
-          <div className="text-center text-[12px] leading-relaxed text-white/55 md:text-right">
-            <div className="mb-1 text-[10px] uppercase tracking-[0.35em] text-white/80">
-              GaGa s. r. o.
-            </div>
-            <div>IČO: 56948344 · DIČ: 2122531455</div>
-            <div>Martina Martinčeka 4701/2, 031 01 Liptovský Mikuláš</div>
-          </div>
         </div>
 
         {/* Bottom bar */}

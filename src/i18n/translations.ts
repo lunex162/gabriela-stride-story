@@ -52,7 +52,7 @@ export const translations: Record<Locale, Dict> = {
     "about.p2":
       "Pochádzam z Bobrovca na Liptove, kde ma formovala príroda, rodina aj život na rodinnom salaši. Beh si ma získal už v jedenástich rokoch a odvtedy je mojou najväčšou vášňou.",
     "about.p3":
-      "Dnes reprezentujem VŠC Dukla Banská Bystrica a od roku 2021 trénujem v medzinárodnej tréningovej skupine TeamLouis pod vedením švajčiarskeho trénera Louisa Heyera.",
+      "Dnes reprezentujem Slovensko na medzinárodnej úrovni a som členkou VŠC Dukla Banská Bystrica. Od roku 2021 trénujem v medzinárodnej tréningovej skupine ELLE8 pod vedením švajčiarskeho trénera Louisa Heyera.",
     "ranking.label": "Svetový rebríček · 800 m",
     "ranking.updated": "Aktualizované",
     "ranking.cta": "Svetový rebríček World Athletics",
@@ -148,6 +148,7 @@ export const translations: Record<Locale, Dict> = {
     "partners.title": "Partneri mojej cesty",
     "partners.title.line1": "Partneri",
     "partners.title.line2": "mojej cesty",
+    "management.title": "Manažment",
     "partners.lead":
       "Za každým úspechom stojí tím ľudí a partnerov, ktorí mi pomáhajú posúvať hranice. Ďakujem, že ste súčasťou mojej cesty.",
 
@@ -169,6 +170,18 @@ export const translations: Record<Locale, Dict> = {
     "press.title3": "Slovenský rekord opäť posunutý",
     "press.excerpt3":
       "Na mítingu vo francúzskom Liévine prekonala vlastný slovenský rekord na 800 metrov a opäť potvrdila svoje miesto medzi európskou elitou.",
+    "press.date4": "August 2026",
+    "press.title4": "ME Birmingham: Skvelý finiš a postup do semifinále",
+    "press.excerpt4":
+      "V rozbehu na 800 metrov obsadila druhé postupové miesto, keď nestačila iba na hviezdnu Femke Bolovú. V semifinále zabehla 1:59.32.",
+    "press.date5": "Marec 2026",
+    "press.title5": "Halové MS v Toruni: Semifinále na 800 m",
+    "press.excerpt5":
+      "Na halových majstrovstvách sveta v poľskej Toruni sa prebojovala medzi semifinalistky a zabehla 2:00.49.",
+    "press.date6": "September 2025",
+    "press.title6": "MS v Tokiu: Postup do semifinále",
+    "press.excerpt6":
+      "Na majstrovstvách sveta v Tokiu postúpila z rozbehu ako tretia v čase 2:00.44 a v semifinále zabehla 1:59.16.",
 
     "spn1.role": "Technický partner",
     "spn1.body": "Tréningová a pretekárska obuv pre 800 m — od Montegorda po Paríž.",
@@ -244,11 +257,11 @@ export const translations: Record<Locale, Dict> = {
     "about.stats.silver.value": "Silver",
     "about.stats.athlete.value": "Athlete of the Year",
     "about.p1":
-      "My name is Gabriela Gajanová and running has been an inseparable part of my life for many years. I am a Slovak representative in the 800 metres, a two-time Olympian and a silver medalist from the 2024 European Championships in Rome.",
+      "My name is Gabriela Gajanová and running has been a huge part of my life for many years. I am two-time Olympian, silver European medalist and represent Slovakia internationally on 800 metres.",
     "about.p2":
-      "I come from Bobrovec in Liptov, where I was shaped by nature, family and life on our sheep farm. Running won me over at the age of eleven and has been my greatest passion ever since.",
+      "I come from a small village Bobrovec in Liptov region, where I was shaped by nature, family and life on our farm. I started running at the age of eleven at primary school and it has been my passion ever since.",
     "about.p3":
-      "Today I represent VŠC Dukla Banská Bystrica and since 2021 I have trained in the international TeamLouis group under the guidance of Swiss coach Louis Heyer.",
+      "Today I am part of international running group ELLE8 based in Switzerland coached by Louis Heyer. I am also member of Slovak sport centre VŠC Dukla Banská Bystrica.",
     "ranking.label": "World ranking · 800 m",
     "ranking.updated": "Updated",
     "ranking.cta": "World Athletics world ranking",
@@ -342,6 +355,7 @@ export const translations: Record<Locale, Dict> = {
     "partners.title": "Partners of my journey",
     "partners.title.line1": "Partners",
     "partners.title.line2": "of my journey",
+    "management.title": "Management",
     
 
     "spn1.role": "Technical partner",
@@ -372,6 +386,18 @@ export const translations: Record<Locale, Dict> = {
     "press.title3": "Slovak record pushed once again",
     "press.excerpt3":
       "At the meeting in Liévin, France, she broke her own Slovak 800 m record and reaffirmed her place among Europe's elite.",
+    "press.date4": "August 2026",
+    "press.title4": "European Championships Birmingham: A strong finish into the semis",
+    "press.excerpt4":
+      "She took the second automatic qualifying spot in her 800 m heat, beaten only by star Femke Bol, and ran 1:59.32 in the semifinal.",
+    "press.date5": "March 2026",
+    "press.title5": "World Indoors in Toruń: 800 m semifinal",
+    "press.excerpt5":
+      "At the World Indoor Championships in Toruń, Poland, she reached the 800 m semifinals and clocked 2:00.49.",
+    "press.date6": "September 2025",
+    "press.title6": "World Championships Tokyo: Through to the semis",
+    "press.excerpt6":
+      "At the World Championships in Tokyo she advanced from her heat in third place in 2:00.44 and ran 1:59.16 in the semifinal.",
 
     "social.eyebrow": "Social",
     "social.title": "Follow my journey",
