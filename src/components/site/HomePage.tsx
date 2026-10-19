@@ -8,7 +8,6 @@ import {
   Hero,
   About,
   Partners,
-  Management,
   Press,
   Contact,
   Footer,
@@ -38,7 +37,6 @@ export function HomePage({ locale }: { locale: Locale }) {
         <Press />
         <SocialsSection />
         <Partners />
-        <Management />
         <Contact />
         <Footer />
       </main>

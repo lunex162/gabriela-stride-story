@@ -149,6 +149,8 @@ export const translations: Record<Locale, Dict> = {
     "partners.title.line1": "Partneri",
     "partners.title.line2": "mojej cesty",
     "management.title": "Manažment",
+    "management.title.line2": "a manažment",
+    "partners.group": "Partneri",
     "partners.lead":
       "Za každým úspechom stojí tím ľudí a partnerov, ktorí mi pomáhajú posúvať hranice. Ďakujem, že ste súčasťou mojej cesty.",
 
@@ -366,6 +368,8 @@ export const translations: Record<Locale, Dict> = {
     "partners.title.line1": "Partners",
     "partners.title.line2": "of my journey",
     "management.title": "Management",
+    "management.title.line2": "& management",
+    "partners.group": "Partners",
     
 
     "spn1.role": "Technical partner",

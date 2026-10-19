@@ -696,53 +696,6 @@ const PARTNER_LOGOS: { name: string; svg: ReactNode }[] = [
   },
 ];
 
-export function Partners() {
-  const t = useT();
-  return (
-    <section className="relative overflow-hidden px-5 pt-6 pb-10 text-ink md:px-12 md:pt-8 md:pb-12">
-
-      <div className="relative mx-auto max-w-[1700px]">
-        {/* ── Editorial header ── */}
-        <div className="text-center">
-          <Reveal>
-            <div className="mb-6 flex items-center justify-center gap-3 text-[10px] uppercase tracking-[0.45em] text-[--gold]">
-              <span className="h-px w-10 bg-[--gold]" /> {t("partners.eyebrow")}
-            </div>
-            <h2 className="font-display leading-[0.92] tracking-tight text-ink">
-              <span className="block text-[8vw] sm:text-[5.5vw] md:text-[3.7vw] xl:text-[4.2rem]">
-                {t("partners.title.line1")}
-              </span>
-            </h2>
-          </Reveal>
-        </div>
-
-        {/* ── Partner row — light, hairline dividers, logo + role ── */}
-        <Reveal delay={200} className="mx-auto mt-12 max-w-[1300px] md:mt-16">
-          <ul className="grid grid-cols-1 divide-y divide-ink/10 border-y border-ink/10 md:grid-cols-3 md:divide-x md:divide-y-0">
-            {PARTNER_LOGOS.map((p) => (
-              <li
-                key={p.name}
-                className="group flex items-center justify-center px-5 py-10 text-center md:px-8 md:py-14"
-                title={p.name}
-              >
-                <div
-                  className="h-10 w-full max-w-[240px] text-ink/75 transition-colors duration-300 group-hover:text-ink md:h-14 [&_svg]:h-full [&_svg]:w-full [&_svg]:overflow-visible"
-                  aria-label={p.name}
-                >
-                  {p.svg}
-                </div>
-              </li>
-            ))}
-          </ul>
-        </Reveal>
-      </div>
-    </section>
-  );
-}
-
-/* ============================================================
- *  MANAGEMENT — EP Management, kept apart from partners
- * ============================================================ */
 const EP_MANAGEMENT_LOGO = (
   <svg viewBox="0 0 190 40" fill="currentColor" aria-hidden>
     <text
@@ -767,36 +720,78 @@ const EP_MANAGEMENT_LOGO = (
   </svg>
 );
 
-export function Management() {
+const LOGO_BOX =
+  "h-10 w-full max-w-[240px] text-ink/75 transition-colors duration-300 group-hover:text-ink md:h-12 [&_svg]:h-full [&_svg]:w-full [&_svg]:overflow-visible";
+
+function GroupLabel({ children }: { children: ReactNode }) {
+  return (
+    <div className="mb-5 flex items-center gap-3 text-[10px] uppercase tracking-[0.45em] text-gold">
+      <span className="h-px w-8 bg-gold" />
+      {children}
+    </div>
+  );
+}
+
+/* Partners and management share one band, as two clearly labelled groups. */
+export function Partners() {
   const t = useT();
   return (
-    <section className="relative overflow-hidden px-5 pt-16 pb-12 text-ink md:px-12 md:pt-24 md:pb-16">
+    <section className="relative overflow-hidden px-5 pt-6 pb-10 text-ink md:px-12 md:pt-8 md:pb-12">
       <div className="relative mx-auto max-w-[1700px]">
+        {/* ── Editorial header ── */}
         <div className="text-center">
           <Reveal>
             <h2 className="font-display leading-[0.92] tracking-tight text-ink">
               <span className="block text-[8vw] sm:text-[5.5vw] md:text-[3.7vw] xl:text-[4.2rem]">
-                {t("management.title")}
+                {t("partners.title.line1")}
+              </span>
+              <span
+                className="block font-serif-display italic text-gold text-[8vw] sm:text-[5.5vw] md:text-[3.7vw] xl:text-[4.2rem]"
+                style={{ marginTop: "-0.05em" }}
+              >
+                {t("management.title.line2")}
               </span>
             </h2>
           </Reveal>
         </div>
 
-        <Reveal delay={200} className="mx-auto mt-10 max-w-[460px] md:mt-12">
-          <a
-            href="https://www.ep-management.ch/"
-            target="_blank"
-            rel="noopener noreferrer"
-            title="EP Management"
-            className="group flex items-center justify-center rounded-[24px] border border-[--gold]/30 bg-[#fdfaf3] px-8 py-10 shadow-[0_10px_30px_-20px_rgba(60,45,25,0.25)] transition-all duration-500 ease-[cubic-bezier(.16,1,.3,1)] hover:-translate-y-1 hover:shadow-[0_30px_60px_-25px_rgba(60,45,25,0.35)] md:py-12"
-          >
-            <div
-              className="h-10 w-full max-w-[240px] text-ink/75 transition-colors duration-300 group-hover:text-ink md:h-14 [&_svg]:h-full [&_svg]:w-full [&_svg]:overflow-visible"
-              aria-label="EP Management"
+        <Reveal
+          delay={200}
+          className="mx-auto mt-12 grid max-w-[1300px] grid-cols-1 gap-12 md:mt-16 lg:grid-cols-[3fr_1fr] lg:gap-10"
+        >
+          {/* Partners */}
+          <div>
+            <GroupLabel>{t("partners.group")}</GroupLabel>
+            <ul className="grid grid-cols-1 divide-y divide-ink/10 border-y border-ink/10 md:grid-cols-3 md:divide-x md:divide-y-0">
+              {PARTNER_LOGOS.map((p) => (
+                <li
+                  key={p.name}
+                  className="group flex items-center justify-center px-5 py-10 text-center md:px-8 md:py-12"
+                  title={p.name}
+                >
+                  <div className={LOGO_BOX} aria-label={p.name}>
+                    {p.svg}
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Management */}
+          <div>
+            <GroupLabel>{t("management.title")}</GroupLabel>
+            <a
+              href="https://www.ep-management.ch/"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="EP Management"
+              className="group flex items-center justify-center border-y-2 border-gold/50 bg-white/40 px-5 py-10 transition-colors duration-300 hover:bg-white/70 md:py-12"
             >
-              {EP_MANAGEMENT_LOGO}
-            </div>
-          </a>
+              <div className={LOGO_BOX} aria-label="EP Management">
+                {EP_MANAGEMENT_LOGO}
+              </div>
+            </a>
+          </div>
         </Reveal>
       </div>
     </section>
