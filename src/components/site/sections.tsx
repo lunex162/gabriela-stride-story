@@ -3,6 +3,7 @@ import { motion, useReducedMotion } from "motion/react";
 import { Reveal } from "./Reveal";
 import { useT } from "@/i18n/LocaleContext";
 import portraitStadium from "@/assets/photos/portrait-stadium.jpg";
+import contactBg from "@/assets/photos/contact-lausanne.jpg";
 import { HeroVideo } from "./HeroVideo";
 import { SOCIALS } from "@/lib/socials";
 import forbesCover from "@/assets/press/forbes-30-pod-30.jpg";
@@ -894,13 +895,13 @@ export function Contact() {
           {/* Background photo */}
           <div
             aria-hidden
-            className="pointer-events-none absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: `url(${portraitStadium})` }}
+            className="pointer-events-none absolute inset-0 bg-cover bg-[position:60%_30%] md:bg-[position:center_24%]"
+            style={{ backgroundImage: `url(${contactBg})` }}
           />
           {/* 80% black overlay */}
           <div
             aria-hidden
-            className="pointer-events-none absolute inset-0 bg-black/80"
+            className="pointer-events-none absolute inset-0 bg-black/70"
           />
           {/* Ambient gold glow inside the card */}
           <div
